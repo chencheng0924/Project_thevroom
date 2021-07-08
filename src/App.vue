@@ -5,6 +5,7 @@
       <router-link to="/about">About</router-link>
       <p>123</p>
       <h1>站著穿</h1>
+      <p>gogogo</p>
     </div>
     <router-view/>
   </div>
