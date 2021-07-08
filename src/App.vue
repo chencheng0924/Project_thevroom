@@ -1,39 +1,15 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-      <p>123</p>
-      <h1>站著穿</h1>
-      <h2>666666</h2>
-      <p>gogogo</p>
-      <p>gogogo</p>
-      <h1>dddddd</h1>
-      <p>花生熔岩堡</p>
-    </div>
-    <router-view/>
+    <the-header></the-header>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import theHeader from './components/layout/theHeader.vue'
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+export default ({
+  components: {
+    theHeader
   }
-}
-</style>
+})
+</script>
