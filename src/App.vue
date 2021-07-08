@@ -6,7 +6,7 @@
 </template>
 <script>
 import theHeader from './components/layout/theHeader.vue'
-import thefooter from './components/layout/footer.vue'
+import thefooter from './components/layout/thefooter.vue'
 export default {
   components: {
     theHeader,

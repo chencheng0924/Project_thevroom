@@ -25,7 +25,7 @@
         <i class="fab fa-twitter-square"></i>
       </div>
       <div class="footer-last">
-        ©2020 thevroom Co., Ltd. | 條款及細則 | 關於thevroom
+        <p>©2020 thevroom Co., Ltd. | 條款及細則 | 關於thevroom</p>
       </div>
     </div>
   </div>
@@ -37,13 +37,14 @@
   padding: 0;
   box-sizing: border-box;
   .footer-body {
+    padding: 30px 0;
     background-color: #181818;
     .footer-first {
       display: flex;
       justify-content: space-around;
 
       .footer-sub {
-        margin: 0 10px;
+        margin: 0 auto;
         width: 250px;
         color: #fff;
         h4 {
@@ -53,6 +54,9 @@
           display: flex;
           flex-direction: column;
           input {
+            height: 25px;
+            background-color: #fff;
+            margin: 15px 0;
             width: 200px;
             align-self: center;
           }
@@ -61,6 +65,8 @@
             align-self: center;
             background-color: red;
             color: #fff;
+            height: 25px;
+            border-radius: 5px;
           }
         }
       }
@@ -87,6 +93,7 @@
       }
     }
     .footer-last {
+      text-align: center;
       color: #fff;
     }
   }
