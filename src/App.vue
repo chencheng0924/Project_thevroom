@@ -6,6 +6,7 @@
       <p>123</p>
       <h1>站著穿</h1>
       <p>gogogo</p>
+      <p>gogogo</p>
     </div>
     <router-view/>
   </div>
