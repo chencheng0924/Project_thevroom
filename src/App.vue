@@ -9,6 +9,7 @@
       <p>gogogo</p>
       <p>gogogo</p>
       <h1>dddddd</h1>
+      <p>花生熔岩堡</p>
     </div>
     <router-view/>
   </div>
