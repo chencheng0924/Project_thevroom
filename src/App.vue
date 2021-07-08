@@ -1,13 +1,15 @@
 <template>
   <div id="app">
-<<<<<<< HEAD
+    <the-header></the-header>
     <thefooter/>
   </div>
 </template>
 <script>
+import theHeader from './components/layout/theHeader.vue'
 import thefooter from './components/layout/footer.vue'
 export default {
   components: {
+    theHeader,
     thefooter
   }
 }
@@ -20,18 +22,3 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-=======
-    <the-header></the-header>
-  </div>
-</template>
-
-<script>
-import theHeader from './components/layout/theHeader.vue'
->>>>>>> 2e69394e26f3ae380d0354d4347819054a198f6f
-
-export default ({
-  components: {
-    theHeader
-  }
-})
-</script>
