@@ -8,6 +8,7 @@
       <h2>666666</h2>
       <p>gogogo</p>
       <p>gogogo</p>
+      <h1>dddddd</h1>
     </div>
     <router-view/>
   </div>
