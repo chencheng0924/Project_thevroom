@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
       <p>123</p>
+      <h1>站著穿</h1>
     </div>
     <router-view/>
   </div>
