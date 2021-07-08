@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+<<<<<<< HEAD
     <thefooter/>
   </div>
 </template>
@@ -19,17 +20,18 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+=======
+    <the-header></the-header>
+  </div>
+</template>
 
-#nav {
-  padding: 30px;
+<script>
+import theHeader from './components/layout/theHeader.vue'
+>>>>>>> 2e69394e26f3ae380d0354d4347819054a198f6f
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+export default ({
+  components: {
+    theHeader
   }
-}
-</style>
+})
+</script>
