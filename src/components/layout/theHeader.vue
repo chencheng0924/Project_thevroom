@@ -8,7 +8,7 @@
         ></v-app-bar-nav-icon>
         <v-toolbar-title>
           <router-link to="/" tag="span" style="cursor: pointer"
-            ><img src="../../../img/logo-transparent.png"></router-link
+            ><img src="../../assets/logo-transparent.png"></router-link
           >
         </v-toolbar-title>
         <v-spacer></v-spacer>
