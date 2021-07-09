@@ -1,14 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-      <p>12345</p>
-    </div>
+    <the-header></the-header>
+    <the-footer></the-footer>
     <router-view/>
   </div>
 </template>
-
+<script>
+import TheHeader from './components/layout/TheHeader.vue'
+import TheFooter from './components/layout/TheFooter.vue'
+export default {
+  components: {
+    TheHeader,
+    TheFooter
+  }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -17,17 +23,3 @@
   text-align: center;
   color: #2c3e50;
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
