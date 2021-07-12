@@ -1,34 +1,23 @@
 <template>
-    <v-app dark>
     <div>
-      <v-toolbar dense>
+      <v-toolbar dense flat style="background-color: #181818;">
         <v-app-bar-nav-icon
           @click.stop="sideNav = !sideNav"
-          class='hidden-sm-and-up'
+          color="#FFFFFF"
+          class="ml-2"
         ></v-app-bar-nav-icon>
         <v-toolbar-title>
           <router-link to="/" tag="span" style="cursor: pointer"
-            ><img src="../../assets/logo-transparent.png"></router-link
+            ><img src="../../assets/logowhite-transparent.png"></router-link
           >
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-toolbar-items class="hidden-xs-only">
-          <v-btn
-            flat
-            v-for="item in menuItem"
-            :key="item.title"
-            :to="item.link"
-          >
-            <v-icon left>{{ item.icon }}</v-icon>
-            {{ item.title }}
-          </v-btn>
-        </v-toolbar-items>
-        <v-icon left class="ml-3">mdi-cart</v-icon>
-        <v-icon left class="ml-3">mdi-account-heart</v-icon>
+        <v-icon left class="mr-6" color="#FFFFFF">mdi-cart-outline</v-icon>
+        <v-icon left class="mr-4" color="#FFFFFF">mdi-account-circle-outline</v-icon>
       </v-toolbar>
       <v-navigation-drawer v-model="sideNav" absolute temporary>
         <v-list rounded>
-          <v-list-item-group color="primary">
+          <v-list-item-group color="deep-orange accent-3">
             <v-list-item
               v-for="item in menuItem"
               :key="item.title"
@@ -45,7 +34,6 @@
         </v-list>
       </v-navigation-drawer>
     </div>
-  </v-app>
 </template>
 
 <script>
@@ -56,18 +44,30 @@ export default {
     sideNav: false,
     menuItem: [
       {
-        icon: 'mdi-account-tie',
+        icon: 'mdi-gavel',
         title: '競標會場',
         link: '/meetups'
       },
       {
-        icon: 'mdi-card-text-outline',
+        icon: 'mdi-car-sports',
         title: '直購車輛',
         link: '/meetup/new'
       },
-      { icon: 'mdi-dog', title: '市場行情', link: '/profile' },
-      { icon: 'mdi-draw', title: '討論專區', link: '/signup' },
-      { icon: 'mdi-login', title: '新手上路', link: '/signin' }
+      {
+        icon: 'mdi-clipboard-list-outline',
+        title: '市場行情',
+        link: '/profile'
+      },
+      {
+        icon: 'mdi-draw',
+        title: '討論專區',
+        link: '/signup'
+      },
+      {
+        icon: 'mdi-account-question-outline',
+        title: '新手上路',
+        link: '/signin'
+      }
     ]
   })
 }
@@ -75,7 +75,7 @@ export default {
 
 <style scoped>
     img{
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
     }
 </style>
