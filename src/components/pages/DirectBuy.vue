@@ -236,8 +236,6 @@ export default {
   .indexproduct2 {
     display: flex;
     width: 100%;
-    .carousel {
-    }
     .indexcarinfo {
       display: flex;
       align-items: center;
