@@ -181,11 +181,12 @@ export default {
         }
         .aboutusitem3 {
           color: #fff;
-          margin-bottom: 100px;
+          margin-bottom: 50px;
           height: 200px;
         }
         .aboutusitem4 {
           color: #fff;
+          height: 150px;
           margin-bottom: 50px;
         }
       }
