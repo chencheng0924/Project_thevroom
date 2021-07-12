@@ -1,18 +1,15 @@
 <template>
   <div>
     <direct-buy />
-    <about-us />
   </div>
 </template>
 
 <script>
-import AboutUs from '../components/pages/AboutUs.vue'
-import DirectBuy from '../components/pages/DirectBuy.vue'
+import DirectBuy from '../components/pages/AboutUs.vue'
 export default {
   name: 'Home',
 
   components: {
-    AboutUs,
     DirectBuy
   }
 }

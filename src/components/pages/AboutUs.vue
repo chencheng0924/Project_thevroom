@@ -1,0 +1,195 @@
+<template>
+  <div class="aboutus">
+    <div class="leftandright">
+      <div class="leftgo" @click="move"><i class="fas fa-caret-left"></i></div>
+      <div class="rightgo" @click="back">
+        <i class="fas fa-caret-right"></i>
+      </div>
+    </div>
+    <div class="aboutitembackground">
+      <div class="aboutitembackgroundimage">
+        <div
+          class="aboutusitem"
+          v-for="item in list"
+          :key="item.id"
+          ref="aboutusall"
+        >
+          <div class="aboutusitem1">
+            <h1>{{ item.num }}</h1>
+          </div>
+          <div class="aboutusitem2"><i :class="item.icon"></i></div>
+          <div class="aboutusitem3">
+            <h2>{{ item.title }}</h2>
+          </div>
+          <div class="aboutusitem4">
+            <p>
+              {{ item.info }}
+            </p>
+          </div>
+          <div class="aboutusitem5">
+            <v-btn rounded color="#F34841" dark>
+              了解詳情
+            </v-btn>
+          </div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+let a = 0
+export default {
+  data () {
+    return {
+      list: [
+        {
+          id: '1',
+          num: '01',
+          icon: 'fas fa-dna',
+          title: '系統化競價',
+          info:
+            '我們規劃出一套細膩的競價系統，以及透明化的出價紀錄，讓使用者能夠輕鬆競標，快樂得標．'
+        },
+        {
+          id: '2',
+          num: '02',
+          icon: 'fab fa-ubuntu',
+          title: '專業化團隊',
+          info:
+            '結合最優秀、專業之車檢人員並引進日本最先進的車輛檢查技術，為拍賣流通之車輛作把關，使會員於競拍車輛時更能快速、即時判斷車況及行情，競標到自己屬意的車輛。'
+        },
+        {
+          id: '3',
+          num: '03',
+          icon: 'fas fa-user-friends',
+          title: '透明化車況',
+          info:
+            '由合格認證的專業查定士，對於車輛進行22部位，共105項的檢查及鑑定；並將查定的結果於『查定結果表』上忠實呈現，一舉將目前拍賣車無法啟動檢視的風險降至最低！'
+        },
+        {
+          id: '4',
+          num: '04',
+          icon: 'fas fa-tools',
+          title: '完整化服務',
+          info:
+            '購買車輛後不只提供牌照、燃料及車險等等一系列服務，在購車起算後一年內額外提供保固維修，讓你在購車之餘多享受一份安心。'
+        },
+        {
+          id: '4',
+          num: '04',
+          icon: 'fas fa-tools',
+          title: '完整化服務',
+          info:
+            '購買車輛後不只提供牌照、燃料及車險等等一系列服務，在購車起算後一年內額外提供保固維修，讓你在購車之餘多享受一份安心。'
+        }
+      ]
+    }
+  },
+  methods: {
+    move () {
+      const allitem = this.$refs.aboutusall
+      a = 350
+      allitem.forEach(item => {
+        // if (a < -701) {
+        //   return
+        // }
+        item.style.transform += `translateX(${a}px)`
+        console.log(a)
+      })
+    },
+    back () {
+      const allitem = this.$refs.aboutusall
+      a = -350
+      allitem.forEach(item => {
+        item.style.transform += `translateX(${a}px)`
+      })
+    }
+  }
+}
+</script>
+
+<style scoped lang="scss">
+.aboutus {
+  display: flex;
+  height: 100vh;
+  .leftandright {
+    background-color: black;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .leftgo {
+      color: white;
+      border: 1px solid white;
+      border-radius: 50%;
+      padding: 1px 15px;
+      font-size: 35px;
+      cursor: pointer;
+      &:hover {
+        border: 1px solid #f34841;
+        color: #f34841;
+      }
+    }
+    .rightgo {
+      color: white;
+      border: 1px solid white;
+      border-radius: 50%;
+      padding: 1px 15px;
+      font-size: 35px;
+      cursor: pointer;
+      &:hover {
+        border: 1px solid #f34841;
+        color: #f34841;
+      }
+    }
+  }
+  .aboutitembackground {
+    transition: all 1s;
+    display: flex;
+    width: 1250px;
+    overflow: hidden;
+    background-color: black;
+    .aboutitembackgroundimage {
+      height: 100vh;
+      display: flex;
+      background-image: url('../../assets/index-aboutus2.png');
+      .aboutusitem {
+        background-color: rgba($color: black, $alpha: 0.4);
+        width: 350px;
+        border-left: 1px solid #fff;
+        padding: 50px 30px;
+        display: flex;
+        flex-direction: column;
+        transition: all 1s;
+        .aboutusitem1 {
+          color: #fff;
+          border-bottom: 2px solid #f34841;
+          width: 60px;
+          padding-bottom: 10px;
+        }
+        .aboutusitem2 {
+          align-self: center;
+          color: #fff;
+          border: 1px solid #707070;
+          border-radius: 50%;
+          padding: 15px 20px;
+          font-size: 30px;
+          margin-top: 50px;
+          margin-bottom: 50px;
+        }
+        .aboutusitem3 {
+          color: #fff;
+          margin-bottom: 100px;
+          height: 200px;
+        }
+        .aboutusitem4 {
+          color: #fff;
+          margin-bottom: 50px;
+        }
+      }
+    }
+  }
+}
+</style>
