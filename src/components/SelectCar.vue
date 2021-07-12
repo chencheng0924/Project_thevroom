@@ -1,12 +1,7 @@
 <template>
     <div class="wholepage">
         <div class="leftpart">
-            <div class="titlebox">
-                <div class="auctiontitle">近期競標場次
-                    <div class="rect"></div>
-                    <div class="anrect"></div>
-                </div>
-            </div>
+            <the-headline titleName="近期競標場次"></the-headline>
             <div v-for="item in carList" :key="item.id" class="leftitem">
                 <div :class="item.classname">{{ item.carname }}</div>
             </div>

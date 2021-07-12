@@ -1,11 +1,17 @@
 <template>
     <div class="titlebox">
-            <div class="auctiontitle">近期競標場次
+            <div class="auctiontitle">{{ titleName }}
                 <div class="rect"></div>
                 <div class="anrect"></div>
             </div>
     </div>
 </template>
+
+<script>
+export default {
+    props: ['titleName']
+}
+</script>
 
 <style lang="scss">
 .titlebox{
