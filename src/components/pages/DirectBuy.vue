@@ -8,7 +8,7 @@
         <div class="indexproductborder"></div>
         <h2>{{ item.title }}</h2>
         <div class="indexproductsection1">
-          <v-btn rounded color="white" large class="btn">
+          <v-btn rounded color="white" large class="ml-15 mt-15">
             Shop now <i class="fas fa-shopping-cart"></i>
           </v-btn>
           <img :src="item.src" alt="圖壞了" />
@@ -24,7 +24,7 @@
               v-bind="attrs"
               v-on="on"
               @click="move"
-              >Previous slide</v-btn
+              >Previous Car</v-btn
             >
           </template>
           <template v-slot:next="{ on, attrs }">
@@ -33,7 +33,7 @@
               v-bind="attrs"
               v-on="on"
               @click="back"
-              >Next slide</v-btn
+              >Next Car</v-btn
             >
           </template>
           <v-carousel-item
@@ -192,7 +192,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scope>
 .indexproductall {
   width: 100%;
   text-align: center;
@@ -221,11 +221,6 @@ export default {
       z-index: -1;
     }
     .indexproductsection1 {
-      .btn {
-        margin-top: 80px;
-        margin-right: 30px;
-        margin-left: 20px;
-      }
       img {
         width: 150px;
         height: 200px;

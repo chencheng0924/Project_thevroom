@@ -1,17 +1,15 @@
 <template>
   <div>
-    <direct-buy />
-    <about-us />
     <v-container class="mt-10" style="border: 1px solid red">
       <v-row justify="space-around" style="border: 1px solid green">
         <v-col cols="8">
           <img
-          ref="indexcar"
-          max-width="800"
-          src="../assets/indexbenz.png"
-          class="photo"
-          style="border: 1px solid yellow; pointer-events: none;"
-          >
+            ref="indexcar"
+            max-width="800"
+            src="../assets/indexbenz.png"
+            class="photo"
+            style="border: 1px solid yellow; pointer-events: none;"
+          />
         </v-col>
         <v-col cols="4">
           <v-card
@@ -67,16 +65,14 @@
                 </v-container>
             </v-card>
         </v-col>
-        <v-btn
-        rounded
-        color="#F34841"
-        class="btn"
-        dark
-        @click="wantmove"
-        >進入競標場</v-btn>
+        <v-btn rounded color="#F34841" class="btn" dark @click="wantmove"
+          >進入競標場</v-btn
+        >
       </v-row>
     </v-container>
     <select-car></select-car>
+    <direct-buy />
+    <about-us />
   </div>
 </template>
 
@@ -114,10 +110,10 @@ export default {
 </script>
 
 <style>
-  .photo{
-    position: relative;
-    transform: translateX(60px);
-    z-index: 10;
-    transition: all 1s;
-  }
+.photo {
+  position: relative;
+  transform: translateX(60px);
+  z-index: 10;
+  transition: all 1s;
+}
 </style>
