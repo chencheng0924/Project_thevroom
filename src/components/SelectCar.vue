@@ -3,12 +3,12 @@
         <div class="leftpart">
             <the-headline titleName="近期競標場次"></the-headline>
             <div v-for="(item, index) in carList" :key="item.id" class="leftitem">
-                <div :class="item.classname" @click="showImg(index)">{{ item.carname }}</div>
+                <div :class="{ addcolor:index == count}" @click="addBg(index)">{{ item.carname }}</div>
             </div>
         </div>
         <div class="rightpart">
             <div class="carImg">
-                <img v-if="show" :src="showImg">
+                <img :src="showImg">
             </div>
             <div></div>
         </div>
@@ -20,6 +20,8 @@ export default {
   data () {
     return {
       show: false,
+      count: 0,
+      showImg: require('../assets/index-select-car/car1.jpg'),
       carList: [
         { classname: 'one', carname: '01  BMW M2 Competition', id: '1' },
         { classname: 'two', carname: '02  M-Benz GLC 200 4MATIC', id: '2' },
@@ -37,11 +39,10 @@ export default {
     }
   },
   methods: {
-  },
-  watch: {
-    showImg (index) {
-      this.show = !this.show
-      return this.carImg[index].src
+    addBg (index) {
+      this.count = index
+      this.showImg = this.carImg[index].src
+      console.log(this.carImg[index].src)
     }
   }
 }
@@ -65,7 +66,8 @@ export default {
         border: 1px solid blue;
         height: 16%;
         color: #FFFFFF;
-        font-size: 40px;
+        font-size: 35px;
+        padding-left: 30px;
         }
         .titlebox{
         display: flex;
@@ -74,28 +76,6 @@ export default {
         justify-content: center;
         height: 18%;
         color: #FFFFFF;
-            .auctiontitle{
-                font-size: 40px;
-                font-weight: bold;
-                border: 1px solid yellow;
-                display: flex;
-                .rect{
-                background-color: #F34841;
-                width: 13px;
-                height: 35px;
-                transform: skew(150deg);
-                margin-top: 12px;
-                margin-left: 20px;
-                }
-                .anrect{
-                background-color: #F34841;
-                width: 13px;
-                height: 35px;
-                transform: skew(150deg);
-                margin-top: 12px;
-                margin-left: 5px;
-                }
-            }
         }
     }
     .rightpart {
@@ -117,6 +97,9 @@ export default {
             width: 200px
         }
     }
+}
+.addcolor{
+    background-color: #F34841;
 }
 
 </style>

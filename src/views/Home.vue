@@ -18,7 +18,7 @@
                 outlined
                 max-width="400"
             >
-            <v-container @click="move" v-click-outside="onClickOutside">
+            <v-container @click="move" v-click-ou fluidtside="onClickOutside">
                 <v-row justify="center">
                     <v-col cols="11">
                         <v-card-title>快速搜尋</v-card-title>

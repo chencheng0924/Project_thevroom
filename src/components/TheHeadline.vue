@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    props: ['titleName']
+  props: ['titleName']
 }
 </script>
 
@@ -20,6 +20,7 @@ export default {
     justify-content: center;
     height: 18%;
     color: #FFFFFF;
+    padding-left: 30px;
         .auctiontitle{
             font-size: 40px;
             font-weight: bold;
