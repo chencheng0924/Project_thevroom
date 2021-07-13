@@ -1,7 +1,5 @@
 <template>
   <div>
-    <direct-buy />
-    <about-us />
     <v-container class="mt-10" style="border: 1px solid red">
       <v-row justify="space-around" style="border: 1px solid green">
         <v-col cols="8">
@@ -27,6 +25,8 @@
       </v-row>
     </v-container>
     <select-car></select-car>
+    <direct-buy />
+    <about-us />
   </div>
 </template>
 
@@ -40,7 +40,7 @@ export default {
 
   components: {
     AboutUs,
-    DirectBuy
+    DirectBuy,
     QuickSearch,
     SelectCar
   },
