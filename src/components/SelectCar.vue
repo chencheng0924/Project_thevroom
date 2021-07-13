@@ -2,14 +2,15 @@
     <div class="wholepage">
         <div class="leftpart">
             <the-headline titleName="近期競標場次"></the-headline>
-            <div v-for="item in carList" :key="item.id" class="leftitem">
-                <div :class="item.classname">{{ item.carname }}</div>
+            <div v-for="(item, index) in carList" :key="item.id" class="leftitem">
+                <div :class="item.classname" @click="showImg(index)">{{ item.carname }}</div>
             </div>
         </div>
         <div class="rightpart">
+            <div class="carImg">
+                <img v-if="show" :src="showImg">
+            </div>
             <div></div>
-            <div></div>
-            <the-headline></the-headline>
         </div>
     </div>
 </template>
@@ -18,13 +19,29 @@
 export default {
   data () {
     return {
+      show: false,
       carList: [
-        { classname: 'one', carname: '01  BMW M2 Competition', id: '2' },
-        { classname: 'two', carname: '02  M-Benz GLC 200 4MATIC', id: '3' },
-        { classname: 'three', carname: '03  BMW X4 competition', id: '4' },
-        { classname: 'four', carname: '04  Bentley Continental GT', id: '5' },
-        { classname: 'five', carname: '05  LAND ROVER Discovery Sport', id: '6' }
+        { classname: 'one', carname: '01  BMW M2 Competition', id: '1' },
+        { classname: 'two', carname: '02  M-Benz GLC 200 4MATIC', id: '2' },
+        { classname: 'three', carname: '03  BMW X4 competition', id: '3' },
+        { classname: 'four', carname: '04  Bentley Continental GT', id: '4' },
+        { classname: 'five', carname: '05  LAND ROVER Discovery Sport', id: '5' }
+      ],
+      carImg: [
+        { classname: 'nbone', src: require('../assets/index-select-car/car1.jpg'), id: '0' },
+        { classname: 'nbtwo', src: require('../assets/index-select-car/car2.png'), id: '1' },
+        { classname: 'nbthree', src: require('../assets/index-select-car/car3.jpg'), id: '2' },
+        { classname: 'nbfour', src: require('../assets/index-select-car/car4.jpg'), id: '3' },
+        { classname: 'nbfive', src: require('../assets/index-select-car/car5.jpg'), id: '4' }
       ]
+    }
+  },
+  methods: {
+  },
+  watch: {
+    showImg (index) {
+      this.show = !this.show
+      return this.carImg[index].src
     }
   }
 }
@@ -84,6 +101,21 @@ export default {
     .rightpart {
     border: 1px solid green;
     width: 50%;
+        .nbone{
+            width: 200px;
+        }
+        .nbtwo{
+            width: 200px;
+        }
+        .nbthree{
+            width: 200px;
+        }
+        .nbfour{
+            width: 200px;
+        }
+        .nbfive{
+            width: 200px
+        }
     }
 }
 
