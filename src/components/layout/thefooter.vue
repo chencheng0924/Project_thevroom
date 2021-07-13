@@ -48,7 +48,7 @@
         <div><i class="fab fa-twitter-square"></i></div>
       </div>
       <div class="footer-last mt-5">
-        <p>©2020 thevroom Co., Ltd. | 條款及細則 | 關於thevroommmm11</p>
+        <p>©2020 thevroom Co., Ltd. | 條款及細則 | 關於thevroommmm111</p>
       </div>
     </div>
   </div>
