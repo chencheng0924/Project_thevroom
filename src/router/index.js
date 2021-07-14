@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import CompareCard from '../components/layout/CompareCard.vue'
+import Forum from '../components/Forum.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,11 @@ const routes = [
     path: '/comparecard',
     name: 'CompareCard',
     component: CompareCard
+  },
+  {
+    path: '/forum',
+    name: 'Forum',
+    component: Forum
   }
 ]
 

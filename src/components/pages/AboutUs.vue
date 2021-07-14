@@ -110,7 +110,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .aboutus {
   display: flex;
   height: 100vh;
