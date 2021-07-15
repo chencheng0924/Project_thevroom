@@ -1,11 +1,10 @@
 <template>
   <div>
-    <direct-buy />
-    <about-us />
     <v-container class="mt-10" style="border: 1px solid red">
       <v-row justify="space-around" style="border: 1px solid green">
         <v-col cols="8">
           <v-img
+          <img
             ref="indexcar"
             max-width="800"
             src="../assets/indexbenz.png"
@@ -13,9 +12,61 @@
             style="border: 1px solid yellow; pointer-events: none;"
             @move-car="letCarMove"
           ></v-img>
+          />
         </v-col>
         <v-col cols="4">
-          <quick-search></quick-search>
+          <v-card
+                outlined
+                max-width="400"
+            >
+            <v-container @click="move" v-click-outside="onClickOutside">
+                <v-row justify="center">
+                    <v-col cols="11">
+                        <v-card-title>快速搜尋</v-card-title>
+                    </v-col>
+                        <v-col cols="10">
+                            <v-text-field
+                                label="品牌"
+                                placeholder="請輸入車子品牌"
+                                outlined
+                                dense
+                                ref="firstinput"
+                            ></v-text-field>
+                            <v-select
+                                :items="items"
+                                label="車型"
+                                outlined
+                                dense
+                            ></v-select>
+                            <v-text-field
+                                label="年份"
+                                placeholder="請輸入西元年"
+                                outlined
+                                dense
+                            ></v-text-field>
+                            <v-text-field
+                                label="款式"
+                                placeholder="請輸入車子款式"
+                                outlined
+                                dense
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="10">
+                            <v-row justify="end">
+                                <v-card-actions>
+                                                <v-btn
+                                                rounded
+                                                outlined
+                                                width="100"
+                                                >
+                                                搜尋
+                                                </v-btn>
+                                </v-card-actions>
+                            </v-row>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-card>
         </v-col>
         <v-btn rounded color="#F34841" class="btn" dark @click="wantmove"
           >進入競標場</v-btn
@@ -23,17 +74,22 @@
       </v-row>
     </v-container>
     <select-car></select-car>
+    <direct-buy />
+    <about-us />
   </div>
 </template>
 
 <script>
 import AboutUs from '../components/pages/AboutUs.vue'
 import DirectBuy from '../components/pages/DirectBuy.vue'
-import QuickSearch from '../components/QuickSearch.vue'
 import SelectCar from '../components/SelectCar.vue'
 export default {
   name: 'Home',
-
+  data () {
+    return {
+      items: ['四門房車', '雙門轎跑', '休旅車']
+    }
+  },
   components: {
     AboutUs,
     DirectBuy,
@@ -41,12 +97,17 @@ export default {
     SelectCar
   },
   methods: {
-    letCarMove () {
-      console.log('yo')
-      this.$refs.indexcar.style.transform = 'translateX(0px)'
+    move () {
+      this.$refs.indexcar.style.transform = 'translateX(-50px)'
     },
     wantmove () {
       this.$refs.indexcar.style.transform = 'translateX(0px)'
+    },
+    movetwo () {
+      this.$refs.indexcar.style.transform = 'translateX(-50px)'
+    },
+    onClickOutside () {
+      this.$refs.indexcar.style.transform = 'translateX(60px)'
     }
   }
 }
@@ -61,5 +122,8 @@ export default {
 .btn {
   position: relative;
   bottom: 180px;
+  transform: translateX(60px);
+  z-index: 10;
+  transition: all 1s;
 }
 </style>
