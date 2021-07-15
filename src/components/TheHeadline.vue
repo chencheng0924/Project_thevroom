@@ -14,38 +14,34 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .titlebox {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     height: 18%;
     color: #ffffff;
     .auctiontitle {
         font-size: 40px;
         font-weight: bold;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        // flex-direction: column;
+        align-items: center;
         height: 18%;
         color: #FFFFFF;
         padding-left: 30px;
-        .rect {
-        background-color: #f34841;
-        width: 13px;
-        height: 35px;
-        transform: skew(150deg);
-        margin-top: 12px;
-        margin-left: 20px;
-        }
-        .anrect {
-        background-color: #f34841;
-        width: 13px;
-        height: 35px;
-        transform: skew(150deg);
-        margin-top: 12px;
-        margin-left: 5px;
-        }
+            .rect {
+                background-color: #f34841;
+                width: 13px;
+                height: 35px;
+                transform: skew(150deg);
+                margin-left: 20px;
+            }
+            .anrect {
+                background-color: #f34841;
+                width: 13px;
+                height: 35px;
+                transform: skew(150deg);
+                margin-left: 8px;
+            }
     }
 }
 </style>
