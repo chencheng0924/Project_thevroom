@@ -6,24 +6,20 @@
       <v-row justify="space-around" style="border: 1px solid green">
         <v-col cols="8">
           <v-img
-          ref="indexcar"
-          max-width="800"
-          src="../assets/indexbenz.png"
-          class="photo"
-          style="border: 1px solid yellow; pointer-events: none;"
-          @move-car="letCarMove"
+            ref="indexcar"
+            max-width="800"
+            src="../assets/indexbenz.png"
+            class="photo"
+            style="border: 1px solid yellow; pointer-events: none;"
+            @move-car="letCarMove"
           ></v-img>
         </v-col>
         <v-col cols="4">
           <quick-search></quick-search>
         </v-col>
-        <v-btn
-        rounded
-        color="#F34841"
-        class="btn"
-        dark
-        @click="wantmove"
-        >進入競標場</v-btn>
+        <v-btn rounded color="#F34841" class="btn" dark @click="wantmove"
+          >進入競標場</v-btn
+        >
       </v-row>
     </v-container>
     <select-car></select-car>
@@ -40,7 +36,7 @@ export default {
 
   components: {
     AboutUs,
-    DirectBuy
+    DirectBuy,
     QuickSearch,
     SelectCar
   },
@@ -57,13 +53,13 @@ export default {
 </script>
 
 <style>
-  .photo{
-    position: relative;
-    transform: translateX(130px);
-    z-index: 10;
-  }
-  .btn{
-    position: relative;
-    bottom: 180px;
-  }
+.photo {
+  position: relative;
+  transform: translateX(130px);
+  z-index: 10;
+}
+.btn {
+  position: relative;
+  bottom: 180px;
+}
 </style>
