@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import CompareCard from '../components/layout/CompareCard.vue'
 import Forum from '../components/Forum.vue'
+import ForumPage from '../components/ForumPage.vue'
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,11 @@ const routes = [
     path: '/forum',
     name: 'Forum',
     component: Forum
+  },
+  {
+    path: '/forumPage',
+    name: 'ForumPage',
+    component: ForumPage
   }
 ]
 

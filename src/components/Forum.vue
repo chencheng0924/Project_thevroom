@@ -4,22 +4,28 @@
       <div
         class="forumblack d-flex justify-center align-center pt-10 pb-10"
         style="width:100%;height:100%"
+        max-width="600"
+        max-height="600"
       >
         <div style="width:50%" class="mr-10 white newscard">
           <img src="../assets/forum/TDI SUV.png" style="width:100%;" />
-          <h2 class="text-h6 black--text pl-2">
-            VW Arteon Shooting Brake v.s Peugeot 508 SW ｜ 200 萬級美型 Wagon
-            對決！
+          <h2 class="text-h5 black--text pl-2">
+            <router-link to="/ForumPage" style="text-decoration:none; color:black">
+              VW Arteon Shooting Brake v.s Peugeot 508 SW ｜ 200 萬級美型 Wagon
+              對決！
+            </router-link>
           </h2>
         </div>
-        <div style="width:20%;" class="d-flex flex-column ml-10">
+        <div style="width:20%;height:50%" class="d-flex flex-column ml-10">
           <div
             v-for="item in news"
             :key="item.id"
             class="newscard white mb-8 mt-3"
           >
             <img :src="item.image" style="width:100%" />
-            <h2 class="text-subtitle-1 black--text pl-2">{{ item.content }}</h2>
+            <h2 class="black--text pl-2 text-sm-body-2 mb-3">
+              {{ item.content }}
+            </h2>
           </div>
         </div>
       </div>
@@ -42,7 +48,10 @@
         </div>
       </div>
     </div>
-    <div class="d-flex justify-space-between flex-wrap mb-10 pl-10 pr-10" style="width:100%">
+    <div
+      class="d-flex justify-space-between flex-wrap mb-10 pl-10 pr-10"
+      style="width:100%"
+    >
       <div v-for="carnew in carnews" :key="carnew" class="mb-10">
         <v-card class="mx-auto" max-width="400">
           <v-img class="white--text align-end" height="200px" :src="carnew.src">
@@ -50,12 +59,12 @@
           </v-img>
 
           <v-card-subtitle class="pb-0 text-h6">
-            {{carnew.title}}
+            {{ carnew.title }}
           </v-card-subtitle>
 
           <v-card-text class="text--primary">
             <div>
-              {{carnew.content}}
+              {{ carnew.content }}
             </div>
           </v-card-text>
 
