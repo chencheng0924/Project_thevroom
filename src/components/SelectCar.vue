@@ -14,12 +14,6 @@
             <div class="timer">01:08:54:36''</div>
         </div>
     </div>
-    <div class="rightpart">
-      <div></div>
-      <div></div>
-      <the-headline></the-headline>
-    </div>
-  </div>
 </template>
 
 <script>
