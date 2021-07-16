@@ -2,30 +2,40 @@
   <div style="width:100%;height:100%">
     <div class="forumtop">
       <div
-        class="forumblack d-flex justify-center align-center pt-10 pb-10"
+        class="forumblack d-flex flex-column justify-center align-center pt-10 pb-10"
         style="width:100%;height:100%"
-        max-width="600"
-        max-height="600"
       >
-        <div style="width:50%" class="mr-10 white newscard">
-          <img src="../assets/forum/TDI SUV.png" style="width:100%;" />
-          <h2 class="text-h5 black--text pl-2">
-            <router-link to="/ForumPage" style="text-decoration:none; color:black">
-              VW Arteon Shooting Brake v.s Peugeot 508 SW ｜ 200 萬級美型 Wagon
-              對決！
-            </router-link>
-          </h2>
+        <div class='d-flex justify-end mb-10' style="width:80%">
+          <router-link style="text-decoration:none;" to="/issuePage"><button-news buttonName="我要發文"></button-news></router-link>
         </div>
-        <div style="width:20%;height:50%" class="d-flex flex-column ml-10">
+        <div class="d-flex justify-center ma-auto" style="max-width:1200px">
           <div
-            v-for="item in news"
-            :key="item.id"
-            class="newscard white mb-8 mt-3"
+            style="width:55%"
+            class="mr-10 white newscard d-flex flex-column justify-space-between align-center"
           >
-            <img :src="item.image" style="width:100%" />
-            <h2 class="black--text pl-2 text-sm-body-2 mb-3">
-              {{ item.content }}
+            <img src="../assets/forum/TDI SUV.png" style="width:100%;" />
+            <h2 class="text-h5 black--text" style="width:100%;">
+              <router-link
+                to="/ForumPage"
+                style="display:inlineblock;text-decoration:none; color:black;width:100%;"
+              >
+                VW Arteon Shooting Brake v.s Peugeot 508 SW ｜ 200 萬級美型
+                Wagon 對決！
+              </router-link>
             </h2>
+            <div class="newtitle" style="width:100%;height:5px;"></div>
+          </div>
+          <div style="width:25%;" class="d-flex flex-column ml-10">
+            <div
+              v-for="item in news"
+              :key="item.id"
+              class="newscard white mb-10"
+            >
+              <img :src="item.image" style="width:100%" />
+              <h2 class="black--text pl-2 text-sm-body-2 mb-3">
+                {{ item.content }}
+              </h2>
+            </div>
           </div>
         </div>
       </div>
@@ -132,7 +142,7 @@ export default {
       news: [
         {
           id: 1,
-          image: require('../assets/forum/toyota-supra.jpg'),
+          image: require('../assets/forum/Benz1.png'),
           content:
             'Land Rover Range Rover Evoque P250R-Dynamic SE 新年式試駕｜安全、科技一併升級！'
         },

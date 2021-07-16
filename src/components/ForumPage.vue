@@ -24,9 +24,7 @@
             style="max-width:800px;"
           >
             <h2>{{ newli.title }}</h2>
-            <v-btn class="ma-3 align-self-end" outlined color="white"
-              >留言回覆</v-btn
-            >
+            <button-news class="ma-3 align-self-end" buttonName="留言回覆"></button-news>
             <div style="width:100%;height:5px;" class="orange"></div>
             <div class="my-10">
               <img style="width:90%;height:100%" :src="newli.src" />

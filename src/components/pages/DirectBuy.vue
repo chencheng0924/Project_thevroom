@@ -1,7 +1,7 @@
 <template>
   <div class="indexproductall">
-    <div>
-      <h1>直購區<span class=""></span></h1>
+    <div class="d-flex justify-center">
+       <the-headline titleName="直購區" style="color:black"></the-headline>
     </div>
     <div class="indexproduct1">
       <div class="indexproductsection" v-for="item in product" :key="item.id">
