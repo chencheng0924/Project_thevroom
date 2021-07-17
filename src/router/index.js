@@ -5,6 +5,7 @@ import CompareCard from '../components/layout/CompareCard.vue'
 import Forum from '../components/Forum.vue'
 import ForumPage from '../components/ForumPage.vue'
 import IssuePage from '../components/pages/IssuePage.vue'
+import UploadImage from '../components/UploadImage.vue'
 
 Vue.use(VueRouter)
 
@@ -42,6 +43,11 @@ const routes = [
     path: '/issuePage',
     name: 'IssuePage',
     component: IssuePage
+  },
+  {
+    path: '/uploadimage',
+    name: 'UploadImage',
+    component: UploadImage
   }
 ]
 

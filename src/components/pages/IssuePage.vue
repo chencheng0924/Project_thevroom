@@ -35,6 +35,7 @@
       <div class="d-flex justify-start align-center ma-auto mb-10"
         style="width:70%;">
           <h2 style="font-size:25px;">圖片上傳:</h2>
+          <upload-image></upload-image>
       </div>
       <div
         class="d-flex justify-start align-center ma-auto mb-10"

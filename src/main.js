@@ -9,12 +9,14 @@ import TheHeadline from './components/TheHeadline.vue'
 import ButtonShare from './components/layout/ButtonNews'
 import ButtonSubmit from './components/layout/ButtonSubmit'
 import VueObserVisibility from 'vue-observe-visibility'
+import UploadImage from './components/UploadImage.vue'
 
 Vue.use(VueObserVisibility)
 Vue.config.productionTip = false
 Vue.component('the-headline', TheHeadline)
 Vue.component('button-news', ButtonShare)
 Vue.component('button-submit', ButtonSubmit)
+Vue.component('upload-image', UploadImage)
 
 new Vue({
   router,
