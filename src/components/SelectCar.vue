@@ -87,7 +87,6 @@ export default {
         }
       }
     }
-    
   .rightpart {
     border: 1px solid green;
     width: 50%;
@@ -108,7 +107,6 @@ export default {
             font-weight: blod;
         }
     }
-    
 .addcolor{
     background-color: #F34841;
 }

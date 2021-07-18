@@ -4,7 +4,6 @@
       <v-row justify="space-around" style="border: 1px solid green">
         <v-col cols="8">
           <v-img
-          <img
             ref="indexcar"
             max-width="800"
             src="../assets/indexbenz.png"
@@ -12,7 +11,6 @@
             style="border: 1px solid yellow; pointer-events: none;"
             @move-car="letCarMove"
           ></v-img>
-          />
         </v-col>
         <v-col cols="4">
           <v-card
@@ -83,6 +81,7 @@
 import AboutUs from '../components/pages/AboutUs.vue'
 import DirectBuy from '../components/pages/DirectBuy.vue'
 import SelectCar from '../components/SelectCar.vue'
+
 export default {
   name: 'Home',
   data () {
@@ -93,7 +92,6 @@ export default {
   components: {
     AboutUs,
     DirectBuy,
-    QuickSearch,
     SelectCar
   },
   methods: {
