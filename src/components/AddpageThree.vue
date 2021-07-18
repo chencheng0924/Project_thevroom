@@ -1,0 +1,173 @@
+<template>
+    <div class="allPage">
+        <add-left titleNum="02" titleText="填寫內容"></add-left>
+        <v-container class="contentRightThree">
+            <div class="d-flex flex-column contentInside mt-13">
+                <div>
+                    <v-form>
+                        <v-row>
+                            <v-col cols="2" class="auName mt-1 ml-7">
+                                出廠年份：
+                            </v-col>
+                            <v-col cols="4">
+                                <v-text-field
+                                label="請輸入西元年"
+                                placeholder="請輸入西元年"
+                                outlined
+                                dense
+                                ></v-text-field>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="2" class="auName mt-1 ml-7">
+                                外觀車色：
+                            </v-col>
+                            <v-col cols="2">
+                                <v-select
+                                :items="colorList"
+                                label="請選擇顏色"
+                                outlined
+                                dense
+                                ></v-select>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="2" class="auName mt-1 ml-7">
+                                排氣量：
+                            </v-col>
+                            <v-col cols="3">
+                                <v-select
+                                :items="airList"
+                                label="請選擇排氣量"
+                                outlined
+                                dense
+                                ></v-select>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="2" class="auName mt-1 ml-7">
+                                車門數：
+                            </v-col>
+                            <v-col cols="4">
+                                <v-radio-group
+                                v-model="row"
+                                row
+                                class="mt-1"
+                                >
+                                <v-radio
+                                    label="三門"
+                                    value="3-doors"
+                                    color="#F34841"
+                                ></v-radio>
+                                <v-radio
+                                    label="四門"
+                                    value="4-doors"
+                                    color="#F34841"
+                                ></v-radio>
+                                <v-radio
+                                    label="五門"
+                                    value="5-doors"
+                                    color="#F34841"
+                                ></v-radio>
+                                </v-radio-group>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="2" class="auName mt-1 ml-7">
+                                行駛里程：
+                            </v-col>
+                            <v-col cols="4">
+                                <v-text-field
+                                label="請輸入目前里程數"
+                                placeholder="請填入目前行駛里程，例16888"
+                                outlined
+                                dense
+                                ></v-text-field>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="2" class="auName mt-3 ml-7">
+                                上傳圖檔：
+                            </v-col>
+                            <v-col cols="2">
+                                <v-file-input
+                                    label="上傳圖片"
+                                    outlined
+                                    multiple
+                                    prepend-icon="mdi-camera"
+                                ></v-file-input>
+                            </v-col>
+                        </v-row>
+                    </v-form>
+                </div>
+                <div style="width: 950px;" class="d-flex justify-end mt-16">
+                    <v-btn rounded outlined width="100" to="#page2" @click="reloadPage">上一步</v-btn>
+                    <v-btn rounded color="#F34841" class="btn ml-16" dark width="100" to="#page4" @click="reloadPage"
+                     >下一步</v-btn>
+                </div>
+            </div>
+        </v-container>
+    </div>
+</template>
+
+<script>
+import AddLeft from './AddLeft.vue'
+
+export default {
+  data: () => ({
+    colorList: ['黑', '白', '銀', '灰', '紅', '藍', '棕', '綠', '黃', '紫', '其他'],
+    airList: ['1200cc 以下', '1201cc~1800cc', '1801cc~2400cc', '2401cc~3000cc', '3001cc~3600cc', '3601cc 以上']
+  }),
+  methods: {
+    showOption () {
+      this.showSelect = true
+    },
+    reloadPage () {
+      window.location.reload()
+    }
+  },
+  components: {
+    AddLeft
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+    .allPage{
+        display: flex;
+        .contentRightThree{
+            width: 75%;
+            height: 100vh;
+            margin-top: 50px;
+            .contentInside{
+                height: 80%;
+                .insideTitle{
+                    font-size: 25px;
+                    color: #BFBDBD;
+                    .line{
+                    width: 500px;
+                    border-bottom: 2px solid #BFBDBD;
+                    }
+                }
+                .auName{
+                    font-size: 20px;
+                    text-align: end;
+                }
+            }
+        }
+    }
+    .v-text-field__details {
+    display: none !important;
+    }
+    .slc{
+      width: 120px;
+    }
+    .theme--light.v-messages {
+    color: rgba(0, 0, 0, 0.6);
+    display: none;
+    }
+    .v-input--selection-controls {
+    margin-top: 0 !important;
+    padding-top: 4px;
+    }
+</style>

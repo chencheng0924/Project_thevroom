@@ -8,6 +8,8 @@ import IssuePage from '../components/pages/IssuePage.vue'
 import UploadImage from '../components/UploadImage.vue'
 import ReportDialogs from '../components/layout/ReportDialogs.vue'
 import CarCheckout from '../components/CarCheckout.vue'
+import AddProduct from '../components/AddProduct.vue'
+import AuctionOverview from '../components/pages/AuctionOverview.vue'
 
 Vue.use(VueRouter)
 
@@ -60,6 +62,16 @@ const routes = [
     path: '/carcheckout',
     name: 'CarCheckout',
     component: CarCheckout
+  },
+  {
+    path: '/addproduct',
+    name: 'AddProduct',
+    component: AddProduct
+  },
+  {
+    path: '/auctionoverview',
+    name: 'AuctionOverview',
+    component: AuctionOverview
   }
 ]
 

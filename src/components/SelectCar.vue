@@ -1,17 +1,19 @@
 <template>
     <div class="wholepage">
-        <div class="leftpart">
-            <the-headline titleName="近期競標場次"></the-headline>
-            <div v-for="(item, index) in carList" :key="item.id" class="leftitem" :class="{ addcolor:index == count}" @click="addBg(index)">
-                <div>{{ item.carname }}</div>
-                <div :class="{ viewbar:index == count}" class="viewcolor">{{ viewtag }}</div>
+        <div class="insideWhole d-flex">
+            <div class="leftpart">
+                <the-headline titleName="近期競標場次"></the-headline>
+                <div v-for="(item, index) in carList" :key="item.id" class="leftitem" :class="{ addcolor:index == count}" @click="addBg(index)">
+                    <div>{{ item.carname }}</div>
+                    <div :class="{ viewbar:index == count}" class="viewcolor">{{ viewtag }}</div>
+                </div>
             </div>
-        </div>
-        <div class="rightpart">
-            <div class="carImg">
-                <img :src="showImg" class="imgSize">
+            <div class="rightpart">
+                <div class="carImg">
+                    <img :src="showImg" class="imgSize">
+                </div>
+                <div class="timer">01:08:54:36''</div>
             </div>
-            <div class="timer">01:08:54:36''</div>
         </div>
     </div>
 </template>
@@ -44,7 +46,7 @@ export default {
     addBg (index) {
       this.count = index
       this.showImg = this.carImg[index].src
-    //   console.log(this.carImg[index].src)
+      //   console.log(this.carImg[index].src)
     }
   }
 }
@@ -55,7 +57,11 @@ export default {
   height: 100vh;
   background-color: #181818;
   display: flex;
-  .leftpart {
+    .insideWhole{
+        width: 1200px;
+        margin: 0 auto;
+    }
+    .leftpart {
     border: 1px solid yellow;
     width: 50%;
     display: flex;
@@ -70,7 +76,7 @@ export default {
         border: 1px solid blue;
         height: 16%;
         color: #FFFFFF;
-        font-size: 35px;
+        font-size: 30px;
         padding-left: 30px;
         cursor: pointer;
             &:hover{
@@ -96,7 +102,7 @@ export default {
     flex-direction: column;
     justify-content: space-evenly;
         .imgSize{
-            width: 800px;
+            width: 100%;
             margin-top: 100px;
         }
         .timer{
