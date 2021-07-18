@@ -73,6 +73,7 @@
     <select-car></select-car>
     <direct-buy />
     <about-us />
+    <index-forum/>
   </div>
 </template>
 
@@ -80,6 +81,7 @@
 import AboutUs from '../components/pages/AboutUs.vue'
 import DirectBuy from '../components/pages/DirectBuy.vue'
 import SelectCar from '../components/SelectCar.vue'
+import indexForum from '../components/indexForum.vue'
 export default {
   name: 'Home',
   data () {
@@ -90,7 +92,8 @@ export default {
   components: {
     AboutUs,
     DirectBuy,
-    SelectCar
+    SelectCar,
+    indexForum
   },
   methods: {
     move () {

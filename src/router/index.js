@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import CompareCard from '../components/layout/CompareCard.vue'
+import AddProduct from '../components/AddProduct.vue'
+import AuctionOverview from '../components/pages/AuctionOverview.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +26,16 @@ const routes = [
     path: '/comparecard',
     name: 'CompareCard',
     component: CompareCard
+  },
+  {
+    path: '/addproduct',
+    name: 'AddProduct',
+    component: AddProduct
+  },
+  {
+    path: '/auctionoverview',
+    name: 'AuctionOverview',
+    component: AuctionOverview
   }
 ]
 

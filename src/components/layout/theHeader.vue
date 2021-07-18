@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="headerrrr">
       <v-toolbar dense flat style="background-color: #181818;">
         <v-app-bar-nav-icon
           @click.stop="sideNav = !sideNav"
@@ -15,7 +15,7 @@
         <v-icon left class="mr-6" color="#FFFFFF">mdi-cart-outline</v-icon>
         <v-icon left class="mr-4" color="#FFFFFF">mdi-account-circle-outline</v-icon>
       </v-toolbar>
-      <v-navigation-drawer v-model="sideNav" absolute temporary>
+      <v-navigation-drawer v-model="sideNav" absolute temporary height="100vh" style="z-index: 20;">
         <v-list rounded>
           <v-list-item-group color="deep-orange accent-3">
             <v-list-item
@@ -74,8 +74,17 @@ export default {
 </script>
 
 <style scoped>
+    /* .headerrrr{
+      position: absolute;
+      top: 0;
+      min-width: 100%;
+      z-index: 10;
+    } */
     img{
         width: 120px;
         height: 120px;
+    }
+    .v-overlay__scrim {
+        min-height: 100vh !important;
     }
 </style>
