@@ -6,6 +6,8 @@ import Forum from '../components/Forum.vue'
 import ForumPage from '../components/ForumPage.vue'
 import IssuePage from '../components/pages/IssuePage.vue'
 import UploadImage from '../components/UploadImage.vue'
+import ReportDialogs from '../components/layout/ReportDialogs.vue'
+import CarCheckout from '../components/CarCheckout.vue'
 
 Vue.use(VueRouter)
 
@@ -48,6 +50,16 @@ const routes = [
     path: '/uploadimage',
     name: 'UploadImage',
     component: UploadImage
+  },
+  {
+    path: '/reportdialogs',
+    name: 'ReportDialogs',
+    component: ReportDialogs
+  },
+  {
+    path: '/carcheckout',
+    name: 'CarCheckout',
+    component: CarCheckout
   }
 ]
 

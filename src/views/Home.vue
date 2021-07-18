@@ -3,7 +3,6 @@
     <v-container class="mt-10" style="border: 1px solid red">
       <v-row justify="space-around" style="border: 1px solid green">
         <v-col cols="8">
-          <v-img
           <img
             ref="indexcar"
             max-width="800"
@@ -11,8 +10,7 @@
             class="photo"
             style="border: 1px solid yellow; pointer-events: none;"
             @move-car="letCarMove"
-          ></v-img>
-          />
+          >
         </v-col>
         <v-col cols="4">
           <v-card
@@ -93,7 +91,6 @@ export default {
   components: {
     AboutUs,
     DirectBuy,
-    QuickSearch,
     SelectCar
   },
   methods: {
