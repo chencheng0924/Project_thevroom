@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import CompareCard from '../components/layout/CompareCard.vue'
+import NewDriver from '../components/NewDriver.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,11 @@ const routes = [
     path: '/comparecard',
     name: 'CompareCard',
     component: CompareCard
+  },
+  {
+    path: '/newdriver',
+    name: 'NewDriver',
+    component: NewDriver
   }
 ]
 
