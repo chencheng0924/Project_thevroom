@@ -3,7 +3,6 @@
     <v-container class="mt-10" style="border: 1px solid red">
       <v-row justify="space-around" style="border: 1px solid green">
         <v-col cols="8">
-          <v-img
           <img
             ref="indexcar"
             max-width="800"
@@ -11,8 +10,7 @@
             class="photo"
             style="border: 1px solid yellow; pointer-events: none;"
             @move-car="letCarMove"
-          ></v-img>
-          />
+          >
         </v-col>
         <v-col cols="4">
           <v-card
@@ -76,6 +74,7 @@
     <select-car></select-car>
     <direct-buy />
     <about-us />
+    <index-forum/>
   </div>
 </template>
 
@@ -83,6 +82,7 @@
 import AboutUs from '../components/pages/AboutUs.vue'
 import DirectBuy from '../components/pages/DirectBuy.vue'
 import SelectCar from '../components/SelectCar.vue'
+import indexForum from '../components/indexForum.vue'
 export default {
   name: 'Home',
   data () {
@@ -93,8 +93,8 @@ export default {
   components: {
     AboutUs,
     DirectBuy,
-    QuickSearch,
-    SelectCar
+    SelectCar,
+    indexForum
   },
   methods: {
     move () {

@@ -6,6 +6,8 @@ import Forum from '../components/Forum.vue'
 import ForumPage from '../components/ForumPage.vue'
 import IssuePage from '../components/pages/IssuePage.vue'
 import UploadImage from '../components/UploadImage.vue'
+import AddProduct from '../components/AddProduct.vue'
+import AuctionOverview from '../components/pages/AuctionOverview.vue'
 
 Vue.use(VueRouter)
 
@@ -48,6 +50,16 @@ const routes = [
     path: '/uploadimage',
     name: 'UploadImage',
     component: UploadImage
+  },
+  {
+    path: '/addproduct',
+    name: 'AddProduct',
+    component: AddProduct
+  },
+  {
+    path: '/auctionoverview',
+    name: 'AuctionOverview',
+    component: AuctionOverview
   }
 ]
 
