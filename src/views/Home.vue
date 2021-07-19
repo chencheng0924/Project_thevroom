@@ -9,14 +9,15 @@
             src="../assets/indexbenz.png"
             class="photo"
             style="border: 1px solid yellow; pointer-events: none;"
-          />
+            @move-car="letCarMove"
+          >
         </v-col>
         <v-col cols="4">
           <v-card
                 outlined
                 max-width="400"
             >
-            <v-container @click="move" v-click-ou fluidtside="onClickOutside">
+            <v-container @click="move" v-click-outside="onClickOutside">
                 <v-row justify="center">
                     <v-col cols="11">
                         <v-card-title>快速搜尋</v-card-title>
@@ -73,6 +74,7 @@
     <select-car></select-car>
     <direct-buy />
     <about-us />
+    <index-forum/>
   </div>
 </template>
 
@@ -80,6 +82,8 @@
 import AboutUs from '../components/pages/AboutUs.vue'
 import DirectBuy from '../components/pages/DirectBuy.vue'
 import SelectCar from '../components/SelectCar.vue'
+import indexForum from '../components/indexForum.vue'
+
 export default {
   name: 'Home',
   data () {
@@ -90,7 +94,8 @@ export default {
   components: {
     AboutUs,
     DirectBuy,
-    SelectCar
+    SelectCar,
+    indexForum
   },
   methods: {
     move () {
@@ -109,9 +114,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .photo {
   position: relative;
+  transform: translateX(130px);
+  z-index: 10;
+}
+.btn {
+  position: relative;
+  bottom: 80px;
+}
+img{
   transform: translateX(60px);
   z-index: 10;
   transition: all 1s;

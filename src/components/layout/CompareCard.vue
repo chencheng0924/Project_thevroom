@@ -1,63 +1,171 @@
 <template>
-  <div>
-    <v-app>
-      <v-card
+  <div class="all_compare">
+    <div class="compare_info">
+      <div class="title">
+        <h3 class="title_name">車款比較</h3>
+      </div>
+
+      <div class="card">
+        <v-card
         outline
-        width="800"
-        height="400"
+        width="1200"
+        height="450"
         style="border:2px solid black; margin:0 auto;"
-      >
-        <v-container fluid>
-          <v-row align="center" style="border:2px solid black">
-            <v-col class="d-flex" cols="12" sm="3">
-              <v-select
-                :items="items"
-                label="請選擇車廠"
-                dense
-                outlined
-                style="border-radius:50px"
-              ></v-select>
-            </v-col>
+        >
 
-            <v-col class="d-flex" cols="12" sm="3">
-              <v-select
-                :items="brands"
-                label="請選擇車款"
-                dense
-                outlined
-                style="border-radius:50px"
-              ></v-select>
-            </v-col>
+          <div class="card_tile">
+            <div class="card_title_name">選擇車款進行比較</div>
+          </div>
+          <div class="select_bar">
+            <ul class="bar">
+              <li>
+                <v-select
+                  :items="items"
+                  label="請選擇車廠"
+                  dense
+                  outlined
+                  style="border-radius:50px; width:270px"
+                ></v-select>
+              </li>
+              <li>
+                <v-select
+                  :items="brands"
+                  label="請選擇車款"
+                  dense
+                  outlined
+                  style="border-radius:50px; width:270px"
+                ></v-select>
+              </li>
+              <li>
+                <v-select
+                  :items="version"
+                  label="請選擇車系"
+                  dense
+                  outlined
+                  style="border-radius:50px; width:270px"
+                ></v-select>
+              </li>
+              <li>
+                <v-btn rounded color="#F34841" dark width="150" height="40">加入</v-btn>
+              </li>
+            </ul>
+          </div>
 
-            <v-col class="d-flex" cols="12" sm="3">
-              <v-select
-                :items="version"
-                label="請選擇車系"
-                dense
-                outlined
-                style="border-radius:50px"
-              >
-              </v-select>
-            </v-col>
+          <div class="liner"></div>
 
-            <v-col class="text-center">
-              <v-btn></v-btn>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card>
-
-      <v-card
-        class="d-flex justify-space-around"
-        width="800"
-        height="400"
-        style="border:2px solid black; margin:0 auto;"
-      >
-        <v-card v-for="n in 4" :key="n" class="pa-2">
-          justify-space-around
+          <div class="card_photo_area">
+            <div class="inside_area">
+              <div class="card_photo"></div>
+                <div class="card_photo"></div>
+                <div class="card_photo_area_btn">
+                  <div class="area_btn_inside">
+                    <div class="area_btn_word">目 前 選 擇<span class="area_btn_num"> 0 </span>輛</div>
+                    <v-btn rounded color="#F34841" dark width="150" height="40">加入</v-btn>
+                  </div>
+                </div>
+            </div>
+          </div>
         </v-card>
-      </v-card>
-    </v-app>
+      </div>
+
+      <div class="middle_title_outside">
+        <div class="title_outside">
+          <h3 class="pk_title">熱門新車PK <div class="pk_liner"></div></h3>
+          <h3 class="hotcar_title">熱門車排行 <div class="hotcar_liner"></div></h3>
+        </div>
+      </div>
+
+      <div class="middle_outside">
+        <div class="compare_middle">
+          <div class="compare_middle_left">
+            <div class="photo_left" v-for="newImage in newImages" :key="newImage.id" :src="newImage.src">
+              <img :src="newImage.src" class="newcar_photo">
+            </div>
+          </div>
+          <div class="compare_middle_right">
+            <v-hover v-slot="{ hover }">
+              <div class="hotcar">
+                <div class="hotcar_img_outside">
+                  <img src="../../assets/compare-car-pic/hotcar01.png" class="hotcar_img">
+                </div>
+                <div class="hotcar_info">
+                  <div class="hotcar_title">Auston Martin</div>
+                  <div class="hotcar_price">$ 990W</div>
+                  <v-expand-transition>
+                      <div
+                        v-if="hover"
+                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 white--text"
+                      >
+                        去搶購
+                      </div>
+                    </v-expand-transition>
+                </div>
+              </div>
+            </v-hover>
+
+            <v-hover v-slot="{ hover }">
+              <div class="hotcar">
+                <div class="hotcar_img_outside">
+                  <img src="../../assets/compare-car-pic/hotcar02.png" class="hotcar_img">
+                </div>
+                <div class="hotcar_info">
+                  <div class="hotcar_title">Auston Martin</div>
+                  <div class="hotcar_price">$ 990W</div>
+                  <v-expand-transition>
+                      <div
+                        v-if="hover"
+                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 white--text"
+                      >
+                        去搶購
+                      </div>
+                    </v-expand-transition>
+                </div>
+              </div>
+            </v-hover>
+
+            <v-hover v-slot="{ hover }">
+              <div class="hotcar">
+                <div class="hotcar_img_outside">
+                  <img src="../../assets/compare-car-pic/hotcar03.png" class="hotcar_img">
+                </div>
+                <div class="hotcar_info">
+                  <div class="hotcar_title">Auston Martin</div>
+                  <div class="hotcar_price">$ 990W</div>
+                  <v-expand-transition>
+                      <div
+                        v-if="hover"
+                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 white--text"
+                      >
+                        去搶購
+                      </div>
+                    </v-expand-transition>
+                </div>
+              </div>
+            </v-hover>
+
+            <v-hover v-slot="{ hover }">
+              <div class="hotcar">
+                <div class="hotcar_img_outside">
+                  <img src="../../assets/compare-car-pic/hotcar04.png" class="hotcar_img">
+                </div>
+                <div class="hotcar_info">
+                  <div class="hotcar_title">Auston Martin</div>
+                  <div class="hotcar_price">$ 990W</div>
+                  <v-expand-transition>
+                      <div
+                        v-if="hover"
+                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 white--text"
+                      >
+                        去搶購
+                      </div>
+                    </v-expand-transition>
+                </div>
+              </div>
+            </v-hover>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -77,13 +185,292 @@ export default {
       '2014',
       '2013'
     ],
-    version: ['1', '2', '3', '4', '5', '6', '7', '8']
+    version: ['1', '2', '3', '4', '5', '6', '7', '8'],
+    newImages: [
+      {
+        id: '1',
+        src: require('../../assets/compare-car-pic/newcar01.png')
+      },
+      {
+        id: '2',
+        src: require('../../assets/compare-car-pic/newcar02.png')
+      },
+      {
+        id: '3',
+        src: require('../../assets/compare-car-pic/newcar03.png')
+      },
+      {
+        id: '4',
+        src: require('../../assets/compare-car-pic/newcar04.png')
+      },
+      {
+        id: '5',
+        src: require('../../assets/compare-car-pic/newcar05.png')
+      },
+      {
+        id: '6',
+        src: require('../../assets/compare-car-pic/newcar06.png')
+      },
+      {
+        id: '7',
+        src: require('../../assets/compare-car-pic/newcar07.png')
+      },
+      {
+        id: '8',
+        src: require('../../assets/compare-car-pic/newcar08.png')
+      }
+    ]
   })
 }
 </script>
 
-<style scoped>
+<style lang="scss">
+.all_compare{
+  *{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.compare_info{
+  border: 2px solid #00f;
+  width: 100%;
+  height: 2000px;
+}
+
 .v-text-field__details {
   display: none !important;
+}
+
+.title {
+  width: 100%;
+  // border: 1px solid #f20;
+  margin-top: 50px;
+  .title_name{
+    // border: 1px solid #000;
+    width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+.card{
+  // border: 1px solid #f20;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.card_tile{
+  // border: 1px solid #000;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  .card_title_name{
+    border: 4px solid #f20;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    color: #F34841;
+    width: 1100px;
+    font-size: 20px;
+    font-weight: 700;
+    padding-left: 20px;
+  }
+}
+
+.select_bar{
+  // border: 1px solid #000;
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .bar{
+    // border: 1px solid #f20;
+    width: 1100px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.v-input.v-input--dense.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined.v-select {
+  display: flex;
+  justify-content: space-around;
+}
+
+.v-application ul, .v-application ol {
+  padding: 0;
+}
+
+.liner{
+  border-top: 3px solid #000;
+  width: 1100px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.card_photo_area{
+  // border: 1px solid #000;
+  width: 100%;
+  height: 235px;
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  .inside_area{
+    // border: 1px solid #f20;
+    width: 1100px;
+    height: 235px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .card_photo{
+    border: 1px solid #f20;
+    width: 350px;
+    height: 200px;
+    background-color: lightgray;
+  }
+  .card_photo_area_btn{
+    // border: 1px solid #f20;
+    width: 350px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .area_btn_inside{
+      // border: 1px solid #000;
+      width: 150px;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      .area_btn_word{
+        font-size: 20px;
+        font-weight: 700;
+        .area_btn_num{
+          color: #F34841;
+        }
+      }
+    }
+  }
+  }
+}
+
+.middle_title_outside{
+  // border: 1px solid #f20;
+  width: 100%;
+  margin-top: 40px;
+  .title_outside{
+    // border: 1px solid #000;
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    .pk_title{
+      // border: 1px solid green;
+      width: 77.5%;
+      display: flex;
+      align-items: center;
+      .pk_liner{
+        border: 2px solid #F34841;
+        width: 85%;
+        height: 1px;
+        background-color: #F34841;
+        margin-left: 13px;
+      }
+    }
+    .hotcar_title{
+      // border: 1px solid green;
+      width: 22.5%;
+      display: flex;
+      align-items: center;
+      .hotcar_liner{
+        border: 2px solid #F34841;
+        width: 60%;
+        height: 1px;
+        background-color: #F34841;
+        margin-left: 13px;
+      }
+    }
+  }
+}
+
+.middle_outside{
+  // border: 1px solid #f20;
+  width: 100%;
+  margin-top: 30px;
+  .compare_middle{
+  // border: 1px solid #000;
+  width: 1200px;
+  height: 1300px;
+  margin: 0 auto;
+  display: flex;
+  .compare_middle_left{
+    // border: 1px solid #00f;
+    width: 75%;
+    height: 1070px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .photo_left{
+      // border: 1px solid #f20;
+      height: 240px;
+      .newcar_photo{
+        width: 435px;
+        height: 240px;
+      }
+    }
+  }
+  .compare_middle_right{
+    // border: 1px solid green;
+    width: 25%;
+    height: 1300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+}
+
+.hotcar{
+  border: 1px solid #f20;
+  width: 270px;
+  height: 290px;
+  .hotcar_img_outside{
+    // border: 1px solid #000;
+    width: 100%;
+    height: 70%;
+    .hotcar_img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .hotcar_info{
+    // border: 1px solid #000;
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .hotcar_title{
+      font-size: 20px;
+    }
+    .hotcar_price{
+      font-size: 18px;
+      color: #F34841;
+    }
+  }
+}
+
+.v-card--reveal {
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 270px;
+  height: 85px;
+  background-color: #F34841;
+  cursor: pointer;
+}
 }
 </style>

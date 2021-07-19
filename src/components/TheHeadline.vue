@@ -17,8 +17,6 @@ export default {
 <style lang="scss">
 .titlebox {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     height: 18%;
     color: #ffffff;
     .auctiontitle {

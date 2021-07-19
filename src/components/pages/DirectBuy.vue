@@ -1,7 +1,7 @@
 <template>
   <div class="indexproductall">
-    <div>
-      <h1>直購區<span class=""></span></h1>
+    <div class="d-flex justify-center">
+       <the-headline titleName="直購區" style="color:black" class="my-8"></the-headline>
     </div>
     <div class="indexproduct1">
       <div class="indexproductsection" v-for="item in product" :key="item.id">
@@ -15,12 +15,12 @@
         </div>
       </div>
     </div>
-    <div class="indexproduct2">
-      <div class="carousel">
-        <v-carousel height="400" hide-delimiter-background show-arrows-on-hover class="d-flex .justify-center">
-          <template v-slot:prev="{ on, attrs }">
+    <div class="indexproduct2 ma-auto" style="width:1200px;overflow:hidden">
+      <div class="carousel" style="width:80%">
+        <v-carousel style="width:95%" height="500" hide-delimiter-background show-arrows-on-hover class="d-flex justify-center">
+          <template style="width:850px;" v-slot:prev="{ on, attrs }">
             <v-btn
-              color="orange darken-3"
+              color="transparent"
               v-bind="attrs"
               v-on="on"
               @click="move"
@@ -29,7 +29,7 @@
           </template>
           <template v-slot:next="{ on, attrs }">
             <v-btn
-              color="orange darken-3"
+              color="transparent"
               v-bind="attrs"
               v-on="on"
               @click="back"
@@ -40,7 +40,7 @@
             v-for="item in items"
             :key="item.id"
             :src="item.src"
-            width="1000"
+            width="850"
             ref="carinfo"
           ></v-carousel-item>
         </v-carousel>
@@ -192,12 +192,16 @@ export default {
 }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss">
 .indexproductall {
   width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
+  .titlebox .auctiontitle {
+    flex-direction: row;
+    color: black;
+  }
   .indexproduct1 {
     display: flex;
     justify-content: center;
@@ -235,7 +239,7 @@ export default {
       display: flex;
       align-items: center;
       .indexcarinfo1 {
-        width: 550px;
+        width: 350px;
         .indexcarinfo2{
           margin-top: 30px;
           text-align: left;
