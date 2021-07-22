@@ -1,9 +1,9 @@
 <template>
-  <div class="indexproductall" style="height:100vh">
+  <div class="indexproductall mb-10" style="height:100vh">
     <div class="d-flex justify-center">
-       <the-headline titleName="直購區" style="color:black" class="my-4"></the-headline>
+       <the-headline titleName="直購區" style="color:black" class="mt-15 mb-3"></the-headline>
     </div>
-    <div class="indexproduct1">
+    <div class="indexproduct1 ma-auto">
       <div class="indexproductsection" v-for="item in product" :key="item.id">
         <div class="indexproductborder"></div>
         <h2 class="text-h6 font-weight-bold">{{ item.title }}</h2>
@@ -16,31 +16,35 @@
       </div>
     </div>
     <div class="indexproduct2 ma-auto" style="width:1200px;overflow:hidden">
-      <div class="carousel" style="width:80%">
-        <v-carousel style="width:95%" height="350" hide-delimiter-background show-arrows-on-hover class="d-flex justify-center">
-          <template style="width:850px;" v-slot:prev="{ on, attrs }">
+      <div class="carousel">
+        <v-carousel width='700' height="400" hide-delimiter-background show-arrows-on-hover class="d-flex justify-center">
+          <template v-slot:prev="{ on, attrs }">
             <v-btn
-              color="transparent"
+              class="black--text"
+              width='100'
+              color="teal lighten-3"
               v-bind="attrs"
               v-on="on"
               @click="move"
-              >Previous Car</v-btn
+              >上一台</v-btn
             >
           </template>
           <template v-slot:next="{ on, attrs }">
             <v-btn
-              color="transparent"
+              class="black--text"
+              width='100'
+              color="teal lighten-3"
               v-bind="attrs"
               v-on="on"
               @click="back"
-              >Next Car</v-btn
+              >下一台</v-btn
             >
           </template>
           <v-carousel-item
             v-for="item in items"
             :key="item.id"
             :src="item.src"
-            width="800"
+            width="850"
             ref="carinfo"
           ></v-carousel-item>
         </v-carousel>
@@ -101,7 +105,7 @@ export default {
         },
         {
           id: '5',
-          src: require('../../assets/index-car-pic/evoque1.png')
+          src: require('../../assets/index-car-pic/gtr.png')
         }
       ],
       carbrands: [
@@ -143,12 +147,12 @@ export default {
         },
         {
           id: '4',
-          brand: 'Land-Rover',
-          type: 'Evoque',
-          door: '5門5人座',
-          info: '渦輪增壓, 直列4缸, DOHC雙凸輪軸, 24氣門',
-          power: '222hp@3400~4600rpm',
-          liters: '平均 12.1km/ltr'
+          brand: 'Nissan',
+          type: 'GT-R',
+          door: '2門2人座',
+          info: '渦輪增壓, V列6缸, DOHC雙凸輪軸, 24氣門',
+          power: '565hp@3300~5800rpm',
+          liters: '平均 8km/ltr'
         }
       ],
       count: 0
@@ -226,15 +230,14 @@ export default {
     }
     .indexproductsection1 {
       img {
-        width: 150px;
-        height: 200px;
+        width: 120px;
+        height: 180px;
       }
       display: flex;
     }
   }
   .indexproduct2 {
     display: flex;
-    width: 100%;
     .v-image__image--cover {
     background-size:contain ;
       }
@@ -246,9 +249,12 @@ export default {
         .indexcarinfo2{
           margin-top: 30px;
           text-align: left;
-          margin-left: 70px;
+          margin-left: 30px;
           li{
             margin-top: 10px;
+          }
+          .v-image__image, .v-image__placeholder{
+            left:-5px
           }
         }
       }

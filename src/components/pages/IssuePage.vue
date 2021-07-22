@@ -7,16 +7,16 @@
       />
     </div>
     <div class="d-flex flex-column">
-      <div style="text-align:center;" class="my-10"><h1>發表新文章</h1></div>
+      <div style="text-align:center;" class="my-10 text-h4 font-weight-bold">發表新文章</div>
       <div
         style="width:70%;"
         class="d-flex justify-start ma-auto align-center mb-10"
       >
-        <div style="font-size:25px;font-weight:600;">主題類型:</div>
-        <label style="font-size:20px;" class="mx-8"
+        <div class="text-h5 font-weight-bold">主題類型:</div>
+        <label class="text-h6 font-weight-bold ml-10"
           ><input type="radio" name="city" value="taipei" />車訊新聞</label
         >
-        <label style="font-size:20px;" class="mx-8"
+        <label class="text-h6 font-weight-bold ml-10"
           ><input
             type="radio"
             name="city"
@@ -29,19 +29,19 @@
         class="d-flex justify-center align-center ma-auto mb-10"
         style="width:70%;"
       >
-        <h2 style="font-size:25px;">主題:</h2>
+        <div class="text-h5 font-weight-bold">主題:</div>
         <v-text-field :rules="rules"></v-text-field>
       </div>
       <div class="d-flex justify-start align-center ma-auto mb-10"
         style="width:70%;">
-          <h2 style="font-size:25px;">圖片上傳:</h2>
+          <h2 class="text-h5 font-weight-bold">圖片上傳:</h2>
           <upload-image></upload-image>
       </div>
       <div
         class="d-flex justify-start align-center ma-auto mb-10"
         style="width:70%;"
       >
-        <h2 style="font-size:25px;" class="align-self-start mr-3">內容:</h2>
+        <h2 class="text-h5 font-weight-bold align-self-start mr-3">內容:</h2>
         <v-col cols="12" sm="11" style="padding:0">
           <v-textarea
             filled

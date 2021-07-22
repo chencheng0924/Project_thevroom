@@ -11,7 +11,7 @@
         >
           1
         </div>
-        <button class="white--text" @click="component = 'shopping-car1'">
+        <button class="white--text text-h6 font-weight-bold" @click="component = 'shopping-car1'">
           購物車商品列表
         </button>
       </div>
@@ -31,7 +31,7 @@
         >
           2
         </div>
-        <button @click=";(component = 'shopping-car2'), gogo">
+        <button class="text-h6 font-weight-bold" @click=";(component = 'shopping-car2'), gogo">
           確認及付款
         </button>
       </div>
@@ -47,7 +47,7 @@
         >
           3
         </div>
-        <button @click=";(component = 'shopping-car3'), gogo2">完成</button>
+        <button class="text-h6 font-weight-bold" @click=";(component = 'shopping-car3'), gogo2">完成</button>
       </div>
       ;
     </div>
@@ -56,37 +56,37 @@
       class="ma-auto"
       :class="{ gogoro: component == 'shopping-car3' }"
     >
-      <div class="mb-5"><h1>商品明細</h1></div>
+      <div class="mb-5"><h1 class="text-h4 font-weight-bold">商品明細</h1></div>
       <div class="d-flex">
         <div
           class="py-3"
           style="width:15%;text-align:center;border:1px solid black;background-color:#E0E0E0"
         >
-          <h2>圖片</h2>
+          <h2 class="text-h6 font-weight-bold">圖片</h2>
         </div>
         <div
           class="py-3"
           style="width:45%;text-align:center;border:1px solid black;background-color:#E0E0E0"
         >
-          <h2>商品</h2>
+          <h2 class="text-h6 font-weight-bold">商品</h2>
         </div>
         <div
           class="py-3"
           style="width:15%;text-align:center;border:1px solid black;background-color:#E0E0E0"
         >
-          <h2>單價</h2>
+          <h2 class="text-h6 font-weight-bold">單價</h2>
         </div>
         <div
           class="py-3"
           style="width:15%;text-align:center;border:1px solid black;background-color:#E0E0E0"
         >
-          <h2>數量</h2>
+          <h2 class="text-h6 font-weight-bold">數量</h2>
         </div>
         <div
           class="py-3"
           style="width:15%;text-align:center;border:1px solid black;background-color:#E0E0E0"
         >
-          <h2>小計</h2>
+          <h2 class="text-h6 font-weight-bold">小計</h2>
         </div>
       </div>
     </div>
@@ -96,14 +96,14 @@
       </component>
     </div>
     <div class="d-flex justify-end mb-10 ma-auto" style="width:70%">
-      <h1 :class="{ gogoro: component == 'shopping-car2' || component == 'shopping-car3' }">
+      <div class="text-h4 font-weight-bold" :class="{ gogoro: component == 'shopping-car2' || component == 'shopping-car3' }">
         共<span class="red--text">{{ totalitem }}</span
         >項商品,
-      </h1>
-      <h1 :class="{ gogoro: component == 'shopping-car2' || component == 'shopping-car3' }">
+      </div>
+      <div class="text-h4 font-weight-bold" :class="{ gogoro: component == 'shopping-car2' || component == 'shopping-car3' }">
         總金額<span class="red--text">{{ totalprice }}</span
         >元
-      </h1>
+      </div>
     </div>
     <div :class="{gogoro: component == 'shopping-car2' || component == 'shopping-car3'}">
       <div
@@ -111,7 +111,7 @@
       >
         <button-news buttonName="繼續購物" />
         <div class="d-flex align-center">
-          <v-checkbox v-model="checkbox" style="width:400px">
+          <v-checkbox v-model="checkbox" style="width:400px" :class="{gogoro: component == 'shopping-car1'}">
             <template v-slot:label>
               <div>
                 本人表示理解相關配件資訊和『thevroom』車行之相關購物條款規定，並確認下訂商品。

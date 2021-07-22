@@ -12,19 +12,19 @@
         </div>
         <div
           class="d-flex justify-center ma-auto"
-          style="max-width:1200px;height:600px"
+          style="max-width:1200px;height:540px"
         >
-          <v-card class="mx-auto mr-15" max-width="750">
+          <v-card class="mx-auto mr-15" max-width="650">
             <v-img
               class="white--text align-end"
-              height="470px"
+              height="420px"
               src="../assets/forum/TDI SUV.png"
             >
               <v-card-title>Top 10 Australian car</v-card-title>
             </v-img>
             <v-card-text class="text--primary">
               <div class="d-flex justify-center">
-                <h2>
+                <h2 class="text-h6 font-weight-bold">
                   VW Arteon Shooting Brake v.s Peugeot 508 SW ｜ 200 萬級美型
                   Wagon 對決！
                 </h2>
@@ -44,19 +44,19 @@
           <div class="d-flex flex-column">
           <v-card
             class="mx-auto mb-10"
-            max-width="450"
+            max-width="350"
             v-for="item in news"
             :key="item.id"
           >
             <v-img
               class="white--text align-end"
-              height="150px"
+              height="140px"
               :src="item.image"
             >
               <v-card-title>Top 10 Australian beaches</v-card-title>
             </v-img>
             <v-card-text class="text--primary">
-              <div class="yellow-text">{{ item.content }}</div>
+              <div class="-text-subtitle-1 font-weight-bold">{{ item.content }}</div>
             </v-card-text>
             <v-card-actions class="d-flex justify-end">
               <v-btn color="orange" text>
@@ -81,7 +81,7 @@
         </div>
         <div class="d-flex flex-column justify-space-around">
           <div v-for="(title, index) in titles" :key="title.id">
-            <h2 @click="gogo(index)" :class="{ yellow: index == count }">
+            <h2 @click="gogo(index)" :class="{ yellow: index == count }" class="text-h6 font-weight-bold">
               {{ title.title }}
             </h2>
           </div>
@@ -89,20 +89,20 @@
       </div>
     </div>
     <div
-      class="d-flex justify-space-between flex-wrap mb-10"
-      style="width:100%;padding-left:120px;padding-right:120px"
+      class="d-flex justify-space-between flex-wrap mb-10 ma-auto"
+      style="width:1200px;"
     >
       <div v-for="carnew in carnews" :key="carnew" class="mb-10">
-        <v-card class="mx-auto" max-width="400">
-          <v-img class="white--text align-end" height="200px" :src="carnew.src">
+        <v-card class="mx-10" max-width="300">
+          <v-img class="white--text align-end" style="height:250px" :src="carnew.src">
             <v-card-title>經典新款</v-card-title>
           </v-img>
 
-          <v-card-subtitle class="pb-0 text-h6">
+          <v-card-subtitle class="-h6 font-weight-bold">
             {{ carnew.title }}
           </v-card-subtitle>
 
-          <v-card-text class="text--primary">
+          <v-card-text class="text-subtitle-1 font-weight-light">
             <div>
               {{ carnew.content }}
             </div>
@@ -217,6 +217,12 @@ export default {
   background-image: url('../assets/forum/toyota-supra.jpg');
   .forumblack {
     background-color: rgba($color: black, $alpha: 0.7);
+    .v-card__subtitle, .v-card__text, .v-card__title{
+      padding-bottom:0;
+    }
+    .v-card__actions > .v-btn.v-btn{
+      // margin-bottom: 20px;
+    }
     .newscard {
       border-bottom: 5px solid orange;
     }
