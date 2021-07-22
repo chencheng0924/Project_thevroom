@@ -4,6 +4,7 @@
            <img :src="big" class="big">
         </div>
        <h1><img :src="house" class="house"> / 配件專賣區</h1>
+      <div class="main">
         <div class="accessories">
             <span>搜尋配件</span>
             <ul class="productList"><span>雨刷</span>
@@ -38,8 +39,8 @@
                 <span class="price">{{items.price}}</span>
                 <span class="btn">立即查看</span>
             </div>
-
         </div>
+      </div>
  </div>
 </template>
 <script>
@@ -94,7 +95,7 @@ export default ({
         {
           imgURL: require('../assets/accessories-pic/light/light_blue780.jpeg'),
           id: 'lightblue780',
-          title: '【OSRAM】T10 LED藍光 OSRAM 2880BL 2入 4052899333482',
+          title: '【OSRAM】T10 LED藍光 OSRAM 2880BL 2入',
           price: '$780'
         },
         {
@@ -108,9 +109,79 @@ export default ({
           id: 'lightstop930',
           title: 'FOCUS MK3專用煞車燈 2入',
           price: '$930'
+        },
+        {
+          imgURL: require('../assets/accessories-pic/speaker/speaker.jpg'),
+          id: 'speaker1500',
+          title: 'BOSS 音頻®Phantom 系列 10" 1200W 4 歐姆 SVC 低音炮 (P10SVC)',
+          price: '$1500'
+        },
+        {
+          imgURL: require('../assets/accessories-pic/speaker/speaker_3.jpg'),
+          id: 'speaker4800',
+          title: 'Sondpex® - 8" 雙端口無源 450W 低音炮外殼 帶兩個 2"x5" 喇叭高音揚聲器和 LED',
+          price: '$5500'
+        },
+        {
+          imgURL: require('../assets/accessories-pic/speaker/speaker_4.jpg'),
+          id: 'speaker4800',
+          title: 'Audiopipe® - AP-DX 系列歐姆單前向發射端口有源低音砲管',
+          price: '$3600'
+        },
+        {
+          imgURL: require('../assets/accessories-pic/speaker/speaker_5.jpg'),
+          id: 'speaker4800',
+          title: 'DS18® - PRO 1240W VC 鋁製超級子彈頭高音揚聲器',
+          price: '$900'
+        },
+        {
+          imgURL: require('../assets/accessories-pic/save/kgs850.webp'),
+          id: 'kgs',
+          title: '象王 車用油壓千斤頂5T',
+          price: '$900'
+        },
+        {
+          imgURL: require('../assets/accessories-pic/save/power2088_red.jpeg'),
+          id: 'powerred',
+          title: '【電力坦克】電源供應器 4000cc 汽油',
+          price: '$2088'
+        },
+        {
+          imgURL: require('../assets/accessories-pic/save/sign150.jpeg'),
+          id: 'sign',
+          title: '【警告標誌】警告標誌',
+          price: '$150'
+        },
+        {
+          imgURL: require('../assets/accessories-pic/save/sign_led.jpeg'),
+          id: 'signled',
+          title: '【警告標誌】警告標誌 極光LED三角警示架',
+          price: '$558'
+        },
+        {
+          imgURL: require('../assets/accessories-pic/aboutwheel/inside_t254680.jpeg'),
+          id: 'inside_wheel',
+          title: 'TPMS胎內 Mio MiTire T25 胎壓模組',
+          price: '$3200'
+        },
+        {
+          imgURL: require('../assets/accessories-pic/aboutwheel/outside1190.jpeg'),
+          id: 'outside_wheel',
+          title: 'TTP-Q5 外部太陽能胎壓胎溫偵測器',
+          price: '$1190'
+        },
+        {
+          imgURL: require('../assets/accessories-pic/aboutwheel/orange_inside.jpeg'),
+          id: 'inside_wheel7988',
+          title: '【Orange】VW/Audi/Skoda專用儀錶板整合型胎壓偵測器',
+          price: '$7988'
         }
+
       ]
     }
+  },
+  methods () {
+
   }
 })
 </script>
@@ -129,7 +200,10 @@ div.banner{
       }
     }
 
-div.accessories{
+div.main{
+    display:flex;
+    flex: wrap;
+    div.accessories{
     width:400px;
     >span{
         font-weight: bold;
@@ -171,9 +245,15 @@ div.accessories{
 }
 
 div.productList{
+    display: flex;
+    flex-wrap: wrap;
+    width:900px;
     div.product{
+        width:300px;
+        // border:1px solid black;
         img{
             height: 250px;
+            object-fit: contain;
         }
         span.title{
             font-size:16px;
@@ -192,5 +272,5 @@ div.productList{
         }
     }
 }
-
+}
 </style>
