@@ -75,6 +75,8 @@
       </form>
       <div class="gogo">
       <img :src="gogo" class="go">
+      <br>
+      <button type="button" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--rounded theme--dark v-size--default" style="background-color: rgb(243, 72, 65); border-color: rgb(243, 72, 65);"><span class="gobiding"> 前往拍賣場 </span></button>
       </div>
     </div>
   </div>
@@ -218,20 +220,20 @@ div.sell{
     width:1000px;
     margin:50px auto;
     font-size: 20px;
-   input{
-    //  display: flex;
-     position: relative;
-     border-bottom:1px solid #181818;
-     width:100%;
+    input{
+      //  display: flex;
+      position: relative;
+      border-bottom:1px solid #181818;
+      width:100%;
+      }
+      button{
+        color:#ffffff;
+        background-color: $parnerColor;
+        text-align: center;
+        width: 100%;
+        padding:5px 0px;
+      }
     }
-    button{
-      color:#ffffff;
-      background-color: $parnerColor;
-      text-align: center;
-      width: 100%;
-      padding:5px 0px;
-    }
-   }
    .gogo{
      width:1000px;
      margin: 0 auto;
@@ -239,6 +241,10 @@ div.sell{
      img.go{
        width:200px;
      }
-   }
+     button{
+       margin: 30px 0;
+       cursor:pointer;
+     }
   }
+}
 </style>

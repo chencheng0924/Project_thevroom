@@ -11,6 +11,7 @@ import ReportDialogs from '../components/layout/ReportDialogs.vue'
 import CarCheckout from '../components/CarCheckout.vue'
 import AddProduct from '../components/AddProduct.vue'
 import AuctionOverview from '../components/pages/AuctionOverview.vue'
+import Accessories from '../components/Accessories.vue'
 
 Vue.use(VueRouter)
 
@@ -78,6 +79,11 @@ const routes = [
     path: '/auctionoverview',
     name: 'AuctionOverview',
     component: AuctionOverview
+  },
+  {
+    path: '/accessories',
+    name: 'Accessories',
+    component: Accessories
   }
 ]
 
