@@ -1,19 +1,20 @@
 <template>
   <div id="banner">
+    <img :src="iconchat" alt="" class="chat">
     <img :src="banner" class="banner">
     <div class="bannerWord">
-        <span>{{bannerSoul}}</span>
-        <p class="ad">TheVroom 讓你遇見夢想車款</p>
-        <p class="ad">與理想的自己相遇</p>
+        <span></span>
+        <span class="text-h4 font-weight-bold">{{bannerSoul}}</span>
+        <p class="ad text-h6 font-weight-bold">TheVroom 讓你遇見夢想車款</p>
+        <p class="ad text-h6 font-weight-bold">與理想的自己相遇</p>
     </div>
-
     <div class="buy">
-      <h1>新手買車-競標說明</h1>
+      <h1 text-h4 font-weight-bold>新手買車-競標說明</h1>
       <br>
       <div class="firstLine">
           <div class="stepO step1">
-            <span> 01 鎖定競標場次</span>
-            <p>
+            <span text-h6 font-weight-bold> 01 鎖定競標場次</span>
+            <p text-subtitle-1 font-weight-light>
             瀏覽競標會場，鎖定有興趣的競標場次，
             瀏覽競標規則，準備「加入會員」參與競標
             </p>
@@ -21,8 +22,8 @@
           </div>
 
           <div class="stepE step2">
-            <span> 02 加入會員</span>
-            <p>
+            <span text-h6 font-weight-bold> 02 加入會員</span>
+            <p text-subtitle-1 font-weight-light>
             加入會員，同意競標規則，即可參與競標。
             會員於後台擁有專屬會員行事曆，可將競標場
             次加入行事曆，管理您專屬的「The Vroom行程」
@@ -31,8 +32,8 @@
       </div>
       <div class="secondLine">
           <div class="stepO step3">
-            <span> 03 同意競標聲明</span>
-            <p>
+            <span text-h6 font-weight-bold> 03 同意競標聲明</span>
+            <p text-subtitle-1 font-weight-light>
             本站嚴格禁止棄標，如棄標累計兩次，
             會員帳號將被凍結。因此加入會員前請詳閱
             競標規則與聲明，避免影響您的權益。
@@ -41,8 +42,8 @@
           </div>
 
           <div class="stepE step4">
-            <span> 04 參加競標</span>
-            <p>
+            <span text-h6 font-weight-bold> 04 參加競標</span>
+            <p text-subtitle-1 font-weight-light>
             設定好預算，看好價格，按下競標按鈕參與競標。
 
             每口叫價金額為賣家設置，競標金額需以此為基準，
@@ -52,8 +53,8 @@
           </div>
 
           <div class="stepO step5">
-            <span> 05 收到得標email</span>
-            <p>
+            <span text-h6 font-weight-bold> 05 收到得標email</span>
+            <p text-subtitle-1 font-weight-light>
               競標時間結束後，本站會寄得標email通知得標者。
 
               所以記得寄起來心儀車款競標截止時間
@@ -64,7 +65,7 @@
       </div>
     </div>
     <div class="sell">
-      <h1>新手買車-線上估價</h1>
+      <h1 text-h4 font-weight-bold>新手買車-線上估價</h1>
       <form action="">
        車輛廠牌：<input type="text">
        出廠年份：<input type="text">
@@ -90,7 +91,8 @@ export default ({
       stepOne: require('../assets/new-driver-pic/step1-whitecar.png'),
       stepThree: require('../assets/new-driver-pic/contract.png'),
       stepFive: require('../assets/new-driver-pic/medal.png'),
-      gogo: require('../assets/new-driver-pic/gogo.png')
+      gogo: require('../assets/new-driver-pic/gogo.png'),
+      iconchat: require('../assets/new-driver-pic/question.png')
     }
   }
 })
@@ -108,6 +110,16 @@ div#banner{
   max-width: 100%;
   position: relative;
   }
+  img.chat{
+    position: fixed;
+    z-index: 99;
+    width:100px;
+    top:300px;
+    &:hover{
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  }
 div.bannerWord{
   background: url(../assets/new-driver-pic/banner-word.png);
   color:#fff;
@@ -115,7 +127,7 @@ div.bannerWord{
   height:200px;
   position: absolute;
   left:0;
-  top:48px;
+  top:64px;
 span{
   font-size:40px;
   padding-left: 5px;
@@ -129,14 +141,15 @@ p.ad{
 }
 
 h1{
-  font-size: $middleTitle;
   position: relative;
   padding:30px;
+  max-width:1200px ;
+  margin: 0 auto;
 
   &:after{
     content: "";
     position: absolute;
-    width:90%;
+    width:100%;
     height:3px;
     left:30px;
     top:100%;
@@ -166,14 +179,22 @@ h1{
 div.buy{
   // display: flex;
   // flex-wrap: wrap;
+  width:1200px;
+  margin:0 auto;
   .firstLine,.secondLine{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
+  div.secondLine{
+    margin-top:50px;
+    div.step4{
+      width:350px;
+      margin: 0 15px;
+    }
+  }
   .stepO{
     position: relative;
-    margin:50px 30px 30px 30px;
     span{
       font-size: 30px;
       font-weight: bold;
@@ -202,7 +223,7 @@ div.buy{
   .stepE{
     @include stepE;
     position: relative;
-    margin:50px 30px 30px 30px;
+    // margin:30px 30px 0px 0px;
     span{
       font-size: 30px;
       font-weight: bold;
@@ -214,7 +235,21 @@ div.buy{
   }
 }
 
+@keyframes letsgo {
+  70%{
+    transform: scale(0.7);
+  }
+  50%{
+     transform: scale(0.5);
+  }
+  30%{
+    transform: scale(0.3);
+  }
+}
+
 div.sell{
+  width:1200px;
+  margin:0 auto;
   form{
     border:1px solid #181818;
     width:1000px;
