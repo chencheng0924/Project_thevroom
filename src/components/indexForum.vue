@@ -21,7 +21,9 @@
                     width="120"
                     color="#F34841"
                     >
+                    <router-link to="/forum" style="text-de;">
                     查看全文
+                    </router-link>
                     </v-btn>
                 </div>
             </div>
@@ -84,7 +86,6 @@
                 background-color: #181818;
                 padding-left: 30px;
                 padding-top: 30px;
-
             }
         }
     }
