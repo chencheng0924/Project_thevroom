@@ -5,7 +5,7 @@
         class="forumblack d-flex flex-column justify-center align-center py-10"
         style="width:100%;height:100%"
       >
-        <h2 class="mb-5">--文章分享--</h2>
+        <h2 class="mb-5 text-h4 font-weight-bold">--文章分享--</h2>
         <div class="d-flex">
           <div class="d-flex flex-column mr-15 justify-start align-center">
             <i class="fas fa-portrait"></i>
@@ -23,14 +23,14 @@
             :key="newli.id"
             style="max-width:800px;"
           >
-            <h2>{{ newli.title }}</h2>
+            <h2 class="text-h4 font-weight-bold">{{ newli.title }}</h2>
             <button-news class="ma-3 align-self-end" buttonName="留言回覆"></button-news>
             <div style="width:100%;height:5px;" class="orange"></div>
             <div class="my-10">
               <img style="width:90%;height:100%" :src="newli.src" />
             </div>
             <div>
-              <p style="line-height:3;font-size:20px">{{ newli.content }}</p>
+              <p style="line-height:3;text-subtitle-1 font-weight-light">{{ newli.content }}</p>
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@
         class="d-flex flex-column align-center justify-center ma-auto"
         style="max-width:1000px;max-height:100%"
       >
-        <h2 class="align-self-start">回應區</h2>
+        <div class="text-h4 font-weight-bold align-self-start">回應區</div>
         <div style="width:100%;height:3px" class="orange"></div>
         <div
           v-for="message in messagelist"
@@ -50,10 +50,10 @@
           class="d-flex flex-column align-space-around"
         >
           <div class="d-flex justify-space-around my-4">
-            <div class="d-flex flex-column align-center">
+            <div class="d-flex flex-column align-center mr-5">
               <i class="fas fa-portrait"></i>
-              <h3>{{ message.name }}</h3>
-              <h5>date:{{ message.data }}</h5>
+              <h3 class="text-h6 font-weight-bold">{{ message.name }}</h3>
+              <h5 class="-text-subtitle-1 font-weight-light">date:{{ message.data }}</h5>
             </div>
             <div class="d-flex align-center justify-start" style="width:80%">
               <p>{{ message.message }}</p>
