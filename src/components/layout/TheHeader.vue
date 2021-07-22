@@ -74,12 +74,12 @@ export default {
 </script>
 
 <style scoped>
-    /* .headerrrr{
+    .headerrrr{
       position: absolute;
       top: 0;
       min-width: 100%;
       z-index: 10;
-    } */
+    }
     img{
         width: 120px;
         height: 120px;

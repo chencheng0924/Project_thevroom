@@ -10,6 +10,7 @@ import ReportDialogs from '../components/layout/ReportDialogs.vue'
 import CarCheckout from '../components/CarCheckout.vue'
 import AddProduct from '../components/AddProduct.vue'
 import AuctionOverview from '../components/pages/AuctionOverview.vue'
+import SingleAuction from '../components/pages/SingleAuction.vue'
 
 Vue.use(VueRouter)
 
@@ -72,6 +73,11 @@ const routes = [
     path: '/auctionoverview',
     name: 'AuctionOverview',
     component: AuctionOverview
+  },
+  {
+    path: '/singleauction',
+    name: 'SingleAuction',
+    component: SingleAuction
   }
 ]
 
