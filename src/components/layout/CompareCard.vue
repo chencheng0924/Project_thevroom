@@ -81,11 +81,20 @@
             <div class="photo_left" v-for="newImage in newImages" :key="newImage.id" :src="newImage.src">
               <img :src="newImage.src" class="newcar_photo">
             </div>
+            <div style="background-color: #fff; width: 90px; height: 90px; border-radius: 50px; font-weight: 700; font-size: 25px; color: #F34841; position: absolute; margin-top: 70px; margin-left: 392px;" class="d-flex align-center justify-center">VS</div>
+            <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; font-weight: 700; font-size: 25px; color: #F34841; position: absolute; margin-top: 350px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
+            <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; font-weight: 700; font-size: 25px; color: #F34841; position: absolute; margin-top: 615px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
+            <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; font-weight: 700; font-size: 25px; color: #F34841; position: absolute; margin-top: 880px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
+            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 180px; margin-left: 360px;">比較結果</v-btn>
+            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 450px; margin-left: 360px;">比較結果</v-btn>
+            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 715px; margin-left: 360px;">比較結果</v-btn>
+            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 980px; margin-left: 360px;">比較結果</v-btn>
           </div>
           <div class="compare_middle_right">
             <v-hover v-slot="{ hover }">
               <div class="hotcar">
                 <div class="hotcar_img_outside">
+                  <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 685px; right: 400px">
                   <img src="../../assets/compare-car-pic/hotcar01.png" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
@@ -106,6 +115,7 @@
             <v-hover v-slot="{ hover }">
               <div class="hotcar">
                 <div class="hotcar_img_outside">
+                  <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1020px; right: 400px">
                   <img src="../../assets/compare-car-pic/hotcar02.png" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
@@ -126,6 +136,7 @@
             <v-hover v-slot="{ hover }">
               <div class="hotcar">
                 <div class="hotcar_img_outside">
+                  <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1355px; right: 400px">
                   <img src="../../assets/compare-car-pic/hotcar03.png" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
@@ -146,6 +157,7 @@
             <v-hover v-slot="{ hover }">
               <div class="hotcar">
                 <div class="hotcar_img_outside">
+                  <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1690px; right: 400px">
                   <img src="../../assets/compare-car-pic/hotcar04.png" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
@@ -367,12 +379,12 @@ export default {
     display: flex;
     .pk_title{
       // border: 1px solid green;
-      width: 77.5%;
+      width: 75.5%;
       display: flex;
       align-items: center;
       .pk_liner{
         border: 2px solid #F34841;
-        width: 85%;
+        width: 84%;
         height: 1px;
         background-color: #F34841;
         margin-left: 13px;
@@ -380,12 +392,12 @@ export default {
     }
     .hotcar_title{
       // border: 1px solid green;
-      width: 22.5%;
+      width: 24.5%;
       display: flex;
       align-items: center;
       .hotcar_liner{
         border: 2px solid #F34841;
-        width: 60%;
+        width: 63%;
         height: 1px;
         background-color: #F34841;
         margin-left: 13px;
@@ -395,18 +407,18 @@ export default {
 }
 
 .middle_outside{
-  // border: 1px solid #f20;
+  border: 1px solid #f20;
   width: 100%;
   margin-top: 30px;
   .compare_middle{
-  // border: 1px solid #000;
+  border: 1px solid #000;
   width: 1200px;
   height: 1300px;
   margin: 0 auto;
   display: flex;
   .compare_middle_left{
-    // border: 1px solid #00f;
-    width: 75%;
+    border: 1px solid #00f;
+    width: 73%;
     height: 1070px;
     display: flex;
     flex-wrap: wrap;
@@ -415,14 +427,14 @@ export default {
       // border: 1px solid #f20;
       height: 240px;
       .newcar_photo{
-        width: 435px;
+        width: 425px;
         height: 240px;
       }
     }
   }
   .compare_middle_right{
-    // border: 1px solid green;
-    width: 25%;
+    border: 1px solid green;
+    width: 27%;
     height: 1300px;
     display: flex;
     flex-direction: column;

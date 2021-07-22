@@ -8,6 +8,8 @@ import IssuePage from '../components/pages/IssuePage.vue'
 import UploadImage from '../components/UploadImage.vue'
 import AddProduct from '../components/AddProduct.vue'
 import AuctionOverview from '../components/pages/AuctionOverview.vue'
+import CompareInside from '../components/CompareInside.vue'
+import MemberSide from '../components/MemberSide.vue'
 
 Vue.use(VueRouter)
 
@@ -60,6 +62,16 @@ const routes = [
     path: '/auctionoverview',
     name: 'AuctionOverview',
     component: AuctionOverview
+  },
+  {
+    path: '/compareinside',
+    name: 'CompareInside',
+    component: CompareInside
+  },
+  {
+    path: '/memberside',
+    name: 'MemberSide',
+    component: MemberSide
   }
 ]
 
