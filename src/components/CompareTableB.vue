@@ -2,7 +2,7 @@
   <div class="bottom_second">
     <div class="btm_sec">
         <div class="btm_sec_inside">
-          <div style="width: 100%; height: 75px" class="d-flex" v-for="tech in techs" :key="tech">
+          <div style="width: 100%; height: 75px" class="d-flex text-subtitle-1 font-weight-light" v-for="tech in techs" :key="tech">
             <div style="border: 1px solid black; width: 20%; height: 100%; font-weight: 700; border-right: none; border-bottom: none;" class="d-flex align-center justify-center">{{ tech.title }}</div>
             <div style="border: 1px solid black; width: 40%; height: 100%; font-weight: 700; border-right: none; border-bottom: none;" class="d-flex align-center justify-center">{{ tech.contentA }}</div>
             <div style="border: 1px solid black; width: 40%; height: 100%; font-weight: 700; border-bottom: none;" class="d-flex align-center justify-center">{{ tech.contentB }}</div>

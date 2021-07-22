@@ -4,10 +4,10 @@
       <div class="inside_card">
         <div class="table">
           <div class="table_top">
-            <div class="top_first">車款比較</div>
+            <div class="top_first text-subtitle-1 font-weight-light">車款比較</div>
           </div>
           <diV class="table_middle">
-            <div class="middle_first">車款</div>
+            <div class="middle_first text-subtitle-1 font-weight-light">車款</div>
             <div class="middle_second">
               <div class="middle_sec_in">
                 <div class="sec_in_img">
@@ -86,7 +86,7 @@
             </div>
           </diV>
           <diV class="table_bottom">
-            <div class="bottom_first">比較優勢</div>
+            <div class="bottom_first text-subtitle-1 font-weight-light">比較優勢</div>
             <div class="bottom_second"></div>
             <div class="bottom_third"></div>
           </diV>
@@ -184,7 +184,6 @@ export default {
             // border: 1px solid #000;
             width: 10%;
             height: 100%;
-            font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -202,7 +201,6 @@ export default {
             border-right: none;
             width: 10%;
             height: 100%;
-            font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -277,7 +275,6 @@ export default {
             border-right: none;
             width: 10%;
             height: 100%;
-            font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;

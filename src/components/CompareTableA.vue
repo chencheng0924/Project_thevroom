@@ -2,7 +2,7 @@
   <div class="bottom_first">
       <div class="bottom">
         <div class="bottom_inside">
-          <div style="width: 100%; height: 75px" class="d-flex" v-for="info in infos" :key="info">
+          <div style="width: 100%; height: 75px" class="d-flex text-subtitle-1 font-weight-light" v-for="info in infos" :key="info">
             <div style="border: 1px solid black; width: 20%; height: 100%; font-weight: 700; border-right: none; border-bottom: none;" class="d-flex align-center justify-center">{{ info.title }}</div>
             <div style="border: 1px solid black; width: 40%; height: 100%; font-weight: 700; border-right: none; border-bottom: none;" class="d-flex align-center justify-center">{{ info.contentA }}</div>
             <div style="border: 1px solid black; width: 40%; height: 100%; font-weight: 700; border-bottom: none;" class="d-flex align-center justify-center">{{ info.contentB }}</div>

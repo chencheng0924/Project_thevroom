@@ -2,7 +2,7 @@
   <div class="all_compare">
     <div class="compare_info">
       <div class="title">
-        <h3 class="title_name">車款比較</h3>
+        <h3 class="title_name text-h4 font-weight-bold">車款比較</h3>
       </div>
 
       <div class="card">
@@ -14,7 +14,7 @@
         >
 
           <div class="card_tile">
-            <div class="card_title_name">選擇車款進行比較</div>
+            <div class="card_title_name text-h6 font-weight-bold">選擇車款進行比較</div>
           </div>
           <div class="select_bar">
             <ul class="bar">
@@ -59,7 +59,7 @@
                 <div class="card_photo"></div>
                 <div class="card_photo_area_btn">
                   <div class="area_btn_inside">
-                    <div class="area_btn_word">目 前 選 擇<span class="area_btn_num"> 0 </span>輛</div>
+                    <div class="area_btn_word text-h6 font-weight-bold">目 前 選 擇<span class="area_btn_num"> 0 </span>輛</div>
                     <v-btn rounded color="#F34841" dark width="150" height="40">加入</v-btn>
                   </div>
                 </div>
@@ -70,8 +70,10 @@
 
       <div class="middle_title_outside">
         <div class="title_outside">
-          <h3 class="pk_title">熱門新車PK <div class="pk_liner"></div></h3>
-          <h3 class="hotcar_title">熱門車排行 <div class="hotcar_liner"></div></h3>
+          <h3 class="pk_title text-h6 font-weight-bold
+          ">熱門新車PK <div class="pk_liner"></div></h3>
+          <h3 class="hotcar_title text-h6 font-weight-bold
+          ">熱門車排行 <div class="hotcar_liner"></div></h3>
         </div>
       </div>
 
@@ -81,10 +83,10 @@
             <div class="photo_left" v-for="newImage in newImages" :key="newImage.id" :src="newImage.src">
               <img :src="newImage.src" class="newcar_photo">
             </div>
-            <div style="background-color: #fff; width: 90px; height: 90px; border-radius: 50px; font-weight: 700; font-size: 25px; color: #F34841; position: absolute; margin-top: 70px; margin-left: 392px;" class="d-flex align-center justify-center">VS</div>
-            <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; font-weight: 700; font-size: 25px; color: #F34841; position: absolute; margin-top: 350px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
-            <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; font-weight: 700; font-size: 25px; color: #F34841; position: absolute; margin-top: 615px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
-            <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; font-weight: 700; font-size: 25px; color: #F34841; position: absolute; margin-top: 880px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
+            <div style="background-color: #fff; width: 90px; height: 90px; border-radius: 50px; color: #F34841; position: absolute; margin-top: 70px; margin-left: 392px;" class="d-flex align-center justify-center">VS</div>
+            <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; color: #F34841; position: absolute; margin-top: 350px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
+            <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; color: #F34841; position: absolute; margin-top: 615px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
+            <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; color: #F34841; position: absolute; margin-top: 880px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
             <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 180px; margin-left: 360px;">比較結果</v-btn>
             <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 450px; margin-left: 360px;">比較結果</v-btn>
             <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 715px; margin-left: 360px;">比較結果</v-btn>
@@ -94,16 +96,16 @@
             <v-hover v-slot="{ hover }">
               <div class="hotcar">
                 <div class="hotcar_img_outside">
-                  <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 685px; right: 400px">
+                  <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 685px; right: 400px"> -->
                   <img src="../../assets/compare-car-pic/hotcar01.png" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
-                  <div class="hotcar_title">Auston Martin</div>
-                  <div class="hotcar_price">$ 990W</div>
+                  <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
+                  <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
                   <v-expand-transition>
                       <div
                         v-if="hover"
-                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 white--text"
+                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
                       >
                         去搶購
                       </div>
@@ -115,16 +117,16 @@
             <v-hover v-slot="{ hover }">
               <div class="hotcar">
                 <div class="hotcar_img_outside">
-                  <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1020px; right: 400px">
+                  <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1020px; right: 400px"> -->
                   <img src="../../assets/compare-car-pic/hotcar02.png" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
-                  <div class="hotcar_title">Auston Martin</div>
-                  <div class="hotcar_price">$ 990W</div>
+                  <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
+                  <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
                   <v-expand-transition>
                       <div
                         v-if="hover"
-                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 white--text"
+                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
                       >
                         去搶購
                       </div>
@@ -136,16 +138,16 @@
             <v-hover v-slot="{ hover }">
               <div class="hotcar">
                 <div class="hotcar_img_outside">
-                  <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1355px; right: 400px">
+                  <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1355px; right: 400px"> -->
                   <img src="../../assets/compare-car-pic/hotcar03.png" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
-                  <div class="hotcar_title">Auston Martin</div>
-                  <div class="hotcar_price">$ 990W</div>
+                  <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
+                  <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
                   <v-expand-transition>
                       <div
                         v-if="hover"
-                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 white--text"
+                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
                       >
                         去搶購
                       </div>
@@ -157,16 +159,16 @@
             <v-hover v-slot="{ hover }">
               <div class="hotcar">
                 <div class="hotcar_img_outside">
-                  <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1690px; right: 400px">
+                  <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1690px; right: 400px"> -->
                   <img src="../../assets/compare-car-pic/hotcar04.png" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
-                  <div class="hotcar_title">Auston Martin</div>
-                  <div class="hotcar_price">$ 990W</div>
+                  <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
+                  <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
                   <v-expand-transition>
                       <div
                         v-if="hover"
-                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 white--text"
+                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
                       >
                         去搶購
                       </div>
@@ -284,8 +286,6 @@ export default {
     border-right: none;
     color: #F34841;
     width: 1100px;
-    font-size: 20px;
-    font-weight: 700;
     padding-left: 20px;
   }
 }
@@ -356,12 +356,8 @@ export default {
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      .area_btn_word{
-        font-size: 20px;
-        font-weight: 700;
-        .area_btn_num{
+      .area_btn_num{
           color: #F34841;
-        }
       }
     }
   }
@@ -397,7 +393,7 @@ export default {
       align-items: center;
       .hotcar_liner{
         border: 2px solid #F34841;
-        width: 63%;
+        width: 60%;
         height: 1px;
         background-color: #F34841;
         margin-left: 13px;
@@ -465,11 +461,7 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    .hotcar_title{
-      font-size: 20px;
-    }
     .hotcar_price{
-      font-size: 18px;
       color: #F34841;
     }
   }
