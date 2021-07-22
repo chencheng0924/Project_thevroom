@@ -2,14 +2,24 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import CompareCard from '../components/layout/CompareCard.vue'
+import NewDriver from '../components/NewDriver.vue'
 import Forum from '../components/Forum.vue'
 import ForumPage from '../components/ForumPage.vue'
 import IssuePage from '../components/pages/IssuePage.vue'
 import UploadImage from '../components/UploadImage.vue'
+import ReportDialogs from '../components/layout/ReportDialogs.vue'
+import CarCheckout from '../components/CarCheckout.vue'
 import AddProduct from '../components/AddProduct.vue'
 import AuctionOverview from '../components/pages/AuctionOverview.vue'
 import CompareInside from '../components/CompareInside.vue'
 import MemberSide from '../components/MemberSide.vue'
+import Accessories from '../components/Accessories.vue'
+import SingleAuction from '../components/pages/SingleAuction.vue'
+import Shoppingcar from '../components/ShoppingCar.vue'
+import SignUp from '../components/SignUp.vue'
+import SignIn from '../components/SignIn.vue'
+import MemberData from '../components/MemberData.vue'
+import MemberAuction from '../components/MemberAuction.vue'
 
 Vue.use(VueRouter)
 
@@ -34,6 +44,11 @@ const routes = [
     component: CompareCard
   },
   {
+    path: '/newdriver',
+    name: 'NewDriver',
+    component: NewDriver
+  },
+  {
     path: '/forum',
     name: 'Forum',
     component: Forum
@@ -54,6 +69,16 @@ const routes = [
     component: UploadImage
   },
   {
+    path: '/reportdialogs',
+    name: 'ReportDialogs',
+    component: ReportDialogs
+  },
+  {
+    path: '/carcheckout',
+    name: 'CarCheckout',
+    component: CarCheckout
+  },
+  {
     path: '/addproduct',
     name: 'AddProduct',
     component: AddProduct
@@ -72,6 +97,41 @@ const routes = [
     path: '/memberside',
     name: 'MemberSide',
     component: MemberSide
+  },
+  {
+    path: '/accessories',
+    name: 'Accessories',
+    component: Accessories
+  },
+  {
+    path: '/singleauction',
+    name: 'SingleAuction',
+    component: SingleAuction
+  },
+  {
+    path: '/shoppingcar',
+    name: 'Shoppingcar',
+    component: Shoppingcar
+  },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUp
+  },
+  {
+    path: '/signin',
+    name: 'SignIn',
+    component: SignIn
+  },
+  {
+    path: '/memberdata',
+    name: 'MemberData',
+    component: MemberData
+  },
+  {
+    path: '/memberauction',
+    name: 'MemberAuction',
+    component: MemberAuction
   }
 ]
 

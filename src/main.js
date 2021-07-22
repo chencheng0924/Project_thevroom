@@ -10,6 +10,7 @@ import vuetify from './plugins/vuetify'
 import TheHeadline from './components/TheHeadline.vue'
 import ButtonShare from './components/layout/ButtonNews'
 import ButtonSubmit from './components/layout/ButtonSubmit'
+import ButtonDirectbuy from './components/layout/ButtonDirectbuy'
 import VueObserVisibility from 'vue-observe-visibility'
 import UploadImage from './components/UploadImage.vue'
 
@@ -21,7 +22,7 @@ Vue.component('the-headline', TheHeadline)
 Vue.component('button-news', ButtonShare)
 Vue.component('button-submit', ButtonSubmit)
 Vue.component('upload-image', UploadImage)
-
+Vue.component('button-directbuy', ButtonDirectbuy)
 new Vue({
   router,
   store,

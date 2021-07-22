@@ -150,6 +150,7 @@ export default {
 
 <style lang="scss">
     .allPage{
+      // margin-top: -48px;
         display: flex;
         .contentRight{
             width: 75%;

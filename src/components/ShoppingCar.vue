@@ -1,0 +1,213 @@
+<template>
+  <div>
+    <div class="d-flex justify-center ma-auto">
+      <div
+        class="my-10 red d-flex justify-center"
+        style="width:300px;height:70px;border-radius:30px"
+      >
+        <div
+          class="white red--text px-2 mr-3 align-self-center"
+          style="height:30px;border:1px solid black;border-radius:50%"
+        >
+          1
+        </div>
+        <button class="white--text" @click="component = 'shopping-car1'">
+          購物車商品列表
+        </button>
+      </div>
+      <div
+        class="my-10 mx-10 d-flex justify-center"
+        style="width:300px;height:70px;border:1px solid black;border-radius:30px"
+        :class="{
+          red1: component == 'shopping-car2' || component == 'shopping-car3'
+        }"
+      >
+        <div
+          class="px-2 mr-3 align-self-center black--text"
+          style="height:30px;border:1px solid black;border-radius:50%"
+          :class="{
+            red2: component == 'shopping-car2' || component == 'shopping-car3'
+          }"
+        >
+          2
+        </div>
+        <button @click=";(component = 'shopping-car2'), gogo">
+          確認及付款
+        </button>
+      </div>
+      <div
+        class="my-10 d-flex justify-center"
+        style="width:300px;height:70px;border:1px solid black;border-radius:30px"
+        :class="{ red1: component == 'shopping-car3' }"
+      >
+        <div
+          class="px-2 mr-3 align-self-center black--text"
+          style="height:30px;border:1px solid black;border-radius:50%"
+          :class="{ red2: component == 'shopping-car3' }"
+        >
+          3
+        </div>
+        <button @click=";(component = 'shopping-car3'), gogo2">完成</button>
+      </div>
+      ;
+    </div>
+    <div
+      style="max-width:1200px;"
+      class="ma-auto"
+      :class="{ gogoro: component == 'shopping-car3' }"
+    >
+      <div class="mb-5"><h1>商品明細</h1></div>
+      <div class="d-flex">
+        <div
+          class="py-3"
+          style="width:15%;text-align:center;border:1px solid black;background-color:#E0E0E0"
+        >
+          <h2>圖片</h2>
+        </div>
+        <div
+          class="py-3"
+          style="width:45%;text-align:center;border:1px solid black;background-color:#E0E0E0"
+        >
+          <h2>商品</h2>
+        </div>
+        <div
+          class="py-3"
+          style="width:15%;text-align:center;border:1px solid black;background-color:#E0E0E0"
+        >
+          <h2>單價</h2>
+        </div>
+        <div
+          class="py-3"
+          style="width:15%;text-align:center;border:1px solid black;background-color:#E0E0E0"
+        >
+          <h2>數量</h2>
+        </div>
+        <div
+          class="py-3"
+          style="width:15%;text-align:center;border:1px solid black;background-color:#E0E0E0"
+        >
+          <h2>小計</h2>
+        </div>
+      </div>
+    </div>
+    <div>
+      <component
+        :is="component">
+      </component>
+    </div>
+    <div class="d-flex justify-end mb-10 ma-auto" style="width:70%">
+      <h1 :class="{ gogoro: component == 'shopping-car2' || component == 'shopping-car3' }">
+        共<span class="red--text">{{ totalitem }}</span
+        >項商品,
+      </h1>
+      <h1 :class="{ gogoro: component == 'shopping-car2' || component == 'shopping-car3' }">
+        總金額<span class="red--text">{{ totalprice }}</span
+        >元
+      </h1>
+    </div>
+    <div :class="{gogoro: component == 'shopping-car2' || component == 'shopping-car3'}">
+      <div
+        class="d-flex justify-space-around align-center mb-10"
+      >
+        <button-news buttonName="繼續購物" />
+        <div class="d-flex align-center">
+          <v-checkbox v-model="checkbox" style="width:400px">
+            <template v-slot:label>
+              <div>
+                本人表示理解相關配件資訊和『thevroom』車行之相關購物條款規定，並確認下訂商品。
+              </div>
+            </template>
+          </v-checkbox>
+          <div @click=";(component = 'shopping-car2'), gogo">
+            <button-submit class="ml-5" buttonSubmit="下一步" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import shoppingcar1 from './ShoppingCar1.vue'
+import shoppingcar2 from './ShoppingCar2.vue'
+import shoppingcar3 from './ShoppingCar3.vue'
+import ButtonNews from './layout/ButtonNews.vue'
+import ButtonSubmit from './layout/ButtonSubmit.vue'
+export default {
+  components: {
+    'shopping-car1': shoppingcar1,
+    'shopping-car2': shoppingcar2,
+    'shopping-car3': shoppingcar3,
+    ButtonNews,
+    ButtonSubmit
+  },
+  data () {
+    return {
+      active: false,
+      component: 'shopping-car1',
+      prolist: [
+        {
+          id: 1,
+          proSrc: require('../assets/index-car-pic/indexpicother.png'),
+          proName: '行車紀錄器',
+          proPrice: 3500,
+          proCount: 1
+        },
+        {
+          id: 2,
+          proSrc: require('../assets/index-car-pic/indexpicproduct.gif'),
+          proName: '排氣管',
+          proPrice: 10500,
+          proCount: 1
+        },
+        {
+          id: 3,
+          proSrc: require('../assets/index-car-pic/indexpicwheel.png'),
+          proName: '輪胎',
+          proPrice: 8000,
+          proCount: 3
+        }
+      ],
+      totalcount: 0,
+      totalp: 0
+    }
+  },
+  methods: {
+    gogo () {
+      this.component = 'shopping-car2'
+    },
+    gogo2 () {
+      this.component = 'shopping-car3'
+    }
+  },
+  computed: {
+    totalitem () {
+      this.prolist.forEach(pro => {
+        this.totalcount += pro.proCount
+      })
+      return this.totalcount
+    },
+    totalprice () {
+      this.prolist.forEach(pro => {
+        this.totalp += pro.proCount * pro.proPrice
+      })
+      return this.totalp
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+.red1 {
+  background-color: #f44336;
+  color: white;
+}
+.red2 {
+  background-color: white;
+  color: #f44336 !important;
+  border-color: #f44336 !important;
+}
+.gogoro {
+  display: none !important;
+}
+</style>

@@ -58,7 +58,7 @@
             <div class="d-flex align-center justify-start" style="width:80%">
               <p>{{ message.message }}</p>
             </div>
-            <i class="fas fa-exclamation-triangle" style="cursor: pointer;font-size:10px"></i>
+            <report-dialogs style="cursor: pointer;font-size:10px"></report-dialogs>
           </div>
           <div style="width:100%;height:1px;opacity:.3" class="black"></div>
         </div>
@@ -87,7 +87,9 @@
 </template>
 
 <script>
+import ReportDialogs from './layout/ReportDialogs.vue'
 export default {
+  components: { ReportDialogs },
   data () {
     return {
       news: [

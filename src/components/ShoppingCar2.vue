@@ -1,0 +1,193 @@
+<template>
+  <div style="max-width:1200px;" class="ma-auto">
+    <div
+      class="d-flex mb-10 align-center"
+      style="border-bottom:1px dashed rgba(0,0,0,.3)"
+      v-for="list in prolist"
+      :key="list.id"
+    >
+      <div class="py-3" style="width:15%;text-align:center;">
+        <img style="width:80px;height:80px" :src="list.proSrc" alt="圖壞了" />
+      </div>
+      <div class="py-3" style="width:45%;text-align:center;">
+        {{ list.proName }}
+      </div>
+      <div class="py-3" style="width:15%;text-align:center;">
+        {{ list.proPrice }}
+      </div>
+      <div class="py-3" style="width:15%;text-align:center;">
+        {{ list.proCount }}
+      </div>
+      <div class="py-3" style="width:15%;text-align:center;">
+        {{ list.proPrice * list.proCount }}
+      </div>
+    </div>
+    <div style="margin:100px 0px">
+      <h1>付款方式</h1>
+      <div style="border:1px solid black" class="py-5">
+        <label style="font-size:20px;" class="mx-8"
+          ><input
+            type="radio"
+            name="city"
+            value="taipei"
+            checked
+          />信用卡付款</label
+        >
+        <label style="font-size:20px;" class="mx-8"
+          ><input type="radio" name="city" value="taoyuan" />到店取貨</label
+        >
+      </div>
+      <div style="border:1px solid black;border-top:0" class="pa-5">
+        <h2>信用卡資訊</h2>
+        <div>
+          <v-form v-model="valid">
+            <v-container>
+              <v-row>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="cardname"
+                    :rules="cardRules"
+                    label="信用卡號"
+                    required
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" md="2">
+                  <v-text-field
+                    v-model="date"
+                    :rules="dateRules"
+                    label="到期日期"
+                    required
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" md="2">
+                  <v-text-field
+                    v-model="cardsuc"
+                    :rules="cardsucRules"
+                    label="安全碼"
+                    required
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-form>
+        </div>
+        <v-checkbox v-model="checkbox">
+          <template v-slot:label>
+            <div>
+              本人聲明下訂即表示並詳細閱讀
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <a
+                    target="_blank"
+                    href="https://tw.yahoo.com/"
+                    @click.stop
+                    v-on="on"
+                  >
+                    『thevroom』
+                  </a>
+                </template>
+                Turn to yahoo
+              </v-tooltip>
+              車行之相關購車條款規定，並確認下訂車輛。
+            </div>
+          </template>
+        </v-checkbox>
+      </div>
+    </div>
+    <div class="d-flex justify-end mb-10 ma-auto" style="width:70%">
+      <h1>
+        共<span class="red--text">{{ totalitem }}</span
+        >項商品,
+      </h1>
+      <h1>
+        總金額<span class="red--text">{{ totalprice }}</span
+        >元
+      </h1>
+    </div>
+    <div class="d-flex justify-space-between align-center mb-10">
+      <button-news buttonName="繼續購物" />
+      <div class="d-flex align-center">
+        <v-checkbox v-model="checkbox" style="width:400px">
+          <template v-slot:label>
+            <div>
+              本人表示理解相關配件資訊和『thevroom』車行之相關購物條款規定，並確認下訂商品。
+            </div>
+          </template>
+        </v-checkbox>
+        <div @click=";(component = 'shopping-car3'), gogo">
+          <button-submit class="ml-5" buttonSubmit="下一步" />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import shoppingcar3 from './ShoppingCar3.vue'
+export default {
+  data () {
+    return {
+      components: {
+        'shopping-car3': shoppingcar3
+      },
+      totalcount: 0,
+      totalp: 0,
+      prolist: [
+        {
+          id: 1,
+          proSrc: require('../assets/index-car-pic/indexpicother.png'),
+          proName: '行車紀錄器',
+          proPrice: 3500,
+          proCount: 1
+        },
+        {
+          id: 2,
+          proSrc: require('../assets/index-car-pic/indexpicproduct.gif'),
+          proName: '排氣管',
+          proPrice: 10500,
+          proCount: 1
+        },
+        {
+          id: 3,
+          proSrc: require('../assets/index-car-pic/indexpicwheel.png'),
+          proName: '輪胎',
+          proPrice: 8000,
+          proCount: 3
+        }
+      ],
+      valid: false,
+      cardname: '',
+      cardRules: [
+        v => !!v || '請填入卡號',
+        v => v.length <= 16 || '請輸入16字卡號'
+      ],
+      date: '',
+      dateRules: [
+        v => !!v || '請填入到期日期',
+        v => v.length <= 4 || '請輸入正確日期'
+      ],
+      cardsuc: '',
+      cardsucRules: [
+        v => !!v || '請填入安全碼',
+        v => /.+@.+/.test(v) || 'E-mail must be valid'
+      ]
+    }
+  },
+  computed: {
+    totalitem () {
+      this.prolist.forEach(pro => {
+        this.totalcount += pro.proCount
+      })
+      return this.totalcount
+    },
+    totalprice () {
+      this.prolist.forEach(pro => {
+        this.totalp += pro.proCount * pro.proPrice
+      })
+      return this.totalp
+    }
+  }
+}
+</script>
