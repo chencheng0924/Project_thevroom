@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import CompareCard from '../components/layout/CompareCard.vue'
+import NewDriver from '../components/NewDriver.vue'
 import Forum from '../components/Forum.vue'
 import ForumPage from '../components/ForumPage.vue'
 import IssuePage from '../components/pages/IssuePage.vue'
@@ -37,6 +38,11 @@ const routes = [
     path: '/comparecard',
     name: 'CompareCard',
     component: CompareCard
+  },
+  {
+    path: '/newdriver',
+    name: 'NewDriver',
+    component: NewDriver
   },
   {
     path: '/forum',
