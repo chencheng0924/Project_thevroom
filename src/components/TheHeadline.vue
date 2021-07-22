@@ -20,8 +20,8 @@ export default {
     height: 18%;
     color: #ffffff;
     .auctiontitle {
-        font-size: 40px;
-        font-weight: bold;
+        // font-size: 40px;
+        // font-weight: bold;
         display: flex;
         flex-direction: column;
         justify-content: center;
