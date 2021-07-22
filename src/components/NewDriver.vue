@@ -186,6 +186,11 @@ div.buy{
     flex-wrap: wrap;
     justify-content: center;
   }
+  div.firstLine{
+    div.step2{
+      margin-left: 15px;
+    }
+  }
   div.secondLine{
     margin-top:50px;
     div.step4{
