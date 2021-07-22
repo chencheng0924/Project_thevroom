@@ -5,7 +5,7 @@
             <div class="infoT d-flex flex-column mt-6">
                 <div class="titleY">2021</div>
                 <div class="titleB">M-Benz GLC Coupe 300</div>
-                <div class="titleLine"></div>
+                <div class="titleLine mt-2"></div>
             </div>
             <div class="infoC pt-3">相較於先前車款，新G-Class的車身尺碼全面放大，帶來更具份量感的視覺效果，對於乘坐空間也有實質助益，但不變的是，G-Class風靡車壇近40年的經典比例，完整延續。</div>
             <div class="infoM d-flex justify-space-between">
@@ -44,24 +44,24 @@
 
 <style lang="scss">
     .carInfo{
-        border: 1px solid blue;
+        // border: 1px solid blue;
         width: 1200px;
         height: 630px;
-        margin: 48px auto 0 auto;
+        margin: 0 auto;
         .spaceLeft{
-            border: 1px solid red;
+            // border: 1px solid red;
             width: 200px;
             height: 100%;
         }
         .infoCar{
-            border: 1px solid green;
+            // border: 1px solid green;
             width: 1000px;
             height: 100%;
         }
         .infoT{
             width: 500px;
             height: 130px;
-            border: 1px solid pink;
+            // border: 1px solid pink;
             .titleY{
                 font-size: 35px;
                 font-weight: bolder;
@@ -79,21 +79,21 @@
         .infoC{
             width: 600px;
             height: 120px;
-            border: 1px solid lightskyblue;
+            // border: 1px solid lightskyblue;
         }
         .infoM{
             width: 500px;
             height: 370px;
-            border: 1px solid palegreen;
+            // border: 1px solid palegreen;
             .infoBoxL{
-                border: 1px solid tomato;
+                // border: 1px solid tomato;
                 .inCBox{
                     color: #F34841;
                     font-weight: bold;
                 }
             }
             .infoBoxR{
-                border: 1px solid khaki;
+                // border: 1px solid khaki;
                 .inCBox{
                     color: #F34841;
                     font-weight: bold;

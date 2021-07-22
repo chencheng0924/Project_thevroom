@@ -1,6 +1,6 @@
 <template>
     <div class="allPage">
-        <add-left titleNum="02" titleText="填寫內容"></add-left>
+        <add-left titleNum="03" titleText="填寫內容"></add-left>
         <v-container class="contentRightThree">
             <div class="d-flex flex-column contentInside mt-13">
                 <div>
@@ -100,7 +100,7 @@
                         </v-row>
                     </v-form>
                 </div>
-                <div style="width: 950px;" class="d-flex justify-end mt-16">
+                <div style="width: 950px;" class="d-flex justify-end">
                     <v-btn rounded outlined width="100" to="#page2" @click="reloadPage">上一步</v-btn>
                     <v-btn rounded color="#F34841" class="btn ml-16" dark width="100" to="#page4" @click="reloadPage"
                      >下一步</v-btn>
@@ -155,19 +155,19 @@ export default {
                 }
             }
         }
-    }
-    .v-text-field__details {
-    display: none !important;
-    }
-    .slc{
-      width: 120px;
-    }
-    .theme--light.v-messages {
-    color: rgba(0, 0, 0, 0.6);
-    display: none;
-    }
-    .v-input--selection-controls {
-    margin-top: 0 !important;
-    padding-top: 4px;
+        .v-text-field__details {
+        display: none !important;
+        }
+        .slc{
+        width: 120px;
+        }
+        .theme--light.v-messages {
+        color: rgba(0, 0, 0, 0.6);
+        display: none;
+        }
+        .v-input--selection-controls {
+        margin-top: 0 !important;
+        padding-top: 4px;
+        }
     }
 </style>

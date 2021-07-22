@@ -2,13 +2,13 @@
     <div class="overviewWhole">
         <div class="contentOv d-flex flex-column">
             <div class="titleOv d-flex flex-column mt-5">
-                <div class="yearOv">{{ titleYear }}</div>
-                <div class="brandOv">{{ titleBrand }}</div>
-                <div class="lineOv mt-2"></div>
+                <div class="yearOv text-h4 font-weight-bold">{{ titleYear }}</div>
+                <div class="brandOv text-h4 font-weight-bold">{{ titleBrand }}</div>
+                <div class="lineOv mt-4"></div>
             </div>
             <div class="textOv d-flex">
                 <div class="leftOv d-flex flex-column justify-space-between">
-                    <div class="descriptionOv pr-2 mt-5">
+                    <div class="descriptionOv pr-2 mt-5 text-subtitle-1 font-weight-light">
                         {{ description }}
                     </div>
                     <div>
@@ -64,13 +64,13 @@ export default {
             width: 700px;
             height: 150px;
             .yearOv{
-                font-size: 35px;
-                font-weight: bold;
+                // font-size: 35px;
+                // font-weight: bold;
                 color: #FFFFFF;
             }
             .brandOv{
-                font-size: 35px;
-                font-weight: bold;
+                // font-size: 35px;
+                // font-weight: bold;
                 color: #FFFFFF;
             }
             .lineOv{

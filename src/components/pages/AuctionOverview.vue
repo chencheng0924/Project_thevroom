@@ -59,7 +59,7 @@ export default {
     count: 0,
     contentList: [
       { titleYear: '2021 M-Benz', titleBrand: 'GLC Coupe GLC300 4MATIC', description: '2021 GLC Coupe採單柵式水箱護罩，搭配兩側新款LED頭燈，成熟優雅的氛圍傳承自New GLE。當視線移至保桿下方進氣口，則是會被全車系標配的鍍鉻套件所吸引，優雅中凸顯出GLC Coupe專屬的運動感。而沿著車側厚實的肩膀線條向後延伸，GLC Coupe採用全新夜色尾燈設計，成就新世代Mercedes-Benz運動休旅家族的識別。', milesT: '1234 Km', priceT: '1,300,000', id: '0' },
-      { titleYear: '2020 M-Benz', titleBrand: 'G-Class G500', description: '乍看全新G-Class的外觀設計，會發現在整體比例與線條的走向中，完全不改既有的經典初衷。但當仔細端倪，將會讚嘆原廠設計團隊的鬼斧神工，相較於先前車款，新G-Class的車身尺碼全面放大，以G 500車型為例，長/寬/高分別增加了53mm、117mm、15mm，軸距長度也拉長40mm，讓整體車身格局來到4817x1984x1969mm之譜，軸距長度則達到2890mm。不僅帶來更具份量感的視覺效果，對於乘坐空間也有實質助益，但不變的是，G-Class風靡車壇近40年的經典比例，完整延續。', milesT: '2000 Km', priceT: '2,300,000', id: '1' },
+      { titleYear: '2020 M-Benz', titleBrand: 'G-Class G500', description: '乍看全新G-Class的外觀設計，會發現在整體比例與線條的走向中，完全不改既有的經典初衷。但當仔細端倪，將會讚嘆原廠設計團隊的鬼斧神工，相較於先前車款，新G-Class的車身尺碼全面放大，以G 500車型為例，長/寬/高分別增加了53mm、117mm、15mm，軸距長度也拉長40mm，讓整體車身格局來到4817x1984x1969mm之譜，軸距長度則達到2890mm。', milesT: '2000 Km', priceT: '2,300,000', id: '1' },
       { titleYear: '2021 M-Benz', titleBrand: 'GLC Coupe GLC300 4MATIC', description: '2021 GLC Coupe採單柵式水箱護罩，搭配兩側新款LED頭燈，成熟優雅的氛圍傳承自New GLE。當視線移至保桿下方進氣口，則是會被全車系標配的鍍鉻套件所吸引，優雅中凸顯出GLC Coupe專屬的運動感。而沿著車側厚實的肩膀線條向後延伸，GLC Coupe採用全新夜色尾燈設計，成就新世代Mercedes-Benz運動休旅家族的識別。', milesT: '1234 Km', priceT: '1,300,000', id: '2' },
       { titleYear: '2021 M-Benz', titleBrand: 'GLC Coupe GLC300 4MATIC', description: '2021 GLC Coupe採單柵式水箱護罩，搭配兩側新款LED頭燈，成熟優雅的氛圍傳承自New GLE。當視線移至保桿下方進氣口，則是會被全車系標配的鍍鉻套件所吸引，優雅中凸顯出GLC Coupe專屬的運動感。而沿著車側厚實的肩膀線條向後延伸，GLC Coupe採用全新夜色尾燈設計，成就新世代Mercedes-Benz運動休旅家族的識別。', milesT: '1234 Km', priceT: '1,300,000', id: '3' },
       { titleYear: '2021 M-Benz', titleBrand: 'GLC Coupe GLC300 4MATIC', description: '2021 GLC Coupe採單柵式水箱護罩，搭配兩側新款LED頭燈，成熟優雅的氛圍傳承自New GLE。當視線移至保桿下方進氣口，則是會被全車系標配的鍍鉻套件所吸引，優雅中凸顯出GLC Coupe專屬的運動感。而沿著車側厚實的肩膀線條向後延伸，GLC Coupe採用全新夜色尾燈設計，成就新世代Mercedes-Benz運動休旅家族的識別。', milesT: '1234 Km', priceT: '1,300,000', id: '4' },
@@ -122,11 +122,7 @@ export default {
 </script>
 
 <style lang="scss">
-*{
-  box-sizing: border-box;
-}
 .auctionOv{
-  margin-top: 48px;
   .auctionWhole {
     .carNav {
       width: 280px;
