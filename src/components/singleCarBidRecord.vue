@@ -3,22 +3,22 @@
         <div class="spaceLeft"></div>
         <div class="bidContent">
             <div class="bidTitle d-flex align-end">
-                <div class="bidT text-h6 font-weight-medium">目前競標價錢：</div>
+                <div class="bidT text-h6 font-weight-bold">目前競標價錢：</div>
                 <div class="bidPrice text-h3 font-weight-bold">1,300,000</div>
             </div>
             <div class="record d-flex flex-column justify-space-around mt-5">
-                <div class="recordTitle text-h6 mt-5 font-weight-medium">出價紀錄</div>
+                <div class="recordTitle text-h6 mt-5 font-weight-bold">出價紀錄</div>
                 <div class="recordContent d-flex justify-start">
                     <bid-record/>
                 </div>
             </div>
             <div class="bidTime d-flex align-center mt-5">
-                <div class="bidTimeTitle text-h6 font-weight-medium">拍賣會剩餘時間：</div>
+                <div class="bidTimeTitle text-h6 font-weight-bold">拍賣會剩餘時間：</div>
                 <div class="bidTimer text-h3 font-weight-bold ml-2">01天08時25分30秒</div>
             </div>
             <div class="goBid d-flex align-center mt-5">
-                <div class="goBidTi text-h6 font-weight-medium">每口叫價</div>
-                <div class="goBidPr text-h6 font-weight-medium ml-2">5000</div>
+                <div class="goBidTi text-h6 font-weight-bold">每口叫價</div>
+                <div class="goBidPr text-h6 font-weight-bold ml-2">5000</div>
                 <div class="goBidBtn ml-4">
                     <v-btn
                     rounded
@@ -65,48 +65,48 @@ export default {
 .singleBid{
     width: 1200px;
     height: 630px;
-    border: 1px solid blue;
+    // border: 1px solid blue;
     margin: 0 auto;
     .bidContent{
-        width: 750px;
+        width: 720px;
         height: 630px;
-        border: 1px solid yellow;
+        // border: 1px solid yellow;
         .bidTitle{
-            margin-top: 20px;
+            margin-top: 10px;
             width: 500px;
             height: 80px;
-            border: 1px solid lawngreen;
+            // border: 1px solid lawngreen;
         }
         .record{
             width: 750px;
             height: 300px;
-            border: 1px solid lightblue;
+            // border: 1px solid lightblue;
         }
         .bidTime{
             width: 750px;
             height: 80px;
-            border: 1px solid orange;
+            // border: 1px solid orange;
         }
         .autoBid{
             width: 600px;
             height: 60px;
-            border: 1px solid purple;
+            // border: 1px solid purple;
         }
         .goBid{
             width: 750px;
             height: 70px;
-            border: 1px solid khaki;
+            // border: 1px solid khaki;
         }
     }
     .spaceRight{
         width: 200px;
         height: 630px;
-        border: 1px solid red;
+        // border: 1px solid red;
     }
     .spaceLeft{
-        width: 250px;
+        width: 280px;
         height: 630px;
-        border: 1px solid green;
+        // border: 1px solid green;
     }
     .v-text-field__details {
         display: none !important;

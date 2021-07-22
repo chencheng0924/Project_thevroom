@@ -1,6 +1,6 @@
 <template>
     <div class="allPage">
-        <add-left titleNum="03" titleText="開設完成"></add-left>
+        <add-left titleNum="04" titleText="開設完成"></add-left>
         <v-container class="contentRightFour">
             <div class="finalpage">
                 <div class="finaltitle">恭喜開設拍賣會成功！</div>

@@ -1,14 +1,14 @@
 <template>
     <div>
-        <v-container class="mt-10" style="border: 1px solid red">
-        <v-row justify="space-around" style="border: 1px solid green">
+        <v-container class="mt-10">
+        <v-row justify="space-around">
             <v-col cols="8">
             <img
                 ref="indexcar"
                 max-width="800"
                 src="../assets/indexbenz.png"
                 class="photo"
-                style="border: 1px solid yellow; pointer-events: none;"
+                style="pointer-events: none;"
                 @move-car="letCarMove"
             >
             </v-col>

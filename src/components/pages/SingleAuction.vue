@@ -13,7 +13,7 @@
                     <div class="titleAu">Mercedes-Benz</div>
                     <div class="titleAu">GLC Coupe 300</div>
                     <div class="carAu">
-                        <img class="moCar" src="../../assets/carlist/benz12.png">
+                        <img class="moCar" src="../../assets/carlist/benz10.png">
                     </div>
                     <div class="btnAu d-flex justify-center">
                         <v-btn
@@ -84,8 +84,13 @@ export default {
         duration: 2
       })
       gsap.to('.scrollWholethree', {
+        xPercent: 0,
         yPercent: -200,
         delay: 0.5,
+        duration: 2
+      })
+      gsap.to('.scrollWholefour', {
+        yPercent: 0,
         duration: 2
       })
     },
@@ -110,6 +115,10 @@ export default {
         yPercent: 0,
         duration: 2
       })
+      gsap.to('.scrollWholefour', {
+        yPercent: 0,
+        duration: 2
+      })
     },
     moveleft () {
       gsap.to('.moCar', {
@@ -123,6 +132,10 @@ export default {
       gsap.to('.scrollWholefour', {
         yPercent: -300,
         duration: 2
+      })
+      gsap.to('.scrollWholethree', {
+        xPercent: -100,
+        duration: 1
       })
     }
     // scrollAnimation () {
@@ -182,9 +195,9 @@ export default {
         .leftPoint{
             width: 200px;
             height: 100%;
-            border: 1px solid blue;
+            // border: 1px solid blue;
             .leftDots{
-                border: 1px solid yellow;
+                // border: 1px solid yellow;
                 width: 100px;
                 height: 200px;
                 position: relative;
@@ -201,7 +214,7 @@ export default {
             width: 1200px;
             height: 580px;
             // border: 1px solid yellow;
-            margin: 80px auto 0px auto;
+            margin:0px auto;
             .titleAu{
                 // border: 1px solid green;
                 width: 800px;

@@ -1,7 +1,6 @@
 <template>
   <div class="titlebox">
-    <div class="auctiontitle text-h4 font-weight-bold
-">
+    <div class="auctiontitle text-h4 font-weight-bold">
       {{ titleName }}
       <div class="rect"></div>
       <div class="anrect"></div>
@@ -22,7 +21,6 @@ export default {
     color: #ffffff;
     .auctiontitle {
         display: flex;
-        flex-direction: column;
         justify-content: center;
         height: 18%;
         color: #FFFFFF;
@@ -30,17 +28,17 @@ export default {
         .rect {
         background-color: #f34841;
         width: 13px;
-        height: 35px;
+        height: 32px;
         transform: skew(150deg);
-        margin-top: 12px;
+        margin-top: 5px;
         margin-left: 20px;
         }
         .anrect {
         background-color: #f34841;
         width: 13px;
-        height: 35px;
+        height: 32px;
         transform: skew(150deg);
-        margin-top: 12px;
+        margin-top: 5px;
         margin-left: 5px;
         }
     }

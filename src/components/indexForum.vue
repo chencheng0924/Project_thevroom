@@ -21,7 +21,7 @@
                     width="120"
                     color="#F34841"
                     >
-                    <router-link to="/forum" style="text-de;">
+                    <router-link to="/forum" style="color: #F34841;">
                     查看全文
                     </router-link>
                     </v-btn>
@@ -61,18 +61,15 @@
                 height: 80px;
                 background-color: #F34841;
                 color: #FFFFFF;
-                font-size: 30px;
-                font-weight: bold;
                 padding-left: 30px;
-                padding-top: 15px;
+                padding-top: 18px;
             }
             .iFtext{
                 background-color: #181818;
-                height: 250px;
+                height: 265px;
                 padding-left: 30px;
                 .textLeft{
                     width: 350px;
-                    font-size: 16px;
                     color: #FFFFFF;
                     padding-top: 35px;
                 }
@@ -82,10 +79,10 @@
             }
             .iFbtn{
                 width: 505px;
-                height: 70px;
+                height: 60px;
                 background-color: #181818;
                 padding-left: 30px;
-                padding-top: 30px;
+                padding-top: 25px;
             }
         }
     }
