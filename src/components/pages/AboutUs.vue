@@ -1,10 +1,12 @@
 <template>
   <div class="aboutus">
-    <div class="leftandright">
-      <div class="leftgo" @click="move"><i class="fas fa-caret-left"></i></div>
-      <div class="rightgo" @click="back">
+    <div class="leftandright d-flex">
+      <!-- <div class="leftgo px-5 mr-3" @click="move"><i class="fas fa-caret-left"></i></div>
+      <div class="rightgo px-5 ml-3" @click="back">
         <i class="fas fa-caret-right"></i>
-      </div>
+      </div> -->
+      <div @click="move"><button-directbuy class="px-5 mr-1" style="font-size:24px;font-weight:700;" iconame='❮'></button-directbuy></div>
+      <div @click="back"><button-directbuy class="px-5 ml-1" style="font-size:24px;font-weight:700;" iconame='❯'></button-directbuy></div>
     </div>
     <div class="aboutitembackground">
       <div class="aboutitembackgroundimage">
@@ -39,7 +41,6 @@
 </template>
 
 <script>
-let a = 0
 export default {
   data () {
     return {
@@ -84,27 +85,35 @@ export default {
           info:
             '購買車輛後不只提供牌照、燃料及車險等等一系列服務，在購車起算後一年內額外提供保固維修，讓你在購車之餘多享受一份安心。'
         }
-      ]
+      ],
+      train: 0,
+      carmove: 0,
+      carback: 0,
+      moved: 350
     }
   },
   methods: {
     move () {
       const allitem = this.$refs.aboutusall
-      a = 350
-      allitem.forEach(item => {
-        // if (a < -701) {
-        //   return
-        // }
-        item.style.transform += `translateX(${a}px)`
-        console.log(a)
-      })
+      if (this.train < -1) {
+        this.train += this.moved
+        this.carback = this.train
+        console.log(this.carback)
+        allitem.forEach(item => {
+          item.style.transform = `translateX(${this.carback}px)`
+        })
+      }
     },
     back () {
       const allitem = this.$refs.aboutusall
-      a = -350
-      allitem.forEach(item => {
-        item.style.transform += `translateX(${a}px)`
-      })
+      if (this.train > -699) {
+        this.train -= this.moved
+        this.carmove = this.train
+        console.log(this.carmove)
+        allitem.forEach(item => {
+          item.style.transform = `translateX(${this.carmove}px)`
+        })
+      }
     }
   }
 }

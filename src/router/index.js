@@ -10,6 +10,11 @@ import ReportDialogs from '../components/layout/ReportDialogs.vue'
 import CarCheckout from '../components/CarCheckout.vue'
 import AddProduct from '../components/AddProduct.vue'
 import AuctionOverview from '../components/pages/AuctionOverview.vue'
+import Shoppingcar from '../components/ShoppingCar.vue'
+import SignUp from '../components/SignUp.vue'
+import SignIn from '../components/SignIn.vue'
+import MemberData from '../components/MemberData.vue'
+import MemberAuction from '../components/MemberAuction.vue'
 
 Vue.use(VueRouter)
 
@@ -72,6 +77,31 @@ const routes = [
     path: '/auctionoverview',
     name: 'AuctionOverview',
     component: AuctionOverview
+  },
+  {
+    path: '/shoppingcar',
+    name: 'Shoppingcar',
+    component: Shoppingcar
+  },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUp
+  },
+  {
+    path: '/signin',
+    name: 'SignIn',
+    component: SignIn
+  },
+  {
+    path: '/memberdata',
+    name: 'MemberData',
+    component: MemberData
+  },
+  {
+    path: '/memberauction',
+    name: 'MemberAuction',
+    component: MemberAuction
   }
 ]
 

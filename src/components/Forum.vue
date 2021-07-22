@@ -1,53 +1,83 @@
 <template>
-  <div style="width:100%;height:100%">
-    <div class="forumtop">
+  <div>
+    <div class="forumtop ma-auto">
       <div
-        class="forumblack d-flex flex-column justify-center align-center pt-10 pb-10"
+        class="forumblack d-flex flex-column justify-center align-center pt-10 pb-15"
         style="width:100%;height:100%"
       >
-        <div class='d-flex justify-end mb-10' style="width:80%">
-          <router-link style="text-decoration:none;" to="/issuePage"><button-news buttonName="我要發文"></button-news></router-link>
+        <div class="d-flex justify-end mb-10" style="width:80%">
+          <router-link style="text-decoration:none;" to="/issuePage"
+            ><button-news buttonName="我要發文"></button-news
+          ></router-link>
         </div>
-        <div class="d-flex justify-center ma-auto" style="max-width:1200px">
-          <div
-            style="width:55%"
-            class="mr-10 white newscard d-flex flex-column justify-space-between align-center"
-          >
-            <img src="../assets/forum/TDI SUV.png" style="width:100%;" />
-            <h2 class="text-h5 black--text" style="width:100%;">
-              <router-link
-                to="/ForumPage"
-                style="display:inlineblock;text-decoration:none; color:black;width:100%;"
-              >
-                VW Arteon Shooting Brake v.s Peugeot 508 SW ｜ 200 萬級美型
-                Wagon 對決！
-              </router-link>
-            </h2>
-            <div class="newtitle" style="width:100%;height:5px;"></div>
-          </div>
-          <div style="width:25%;" class="d-flex flex-column ml-10">
-            <div
-              v-for="item in news"
-              :key="item.id"
-              class="newscard white mb-10"
+        <div
+          class="d-flex justify-center ma-auto"
+          style="max-width:1200px;height:600px"
+        >
+          <v-card class="mx-auto mr-15" max-width="750">
+            <v-img
+              class="white--text align-end"
+              height="470px"
+              src="../assets/forum/TDI SUV.png"
             >
-              <img :src="item.image" style="width:100%" />
-              <h2 class="black--text pl-2 text-sm-body-2 mb-3">
-                {{ item.content }}
-              </h2>
-            </div>
+              <v-card-title>Top 10 Australian car</v-card-title>
+            </v-img>
+            <v-card-text class="text--primary">
+              <div class="d-flex justify-center">
+                <h2>
+                  VW Arteon Shooting Brake v.s Peugeot 508 SW ｜ 200 萬級美型
+                  Wagon 對決！
+                </h2>
+              </div>
+            </v-card-text>
+            <v-card-actions class="d-flex justify-end">
+              <v-btn color="orange" text>
+                <router-link
+                  to="/ForumPage"
+                  style="text-decoration:none;width:100%;color:orange"
+                >
+                  閱覽文章
+                </router-link>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+          <div class="d-flex flex-column">
+          <v-card
+            class="mx-auto mb-10"
+            max-width="450"
+            v-for="item in news"
+            :key="item.id"
+          >
+            <v-img
+              class="white--text align-end"
+              height="150px"
+              :src="item.image"
+            >
+              <v-card-title>Top 10 Australian beaches</v-card-title>
+            </v-img>
+            <v-card-text class="text--primary">
+              <div class="yellow-text">{{ item.content }}</div>
+            </v-card-text>
+            <v-card-actions class="d-flex justify-end">
+              <v-btn color="orange" text>
+                閱覽文章
+              </v-btn>
+            </v-card-actions>
+          </v-card>
           </div>
         </div>
       </div>
     </div>
     <div class="mb-15">
       <div class="d-flex flex-column justify-center align-center">
-        <h1 class="align-self-start ml-16 mb-2 mt-10">今日最新消息</h1>
-        <div class="newtitle" style="width:90%;height:5px;"></div>
+        <h1 class="align-self-start ma-auto mb-2 mt-10" style="width:85%;">
+          今日最新消息
+        </h1>
+        <div class="newtitle" style="width:85%;height:5px;"></div>
       </div>
-      <div class="d-flex justify-space-around mt-10">
+      <div class="d-flex justify-space-around mt-10 ma-auto" style="width:70%">
         <div>
-          <img :src="goimg" style="width:350px;height:250px" />
+          <img :src="goimg" style="width:450px;height:300px" />
         </div>
         <div class="d-flex flex-column justify-space-around">
           <div v-for="(title, index) in titles" :key="title.id">
@@ -59,8 +89,8 @@
       </div>
     </div>
     <div
-      class="d-flex justify-space-between flex-wrap mb-10 pl-10 pr-10"
-      style="width:100%"
+      class="d-flex justify-space-between flex-wrap mb-10"
+      style="width:100%;padding-left:120px;padding-right:120px"
     >
       <div v-for="carnew in carnews" :key="carnew" class="mb-10">
         <v-card class="mx-auto" max-width="400">
