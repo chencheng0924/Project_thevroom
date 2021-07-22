@@ -101,7 +101,7 @@ export default {
         },
         {
           id: '5',
-          src: require('../../assets/index-car-pic/landrover7.png')
+          src: require('../../assets/index-car-pic/evoque1.png')
         }
       ],
       carbrands: [
@@ -144,7 +144,7 @@ export default {
         {
           id: '4',
           brand: 'Land-Rover',
-          type: '忘了',
+          type: 'Evoque',
           door: '5門5人座',
           info: '渦輪增壓, 直列4缸, DOHC雙凸輪軸, 24氣門',
           power: '222hp@3400~4600rpm',
@@ -235,6 +235,9 @@ export default {
   .indexproduct2 {
     display: flex;
     width: 100%;
+    .v-image__image--cover {
+    background-size:contain ;
+      }
     .indexcarinfo {
       display: flex;
       align-items: center;

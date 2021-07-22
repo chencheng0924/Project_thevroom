@@ -1,13 +1,14 @@
 <template>
   <div class="d-flex mt-15 ma-auto">
     <div>
-      <img style="position:-webkit-sticky;" :src="imgsrc" alt="車圖" />
+      <img style="position: sticky;top:20%;left:0;" :src="imgsrc" alt="車圖" />
     </div>
     <div
       class="d-flex flex-column align-end"
-      style="display:inline-block;width:450px"
+      style="display:inline-block;width:400px"
     >
       <div style="width:400px">
+        <div style="height:100vh">
         <h1 class="mt-16">您的 {{ carname }}</h1>
         <div>
           <ul class="my-8" style="line-height:3;">
@@ -46,6 +47,7 @@
           >
             信用卡結帳
           </button>
+        </div>
         </div>
         <div>
           <div>

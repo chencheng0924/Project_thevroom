@@ -25,7 +25,7 @@ export default {
       show: false,
       count: 0,
       viewtag: '',
-      showImg: require('../assets/index-select-car/car1.jpg'),
+      showImg: require('../assets/index-select-car/car6.jpeg'),
       carList: [
         { classname: 'one', carname: '01  BMW M2 Competition', id: '1' },
         { classname: 'two', carname: '02  M-Benz GLC 200 4MATIC', id: '2' },
