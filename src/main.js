@@ -14,7 +14,6 @@ import ButtonDirectbuy from './components/layout/ButtonDirectbuy'
 import VueObserVisibility from 'vue-observe-visibility'
 import UploadImage from './components/UploadImage.vue'
 
-
 Vue.use(VueObserVisibility)
 Vue.config.productionTip = false
 Vue.use(VueFullPage)
