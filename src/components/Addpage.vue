@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import AddLeft from './AddLeft.vue'
+import AddLeft from '../components/AddLeft.vue'
 
 export default {
   data: () => ({

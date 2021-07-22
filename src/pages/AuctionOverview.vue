@@ -29,11 +29,11 @@
 </template>
 
 <script>
-import OverviewContent from '../OverviewContent.vue'
+import OverviewContent from '../components/OverviewContent.vue'
 
 export default {
   data: () => ({
-    imagePath: require('../../assets/carlist/benz10.png'),
+    imagePath: require('../assets/carlist/benz10.png'),
     tYear: '2021 M-Benz',
     tBrand: 'GLC Coupe GLC300 4MATIC',
     desC: '2021 GLC Coupe採單柵式水箱護罩，搭配兩側新款LED頭燈，成熟優雅的氛圍傳承自New GLE。當視線移至保桿下方進氣口，則是會被全車系標配的鍍鉻套件所吸引，優雅中凸顯出GLC Coupe專屬的運動感。而沿著車側厚實的肩膀線條向後延伸，GLC Coupe採用全新夜色尾燈設計，成就新世代Mercedes-Benz運動休旅家族的識別。',
@@ -43,17 +43,17 @@ export default {
     length: 3,
     window: 0,
     carimgIn: [
-      { id: '0', src: require('../../assets/carlist/benz10.png') },
-      { id: '1', src: require('../../assets/carlist/benz11.png') },
-      { id: '2', src: require('../../assets/carlist/benz12.png') },
-      { id: '3', src: require('../../assets/carlist/benzgclass.png') },
-      { id: '4', src: require('../../assets/carlist/bmw7.png') },
-      { id: '5', src: require('../../assets/carlist/gtr1.png') },
-      { id: '6', src: require('../../assets/carlist/benz10.png') },
-      { id: '7', src: require('../../assets/carlist/benz11.png') },
-      { id: '8', src: require('../../assets/carlist/benz12.png') },
-      { id: '9', src: require('../../assets/carlist/benzgclass.png') },
-      { id: '10', src: require('../../assets/carlist/bmw7.png') }
+      { id: '0', src: require('../assets/carlist/benz10.png') },
+      { id: '1', src: require('../assets/carlist/benz11.png') },
+      { id: '2', src: require('../assets/carlist/benz12.png') },
+      { id: '3', src: require('../assets/carlist/benzgclass.png') },
+      { id: '4', src: require('../assets/carlist/bmw7.png') },
+      { id: '5', src: require('../assets/carlist/gtr1.png') },
+      { id: '6', src: require('../assets/carlist/benz10.png') },
+      { id: '7', src: require('../assets/carlist/benz11.png') },
+      { id: '8', src: require('../assets/carlist/benz12.png') },
+      { id: '9', src: require('../assets/carlist/benzgclass.png') },
+      { id: '10', src: require('../assets/carlist/bmw7.png') }
     ],
     distanceY: 0,
     count: 0,

@@ -13,7 +13,7 @@
                     <div class="titleAu">Mercedes-Benz</div>
                     <div class="titleAu">GLC Coupe 300</div>
                     <div class="carAu">
-                        <img class="moCar" src="../../assets/carlist/benz10.png">
+                        <img class="moCar" src="../assets/carlist/benz10.png">
                     </div>
                     <div class="btnAu d-flex justify-center">
                         <v-btn
@@ -50,8 +50,8 @@
 <script>
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import singleCarInfo from '../singleCarInfo.vue'
-import singleCarBidRecord from '../singleCarBidRecord.vue'
+import singleCarInfo from '../components/singleCarInfo.vue'
+import singleCarBidRecord from '../components/singleCarBidRecord.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 

@@ -9,7 +9,9 @@
         <h2 class="text-h6 font-weight-bold">{{ item.title }}</h2>
         <div class="indexproductsection1">
           <v-btn rounded color="white" large class="ml-15 mt-15">
+            <router-link to="/accessories" style="color: #181818;">
             Shop now <i class="fas fa-shopping-cart ml-3"></i>
+            </router-link>
           </v-btn>
           <img :src="item.src" alt="圖壞了" />
         </div>
@@ -20,9 +22,9 @@
         <v-carousel width='700' height="400" hide-delimiter-background show-arrows-on-hover class="d-flex justify-center">
           <template v-slot:prev="{ on, attrs }">
             <v-btn
-              class="black--text"
+              class="#FFFFFF--text"
               width='100'
-              color="teal lighten-3"
+              color="#F34841"
               v-bind="attrs"
               v-on="on"
               @click="move"
@@ -31,9 +33,9 @@
           </template>
           <template v-slot:next="{ on, attrs }">
             <v-btn
-              class="black--text"
+              class="#FFFFFF--text"
               width='100'
-              color="teal lighten-3"
+              color="#F34841"
               v-bind="attrs"
               v-on="on"
               @click="back"
@@ -73,39 +75,39 @@ export default {
         {
           id: '1',
           title: '輪胎專區',
-          src: require('../../assets/index-car-pic/indexpicwheel.png')
+          src: require('../assets/index-car-pic/indexpicwheel.png')
         },
         {
           id: '2',
           title: '汽車零件專區',
-          src: require('../../assets/index-car-pic/indexpicproduct.gif')
+          src: require('../assets/index-car-pic/indexpicproduct.gif')
         },
         {
           id: '3',
           title: '其他商品',
-          src: require('../../assets/index-car-pic/indexpicother.png')
+          src: require('../assets/index-car-pic/indexpicother.png')
         }
       ],
       items: [
         {
           id: '1',
-          src: require('../../assets/index-car-pic/benzglc.png')
+          src: require('../assets/index-car-pic/benzglc.png')
         },
         {
           id: '2',
-          src: require('../../assets/index-car-pic/benzgle1.png')
+          src: require('../assets/index-car-pic/benzgle1.png')
         },
         {
           id: '3',
-          src: require('../../assets/index-car-pic/benzgle2.png')
+          src: require('../assets/index-car-pic/benzgle2.png')
         },
         {
           id: '4',
-          src: require('../../assets/index-car-pic/bmw7.png')
+          src: require('../assets/index-car-pic/bmw7.png')
         },
         {
           id: '5',
-          src: require('../../assets/index-car-pic/gtr.png')
+          src: require('../assets/index-car-pic/gtr.png')
         }
       ],
       carbrands: [

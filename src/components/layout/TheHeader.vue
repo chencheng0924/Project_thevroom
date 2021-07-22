@@ -46,27 +46,27 @@ export default {
       {
         icon: 'mdi-gavel',
         title: '競標會場',
-        link: '/meetups'
+        link: '/auctionoverview'
       },
       {
         icon: 'mdi-car-sports',
-        title: '直購車輛',
-        link: '/meetup/new'
+        title: '配件專區',
+        link: '/accessories'
       },
       {
         icon: 'mdi-clipboard-list-outline',
         title: '市場行情',
-        link: '/profile'
+        link: '/comparecard'
       },
       {
         icon: 'mdi-draw',
         title: '討論專區',
-        link: '/signup'
+        link: '/forum'
       },
       {
         icon: 'mdi-account-question-outline',
         title: '新手上路',
-        link: '/signin'
+        link: '/newdriver'
       }
     ]
   })
@@ -78,7 +78,7 @@ export default {
       position: absolute;
       top: 0;
       min-width: 100%;
-      z-index: 10;
+      z-index: 20;
     }
     img{
         width: 120px;

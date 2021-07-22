@@ -30,7 +30,9 @@
           </div>
           <div class="aboutusitem5">
             <v-btn rounded color="#F34841" dark>
+              <router-link to="/newdriver" style="color: #FFFFFF;">
               了解詳情
+              </router-link>
             </v-btn>
           </div>
           <div></div>
@@ -163,7 +165,7 @@ export default {
     .aboutitembackgroundimage {
       height: 100vh;
       display: flex;
-      background-image: url('../../assets/index-aboutus2.png');
+      background-image: url('../assets/index-aboutus2.png');
       .aboutusitem {
         background-color: rgba($color: black, $alpha: 0.4);
         width: 350px;

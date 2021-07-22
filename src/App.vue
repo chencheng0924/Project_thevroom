@@ -37,4 +37,7 @@ body{
 .fixHeader{
   margin-top: 64px;
 }
+a{
+  color: #FFFFFF;
+}
 </style>

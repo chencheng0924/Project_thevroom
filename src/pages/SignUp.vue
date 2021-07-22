@@ -213,7 +213,7 @@
 </template>
 
 <script>
-import ButtonSubmit from './layout/ButtonSubmit.vue'
+import ButtonSubmit from '../components/layout/ButtonSubmit.vue'
 export default {
   components: { ButtonSubmit },
   data () {

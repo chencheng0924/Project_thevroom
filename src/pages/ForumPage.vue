@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import ReportDialogs from './layout/ReportDialogs.vue'
+import ReportDialogs from '../components/interactive/ReportDialogs.vue'
 export default {
   components: { ReportDialogs },
   data () {

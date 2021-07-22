@@ -130,8 +130,8 @@
 </template>
 
 <script>
-import CompareTableA from './CompareTableA.vue'
-import CompareTableB from './CompareTableB.vue'
+import CompareTableA from '../components/CompareTableA.vue'
+import CompareTableB from '../components/CompareTableB.vue'
 
 export default {
   components: {

@@ -60,7 +60,7 @@
                 <div class="card_photo_area_btn">
                   <div class="area_btn_inside">
                     <div class="area_btn_word text-h6 font-weight-bold">目 前 選 擇<span class="area_btn_num"> 0 </span>輛</div>
-                    <v-btn rounded color="#F34841" dark width="150" height="40">加入</v-btn>
+                    <v-btn rounded color="#F34841" dark width="150" height="40" to="/compareinside">開始比較</v-btn>
                   </div>
                 </div>
             </div>
@@ -87,17 +87,17 @@
             <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; color: #F34841; position: absolute; margin-top: 350px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
             <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; color: #F34841; position: absolute; margin-top: 615px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
             <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; color: #F34841; position: absolute; margin-top: 880px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
-            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 180px; margin-left: 360px;">比較結果</v-btn>
-            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 450px; margin-left: 360px;">比較結果</v-btn>
-            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 715px; margin-left: 360px;">比較結果</v-btn>
-            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 980px; margin-left: 360px;">比較結果</v-btn>
+            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 180px; margin-left: 360px;" to="/compareinside">比較結果</v-btn>
+            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 450px; margin-left: 360px;" to="/compareinside">比較結果</v-btn>
+            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 715px; margin-left: 360px;" to="/compareinside">比較結果</v-btn>
+            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 980px; margin-left: 360px;" to="/compareinside">比較結果</v-btn>
           </div>
           <div class="compare_middle_right">
             <v-hover v-slot="{ hover }">
               <div class="hotcar">
                 <div class="hotcar_img_outside">
                   <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 685px; right: 400px"> -->
-                  <img src="../../assets/compare-car-pic/hotcar01.png" class="hotcar_img">
+                  <img src="../assets/compare-car-pic/hotcar01.png" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
                   <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
@@ -118,7 +118,7 @@
               <div class="hotcar">
                 <div class="hotcar_img_outside">
                   <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1020px; right: 400px"> -->
-                  <img src="../../assets/compare-car-pic/hotcar02.png" class="hotcar_img">
+                  <img src="../assets/compare-car-pic/hotcar02.png" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
                   <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
@@ -139,7 +139,7 @@
               <div class="hotcar">
                 <div class="hotcar_img_outside">
                   <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1355px; right: 400px"> -->
-                  <img src="../../assets/compare-car-pic/hotcar03.png" class="hotcar_img">
+                  <img src="../assets/compare-car-pic/hotcar03.png" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
                   <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
@@ -160,7 +160,7 @@
               <div class="hotcar">
                 <div class="hotcar_img_outside">
                   <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1690px; right: 400px"> -->
-                  <img src="../../assets/compare-car-pic/hotcar04.png" class="hotcar_img">
+                  <img src="../assets/compare-car-pic/hotcar04.png" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
                   <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
@@ -203,35 +203,35 @@ export default {
     newImages: [
       {
         id: '1',
-        src: require('../../assets/compare-car-pic/newcar01.png')
+        src: require('../assets/compare-car-pic/newcar01.png')
       },
       {
         id: '2',
-        src: require('../../assets/compare-car-pic/newcar02.png')
+        src: require('../assets/compare-car-pic/newcar02.png')
       },
       {
         id: '3',
-        src: require('../../assets/compare-car-pic/newcar03.png')
+        src: require('../assets/compare-car-pic/newcar03.png')
       },
       {
         id: '4',
-        src: require('../../assets/compare-car-pic/newcar04.png')
+        src: require('../assets/compare-car-pic/newcar04.png')
       },
       {
         id: '5',
-        src: require('../../assets/compare-car-pic/newcar05.png')
+        src: require('../assets/compare-car-pic/newcar05.png')
       },
       {
         id: '6',
-        src: require('../../assets/compare-car-pic/newcar06.png')
+        src: require('../assets/compare-car-pic/newcar06.png')
       },
       {
         id: '7',
-        src: require('../../assets/compare-car-pic/newcar07.png')
+        src: require('../assets/compare-car-pic/newcar07.png')
       },
       {
         id: '8',
-        src: require('../../assets/compare-car-pic/newcar08.png')
+        src: require('../assets/compare-car-pic/newcar08.png')
       }
     ]
   })

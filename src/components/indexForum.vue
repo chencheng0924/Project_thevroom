@@ -20,10 +20,9 @@
                     outlined
                     width="120"
                     color="#F34841"
+                    to="/forum"
                     >
-                    <router-link to="/forum" style="color: #F34841;">
                     查看全文
-                    </router-link>
                     </v-btn>
                 </div>
             </div>

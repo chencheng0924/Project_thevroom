@@ -128,11 +128,11 @@
 </template>
 
 <script>
-import shoppingcar1 from './ShoppingCar1.vue'
-import shoppingcar2 from './ShoppingCar2.vue'
-import shoppingcar3 from './ShoppingCar3.vue'
-import ButtonNews from './layout/ButtonNews.vue'
-import ButtonSubmit from './layout/ButtonSubmit.vue'
+import shoppingcar1 from '../components/ShoppingCar1.vue'
+import shoppingcar2 from '../components/ShoppingCar2.vue'
+import shoppingcar3 from '../components/ShoppingCar3.vue'
+import ButtonNews from '../components/layout/ButtonNews.vue'
+import ButtonSubmit from '../components/layout/ButtonSubmit.vue'
 export default {
   components: {
     'shopping-car1': shoppingcar1,

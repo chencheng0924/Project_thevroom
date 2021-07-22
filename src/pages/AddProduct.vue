@@ -21,10 +21,10 @@
 </template>
 
 <script>
-import Addpage from './Addpage.vue'
-import AddpageTwo from './AddpageTwo.vue'
-import AddpageThree from './AddpageThree.vue'
-import AddpageFour from './AddpageFour.vue'
+import Addpage from '../components/Addpage.vue'
+import AddpageTwo from '../components/AddpageTwo.vue'
+import AddpageThree from '../components/AddpageThree.vue'
+import AddpageFour from '../components/AddpageFour.vue'
 
 export default {
   name: 'app',

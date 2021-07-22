@@ -34,6 +34,7 @@
             </div>
             <div class="btnOv d-flex align-end justify-end">
                 <v-btn
+                to="/singleauction"
                 rounded
                 color="#F34841"
                 class="btn"

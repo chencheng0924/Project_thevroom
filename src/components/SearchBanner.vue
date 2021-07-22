@@ -66,8 +66,9 @@
                     </v-container>
                 </v-card>
             </v-col>
-            <v-btn rounded color="#F34841" class="btn" dark @click="wantmove"
-            >進入競標場
+            <v-btn rounded color="#F34841" class="btn white--text" @click="wantmove" to="/auctionoverview"
+            >
+            進入競標場
             </v-btn>
         </v-row>
         </v-container>
