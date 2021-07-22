@@ -19,3 +19,13 @@ export default {
   }
 }
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+* {
+  /* font-family: 'Noto Sans TC', sans-serif; */
+  font-family: 'Noto Sans TC', sans-serif !important;
+}
+</style>

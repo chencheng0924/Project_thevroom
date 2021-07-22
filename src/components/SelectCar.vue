@@ -4,7 +4,7 @@
             <div class="leftpart">
                 <the-headline titleName="近期競標場次"></the-headline>
                 <div v-for="(item, index) in carList" :key="item.id" class="leftitem" :class="{ addcolor:index == count}" @click="addBg(index)">
-                    <div>{{ item.carname }}</div>
+                    <div class="text-h6 font-weight-regular">{{ item.carname }}</div>
                     <div :class="{ viewbar:index == count}" class="viewcolor">{{ viewtag }}</div>
                 </div>
             </div>
@@ -76,7 +76,6 @@ export default {
         border: 1px solid blue;
         height: 16%;
         color: #FFFFFF;
-        font-size: 30px;
         padding-left: 30px;
         cursor: pointer;
             &:hover{

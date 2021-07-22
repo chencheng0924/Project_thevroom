@@ -21,10 +21,10 @@
           </div>
           <div class="aboutusitem2"><i :class="item.icon"></i></div>
           <div class="aboutusitem3">
-            <h2>{{ item.title }}</h2>
+            <h2 class="text-h6 font-weight-bold">{{ item.title }}</h2>
           </div>
           <div class="aboutusitem4">
-            <p>
+            <p class="text-subtitle-1 font-weight-light">
               {{ item.info }}
             </p>
           </div>

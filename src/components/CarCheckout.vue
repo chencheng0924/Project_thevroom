@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex mt-15 ma-auto">
+  <div class="d-flex mt-12 ma-auto">
     <div>
       <img style="position: sticky;top:20%;left:0;" :src="imgsrc" alt="車圖" />
     </div>
@@ -11,7 +11,7 @@
         <div style="height:100vh">
         <h1 class="mt-16">您的 {{ carname }}</h1>
         <div>
-          <ul class="my-8" style="line-height:3;">
+          <ul class="my-8" style="line-height:2.5;">
             <li
               style="list-style:none;"
               v-for="cardes in cardesall"
@@ -21,7 +21,7 @@
             </li>
           </ul>
         </div>
-        <div style="margin-bottom:100px">
+        <div style="margin-bottom:30px">
           <v-row justify="center">
             <v-expansion-panels inset>
               <v-expansion-panel v-for="(item, i) in 1" :key="i">
@@ -40,7 +40,7 @@
           </v-row>
         </div>
         <div style="font-size:32px;color:red"><h2>NT$: {{carprice}}</h2></div>
-        <div class="my-15 d-flex justify-center">
+        <div class="my-5 d-flex justify-center">
           <button
             class="px-10 py-3"
             style="border:2px solid black;border-radius:30px;font-size:24px;font-weight:600;"
@@ -51,7 +51,7 @@
         </div>
         <div>
           <div>
-            <h2 class="mb-10">輸入帳戶詳細資料</h2>
+            <h2 class="my-10">輸入帳戶詳細資料</h2>
             <div class="d-flex align-center ml-8 mb-8">
               <h3 style="width:100px">姓氏:</h3>
               <v-text-field

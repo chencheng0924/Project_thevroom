@@ -1,6 +1,6 @@
 <template>
     <div class="headerrrr">
-      <v-toolbar dense flat style="background-color: #181818;">
+      <v-toolbar flat style="background-color: #181818;">
         <v-app-bar-nav-icon
           @click.stop="sideNav = !sideNav"
           color="#FFFFFF"
