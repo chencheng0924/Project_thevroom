@@ -11,6 +11,8 @@ import ReportDialogs from '../components/layout/ReportDialogs.vue'
 import CarCheckout from '../components/CarCheckout.vue'
 import AddProduct from '../components/AddProduct.vue'
 import AuctionOverview from '../components/pages/AuctionOverview.vue'
+import CompareInside from '../components/CompareInside.vue'
+import MemberSide from '../components/MemberSide.vue'
 import Accessories from '../components/Accessories.vue'
 import SingleAuction from '../components/pages/SingleAuction.vue'
 import Shoppingcar from '../components/ShoppingCar.vue'
@@ -85,6 +87,16 @@ const routes = [
     path: '/auctionoverview',
     name: 'AuctionOverview',
     component: AuctionOverview
+  },
+  {
+    path: '/compareinside',
+    name: 'CompareInside',
+    component: CompareInside
+  },
+  {
+    path: '/memberside',
+    name: 'MemberSide',
+    component: MemberSide
   },
   {
     path: '/accessories',

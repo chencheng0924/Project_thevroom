@@ -1,6 +1,7 @@
 <template>
   <div class="titlebox">
-    <div class="auctiontitle">
+    <div class="auctiontitle text-h4 font-weight-bold
+">
       {{ titleName }}
       <div class="rect"></div>
       <div class="anrect"></div>
@@ -20,8 +21,6 @@ export default {
     height: 18%;
     color: #ffffff;
     .auctiontitle {
-        font-size: 40px;
-        font-weight: bold;
         display: flex;
         flex-direction: column;
         justify-content: center;

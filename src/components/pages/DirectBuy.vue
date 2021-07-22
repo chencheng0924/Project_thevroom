@@ -1,15 +1,15 @@
 <template>
-  <div class="indexproductall">
+  <div class="indexproductall" style="height:100vh">
     <div class="d-flex justify-center">
-       <the-headline titleName="直購區" style="color:black" class="my-8"></the-headline>
+       <the-headline titleName="直購區" style="color:black" class="my-4"></the-headline>
     </div>
     <div class="indexproduct1">
       <div class="indexproductsection" v-for="item in product" :key="item.id">
         <div class="indexproductborder"></div>
-        <h2>{{ item.title }}</h2>
+        <h2 class="text-h6 font-weight-bold">{{ item.title }}</h2>
         <div class="indexproductsection1">
           <v-btn rounded color="white" large class="ml-15 mt-15">
-            Shop now <i class="fas fa-shopping-cart"></i>
+            Shop now <i class="fas fa-shopping-cart ml-3"></i>
           </v-btn>
           <img :src="item.src" alt="圖壞了" />
         </div>
@@ -17,7 +17,7 @@
     </div>
     <div class="indexproduct2 ma-auto" style="width:1200px;overflow:hidden">
       <div class="carousel" style="width:80%">
-        <v-carousel style="width:95%" height="500" hide-delimiter-background show-arrows-on-hover class="d-flex justify-center">
+        <v-carousel style="width:95%" height="350" hide-delimiter-background show-arrows-on-hover class="d-flex justify-center">
           <template style="width:850px;" v-slot:prev="{ on, attrs }">
             <v-btn
               color="transparent"
@@ -40,15 +40,15 @@
             v-for="item in items"
             :key="item.id"
             :src="item.src"
-            width="850"
+            width="800"
             ref="carinfo"
           ></v-carousel-item>
         </v-carousel>
       </div>
       <div class="indexcarinfo">
         <div class="indexcarinfo1">
-          <h1>{{ brand }}</h1>
-          <h2>{{ type }}</h2>
+          <h1 class="text-h4 font-weight-bold">{{ brand }}</h1>
+          <h2 class="text-h6 font-weight-bold">{{ type }}</h2>
           <ul style="list-style: none;" class="indexcarinfo2">
             <li>車門數:{{ door }}</li>
             <li>動力特色:{{ info }}</li>

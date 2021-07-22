@@ -9,9 +9,9 @@
                 <img src="../assets/i-f-photo.jpeg">
             </div>
             <div class="iFcontent d-flex flex-column">
-                <div class="iFtitle">討論區分享</div>
+                <div class="iFtitle text-h4 font-weight-bold">討論區分享</div>
                 <div class="iFtext d-flex">
-                    <div class="textLeft">當天去看車，整體給我的感受就是服務專業，即使車齡較高的車也都照顧得很好，車況用看的就知道還不錯，業務單刀直入也不會跟你扯有的沒的，果然網紅不會砸自己招牌，唯一缺點價格都是不2價，但我覺得沒關係，畢竟老闆收車的時候就幫你把關車況，我覺得這才是好的中古車商，把實質車況一五一十的告知消費者，也希望諸位找到心目中想買的車！</div>
+                    <div class="textLeft text-subtitle-1 font-weight-light">當天去看車，整體給我的感受就是服務專業，即使車齡較高的車也都照顧得很好，車況用看的就知道還不錯，業務單刀直入也不會跟你扯有的沒的，果然網紅不會砸自己招牌，唯一缺點價格都是不2價，但我覺得沒關係，畢竟老闆收車的時候就幫你把關車況，我覺得這才是好的中古車商，把實質車況一五一十的告知消費者，也希望諸位找到心目中想買的車！</div>
                     <div class="textRight"></div>
                 </div>
                 <div class="iFbtn">

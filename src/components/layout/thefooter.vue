@@ -4,7 +4,7 @@
       <div class="footer-first">
         <div class="footer-sub d-flex flex-column">
           <h2 class="ml-5">準備啟程</h2>
-          <h4 class="ml-5">
+          <h4 class="ml-5 text-subtitle-1 font-weight-light">
             Get exclusive digital marketing update straight to your inbox.
           </h4>
           <div class="footer-submail">
@@ -17,25 +17,25 @@
             <h2><a href="#">售後服務</a></h2>
             <div>
               <h3 class="mb-2 mt-4"><a href="#" class="red--text">購物說明</a></h3>
-              <h4 class="mb-1"><a href="#">顧客服務</a></h4>
-              <h4 class="mb-1"><a href="#">如何購買</a></h4>
-              <h4 class="mb-1"><a href="#">退換貨流程</a></h4>
+              <h4 class="mb-1"><a href="#" class="text-subtitle-1 font-weight-light">顧客服務</a></h4>
+              <h4 class="mb-1"><a href="#" class="text-subtitle-1 font-weight-light">如何購買</a></h4>
+              <h4 class="mb-1"><a href="#" class="text-subtitle-1 font-weight-light">退換貨流程</a></h4>
               <h3 class="mb-2 mt-4"><a href="#" class="red--text">會員</a></h3>
-              <h4 class="mb-1"><a href="#">會員註冊</a></h4>
-              <h4 class="mb-1"><a href="#">會員登入</a></h4>
+              <h4 class="mb-1"><a href="#" class="text-subtitle-1 font-weight-light">會員註冊</a></h4>
+              <h4 class="mb-1"><a href="#" class="text-subtitle-1 font-weight-light">會員登入</a></h4>
             </div>
           </div>
           <div>
             <h2 class="mb-5"><a href="#">競標資訊</a></h2>
-            <h4 class="mb-1"><a href="#">新手上路</a></h4>
-            <h4 class="mb-1"><a href="#">熱門競標</a></h4>
-            <h4 class="mb-1"><a href="#">車主文章</a></h4>
-            <h4 class="mb-1"><a href="#">車款比價</a></h4>
-            <h4 class="mb-1"><a href="#">常見問題</a></h4>
+            <h4 class="mb-1"><a href="#" class="text-subtitle-1 font-weight-light">新手上路</a></h4>
+            <h4 class="mb-1"><a href="#" class="text-subtitle-1 font-weight-light">熱門競標</a></h4>
+            <h4 class="mb-1"><a href="#" class="text-subtitle-1 font-weight-light">車主文章</a></h4>
+            <h4 class="mb-1"><a href="#" class="text-subtitle-1 font-weight-light">車款比價</a></h4>
+            <h4 class="mb-1"><a href="#" class="text-subtitle-1 font-weight-light">常見問題</a></h4>
           </div>
           <div>
             <h2 class="mb-5"><a href="#">關於我們</a></h2>
-            <h4 class="mb-1"><a href="#">TheVroom</a></h4>
+            <h4 class="mb-1"><a href="#" class="text-subtitle-1 font-weight-light">TheVroom</a></h4>
           </div>
           <div>
              <h2><a href="#">討論區分享</a></h2>
