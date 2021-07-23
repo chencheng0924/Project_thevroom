@@ -1,10 +1,10 @@
 <template>
-  <v-card max-width="600" height="800">
-    <div style="height:800px" class="ma-auto d-flex align-center">
+  <div>
+    <div style="height:900px" class="ma-auto d-flex align-center">
       <div style="width:600px;" class="d-flex justify-center">
         <div
-          class="d-flex flex-column align-center"
-          style="width:90%;height:750px;border:1px solid black;border-radius:20px;"
+          class="d-flex flex-column align-center justify-space-around"
+          style="width:90%;height:900px;"
         >
           <div
             class="d-flex flex-column mt-10 my-5 px-5"
@@ -89,9 +89,9 @@
               ></v-text-field>
             </v-col>
           </div>
-          <div class="mt-10 align-self-end mr-5">
+          <div class="mt-8 align-self-end mr-6">
             <button
-              class="black white--text px-4 py-2"
+              class="black white--text px-4 py-2 mb-1 mr-2"
               style="border-radius:20px"
             >
               保存
@@ -100,5 +100,5 @@
         </div>
       </div>
     </div>
-  </v-card>
+  </div>
 </template>

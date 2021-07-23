@@ -13,52 +13,57 @@
         style="display:inline-block;width:400px"
       >
         <div style="width:400px" ref="all">
-          <div style="height:100vh">
-            <div class="mt-5 text-h4 font-weight-bold">您的 {{ carname }}</div>
-            <div>
-              <ul
-                class="my-8 text-subtitle-1 font-weight-light"
-                style="line-height:2.5;"
-              >
-                <li
-                  style="list-style:none;"
-                  v-for="cardes in cardesall"
-                  :key="cardes"
-                >
-                  {{ cardes }}
-                </li>
-              </ul>
-            </div>
-            <div style="margin-bottom:30px">
-              <v-row justify="center">
-                <v-expansion-panels inset>
-                  <v-expansion-panel v-for="(item, i) in 1" :key="i">
-                    <v-expansion-panel-header
-                      >顯示詳細資料(牌照+燃料稅計算、保險加購)</v-expansion-panel-header
+          <div
+            style="height:100vh"
+            class="d-flex flex-column justify-space-around"
+          >
+            <div class="text-h4 font-weight-bold">您的 {{ carname }}</div>
+            <div class="d-flex flex-column justify-space-around">
+                <div>
+                  <ul
+                    class="mb-5 text-subtitle-1 font-weight-light"
+                    style="line-height:2.5;"
+                  >
+                    <li
+                      style="list-style:none;"
+                      v-for="cardes in cardesall"
+                      :key="cardes"
                     >
-                    <v-expansion-panel-content>
-                      購買價格 $3,500,000
-                      <br />
-                      今日需完成支付 NT$3,000
-                      <br />
-                      訂購費用（下訂後將不予退還轉讓，費用不含於車價內）
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
-                </v-expansion-panels>
-              </v-row>
-            </div>
-            <div class="red--text text-h4 font-weight-bold">
-              <div>NT$: {{ carprice }}</div>
-            </div>
-            <div class="my-5 d-flex justify-center">
-              <button
-                class="px-10 py-3"
-                style="border:2px solid black;border-radius:30px;font-size:24px;font-weight:600;"
-                @click="move"
-              >
-                信用卡結帳
-              </button>
-            </div>
+                      {{ cardes }}
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <v-row justify="center">
+                    <v-expansion-panels inset>
+                      <v-expansion-panel v-for="(item, i) in 1" :key="i">
+                        <v-expansion-panel-header
+                          >顯示詳細資料(牌照+燃料稅計算、保險加購)</v-expansion-panel-header
+                        >
+                        <v-expansion-panel-content>
+                          購買價格 ${{ carprice }}
+                          <br />
+                          今日需完成支付 NT$3,000
+                          <br />
+                          訂購費用（下訂後將不予退還轉讓，費用不含於車價內）
+                        </v-expansion-panel-content>
+                      </v-expansion-panel>
+                    </v-expansion-panels>
+                  </v-row>
+                </div>
+                <div class="red--text text-h4 font-weight-bold my-10">
+                <div>NT$: {{ carprice }}</div>
+              </div>
+              </div>
+              <div class="d-flex justify-center" style="margin-bottom:200px">
+                <button
+                  class="px-10 py-3"
+                  style="border:2px solid black;border-radius:30px;text-h4 font-weight-bold"
+                  @click="move"
+                >
+                  信用卡結帳
+                </button>
+              </div>
           </div>
           <div>
             <div class="gogo">
@@ -328,7 +333,7 @@ export default {
   },
   methods: {
     move () {
-      window.scrollTo({ top: 850, behavior: 'smooth' })
+      window.scrollTo({ top: 1000, behavior: 'smooth' })
     }
   }
 }
