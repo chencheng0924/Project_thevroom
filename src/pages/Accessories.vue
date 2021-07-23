@@ -1,58 +1,74 @@
 <template>
-    <div id="app">
-        <div class="banner">
-           <img :src="big" class="big">
-        </div>
-       <h1 text-h4 font-weight-bold><img :src="house" class="house"> / 配件專賣區</h1>
+  <div>
+    <div class="banner">
+      <img style="width:100%;height:700px" :src="big" class="big" />
+    </div>
+    <div style="width:75%" class="ma-auto my-10 d-flex flex-column justify-center align-center">
+      <div class="align-self-start">
+        <h1 text-h4 font-weight-bold>
+          <img :src="house" class="house" /> / 配件專賣區
+        </h1>
+      </div>
       <div class="main">
         <div class="accessories">
-            <span class="search">搜尋配件</span>
-            <ul class="productList"><span>雨刷</span>
-                <li>硬骨型</li>
-                <li>軟骨型</li>
-                <li>後窗專用型</li>
-            </ul>
-            <ul class="productList"><span>小燈/方向燈/煞車燈</span>
-                <li>小燈/方向燈/第三煞車燈</li>
-                <li>牌照燈</li>
-            </ul>
-             <ul class="productList"><span>音響</span>
-                <li>高音揚聲器</li>
-                <li>低音砲管</li>
-            </ul>
-             <ul class="productList"><span>胎壓偵測器</span>
-                <li>胎內</li>
-                <li>胎外</li>
-            </ul>
-             <ul class="productList"><span>救車/哇電/警告標誌</span>
-                <li>電源供應器</li>
-                <li>千斤頂</li>
-                <li>警告標示</li>
-            </ul>
-            <span class="btn text-subtitle-1 font-weight-light">搜尋</span>
+          <span class="search">搜尋配件</span>
+          <ul class="productList">
+            <span>雨刷</span>
+            <li>硬骨型</li>
+            <li>軟骨型</li>
+            <li>後窗專用型</li>
+          </ul>
+          <ul class="productList">
+            <span>小燈/方向燈/煞車燈</span>
+            <li>小燈/方向燈/第三煞車燈</li>
+            <li>牌照燈</li>
+          </ul>
+          <ul class="productList">
+            <span>音響</span>
+            <li>高音揚聲器</li>
+            <li>低音砲管</li>
+          </ul>
+          <ul class="productList">
+            <span>胎壓偵測器</span>
+            <li>胎內</li>
+            <li>胎外</li>
+          </ul>
+          <ul class="productList">
+            <span>救車/哇電/警告標誌</span>
+            <li>電源供應器</li>
+            <li>千斤頂</li>
+            <li>警告標示</li>
+          </ul>
+          <span class="btn text-subtitle-1 font-weight-light">搜尋</span>
         </div>
         <div class="productList">
-            <div class="product" v-for="items in productList" :key="items">
-                <img :src="items.imgURL">
-                <br>
-                <span class="title text-subtitle-1 font-weight-bold">{{items.title}}</span>
-                <br>
-                <span class="size">{{items.size}}</span>
-                <br>
-                <div class="information">
-                    <span class="price">{{items.price}}</span>
-                    <span class="btn text-subtitle-1 font-weight-light">立即選看</span>
-                </div>
+          <div class="product" v-for="items in productList" :key="items">
+            <img :src="items.imgURL" />
+            <br />
+            <span class="title text-subtitle-1 font-weight-bold">{{
+              items.title
+            }}</span>
+            <br />
+            <span class="size">{{ items.size }}</span>
+            <br />
+            <div class="information">
+              <span class="price">{{ items.price }}</span>
+              <span class="btn text-subtitle-1 font-weight-bold" style="cursor: pointer;"
+                >立即選看</span>
+              <span class="black white--text btn text-subtitle-1 font-weight-bold" style="cursor: pointer;"
+                >加入購物車</span>
             </div>
+          </div>
         </div>
       </div>
- </div>
+    </div>
+  </div>
 </template>
 <script>
-export default ({
+export default {
   data () {
     return {
-      big: require('../assets/accessories-pic/aoto-part-banner.jpg'),
+      big: require('../assets/accessories-pic/aoto-part-banner2.jpg'),
       house: require('../assets/accessories-pic/house.png'),
       productList: [
         {
@@ -195,134 +211,130 @@ export default ({
           size: 'OrangeVW/Audi/Skoda專用',
           price: '$7988'
         }
-
       ]
     }
-  },
-  methods () {
-
   }
-})
+}
 </script>
 <style lang="scss" scoped>
-div.banner{
-    img{
-        max-width: 100%;
-    }
+div.banner {
+  img {
+    max-width: 100%;
+  }
 }
 
- h1{
-    margin: 20px 10px;
-    img{
-      height:30px;
-      }
+h1 {
+  margin: 20px 10px;
+  img {
+    height: 30px;
+  }
+}
+
+div.main {
+  display: flex;
+  flex: wrap;
+  div.accessories {
+    width: 400px;
+    position: relative;
+    > span.search {
+      font-weight: bold;
+      font-size: 20px;
+      background-color: #181818;
+      color: white;
+      padding: 10px 70px;
+      margin: 20px 10px;
+    }
+    span.btn {
+      border: 1px solid #181818;
+      border-radius: 20px;
+      padding: 3px 15px;
+      margin-left: 10px;
+      vertical-align: middle;
+      text-align: center;
+      position: absolute;
+      left: 0;
+      width: 150px;
+      transform: translateX(30%);
     }
 
-div.main{
-    display:flex;
-    flex: wrap;
-    div.accessories{
-    width:400px;
-    position: relative;
-    >span.search{
+    ul.productList {
+      margin: 30px 10px;
+      position: relative;
+      &:after {
+        position: absolute;
+        content: '';
+        background-color: #bfbdbd;
+        left: 0;
+        top: 100%;
+        width: 70%;
+        height: 2px;
+        margin-top: 15px;
+      }
+      span {
+        position: relative;
         font-weight: bold;
         font-size: 20px;
-        background-color:#181818;
-        color: white;
-        padding:10px 70px;
-        margin:20px 10px;
-    }
-    span.btn{
-        border:1px solid #181818;
-        border-radius: 20px;
-        padding: 3px 15px;
-        margin-left: 10px;
-        vertical-align: middle;
-        text-align: center;
-        position: absolute;
-        left:0;
-        width:150px;
-        transform: translateX(30%);
-    }
-
-    ul.productList{
-        margin:30px 10px;
-        position: relative;
-        &:after{
-            position:absolute;
-            content: "";
-            background-color:#bfbdbd;
-            left: 0;
-            top:100%;
-            width:70%;
-            height:2px;
-            margin-top: 15px;
+        &:after {
+          content: '+';
+          position: absolute;
+          margin-left: 10px;
         }
-       span{
-           position: relative;
-           font-weight: bold;
-           font-size: 20px;
-           &:after{
-               content: "+";
-               position: absolute;
-               margin-left: 10px;
-           }
-       }
-        li{
-            list-style: none;
-            margin: 15px 0;
-        }
+      }
+      li {
+        list-style: none;
+        margin: 15px 0;
+      }
     }
-}
+  }
 
-div.productList{
+  div.productList {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items:stretch ;
-    width:900px;
-    div.product{
-        width:270px;
-        position: relative;
-        // border:1px solid black;
-        margin: 10px 5px;
-        img{
-            height: 250px;
-            object-fit: contain;
+    align-items: stretch;
+    width: 900px;
+    div.product {
+      width: 270px;
+      position: relative;
+      // border:1px solid black;
+      margin: 10px 5px;
+      img {
+        height: 250px;
+        object-fit: contain;
+      }
+      span.title {
+        font-size: 16px;
+        font-weight: bold;
+        height: 30px;
+      }
+      div.information {
+        span.price {
+          color: #f34841;
+          font-size: 16px;
         }
-        span.title{
-            font-size:16px;
-            font-weight: bold;
-            height:30px;
+        span.btn {
+          border: 1px solid #181818;
+          border-radius: 20px;
+          padding: 3px 15px;
+          font-size: 14px !important;
+          margin-left: 10px;
+          position: absolute;
+          vertical-align: middle;
+          position: relative;
+          &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 250px;
+            height: 2px;
+            background-color: #bfbdbd;
+            margin-top: 10px;
+            transform: translateX(-20%);
+          }
         }
-        div.information{
-            span.price{
-            color:#f34841;
-            font-size:16px;
-            }
-            span.btn{
-                border:1px solid #181818;
-                border-radius: 20px;
-                padding: 3px 15px;
-                font-size:14px !important;
-                margin-left: 10px;
-                position: absolute;
-                vertical-align: middle;
-                position: relative;
-            &:after{
-                content: "";
-                position: absolute;
-                left: 0;
-                top:100%;
-                width:250px;
-                height:2px;
-                background-color: #bfbdbd;
-                margin-top: 10px;
-                transform: translateX(-20%);
-            }
-            }
-        }
+      }
     }
-}
+  }
 }
 </style>

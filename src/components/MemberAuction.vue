@@ -1,9 +1,9 @@
 <template>
-  <div style="height:1000px" class="ma-auto d-flex align-center">
+  <div style="height:900px" class="ma-auto d-flex align-center">
     <div style="width:600px;" class="d-flex justify-center">
       <div
         class="d-flex flex-column align-center"
-        style="width:90%;height:900px;border:1px solid black;border-radius:20px;"
+        style="width:90%;height:900px;"
       >
         <div
           class="d-flex flex-column mt-10 my-5 px-5"
@@ -33,39 +33,7 @@
             </div>
           </div>
           <div>
-            <v-sheet class="mx-auto" elevation="3" max-width="800" height="230">
-              <v-slide-group
-                v-model="model"
-                class="pa-2"
-                active-class="success"
-                show-arrows
-              >
-                <v-slide-item
-                  v-for="n in 6"
-                  :key="n"
-                  v-slot="{ active, toggle }"
-                >
-                  <v-card
-                    :color="active ? undefined : 'grey lighten-1'"
-                    class="ma-4"
-                    height="175"
-                    width="100"
-                    @click="toggle"
-                  >
-                    <v-row class="fill-height" align="center" justify="center">
-                      <v-scale-transition>
-                        <v-icon
-                          v-if="active"
-                          color="white"
-                          size="48"
-                          v-text="'mdi-close-circle-outline'"
-                        ></v-icon>
-                      </v-scale-transition>
-                    </v-row>
-                  </v-card>
-                </v-slide-item>
-              </v-slide-group>
-            </v-sheet>
+            <bidrecord />
           </div>
           <div class="memberBackground">
             <div class="d-flex align-center mb-5" style="height:40px;width:90%">
@@ -155,7 +123,7 @@
               </v-container>
             </div>
           </div>
-          <div class="mt-12 align-self-end mr-5"><button class="black white--text px-4 py-2" style="border-radius:20px">保存</button></div>
+          <div class="mt-13 align-self-end"><button class="black white--text px-4 py-2" style="border-radius:20px">保存</button></div>
         </div>
       </div>
     </div>
@@ -163,7 +131,11 @@
 </template>
 
 <script>
+import bidrecord from './bidRecord.vue'
 export default {
+  components: {
+    bidrecord: bidrecord
+  },
   data () {
     return {
       carpic: [

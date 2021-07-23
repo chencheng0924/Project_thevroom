@@ -2,17 +2,20 @@
   <div>
     <div class="forumtop white--text">
       <div
-        class="forumblack d-flex flex-column justify-center align-center py-10"
+        class="forumblack d-flex flex-column justify-space-around align-center py-10"
         style="width:100%;height:100%"
       >
         <h2 class="mb-5 text-h4 font-weight-bold">--文章分享--</h2>
-        <div class="d-flex">
-          <div class="d-flex flex-column mr-15 justify-start align-center">
-            <i class="fas fa-portrait"></i>
-            <h3>-xxx-</h3>
+        <div class="d-flex" style="width:1200px">
+          <div
+            class="d-flex flex-column mr-15 justify-start align-center"
+            style="width:20%"
+          >
+            <i style="font-size:36px" class="fas fa-portrait"></i>
+            <div class="text-h4 font-weight-bold">-xxx-</div>
             <h3
               style="border:1px solid white; border-radius:20px"
-              class="pa-1 px-3 my-2"
+              class="pa-3 px-5 my-2"
             >
               樓主
             </h3>
@@ -21,16 +24,31 @@
             class="d-flex flex-column ml-15"
             v-for="newli in news"
             :key="newli.id"
-            style="max-width:800px;"
+            style="width:80%"
           >
             <h2 class="text-h4 font-weight-bold">{{ newli.title }}</h2>
-            <button-news class="ma-3 align-self-end" buttonName="留言回覆"></button-news>
+            <div style="width:100%" class="d-flex justify-end">
+              <router-link to="/forum">
+              <button-news
+                class="black white--text ma-3 align-self-end"
+                buttonName="返回上一頁"
+              ></button-news>
+              </router-link>
+              <div @click="down">
+              <button-news
+                class="ma-3 align-self-end"
+                buttonName="留言回覆"
+              ></button-news>
+              </div>
+            </div>
             <div style="width:100%;height:5px;" class="orange"></div>
             <div class="my-10">
               <img style="width:90%;height:100%" :src="newli.src" />
             </div>
             <div>
-              <p style="line-height:3;text-subtitle-1 font-weight-light">{{ newli.content }}</p>
+              <p style="line-height:3;text-subtitle-1 font-weight-light">
+                {{ newli.content }}
+              </p>
             </div>
           </div>
         </div>
@@ -53,12 +71,16 @@
             <div class="d-flex flex-column align-center mr-5">
               <i class="fas fa-portrait"></i>
               <h3 class="text-h6 font-weight-bold">{{ message.name }}</h3>
-              <h5 class="-text-subtitle-1 font-weight-light">date:{{ message.data }}</h5>
+              <h5 class="-text-subtitle-1 font-weight-light">
+                date:{{ message.data }}
+              </h5>
             </div>
             <div class="d-flex align-center justify-start" style="width:80%">
               <p>{{ message.message }}</p>
             </div>
-            <report-dialogs style="cursor: pointer;font-size:10px"></report-dialogs>
+            <report-dialogs
+              style="cursor: pointer;font-size:10px"
+            ></report-dialogs>
           </div>
           <div style="width:100%;height:1px;opacity:.3" class="black"></div>
         </div>
@@ -158,6 +180,10 @@ export default {
         this.messagelist.push(...this.messagelist2)
       }
       console.log(this.messagelist.length)
+    },
+    down () {
+      const scrollHeight = document.scrollingElement.offsetHeight
+      window.scrollTo({ top: scrollHeight, behavior: 'smooth' })
     }
   }
 }

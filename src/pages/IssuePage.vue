@@ -58,7 +58,10 @@
           class="mr-2"
         />我已閱讀並同意遵守討論區規則、本站服務條款與個人資料保護法
       </div>
+      <div class="ma-auto d-flex justify-space-around" style="width:900px">
+      <router-link to="/forum"><button-submit buttonSubmit="返回上一頁" class="mb-10"></button-submit></router-link>
       <button-submit buttonSubmit="送出" class="mb-10"></button-submit>
+      </div>
     </div>
   </div>
 </template>
