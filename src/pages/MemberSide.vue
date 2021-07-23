@@ -75,6 +75,7 @@
 </template>
 
 <script>
+// import MemberData from '../components/MemberData.vue'
 export default {
   data: () => ({
     menuItems: [

@@ -39,6 +39,7 @@
                       outlined
                       rows="1"
                       row-height="10"
+                      dense
                     ></v-textarea>
                   </v-col>
                 </v-row>
@@ -57,6 +58,7 @@
                       outlined
                       rows="1"
                       row-height="10"
+                      dense
                     ></v-textarea>
                   </v-col>
                 </v-row>
@@ -75,6 +77,7 @@
                       outlined
                       rows="1"
                       row-height="10"
+                      dense
                     ></v-textarea>
                   </v-col>
                 </v-row>
@@ -93,17 +96,19 @@
                       outlined
                       rows="1"
                       row-height="10"
+                      dense
                     ></v-textarea>
                   </v-col>
                 </v-row>
               </v-container>
-              <div style="width:200px">
+              <div style="width:230px">
                 <label style="font-size:20px;" class="mx-1"
                   ><input
                     type="radio"
                     value="male"
                     name="gender"
                     checked
+                    dense
                   />先生</label
                 >
                 <label style="font-size:20px;" class="mx-1"
@@ -111,6 +116,7 @@
                     type="radio"
                     value="female"
                     name="gender"
+                    dense
                   />小姐</label
                 >
               </div>
@@ -126,13 +132,14 @@
                       :items="year"
                       label="西元年份"
                       outlined
+                      dense
                     ></v-select>
                   </v-col>
                   <v-col class="d-flex" cols="12" sm="3">
-                    <v-select :items="month" label="月" outlined></v-select>
+                    <v-select :items="month" label="月" dense outlined></v-select>
                   </v-col>
                   <v-col class="d-flex" cols="12" sm="3">
-                    <v-select :items="day" label="日" outlined></v-select>
+                    <v-select :items="day" label="日" dense outlined></v-select>
                   </v-col>
                 </v-row>
               </v-container>
@@ -150,6 +157,7 @@
                       outlined
                       rows="1"
                       row-height="10"
+                      dense
                     ></v-textarea>
                   </v-col>
                 </v-row>
@@ -168,6 +176,7 @@
                       outlined
                       rows="1"
                       row-height="10"
+                      dense
                     ></v-textarea>
                   </v-col>
                 </v-row>
@@ -186,11 +195,12 @@
                       outlined
                       rows="1"
                       row-height="10"
+                      dense
                     ></v-textarea>
                   </v-col>
                 </v-row>
               </v-container>
-              <div style="width:200px">
+              <div style="width:230px">
                 <button
                   class="px-5 py-3 black white--text"
                   style="border:1px solid black;border-radius:20px;"
@@ -199,10 +209,10 @@
                 </button>
               </div>
             </div>
-            <div class="align-self-start ml-10">
+            <div class="align-self-start ml-10 mt-10">
               <div class="d-flex">
                 <button-submit buttonSubmit="註冊"></button-submit>
-                <h6 class="align-self-end ml-10"><a href="#">已經是會員嗎?立即登入</a></h6>
+                <h6 class="align-self-end ml-10"><router-link to="/signin">已經是會員嗎?立即登入</router-link></h6>
               </div>
             </div>
           </div>
@@ -229,6 +239,7 @@ export default {
 <style lang="scss">
 .LoginBackground {
   background-image: url(../assets/logincar.jpeg);
+  background-size: cover;
   .v-text-field__details {
     height: 0px;
     display: none;

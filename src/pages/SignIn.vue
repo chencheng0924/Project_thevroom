@@ -67,7 +67,7 @@
               <div class="d-flex">
                 <button-submit buttonSubmit="註冊"></button-submit>
                 <h6 class="align-self-end ml-10">
-                  <a href="#">還不是會員嗎? 立即註冊</a>
+                  <router-link to="/signup">還不是會員嗎? 立即註冊</router-link>
                 </h6>
               </div>
             </div>
@@ -94,6 +94,7 @@ export default {
 <style lang="scss">
 .LoginBackground {
   background-image: url(../assets/logincar.jpeg);
+  background-size: cover;
   .v-text-field__details {
     height: 0px;
     display: none;

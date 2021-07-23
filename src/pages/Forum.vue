@@ -11,13 +11,13 @@
           ></router-link>
         </div>
         <div
-          class="d-flex justify-center ma-auto"
-          style="max-width:1200px;height:540px"
+          class="d-flex justify-space-around"
+          style="width:1200px;height:540px"
         >
-          <v-card class="mx-auto mr-15" max-width="650">
+          <v-card class="mr-15" max-width="650">
             <v-img
               class="white--text align-end"
-              height="420px"
+              height="405px"
               src="../assets/forum/TDI SUV.png"
             >
               <v-card-title>Top 10 Australian car</v-card-title>
@@ -34,7 +34,7 @@
               <v-btn color="orange" text>
                 <router-link
                   to="/ForumPage"
-                  style="text-decoration:none;width:100%;color:orange"
+                  style="text-decoration:none;width:100%;color:#F34841"
                 >
                   閱覽文章
                 </router-link>
@@ -43,7 +43,7 @@
           </v-card>
           <div class="d-flex flex-column">
           <v-card
-            class="mx-auto mb-10"
+            class="mx-auto mb-9"
             max-width="350"
             v-for="item in news"
             :key="item.id"
@@ -59,7 +59,7 @@
               <div class="-text-subtitle-1 font-weight-bold">{{ item.content }}</div>
             </v-card-text>
             <v-card-actions class="d-flex justify-end">
-              <v-btn color="orange" text>
+              <v-btn color="#F34841" text>
                 閱覽文章
               </v-btn>
             </v-card-actions>
@@ -69,17 +69,17 @@
       </div>
     </div>
     <div class="mb-15">
-      <div class="d-flex flex-column justify-center align-center">
-        <h1 class="align-self-start ma-auto mb-2 mt-10" style="width:85%;">
+      <div class="d-flex flex-column align-center">
+        <h1 class="align-self-start ma-auto mb-2 mt-10" style="width:1200px;">
           今日最新消息
         </h1>
-        <div class="newtitle" style="width:85%;height:5px;"></div>
+        <div class="newtitle" style="width:80%;height:5px;"></div>
       </div>
-      <div class="d-flex justify-space-around mt-10 ma-auto" style="width:70%">
+      <div class="d-flex justify-space-around mt-10 ma-auto" style="width:1200px">
         <div>
-          <img :src="goimg" style="width:450px;height:300px" />
+          <img :src="goimg" style="width:500px;height:330px" />
         </div>
-        <div class="d-flex flex-column justify-space-around">
+        <div class="d-flex flex-column justify-space-around" style="width:500px">
           <div v-for="(title, index) in titles" :key="title.id">
             <h2 @click="gogo(index)" :class="{ yellow: index == count }" class="text-h6 font-weight-bold">
               {{ title.title }}
@@ -94,7 +94,7 @@
     >
       <div v-for="carnew in carnews" :key="carnew" class="mb-10">
         <v-card class="mx-10" max-width="300">
-          <v-img class="white--text align-end" style="height:250px" :src="carnew.src">
+          <v-img class="white--text align-end" style="height:220px" :src="carnew.src">
             <v-card-title>經典新款</v-card-title>
           </v-img>
 
@@ -109,7 +109,7 @@
           </v-card-text>
 
           <v-card-actions>
-            <v-btn color="orange" text>
+            <v-btn color="#F34841" text>
               閱覽文章
             </v-btn>
           </v-card-actions>
@@ -229,7 +229,7 @@ export default {
   }
 }
 .newtitle {
-  border-bottom: 5px solid orange;
+  border-bottom: 5px solid #F34841;
 }
 .yellow {
   background-color: yellow;
