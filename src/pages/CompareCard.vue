@@ -97,7 +97,7 @@
               <div class="hotcar">
                 <div class="hotcar_img_outside">
                   <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 685px; right: 400px"> -->
-                  <img src="../assets/compare-car-pic/hotcar01.png" class="hotcar_img">
+                  <img src="../assets/accessories-pic/speaker09.png" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
                   <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
@@ -118,7 +118,7 @@
               <div class="hotcar">
                 <div class="hotcar_img_outside">
                   <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1020px; right: 400px"> -->
-                  <img src="../assets/compare-car-pic/hotcar02.png" class="hotcar_img">
+                  <img src="../assets/accessories-pic/speaker/speaker.jpg" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
                   <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
@@ -139,7 +139,7 @@
               <div class="hotcar">
                 <div class="hotcar_img_outside">
                   <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1355px; right: 400px"> -->
-                  <img src="../assets/compare-car-pic/hotcar03.png" class="hotcar_img">
+                  <img src="../assets/accessories-pic/gps_icon.jpg" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
                   <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
@@ -160,7 +160,7 @@
               <div class="hotcar">
                 <div class="hotcar_img_outside">
                   <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1690px; right: 400px"> -->
-                  <img src="../assets/compare-car-pic/hotcar04.png" class="hotcar_img">
+                  <img src="../assets/accessories-pic/oil.png" class="hotcar_img">
                 </div>
                 <div class="hotcar_info">
                   <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
@@ -441,11 +441,11 @@ export default {
 }
 
 .hotcar{
-  border: 1px solid #f20;
+  border: 2px solid #F34841;
   width: 270px;
   height: 290px;
   .hotcar_img_outside{
-    // border: 1px solid #000;
+    border-bottom: 2px solid #F34841;
     width: 100%;
     height: 70%;
     .hotcar_img{
