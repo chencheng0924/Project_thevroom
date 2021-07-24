@@ -7,7 +7,7 @@
       style="width:80%"
       class="ma-auto my-10 d-flex flex-column justify-center align-center"
     >
-      <div class="align-self-start">
+      <div class="align-self-start ma-auto" style="width:80%">
         <h1 text-h4 font-weight-bold>
           <img :src="house" class="house" /> / 配件專賣區
         </h1>
