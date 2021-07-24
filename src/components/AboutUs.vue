@@ -1,42 +1,53 @@
 <template>
-  <div class="aboutus">
+  <div class="aboutus" style="100%">
     <div class="leftandright d-flex">
       <!-- <div class="leftgo px-5 mr-3" @click="move"><i class="fas fa-caret-left"></i></div>
       <div class="rightgo px-5 ml-3" @click="back">
         <i class="fas fa-caret-right"></i>
       </div> -->
-      <div @click="move"><button-directbuy class="px-5 mr-1" style="font-size:24px;font-weight:700;" iconame='❮'></button-directbuy></div>
-      <div @click="back"><button-directbuy class="px-5 ml-1" style="font-size:24px;font-weight:700;" iconame='❯'></button-directbuy></div>
+      <div @click="move">
+        <button-directbuy
+          class="px-5 mr-1"
+          style="font-size:24px;font-weight:700;"
+          iconame="❮"
+        ></button-directbuy>
+      </div>
+      <div @click="back">
+        <button-directbuy
+          class="px-5 ml-1"
+          style="font-size:24px;font-weight:700;"
+          iconame="❯"
+        ></button-directbuy>
+      </div>
     </div>
     <div class="aboutitembackground">
       <div class="aboutitembackgroundimage">
-        <div
-          class="aboutusitem"
-          v-for="item in list"
-          :key="item.id"
-          ref="aboutusall"
-        >
-          <div class="aboutusitem1">
-            <h1>{{ item.num }}</h1>
+          <div
+            class="aboutusitem"
+            v-for="item in list"
+            :key="item.id"
+            ref="aboutusall"
+          >
+            <div class="aboutusitem1">
+              <h1>{{ item.num }}</h1>
+            </div>
+            <div class="aboutusitem2"><i :class="item.icon"></i></div>
+            <div class="aboutusitem3">
+              <h2 class="text-h6 font-weight-bold">{{ item.title }}</h2>
+            </div>
+            <div class="aboutusitem4">
+              <p class="text-subtitle-1 font-weight-light">
+                {{ item.info }}
+              </p>
+            </div>
+            <div class="aboutusitem5">
+              <v-btn rounded color="#F34841" dark>
+                <router-link to="/newdriver" style="color: #FFFFFF;">
+                  了解詳情
+                </router-link>
+              </v-btn>
+            </div>
           </div>
-          <div class="aboutusitem2"><i :class="item.icon"></i></div>
-          <div class="aboutusitem3">
-            <h2 class="text-h6 font-weight-bold">{{ item.title }}</h2>
-          </div>
-          <div class="aboutusitem4">
-            <p class="text-subtitle-1 font-weight-light">
-              {{ item.info }}
-            </p>
-          </div>
-          <div class="aboutusitem5">
-            <v-btn rounded color="#F34841" dark>
-              <router-link to="/newdriver" style="color: #FFFFFF;">
-              了解詳情
-              </router-link>
-            </v-btn>
-          </div>
-          <div></div>
-        </div>
       </div>
     </div>
   </div>
@@ -80,8 +91,8 @@ export default {
             '購買車輛後不只提供牌照、燃料及車險等等一系列服務，在購車起算後一年內額外提供保固維修，讓你在購車之餘多享受一份安心。'
         },
         {
-          id: '4',
-          num: '04',
+          id: '5',
+          num: '05',
           icon: 'fas fa-tools',
           title: '完整化服務',
           info:
@@ -91,7 +102,7 @@ export default {
       train: 0,
       carmove: 0,
       carback: 0,
-      moved: 350
+      moved: 390
     }
   },
   methods: {
@@ -108,7 +119,7 @@ export default {
     },
     back () {
       const allitem = this.$refs.aboutusall
-      if (this.train > -699) {
+      if (this.train > -349) {
         this.train -= this.moved
         this.carmove = this.train
         console.log(this.carmove)
@@ -127,7 +138,7 @@ export default {
   height: 100vh;
   .leftandright {
     background-color: black;
-    width: 300px;
+    width: 350px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -159,49 +170,48 @@ export default {
   .aboutitembackground {
     transition: all 1s;
     display: flex;
-    width: 1250px;
+    width: calc(100% - 350px);
     overflow: hidden;
-    background-color: black;
+    background-color: rgba($color: #000000, $alpha: .5);
     .aboutitembackgroundimage {
       height: 100vh;
       display: flex;
-      background-image: url('../assets/index-aboutus2.png');
-      .aboutusitem {
-        background-color: rgba($color: black, $alpha: 0.4);
-        width: 350px;
-        border-left: 1px solid #fff;
-        padding: 50px 30px;
-        display: flex;
-        flex-direction: column;
-        transition: all 1s;
-        .aboutusitem1 {
-          color: #fff;
-          border-bottom: 2px solid #f34841;
-          width: 60px;
-          padding-bottom: 10px;
-        }
-        .aboutusitem2 {
-          align-self: center;
-          color: #fff;
-          border: 1px solid #707070;
-          border-radius: 50%;
-          padding: 15px 20px;
-          font-size: 30px;
-          margin-top: 50px;
-          margin-bottom: 50px;
-        }
-        .aboutusitem3 {
-          color: #fff;
-          margin-bottom: 50px;
-          height: 200px;
-        }
-        .aboutusitem4 {
-          color: #fff;
-          height: 150px;
-          margin-bottom: 50px;
+        .aboutusitem {
+          width: 390px;
+          border-left: 1px solid #f34841;
+          padding: 50px 30px;
+          display: flex;
+          flex-direction: column;
+          transition: all 1s;
+          background-image: url('../assets/index-aboutus.png');
+          .aboutusitem1 {
+            color: #fff;
+            border-bottom: 2px solid #f34841;
+            width: 60px;
+            padding-bottom: 10px;
+          }
+          .aboutusitem2 {
+            align-self: center;
+            color: #fff;
+            border: 1px solid #707070;
+            border-radius: 50%;
+            padding: 15px 20px;
+            font-size: 30px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+          }
+          .aboutusitem3 {
+            color: #fff;
+            margin-bottom: 50px;
+            height: 200px;
+          }
+          .aboutusitem4 {
+            color: #fff;
+            height: 150px;
+            margin-bottom: 50px;
+          }
         }
       }
-    }
   }
 }
 </style>

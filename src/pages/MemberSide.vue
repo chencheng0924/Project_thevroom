@@ -8,18 +8,32 @@
             width="250"
             height="900"
             dark
-            style="border:1px solid #00f"
             class="d-flex flex-column justify-space-between"
           >
             <div>
               <v-list flat class="mt-3">
                 <v-list-item-group color="deep-orange accent-3">
-                  <v-list-item
-                    v-for="menuitem in menuItems"
-                    :key="menuitem.title"
-                  >
+                  <v-list-item>
                     <v-list-item-content>
-                      <v-list-item-title class="d-flex justify-center font-weight-bold pa-6" style="cursor: pointer; font-size:18px">{{ menuitem.title }}</v-list-item-title>
+                      <v-list-item-title @click="component = 'member-data'" class="d-flex justify-center font-weight-bold pa-6" style="cursor: pointer; font-size:18px">帳戶</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+
+                  <v-list-item>
+                    <v-list-item-content>
+                      <v-list-item-title @click="component = 'member-auction'" class="d-flex justify-center font-weight-bold pa-6" style="cursor: pointer; font-size:18px">賣場管理</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+
+                  <v-list-item>
+                    <v-list-item-content>
+                      <v-list-item-title class="d-flex justify-center font-weight-bold pa-6" style="cursor: pointer; font-size:18px">最新消息</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+
+                  <v-list-item>
+                    <v-list-item-content>
+                      <v-list-item-title class="d-flex justify-center font-weight-bold pa-6" style="cursor: pointer; font-size:18px">我的追蹤</v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
                 </v-list-item-group>
@@ -39,9 +53,11 @@
           </v-card>
         </div>
 
-        <div class="inside_middle" style="border: 1px solid green; width:600px; height:100%"></div>
+        <div class="inside_middle" style="width:600px; height:100%">
+          <component :is="component"></component>
+        </div>
 
-        <div class="inside_right d-flex flex-column justify-space-between" style="border: 1px solid #f20; width:300px; height:100%">
+        <div class="inside_right d-flex flex-column justify-space-between" style="width:300px; height:100%">
           <div style="height:265px">
             <v-date-picker
               v-model="date1"
@@ -75,8 +91,15 @@
 </template>
 
 <script>
+import MemberData from '../components/MemberData.vue'
+import MemberAuction from '../components/MemberAuction.vue'
 export default {
+  components: {
+    'member-data': MemberData,
+    'member-auction': MemberAuction
+  },
   data: () => ({
+    component: 'member-data',
     menuItems: [
       {
         title: '帳戶'

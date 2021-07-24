@@ -21,7 +21,7 @@
                   class="text-center pa-2"
                   style="background-color:black;border-radius:20px;color:white;width:200px"
                 >
-                  <button style="width:100px" @click="reset">刪除圖檔</button>
+                  <button style="width:100px" @click.prevent="reset">刪除圖檔</button>
                 </div>
               </div>
               <div class="border p-2 mt-3 d-flex">
