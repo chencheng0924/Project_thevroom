@@ -11,9 +11,10 @@
           ></router-link>
         </div>
         <div
-          class="d-flex justify-space-around"
-          style="width:1200px;height:540px"
+          class="d-flex flex-column flex-sm-row align-center justify-sm-space-around"
+          style="max-width:1200px"
         >
+        <v-col cols='8' xs='2'>
           <v-card class="mr-15" max-width="650">
             <v-img
               class="white--text align-end"
@@ -41,6 +42,7 @@
               </v-btn>
             </v-card-actions>
           </v-card>
+        </v-col>
           <div class="d-flex flex-column">
           <v-card
             class="mx-auto mb-9"
@@ -68,14 +70,14 @@
         </div>
       </div>
     </div>
-    <div class="mb-15">
-      <div class="d-flex flex-column align-center">
-        <h1 class="align-self-start ma-auto mb-2 mt-10" style="width:1200px;">
+    <div class="mb-15" style="max-width:100%">
+      <div class="d-flex flex-column align-center" style="max-width:100%">
+        <h1 class="align-self-center align-self-sm-start ma-auto mb-2 mt-10" style="width:70%;">
           今日最新消息
         </h1>
         <div class="newtitle" style="width:80%;height:5px;"></div>
       </div>
-      <div class="d-flex justify-space-around mt-10 ma-auto" style="width:1200px">
+      <div class="d-flex justify-space-around mt-10 ma-auto" style="width:width:70%b">
         <div>
           <img :src="goimg" style="width:500px;height:330px" />
         </div>
@@ -219,9 +221,6 @@ export default {
     background-color: rgba($color: black, $alpha: 0.7);
     .v-card__subtitle, .v-card__text, .v-card__title{
       padding-bottom:0;
-    }
-    .v-card__actions > .v-btn.v-btn{
-      // margin-bottom: 20px;
     }
     .newscard {
       border-bottom: 5px solid orange;
