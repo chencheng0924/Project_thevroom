@@ -77,7 +77,7 @@
       <div class="gogo">
       <img :src="gogo" class="go">
       <br>
-      <button type="button" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--rounded theme--dark v-size--default" style="background-color: rgb(243, 72, 65); border-color: rgb(243, 72, 65);"><span class="gobiding"> 前往拍賣場 </span></button>
+      <button type="button" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--rounded theme--dark v-size--default" style="background-color: rgb(243, 72, 65); border-color: rgb(243, 72, 65);" @click="driver"><router-link to="/AuctionOverview" style='color:#ffffff'>前往拍賣會場</router-link></button>
       </div>
     </div>
   </div>
@@ -93,6 +93,12 @@ export default ({
       stepFive: require('../assets/new-driver-pic/medal.png'),
       gogo: require('../assets/new-driver-pic/gogo.png'),
       iconchat: require('../assets/new-driver-pic/question.png')
+    }
+  },
+  methods: {
+    driver () {
+      const img = document.querySelector('.go')
+      img.classList.add('isActive')
     }
   }
 })
@@ -280,6 +286,10 @@ div.sell{
      text-align: center;
      img.go{
        width:200px;
+     }
+     .isActive{
+       animation-name:letsgo;
+       animation-duration: 3s;
      }
      button{
        margin: 30px 0;
