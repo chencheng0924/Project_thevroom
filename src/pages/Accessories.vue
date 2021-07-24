@@ -103,11 +103,11 @@ export default ({
           price: '$1288'
         },
         {
-          imgURL: require('../assets/accessories-pic/light/light_blue780.jpeg'),
-          id: 'lightblue780',
+          imgURL: require('../assets/accessories-pic/light/light_t10.jpeg'),
+          id: 'lightblue423',
           title: '【OSRAM】T10 LED藍光 ',
           size: 'OSRAM 2880BL 2入',
-          price: '$780'
+          price: '$423'
         },
         {
           imgURL: require('../assets/accessories-pic/light/light_stop100.jpeg'),
@@ -212,7 +212,8 @@ div.banner{
 }
 
  h1{
-    margin: 20px 10px;
+    margin: 50px 10px;
+    width:1200px;
     img{
       height:30px;
       }
@@ -221,8 +222,10 @@ div.banner{
 div.main{
     display:flex;
     flex: wrap;
+    justify-content: center;
     div.accessories{
     width:400px;
+    margin: 0 auto;
     position: relative;
     >span.search{
         font-weight: bold;
@@ -280,7 +283,8 @@ div.productList{
     flex-wrap: wrap;
     justify-content: space-between;
     align-items:stretch ;
-    width:900px;
+    width:1000px;
+    margin: 0 auto;
     div.product{
         width:270px;
         position: relative;
