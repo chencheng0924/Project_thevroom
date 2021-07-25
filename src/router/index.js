@@ -20,7 +20,6 @@ import SignUp from '../pages/SignUp.vue'
 import SignIn from '../pages/SignIn.vue'
 import MemberData from '../components/MemberData.vue'
 import MemberAuction from '../components/MemberAuction.vue'
-import MemberArticle from '../components/MemberArticle.vue'
 
 Vue.use(VueRouter)
 
@@ -133,11 +132,6 @@ const routes = [
     path: '/memberauction',
     name: 'MemberAuction',
     component: MemberAuction
-  },
-  {
-    path: '/memberarticle',
-    name: 'MemberArticle',
-    component: MemberArticle
   }
 ]
 

@@ -27,13 +27,13 @@
 
                   <v-list-item>
                     <v-list-item-content>
-                      <v-list-item-title class="d-flex justify-center font-weight-bold pa-6" style="cursor: pointer; font-size:18px">最新消息</v-list-item-title>
+                      <v-list-item-title @click="component = 'member-article'" class="d-flex justify-center font-weight-bold pa-6" style="cursor: pointer; font-size:18px">最新消息</v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
 
                   <v-list-item>
                     <v-list-item-content>
-                      <v-list-item-title class="d-flex justify-center font-weight-bold pa-6" style="cursor: pointer; font-size:18px">我的追蹤</v-list-item-title>
+                      <v-list-item-title @click="component = 'member-bid'" class="d-flex justify-center font-weight-bold pa-6" style="cursor: pointer; font-size:18px">我的追蹤</v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
                 </v-list-item-group>
@@ -93,27 +93,17 @@
 <script>
 import MemberData from '../components/MemberData.vue'
 import MemberAuction from '../components/MemberAuction.vue'
+import MemberBid from '../components/MemberBid.vue'
+import MemberArticle from '../components/MemberArticle.vue'
 export default {
   components: {
     'member-data': MemberData,
-    'member-auction': MemberAuction
+    'member-auction': MemberAuction,
+    'member-bid': MemberBid,
+    'member-article': MemberArticle
   },
   data: () => ({
     component: 'member-data',
-    menuItems: [
-      {
-        title: '帳戶'
-      },
-      {
-        title: '賣場管理'
-      },
-      {
-        title: '最新消息'
-      },
-      {
-        title: '我的追蹤'
-      }
-    ],
     dates: [
       {
         name: '2021 BMW 330i',
