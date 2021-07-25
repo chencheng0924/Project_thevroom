@@ -1,7 +1,7 @@
 <template>
     <div class="overviewWhole">
-        <div class="contentOv d-flex flex-column">
-            <div class="titleOv d-flex flex-column mt-5">
+        <div class="contentOv d-flex flex-column justify-center">
+            <div class="titleOv d-flex flex-column">
                 <div class="yearOv text-h4 font-weight-bold">{{ titleYear }}</div>
                 <div class="brandOv text-h4 font-weight-bold">{{ titleBrand }}</div>
                 <div class="lineOv mt-4"></div>
@@ -34,10 +34,19 @@
             </div>
             <div class="btnOv d-flex align-end justify-end">
                 <v-btn
-                to="/singleauction"
+                to="/addproduct"
+                outlined
                 rounded
                 color="#F34841"
                 class="btn"
+                dark>
+                開設競標場
+                </v-btn>
+                <v-btn
+                to="/singleauction"
+                rounded
+                color="#F34841"
+                class="btn ml-10"
                 dark>
                 進入競標場
                 </v-btn>
@@ -62,7 +71,7 @@ export default {
         width: 1000px;
         height: calc(100vh - 100px);
         .titleOv{
-            width: 700px;
+            width: 1000px;
             height: 150px;
             .yearOv{
                 // font-size: 35px;

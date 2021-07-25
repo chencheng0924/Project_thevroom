@@ -2,7 +2,7 @@
     <div class="allPage">
         <add-left titleNum="03" titleText="填寫內容"></add-left>
         <v-container class="contentRightThree">
-            <div class="d-flex flex-column contentInside mt-13">
+            <div class="d-flex flex-column contentInside mt-13 justify-center">
                 <div>
                     <v-form>
                         <v-row>
@@ -138,9 +138,8 @@ export default {
         .contentRightThree{
             width: 75%;
             height: 100vh;
-            margin-top: 50px;
             .contentInside{
-                height: 80%;
+                height: 750px;
                 .insideTitle{
                     font-size: 25px;
                     color: #BFBDBD;

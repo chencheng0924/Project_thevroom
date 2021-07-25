@@ -13,7 +13,12 @@
                     <div class="titleAu">Mercedes-Benz</div>
                     <div class="titleAu">GLC Coupe 300</div>
                     <div class="carAu">
-                        <img class="moCar" src="../assets/carlist/benz10.png">
+                        <media :query="{maxWidth: '800px'}">
+                          <img class="moCar" src="../assets/carlist/benz30.png" style="width: 100px;">
+                        </media>
+                        <media :query="{maxWidth: '2000px', minWidth: '801px'}">
+                          <img class="moCar" src="../assets/carlist/benz30.png">
+                        </media>
                     </div>
                     <div class="btnAu d-flex justify-center">
                         <v-btn
@@ -21,6 +26,7 @@
                         color="#F34841"
                         class="btn mr-4"
                         width="130"
+                        @click="moveleft"
                         dark>
                         開始競標
                         </v-btn>
@@ -49,6 +55,7 @@
 
 <script>
 import gsap from 'gsap'
+import Media from 'vue-media'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import singleCarInfo from '../components/singleCarInfo.vue'
 import singleCarBidRecord from '../components/singleCarBidRecord.vue'
@@ -56,14 +63,13 @@ import singleCarBidRecord from '../components/singleCarBidRecord.vue'
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
+  mounted () {
+    this.$store.dispatch('happy', true)
+  },
   components: {
     singleCarInfo,
-    singleCarBidRecord
-  },
-  mounted: function () {
-    // this.scrollAnimation()
-    // this.scrollAnimationTwo()
-    // this.movefun()
+    singleCarBidRecord,
+    Media
   },
   methods: {
     moveright () {
@@ -230,15 +236,10 @@ export default {
                 .moCar{
                     // border: 1px solid pink;
                     width: 750px;
-                    transform: translateY(-50px);
+                    transform: translateY(30px);
                     position: relative;
                     z-index: 10;
                 }
-            }
-            .btnAu{
-                // border: 1px solid lightseagreen;
-              // position: relative;
-              // z-index: 10;
             }
         }
         .rightPoint{

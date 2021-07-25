@@ -21,14 +21,14 @@ export default {
     width: 70px;
     height: 50px;
     padding: 10px;
-    background: #000;
+    background: transparent;
     text-transform: uppercase;
     cursor: pointer;
     font-size: 20px;
     letter-spacing: 4px;
     line-height: 2.5;
     text-decoration: none;
-    -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
+    // -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
     span {
       position: absolute;
       display: block;
