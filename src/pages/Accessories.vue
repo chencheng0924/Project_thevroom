@@ -86,19 +86,23 @@
 
                     <v-card-actions>
                       <v-spacer></v-spacer>
-                      <v-btn color="primary" text @click="dialog = false">
+                      <v-btn color="primary" text>
+                      <router-link to="/shoppingcar">
                         加入購物車
+                      </router-link>
                       </v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-dialog>
               </div>
+              <router-link to="/shoppingcar">
               <div
                 class="black white--text btn text-subtitle-1 font-weight-bold rounded-pill py-1 px-3"
                 style="cursor: pointer;"
               >
                 加入購物車
               </div>
+              </router-link>
             </div>
           </div>
         </div>

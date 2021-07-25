@@ -13,10 +13,12 @@ import ButtonSubmit from './components/layout/ButtonSubmit'
 import ButtonDirectbuy from './components/layout/ButtonDirectbuy'
 import VueObserVisibility from 'vue-observe-visibility'
 import UploadImage from './components/interactive/UploadImage.vue'
+import Media from 'vue-media'
 
 Vue.use(VueObserVisibility)
 Vue.config.productionTip = false
 Vue.use(VueFullPage)
+Vue.use(Media)
 
 Vue.component('the-headline', TheHeadline)
 Vue.component('button-news', ButtonShare)
