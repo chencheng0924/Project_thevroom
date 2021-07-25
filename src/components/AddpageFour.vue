@@ -1,12 +1,12 @@
 <template>
     <div class="allPage">
         <add-left titleNum="04" titleText="開設完成"></add-left>
-        <v-container class="contentRightFour">
+        <v-container class="contentRightFour d-flex flex-column justify-center">
             <div class="finalpage">
                 <div class="finaltitle">恭喜開設拍賣會成功！</div>
                 <div class="finalbtn">
                     <v-btn rounded outlined width="120">回會員介面</v-btn>
-                    <v-btn rounded color="#F34841" class="btn ml-16" dark width="120"
+                    <v-btn rounded color="#F34841" class="btn ml-16" dark width="120" to="/"
                      >回首頁</v-btn>
                 </div>
             </div>
@@ -43,7 +43,7 @@ export default {
             .finalpage{
                 width: 370px;
                 height: 370px;
-                margin: 90px auto 0px auto;
+                margin: 0px auto;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;

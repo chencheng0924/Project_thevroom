@@ -2,7 +2,7 @@
     <div class="allPage">
         <add-left titleNum="01" titleText="新增拍賣場"></add-left>
         <v-container class="contentRight">
-            <div class="d-flex flex-column contentInside mt-13">
+            <div class="d-flex flex-column contentInside mt-13 justify-center">
                 <div class="ml-16 insideTitle">
                 請為您的商品選擇一個正確的分類
                     <div class="line mt-1"></div>
@@ -150,14 +150,14 @@ export default {
 
 <style lang="scss">
     .allPage{
-      margin-top: -48px;
-        display: flex;
+      margin-top: -64px;
+      display: flex;
         .contentRight{
             width: 75%;
             height: 100vh;
-            margin-top: 48px;
+            // margin-top: 48px;
             .contentInside{
-                height: 80%;
+                height: 750px;
                 .insideTitle{
                     font-size: 25px;
                     color: #BFBDBD;

@@ -45,6 +45,9 @@
                         :disabled="false"
                     ></v-text-field>
                 </div>
+                <div class="ml-10">
+                    <auction-dialogs/>
+                </div>
             </div>
         </div>
         <div class="spaceRight"></div>
@@ -53,10 +56,12 @@
 
 <script>
 import bidRecord from './bidRecord.vue'
+import AuctionDialogs from './interactive/AuctionDialogs.vue'
 
 export default {
   components: {
-    bidRecord
+    bidRecord,
+    AuctionDialogs
   }
 }
 </script>
