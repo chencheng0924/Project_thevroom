@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="container my-3" style="max-width:500px">
+    <div class="container my-3" style="max-width:100%">
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-5" style="max-width:100%">
           <form>
             <div class="form-group d-flex flex-column">
               <div class="d-flex align-center">
