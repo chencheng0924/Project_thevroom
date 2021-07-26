@@ -1,142 +1,301 @@
 <template>
   <div class="compare_inside">
-    <div class="inside">
-      <div class="inside_card">
-        <div class="table">
-          <div class="table_top">
-            <div class="top_first text-subtitle-1 font-weight-light">車款比較</div>
-          </div>
-          <diV class="table_middle">
-            <div class="middle_first text-subtitle-1 font-weight-light">車款</div>
-            <div class="middle_second">
-              <div class="middle_sec_in">
-                <div class="sec_in_img">
-                  <img src="../assets/compare-car-pic/hotcar01.png" class="sec_image">
+    <media :query="{ minWidth: '401px' }">
+      <div class="inside">
+        <div class="inside_card">
+          <div class="table">
+            <div class="table_top">
+              <div class="top_first text-subtitle-1 font-weight-light">車款比較</div>
+            </div>
+            <diV class="table_middle">
+              <div class="middle_first text-subtitle-1 font-weight-light">車款</div>
+              <div class="middle_second">
+                <div class="middle_sec_in">
+                  <div class="sec_in_img">
+                    <img src="../assets/compare-car-pic/hotcar01.png" class="sec_image">
+                  </div>
+                  <div class="sec_in_select">
+                    <ul style="list-style: none; padding: 10px 0 0 0; height: 100%" class="d-flex flex-column justify-space-around">
+                      <li>
+                        <v-select
+                          :items="items"
+                          label="請選擇車廠"
+                          dense
+                          outlined
+                          style="border-radius:50px; width:270px"
+                        ></v-select>
+                      </li>
+                      <li>
+                        <v-select
+                          :items="brands"
+                          label="請選擇車款"
+                          dense
+                          outlined
+                          style="border-radius:50px; width:270px"
+                        ></v-select>
+                      </li>
+                      <li>
+                        <v-select
+                          :items="version"
+                          label="請選擇車系"
+                          dense
+                          outlined
+                          style="border-radius:50px; width:270px"
+                        ></v-select>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="sec_in_select">
-                  <ul style="list-style: none; padding: 10px 0 0 0; height: 100%" class="d-flex flex-column justify-space-around">
-                    <li>
-                      <v-select
-                        :items="items"
-                        label="請選擇車廠"
-                        dense
-                        outlined
-                        style="border-radius:50px; width:270px"
-                      ></v-select>
-                    </li>
-                    <li>
-                      <v-select
-                        :items="brands"
-                        label="請選擇車款"
-                        dense
-                        outlined
-                        style="border-radius:50px; width:270px"
-                      ></v-select>
-                    </li>
-                    <li>
-                      <v-select
-                        :items="version"
-                        label="請選擇車系"
-                        dense
-                        outlined
-                        style="border-radius:50px; width:270px"
-                      ></v-select>
-                    </li>
-                  </ul>
+              </div>
+              <div class="middle_third">
+                <div class="middle_thr_in">
+                  <div class="thr_in_img">
+                    <img src="../assets/compare-car-pic/hotcar02.png" class="thr_image">
+                  </div>
+                  <div class="thr_in_select">
+                    <ul style="list-style: none; padding: 10px 0 0 0; height: 100%" class="d-flex flex-column justify-space-around">
+                      <li>
+                        <v-select
+                          :items="items"
+                          label="請選擇車廠"
+                          dense
+                          outlined
+                          style="border-radius:50px; width:270px"
+                        ></v-select>
+                      </li>
+                      <li>
+                        <v-select
+                          :items="brands"
+                          label="請選擇車款"
+                          dense
+                          outlined
+                          style="border-radius:50px; width:270px"
+                        ></v-select>
+                      </li>
+                      <li>
+                        <v-select
+                          :items="version"
+                          label="請選擇車系"
+                          dense
+                          outlined
+                          style="border-radius:50px; width:270px"
+                        ></v-select>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </diV>
+            <diV class="table_bottom">
+              <div class="bottom_first text-subtitle-1 font-weight-light">比較優勢</div>
+              <div class="bottom_second"></div>
+              <div class="bottom_third"></div>
+            </diV>
+          </div>
+        </div>
+
+          <div class="btn_middle">
+            <div class="btn_mid_inside">
+              <div class="btn_first">
+                <v-btn
+                    x-large
+                    color="#F34841"
+                    dark
+                    width="100%"
+                    height="100%"
+                    @click="component = 'table-one'"
+                  >
+                    基本資訊
+                  </v-btn>
+              </div>
+              <div class="btn_second">
+                <v-btn
+                    x-large
+                    color="#363636"
+                    dark
+                    width="100%"
+                    height="100%"
+                    @click="component = 'table-two'"
+                  >
+                    技術規格
+                </v-btn>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 50px">
+          <component :is="component"></component>
+        </div>
+      </div>
+    </media>
+    <!-- ---------------------------------------------------------------- -->
+    <media :query="{ maxWidth: '400px' }">
+      <div>
+        <div
+          style="max-width: 375px; height: 2500px; border: 2px solid #00f"
+        >
+          <div
+            style="width: 100%; border: 1px solid #f20;"
+          >
+            <div
+              style="border: 1px solid black; width:350px; height:800px; margin: 0 auto;"
+            >
+              <div
+                class="d-flex justify-center align-center"
+                style="border: 1px solid blue; width: 100%; height:50%"
+              >
+                <div
+                  style="border: 1px solid green; width: 300px; height:80%"
+                >
+                  <div style="border: 1px solid red; width: 100%; height:50%"></div>
+                  <div style="border: 1px solid red; width: 100%; height:50%">
+                    <ul
+                      class="d-flex flex-column justify-space-between"
+                      style="list-style: none; padding: 0; width: 100%; height:100%"
+                    >
+                      <li
+                        class="d-flex justify-center align-center"
+                        style="border: 1px solid black">
+                        <v-select
+                          :items="items"
+                          label="請選擇車廠"
+                          dense
+                          outlined
+                          style="border-radius:50px; width:180px"
+                        ></v-select>
+                      </li>
+                      <li
+                        class="d-flex justify-center align-center"
+                        style="border: 1px solid black">
+                        <v-select
+                          :items="brands"
+                          label="請選擇車款"
+                          dense
+                          outlined
+                          style="border-radius:50px; width:180px"
+                        ></v-select>
+                      </li>
+                      <li
+                        class="d-flex justify-center align-center"
+                        style="border: 1px solid black">
+                        <v-select
+                          :items="version"
+                          label="請選擇車系"
+                          dense
+                          outlined
+                          style="border-radius:50px; width:180px"
+                        ></v-select>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="d-flex justify-center align-center"
+                style="border: 1px solid blue; width: 100%; height:50%"
+              >
+                <div
+                  style="border: 1px solid green; width: 300px; height:80%"
+                >
+                  <div style="border: 1px solid red; width: 100%; height:50%"></div>
+                  <div style="border: 1px solid red; width: 100%; height:50%">
+                    <ul
+                      class="d-flex flex-column justify-space-between"
+                      style="list-style: none; padding: 0; width: 100%; height:100%"
+                    >
+                      <li
+                        class="d-flex justify-center align-center"
+                        style="border: 1px solid black">
+                        <v-select
+                          :items="items"
+                          label="請選擇車廠"
+                          dense
+                          outlined
+                          style="border-radius:50px; width:180px"
+                        ></v-select>
+                      </li>
+                      <li
+                        class="d-flex justify-center align-center"
+                        style="border: 1px solid black">
+                        <v-select
+                          :items="brands"
+                          label="請選擇車款"
+                          dense
+                          outlined
+                          style="border-radius:50px; width:180px"
+                        ></v-select>
+                      </li>
+                      <li
+                        class="d-flex justify-center align-center"
+                        style="border: 1px solid black">
+                        <v-select
+                          :items="version"
+                          label="請選擇車系"
+                          dense
+                          outlined
+                          style="border-radius:50px; width:180px"
+                        ></v-select>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="middle_third">
-              <div class="middle_thr_in">
-                <div class="thr_in_img">
-                  <img src="../assets/compare-car-pic/hotcar02.png" class="thr_image">
-                </div>
-                <div class="thr_in_select">
-                  <ul style="list-style: none; padding: 10px 0 0 0; height: 100%" class="d-flex flex-column justify-space-around">
-                    <li>
-                      <v-select
-                        :items="items"
-                        label="請選擇車廠"
-                        dense
-                        outlined
-                        style="border-radius:50px; width:270px"
-                      ></v-select>
-                    </li>
-                    <li>
-                      <v-select
-                        :items="brands"
-                        label="請選擇車款"
-                        dense
-                        outlined
-                        style="border-radius:50px; width:270px"
-                      ></v-select>
-                    </li>
-                    <li>
-                      <v-select
-                        :items="version"
-                        label="請選擇車系"
-                        dense
-                        outlined
-                        style="border-radius:50px; width:270px"
-                      ></v-select>
-                    </li>
-                  </ul>
-                </div>
+          </div>
+
+          <div
+            class="mt-10"
+            style="border: 1px solid red; width: 100%;">
+            <div
+              class="d-flex"
+              style="border: 1px solid black; width: 350px; height:60px; margin: 0 auto;">
+              <div style="border: 1px solid blue; width:50%; height:100%">
+                <v-btn
+                    x-large
+                    color="#F34841"
+                    dark
+                    width="100%"
+                    height="100%"
+                    @click="component = 'table-one'"
+                  >
+                    基本資訊
+                  </v-btn>
               </div>
+              <div style="border: 1px solid blue; width:50%; height:100%">
+                <v-btn
+                    x-large
+                    color="#363636"
+                    dark
+                    width="100%"
+                    height="100%"
+                    @click="component = 'table-two'"
+                  >
+                    技術規格
+                </v-btn>
             </div>
-          </diV>
-          <diV class="table_bottom">
-            <div class="bottom_first text-subtitle-1 font-weight-light">比較優勢</div>
-            <div class="bottom_second"></div>
-            <div class="bottom_third"></div>
-          </diV>
-        </div>
-      </div>
-
-      <div class="btn_middle">
-        <div class="btn_mid_inside">
-          <div class="btn_first">
-            <v-btn
-                x-large
-                color="#F34841"
-                dark
-                width="100%"
-                height="100%"
-                @click="component = 'table-one'"
-              >
-                基本資訊
-              </v-btn>
           </div>
-          <div class="btn_second">
-            <v-btn
-                x-large
-                color="#363636"
-                dark
-                width="100%"
-                height="100%"
-                @click="component = 'table-two'"
-              >
-                技術規格
-              </v-btn>
+
+          <div style="margin-top: 50px">
+            <component :is="component"></component>
           </div>
         </div>
+        </div>
       </div>
-
-      <div style="margin-top: 50px">
-        <component :is="component"></component>
-      </div>
-    </div>
+    </media>
   </div>
 </template>
 
 <script>
 import CompareTableA from '../components/CompareTableA.vue'
 import CompareTableB from '../components/CompareTableB.vue'
+import Media from 'vue-media'
 
 export default {
   components: {
     'table-one': CompareTableA,
-    'table-two': CompareTableB
+    'table-two': CompareTableB,
+    Media
   },
   data: () => ({
     component: 'table-one',
