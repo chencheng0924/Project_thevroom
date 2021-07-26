@@ -173,7 +173,7 @@
       >
         <div
           class="pa-1 align-self-center black--text"
-          style="height:20px;border:1px solid black;border-radius:50;line-height:.4"
+          style="height:20px;border:1px solid black;border-radius:50px;line-height:.4"
           :class="{ red2: component == 'shopping-car3' }"
         >
           3

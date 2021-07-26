@@ -143,16 +143,12 @@
     <!-- ---------------------------------------------------------------- -->
     <media :query="{ maxWidth: '400px' }">
      <div>
+       <button-btn-banner />
       <div class="forumtop ma-auto">
         <div
           class="forumblack d-flex flex-column justify-center align-center pt-10 pb-15"
           style="width:100%;height:100%"
         >
-          <div class="d-flex justify-end mb-10" style="width:80%">
-            <router-link style="text-decoration:none;" to="/issuePage"
-              ><button-news buttonName="我要發文"></button-news
-            ></router-link>
-          </div>
           <div
             class="d-flex flex-column flex-sm-row align-center justify-sm-space-around"
             style="width:300px;height:100%"
@@ -288,9 +284,11 @@
 </template>
 <script>
 import Media from 'vue-media'
+import ButtonBtnBanner from '../components/layout/RwdBtnBanner.vue'
 export default {
   components: {
-    Media
+    Media,
+    ButtonBtnBanner
   },
   data () {
     return {
@@ -376,7 +374,7 @@ export default {
   },
   methods: {
     gogo (index) {
-      console.log(this.$refs.gogoro)
+      // console.log(this.$refs.gogoro)
       this.count = index
       this.goimg = this.titles[index].src
     }
