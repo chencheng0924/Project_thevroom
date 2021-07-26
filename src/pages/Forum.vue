@@ -1,127 +1,297 @@
 <template>
   <div>
-    <div class="forumtop ma-auto">
-      <div
-        class="forumblack d-flex flex-column justify-center align-center pt-10 pb-15"
-        style="width:100%;height:100%"
-      >
-        <div class="d-flex justify-end mb-10" style="width:80%">
-          <router-link style="text-decoration:none;" to="/issuePage"
-            ><button-news buttonName="我要發文"></button-news
-          ></router-link>
+    <media :query="{ minWidth: '401px' }">
+     <div>
+      <div class="forumtop ma-auto">
+        <div
+          class="forumblack d-flex flex-column justify-center align-center pt-10 pb-15"
+          style="width:100%;height:100%"
+        >
+          <div class="d-flex justify-end mb-10" style="width:80%">
+            <router-link style="text-decoration:none;" to="/issuePage"
+              ><button-news buttonName="我要發文"></button-news
+            ></router-link>
+          </div>
+          <div
+            class="d-flex align-center justify-sm-space-around"
+            style="width:1200px;height:100%"
+          >
+            <v-card class="mr-15" max-width="650" height="600">
+              <v-img
+                class="white--text align-end"
+                height="450px"
+                src="../assets/forum/TDI SUV.png"
+              >
+                <v-card-title>Top 10 Australian car</v-card-title>
+              </v-img>
+              <v-card-text class="text--primary">
+                <div class="d-flex justify-center">
+                  <h2 class="text-h6 font-weight-bold">
+                    VW Arteon Shooting Brake v.s Peugeot 508 SW ｜ 200 萬級美型
+                    Wagon 對決！
+                  </h2>
+                </div>
+              </v-card-text>
+              <v-card-actions class="d-flex justify-end">
+                <v-btn color="orange" text>
+                  <router-link
+                    to="/ForumPage"
+                    style="text-decoration:none;width:100%;color:#F34841"
+                  >
+                    閱覽文章
+                  </router-link>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+            <div class="d-flex flex-column mt-8">
+              <v-card
+                class="mx-auto mb-8"
+                max-width="350"
+                height="285"
+                v-for="item in news"
+                :key="item.id"
+              >
+                <v-img
+                  class="white--text align-end"
+                  height="150px"
+                  :src="item.image"
+                >
+                  <v-card-title>Top 10 Australian beaches</v-card-title>
+                </v-img>
+                <v-card-text class="text--primary">
+                  <div class="-text-subtitle-1 font-weight-bold">
+                    {{ item.content }}
+                  </div>
+                </v-card-text>
+                <v-card-actions class="d-flex justify-end">
+                  <v-btn color="#F34841" text>
+                    閱覽文章
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-15" style="max-width:100%;">
+        <div class="d-flex flex-column align-center" style="max-width:100%">
+          <h1
+            class="align-self-center ma-auto mb-2 mt-10"
+            style="width:70%;"
+          >
+            今日最新消息
+          </h1>
+          <div class="newtitle" style="width:80%;height:5px;"></div>
         </div>
         <div
-          class="d-flex flex-column flex-sm-row align-center justify-sm-space-around"
-          style="max-width:1200px"
+          class="d-flex justify-space-around mt-10 ma-auto"
+          style="width:70%"
         >
-        <v-col cols='8' xs='2'>
-          <v-card class="mr-15" max-width="650">
+          <div class="d-none d-sm-flex">
+            <img :src="goimg" style="width:500px;height:330px" />
+          </div>
+          <div
+            class="d-flex flex-column justify-space-around"
+            style="width:500px"
+          >
+            <div v-for="(title, index) in titles" :key="title.id">
+              <h2
+                @click="gogo(index)"
+                :class="{ yellow: index == count }"
+                class="text-h6 font-weight-bold"
+              >
+                {{ title.title }}
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="d-flex justify-space-between flex-wrap mb-10 ma-auto"
+        style="width:1200px;"
+      >
+        <div v-for="carnew in carnews" :key="carnew" class="mb-10">
+          <v-card class="mx-10" max-width="300">
             <v-img
               class="white--text align-end"
-              height="405px"
-              src="../assets/forum/TDI SUV.png"
+              style="height:220px"
+              :src="carnew.src"
             >
-              <v-card-title>Top 10 Australian car</v-card-title>
+              <v-card-title>經典新款</v-card-title>
             </v-img>
-            <v-card-text class="text--primary">
-              <div class="d-flex justify-center">
-                <h2 class="text-h6 font-weight-bold">
-                  VW Arteon Shooting Brake v.s Peugeot 508 SW ｜ 200 萬級美型
-                  Wagon 對決！
-                </h2>
+
+            <v-card-subtitle class="-h6 font-weight-bold">
+              {{ carnew.title }}
+            </v-card-subtitle>
+
+            <v-card-text class="text-subtitle-1 font-weight-light">
+              <div>
+                {{ carnew.content }}
               </div>
             </v-card-text>
-            <v-card-actions class="d-flex justify-end">
-              <v-btn color="orange" text>
-                <router-link
-                  to="/ForumPage"
-                  style="text-decoration:none;width:100%;color:#F34841"
-                >
-                  閱覽文章
-                </router-link>
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-          <div class="d-flex flex-column">
-          <v-card
-            class="mx-auto mb-9"
-            max-width="350"
-            v-for="item in news"
-            :key="item.id"
-          >
-            <v-img
-              class="white--text align-end"
-              height="140px"
-              :src="item.image"
-            >
-              <v-card-title>Top 10 Australian beaches</v-card-title>
-            </v-img>
-            <v-card-text class="text--primary">
-              <div class="-text-subtitle-1 font-weight-bold">{{ item.content }}</div>
-            </v-card-text>
-            <v-card-actions class="d-flex justify-end">
+
+            <v-card-actions>
               <v-btn color="#F34841" text>
                 閱覽文章
               </v-btn>
             </v-card-actions>
           </v-card>
-          </div>
         </div>
       </div>
     </div>
-    <div class="mb-15" style="max-width:100%">
-      <div class="d-flex flex-column align-center" style="max-width:100%">
-        <h1 class="align-self-center align-self-sm-start ma-auto mb-2 mt-10" style="width:70%;">
-          今日最新消息
-        </h1>
-        <div class="newtitle" style="width:80%;height:5px;"></div>
-      </div>
-      <div class="d-flex justify-space-around mt-10 ma-auto" style="width:width:70%b">
-        <div>
-          <img :src="goimg" style="width:500px;height:330px" />
-        </div>
-        <div class="d-flex flex-column justify-space-around" style="width:500px">
-          <div v-for="(title, index) in titles" :key="title.id">
-            <h2 @click="gogo(index)" :class="{ yellow: index == count }" class="text-h6 font-weight-bold">
-              {{ title.title }}
-            </h2>
+    </media>
+    <!-- ---------------------------------------------------------------- -->
+    <media :query="{ maxWidth: '400px' }">
+     <div>
+      <div class="forumtop ma-auto">
+        <div
+          class="forumblack d-flex flex-column justify-center align-center pt-10 pb-15"
+          style="width:100%;height:100%"
+        >
+          <div class="d-flex justify-end mb-10" style="width:80%">
+            <router-link style="text-decoration:none;" to="/issuePage"
+              ><button-news buttonName="我要發文"></button-news
+            ></router-link>
           </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="d-flex justify-space-between flex-wrap mb-10 ma-auto"
-      style="width:1200px;"
-    >
-      <div v-for="carnew in carnews" :key="carnew" class="mb-10">
-        <v-card class="mx-10" max-width="300">
-          <v-img class="white--text align-end" style="height:220px" :src="carnew.src">
-            <v-card-title>經典新款</v-card-title>
-          </v-img>
-
-          <v-card-subtitle class="-h6 font-weight-bold">
-            {{ carnew.title }}
-          </v-card-subtitle>
-
-          <v-card-text class="text-subtitle-1 font-weight-light">
-            <div>
-              {{ carnew.content }}
+          <div
+            class="d-flex flex-column flex-sm-row align-center justify-sm-space-around"
+            style="width:300px;height:100%"
+          >
+            <v-card max-width="330" height="350">
+              <v-img
+                class="white--text align-end"
+                height="250px"
+                src="../assets/forum/TDI SUV.png"
+              >
+                <v-card-title>Top 10 Australian car</v-card-title>
+              </v-img>
+              <v-card-text class="text--primary" style="padding:3px">
+                <div class="d-flex justify-center">
+                  <div
+                    class="text-body-1 font-weight-bold pa-3"
+                    style="line-height:1"
+                  >
+                    VW Arteon Shooting Brake v.s Peugeot 508 SW ｜ 200 萬級美型
+                    Wagon 對決！
+                  </div>
+                </div>
+              </v-card-text>
+              <v-card-actions class="d-flex justify-end">
+                <v-btn color="orange" text class="pb-5">
+                  <router-link
+                    to="/ForumPage"
+                    style="text-decoration:none;width:100%;color:#F34841"
+                  >
+                    閱覽文章
+                  </router-link>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+            <div class="d-flex flex-column mt-8">
+              <v-card
+                class="mx-auto mb-8"
+                max-width="330"
+                height="285"
+                v-for="item in news"
+                :key="item.id"
+              >
+                <v-img
+                  class="white--text align-end"
+                  height="150px"
+                  :src="item.image"
+                >
+                  <v-card-title>Top 10 Australian beaches</v-card-title>
+                </v-img>
+                <v-card-text class="text--primary">
+                  <div class="-text-subtitle-1 font-weight-bold">
+                    {{ item.content }}
+                  </div>
+                </v-card-text>
+                <v-card-actions class="d-flex justify-end">
+                  <v-btn color="#F34841" text>
+                    閱覽文章
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
             </div>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-btn color="#F34841" text>
-              閱覽文章
-            </v-btn>
-          </v-card-actions>
-        </v-card>
+          </div>
+        </div>
       </div>
-    </div>
+      <div class="mb-15" style="max-width:100%;">
+        <div class="d-flex flex-column align-center" style="max-width:100%">
+          <h1
+            class="align-self-center ma-auto mb-2 mt-10"
+            style="width:70%;"
+          >
+            今日最新消息
+          </h1>
+          <div class="newtitle" style="width:80%;height:5px;"></div>
+        </div>
+        <div
+          class="d-flex justify-space-around mt-10 ma-auto"
+          style="width:70%"
+        >
+          <div class="d-none d-sm-flex">
+            <img :src="goimg" style="width:500px;height:330px" />
+          </div>
+          <div
+            class="d-flex flex-column justify-space-around"
+            style="width:500px"
+          >
+            <div v-for="(title, index) in titles" :key="title.id" class="mb-5">
+              <h2
+                @click="gogo(index)"
+                :class="{ yellow: index == count }"
+                class="text-h6 font-weight-bold"
+              >
+                {{ title.title }}
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="d-flex flex-column align-center justify-space-between flex-wrap mb-10 ma-auto"
+        style="width:100%;"
+      >
+        <div v-for="carnew in carnews" :key="carnew" class="mb-10">
+          <v-card class="mx-2" max-width="300">
+            <v-img
+              class="white--text align-end"
+              style="height:220px"
+              :src="carnew.src"
+            >
+              <v-card-title>經典新款</v-card-title>
+            </v-img>
+
+            <v-card-subtitle class="-h6 font-weight-bold">
+              {{ carnew.title }}
+            </v-card-subtitle>
+
+            <v-card-text class="text-subtitle-1 font-weight-light">
+              <div>
+                {{ carnew.content }}
+              </div>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-btn color="#F34841" text>
+                閱覽文章
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </div>
+      </div>
+     </div>
+    </media>
   </div>
 </template>
 <script>
+import Media from 'vue-media'
 export default {
+  components: {
+    Media
+  },
   data () {
     return {
       goimg: require('../assets/forum/Benz1.png'),
@@ -219,8 +389,10 @@ export default {
   background-image: url('../assets/forum/toyota-supra.jpg');
   .forumblack {
     background-color: rgba($color: black, $alpha: 0.7);
-    .v-card__subtitle, .v-card__text, .v-card__title{
-      padding-bottom:0;
+    .v-card__subtitle,
+    .v-card__text,
+    .v-card__title {
+      padding: 30px 0 0 15px;
     }
     .newscard {
       border-bottom: 5px solid orange;
@@ -228,9 +400,6 @@ export default {
   }
 }
 .newtitle {
-  border-bottom: 5px solid #F34841;
-}
-.yellow {
-  background-color: yellow;
+  border-bottom: 5px solid #f34841;
 }
 </style>

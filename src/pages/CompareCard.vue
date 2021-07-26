@@ -240,14 +240,14 @@ export default {
 
 <style lang="scss">
 .all_compare{
-  *{
+*{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 .compare_info{
-  border: 2px solid #00f;
+  // border: 2px solid #00f;
   width: 100%;
   height: 2000px;
 }
@@ -475,6 +475,21 @@ export default {
   height: 85px;
   background-color: #F34841;
   cursor: pointer;
+}
+}
+
+@media only screen and (max-width: 575px) {
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.compare_info{
+  border: 1px solid #f20;
+  width: 100%;
+  min-height: 4000px;
+  // background: #000;
 }
 }
 </style>

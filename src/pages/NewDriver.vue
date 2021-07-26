@@ -95,6 +95,30 @@
           </div>
       </div>
     </div>
+
+    <div class="buy-phone">
+      <h1 text-h4 font-weight-bold>新手買車-競標說明</h1>
+      <br>
+      <div class="firstLine-phone">
+          <div class="stepOphone step1-phone">
+            <span text-h6 font-weight-bold> 01 鎖定競標場次</span>
+            <p text-subtitle-1 font-weight-light>
+            瀏覽競標會場，鎖定有興趣的競標場次，
+            瀏覽競標規則，準備「加入會員」參與競標
+            </p>
+            <img :src="stepOne" class="whiteCar">
+          </div>
+
+          <div class="stepEphone step2-phone">
+            <span text-h6 font-weight-bold> 02 加入會員</span>
+            <p text-subtitle-1 font-weight-light>
+            加入會員，同意競標規則，即可參與競標。
+            會員於後台擁有專屬會員行事曆，可將競標場
+            次加入行事曆，管理您專屬的「The Vroom行程」
+            </p>
+          </div>
+      </div>
+    </div>
     <div class="sell">
       <h1 text-h4 font-weight-bold>新手買車-線上估價</h1>
       <form action="">
@@ -299,7 +323,7 @@ h1{
   padding:20px 5px 20px 20px;
   border:1px solid #181818;
 }
-
+div.buy-phone{display: none;}
 div.buy{
   // display: flex;
   // flex-wrap: wrap;
@@ -429,7 +453,9 @@ div.phonebannerpart{
 }
 
 @media (max-width: 375px){
-
+*{
+  outline:1px solid red;
+}
 img.banner{
    display: none;
  }
@@ -442,6 +468,7 @@ div.phonebannerpart{
   position: relative;
   img.phonebanner{
     transform: translateX(-26%);
+    overflow-x: hidden;
   }
   span.first{
     position: absolute;
@@ -465,38 +492,35 @@ div.phonebannerpart{
 }
 
 div.buy{
+  display: none;
+}
+div.buy-phone{
+  display: block;
   h1{
     &:after{
     width:300px;
   }
-  }
-  div.firstLine{
+  div.firstLine-phone{
     display: block;
-    div.stepO{
-      max-width:370px;
-      margin-bottom: 40px;
+    max-width: 100%;
+    .step1-phone {
+      background-color:#181818;
+      color:#ffffff;
+      max-width:100%;
+      padding:20px 5px 20px 20px;
     }
-    div.stepE{
-      max-width: 370px;
-      margin-left: 0;
+
+      .step2-phone{
+      background-color:#ffffff;
+      color:#181818;
+      max-width:100%;
+      padding:20px 5px 20px 20px;
+      border:10px solid green;
     }
+
   }
 
-  div.secondLine{
-    display: block;
-     div.stepO{
-      max-width:370px;
-      margin-bottom: 40px;
-    }
-    div.stepE{
-      max-width:370px;
-      margin: 0;
-    }
-
-    div.step4{
-      display: none;
-    }
-
+  div.secondLine-phone{
     div.step4-phone{
       display: block;
       margin-bottom: 40px;
@@ -508,6 +532,7 @@ div.buy{
       }
     }
   }
+}
 }
 div.sell{
  h1{

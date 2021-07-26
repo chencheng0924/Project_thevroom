@@ -1,37 +1,52 @@
 <template>
-  <div class="auctionOv d-flex">
-    <div class="auctionWhole d-flex">
-      <div class="carNav d-flex flex-column">
-        <div class="btnup d-flex justify-center" v-if="show">
-          <v-icon x-large @click="carUp" ref="upB">mdi-chevron-up</v-icon>
+  <div>
+    <media :query="{minWidth: '401px'}">
+      <div class="auctionOv d-flex">
+        <div class="auctionWhole d-flex">
+          <div class="carNav d-flex flex-column">
+            <div class="btnup d-flex justify-center" v-if="show">
+              <v-icon x-large @click="carUp" ref="upB">mdi-chevron-up</v-icon>
+            </div>
+            <div class="carimgIn d-flex flex-column align-center">
+              <img
+                v-for="(car, index) in carimgIn"
+                :id="car.id"
+                :src="car.src"
+                :key="car.id"
+                ref="carmoving"
+                @click="changeCon(index)"
+              />
+            </div>
+            <div class="btndown d-flex justify-center" v-if="show">
+              <v-icon x-large @click="carDown" ref="upD">mdi-chevron-down</v-icon>
+            </div>
+          </div>
         </div>
-        <div class="carimgIn d-flex flex-column align-center">
-          <img
-            v-for="(car, index) in carimgIn"
-            :id="car.id"
-            :src="car.src"
-            :key="car.id"
-            ref="carmoving"
-            @click="changeCon(index)"
-          />
-        </div>
-        <div class="btndown d-flex justify-center" v-if="show">
-          <v-icon x-large @click="carDown" ref="upD">mdi-chevron-down</v-icon>
+        <div class="auctionContent">
+            <!-- <transition> -->
+              <overview-content :titleYear="tYear" :titleBrand="tBrand" :description="desC" :milesT="mText" :priceT="pText" :imgPath="imagePath"/>
+            <!-- </transition> -->
         </div>
       </div>
-    </div>
-    <div class="auctionContent">
-        <!-- <transition> -->
-          <overview-content :titleYear="tYear" :titleBrand="tBrand" :description="desC" :milesT="mText" :priceT="pText" :imgPath="imagePath"/>
-        <!-- </transition> -->
-    </div>
+    </media>
+    <!-- --------------------------------------------------------------------- -->
+    <media :query="{maxWidth: '400px'}">
+      <div class="mobileAO">
+        <mobile-overview-content/>
+      </div>
+    </media>
   </div>
 </template>
 
 <script>
 import OverviewContent from '../components/OverviewContent.vue'
+import Media from 'vue-media'
+import MobileOverviewContent from '../components/MobileOverviewContent.vue'
 
 export default {
+  mounted () {
+    this.$store.dispatch('happy', true)
+  },
   data: () => ({
     imagePath: require('../assets/carlist/benz10.png'),
     tYear: '2021 M-Benz',
@@ -113,7 +128,9 @@ export default {
     }
   },
   components: {
-    OverviewContent
+    OverviewContent,
+    Media,
+    MobileOverviewContent
   }
   // mounted () {
   //   this.distanceY = 1
