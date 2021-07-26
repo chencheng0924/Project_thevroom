@@ -1,5 +1,7 @@
 <template>
   <div>
+  <media :query="{ minWidth: '401px' }">
+   <div>
     <div class="d-flex justify-center ma-auto">
       <div
         class="my-10 red d-flex justify-center"
@@ -124,6 +126,108 @@
         </div>
       </div>
     </div>
+   </div>
+  </media>
+  <!-- --------------------------------------------------- -->
+  <media :query="{ maxWidth: '400px' }">
+   <div>
+    <div class="d-flex justify-center ma-auto" style="width:90%">
+      <div
+        class="my-10 red d-flex flex-column justify-center"
+        style="width:30%;height:70px;border-radius:25px"
+      >
+        <div
+          class="white red--text pa-1 align-self-center"
+          style="height:20px;border:1px solid black;border-radius:50%;line-height:.4"
+        >
+          1
+        </div>
+        <button class="mt-2 white--text text-overline font-weight-bold" style="line-height:1" @click="component = 'shopping-car1'">
+          購物車商品列表
+        </button>
+      </div>
+      <div
+        class="my-10 mx-10 d-flex flex-column justify-center"
+        style="width:30%;height:70px;border:1px solid black;border-radius:25px"
+        :class="{
+          red1: component == 'shopping-car2' || component == 'shopping-car3'
+        }"
+      >
+        <div
+          class="pa-1 align-self-center black--text"
+          style=";height:20px;border:1px solid black;border-radius:50%;line-height:.4"
+          :class="{
+            red2: component == 'shopping-car2' || component == 'shopping-car3'
+          }"
+        >
+          2
+        </div>
+        <button class="text-overline font-weight-bold" @click=";(component = 'shopping-car2'), gogo">
+          確認及付款
+        </button>
+      </div>
+      <div
+        class="my-10 d-flex flex-column justify-center"
+        style="width:30%;height:70px;border:1px solid black;border-radius:25px"
+        :class="{ red1: component == 'shopping-car3' }"
+      >
+        <div
+          class="pa-1 align-self-center black--text"
+          style="height:20px;border:1px solid black;border-radius:50;line-height:.4"
+          :class="{ red2: component == 'shopping-car3' }"
+        >
+          3
+        </div>
+        <button class="text-overline font-weight-bold" @click=";(component = 'shopping-car3'), gogo2">完成</button>
+      </div>
+      ;
+    </div>
+    <div
+      style="width:90%"
+      class="ma-auto"
+      :class="{ gogoro: component == 'shopping-car3' }"
+    >
+      <div class="mb-5">
+        <div class="text-h5 font-weight-bold">商品明細</div>
+        <div style="width:100%;height:2px" class="black mt-2"></div>
+      </div>
+    </div>
+    <div>
+      <component
+        :is="component">
+      </component>
+    </div>
+    <div class="d-flex justify-end mb-10 ma-auto" style="width:90%">
+      <div class="text-h6 font-weight-bold" :class="{ gogoro: component == 'shopping-car2' || component == 'shopping-car3' }">
+        共<span class="red--text">{{ totalitem }}</span
+        >項商品,
+      </div>
+      <div class="text-h6 font-weight-bold" :class="{ gogoro: component == 'shopping-car2' || component == 'shopping-car3' }">
+        總金額<span class="red--text">{{ totalprice }}</span
+        >元
+      </div>
+    </div>
+    <div :class="{gogoro: component == 'shopping-car2' || component == 'shopping-car3'}">
+      <div
+        class="d-flex justify-space-around align-center mb-10"
+      >
+        <button-news buttonName="繼續購物" />
+        <div class="d-flex align-center">
+          <v-checkbox v-model="checkbox" style="width:400px" :class="{gogoro: component == 'shopping-car1'}">
+            <template v-slot:label>
+              <div>
+                本人表示理解相關配件資訊和『thevroom』車行之相關購物條款規定，並確認下訂商品。
+              </div>
+            </template>
+          </v-checkbox>
+          <div @click=";(component = 'shopping-car2'), gogo">
+            <button-submit class="ml-5" buttonSubmit="下一步" />
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+  </media>
   </div>
 </template>
 
@@ -133,13 +237,15 @@ import shoppingcar2 from '../components/ShoppingCar2.vue'
 import shoppingcar3 from '../components/ShoppingCar3.vue'
 import ButtonNews from '../components/layout/ButtonNews.vue'
 import ButtonSubmit from '../components/layout/ButtonSubmit.vue'
+import Media from 'vue-media'
 export default {
   components: {
     'shopping-car1': shoppingcar1,
     'shopping-car2': shoppingcar2,
     'shopping-car3': shoppingcar3,
     ButtonNews,
-    ButtonSubmit
+    ButtonSubmit,
+    Media
   },
   data () {
     return {

@@ -1,5 +1,7 @@
 <template>
   <div>
+    <media :query="{ minWidth: '401px' }">
+      <div>
     <div class="forumtop white--text">
       <div
         class="forumblack d-flex flex-column justify-space-around align-center py-10"
@@ -105,13 +107,131 @@
       v-if="messagelist.length"
       v-observe-visibility="handleScrolledToBottom"
     ></div>
+    </div>
+    <!-- ---------------------------------------------------- -->
+    </media>
+     <media :query="{ maxWidth: '400px' }">
+      <div>
+    <div class="forumtop white--text">
+      <div
+        class="forumblack d-flex flex-column justify-space-around align-center py-10"
+        style="width:100%;height:100%"
+      >
+        <div class="d-flex flex-column" style="width:100%">
+          <div class="d-flex">
+          <div
+            class="d-flex flex-column justify-start align-center"
+            style="width:20%"
+          >
+            <i style="font-size:36px" class="fas fa-portrait"></i>
+            <div class="text-h6 font-weight-bold">-xxx-</div>
+            <div
+              style="border:1px solid white; border-radius:20px"
+              class="pa-1 px-3 my-2 text-h6 font-weight-bold"
+            >
+              樓主
+            </div>
+          </div>
+          <div style="width:60%" class="d-flex flex-column align-end justify-space-around">
+              <div @click="down">
+              <button-news
+                class="ma-1 align-self-end"
+                buttonName="留言回覆"
+                style="max-width:80px"
+              ></button-news>
+              </div>
+              <router-link to="/forum">
+              <button-news
+                class="black white--text ma-1 align-self-end"
+                buttonName="返回上一頁"
+                style="width:80px"
+              ></button-news>
+              </router-link>
+            </div>
+            </div>
+          <div
+            class="d-flex flex-column ma-auto"
+            v-for="newli in news"
+            :key="newli.id"
+            style="width:90%"
+          >
+            <div class="mt-10 text-h5 font-weight-bold">{{ newli.title }}</div>
+            <div style="width:100%;height:5px;" class="orange"></div>
+            <div class="my-10">
+              <img style="width:100%;height:100%" :src="newli.src" />
+            </div>
+            <div>
+              <p style="line-height:3;text-subtitle-1 font-weight-light">
+                {{ newli.content }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="my-10">
+      <div
+        class="d-flex flex-column align-center justify-center ma-auto"
+        style="max-width:1000px;max-height:100%">
+        <div style="width:80%" class="text-h4 font-weight-bold justify-start">回應區</div>
+        <div style="width:90%;height:3px" class="orange"></div>
+        <div
+          v-for="message in messagelist"
+          :key="message"
+          style="width:85%;"
+          class="d-flex flex-column"
+        >
+          <div class="d-flex justify-space-around my-4">
+            <div class="d-flex flex-column align-center mr-5">
+              <i class="fas fa-portrait"></i>
+              <h3 class="text-h6 font-weight-bold">{{ message.name }}</h3>
+              <h5 class="-text-subtitle-1 font-weight-light">
+                date:{{ message.data }}
+              </h5>
+            </div>
+            <div class="d-flex align-center justify-start" style="width:80%">
+              <p>{{ message.message }}</p>
+            </div>
+            <report-dialogs
+              style="cursor: pointer;font-size:10px"
+            ></report-dialogs>
+          </div>
+          <div style="width:100%;height:1px;opacity:.3" class="black"></div>
+        </div>
+      </div>
+      <div class="mt-6 d-flex justify-center max-width:800px">
+        <div class="d-flex flex-column align-center mr-5">
+          <i class="fas fa-portrait"></i>
+          <h3>tony</h3>
+        </div>
+        <input
+          type="text"
+          placeholder="回應..."
+          class="align-self-center grey lighten-2 px-3"
+          style="width:50%;border-radius:15px;height:45px;outline:0"
+        />
+        <v-btn class="align-self-center ml-5" rounded color="orange" dark
+          >送出</v-btn
+        >
+      </div>
+    </div>
+    <div
+      v-if="messagelist.length"
+      v-observe-visibility="handleScrolledToBottom"
+    ></div>
+    </div>
+    </media>
   </div>
 </template>
 
 <script>
 import ReportDialogs from '../components/interactive/ReportDialogs.vue'
+import Media from 'vue-media'
 export default {
-  components: { ReportDialogs },
+  components: {
+    ReportDialogs,
+    Media
+  },
   data () {
     return {
       news: [
