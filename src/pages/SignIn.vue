@@ -89,10 +89,10 @@
     <div class="LoginBackground2" style="width:100%;height:100%;">
       <div
         class="d-flex my-5 ma-auto"
-        style="border-radius:20px;width:90%;height:90%;background-color:rgba(0,0,0,.4);"
+        style="border-radius:20px;width:90%;height:90%;background-color:rgba(255,255,255,.9);"
       >
         <div
-          style="width:100%;background-color:rgba(255,255,255,0.5);border-radius:20px"
+          style="width:100%;border-radius:20px"
         >
         <div style="width:100%;height:90%" class="d-flex align-center">
           <div
