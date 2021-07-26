@@ -20,6 +20,7 @@ import SignUp from '../pages/SignUp.vue'
 import SignIn from '../pages/SignIn.vue'
 import MemberData from '../components/MemberData.vue'
 import MemberAuction from '../components/MemberAuction.vue'
+import CompareTableA from '../components/CompareTableA.vue'
 
 Vue.use(VueRouter)
 
@@ -132,6 +133,11 @@ const routes = [
     path: '/memberauction',
     name: 'MemberAuction',
     component: MemberAuction
+  },
+  {
+    path: '/comparetableA',
+    name: 'CompareTableA',
+    component: CompareTableA
   }
 ]
 

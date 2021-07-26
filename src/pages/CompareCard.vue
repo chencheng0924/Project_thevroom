@@ -1,190 +1,421 @@
 <template>
   <div class="all_compare">
-    <div class="compare_info">
-      <div class="title">
-        <h3 class="title_name text-h4 font-weight-bold">車款比較</h3>
-      </div>
+    <media :query="{ minWidth: '401px' }">
+      <div class="compare_info">
+        <div class="title">
+          <h3 class="title_name text-h4 font-weight-bold">車款比較</h3>
+        </div>
 
-      <div class="card">
-        <v-card
-        outline
-        width="1200"
-        height="450"
-        style="border:2px solid black; margin:0 auto;"
-        >
+        <div class="card">
+          <v-card
+          outline
+          width="1200"
+          height="450"
+          style="border:2px solid black; margin:0 auto;"
+          >
 
-          <div class="card_tile">
-            <div class="card_title_name text-h6 font-weight-bold">選擇車款進行比較</div>
-          </div>
-          <div class="select_bar">
-            <ul class="bar">
-              <li>
-                <v-select
-                  :items="items"
-                  label="請選擇車廠"
-                  dense
-                  outlined
-                  style="border-radius:50px; width:270px"
-                ></v-select>
-              </li>
-              <li>
-                <v-select
-                  :items="brands"
-                  label="請選擇車款"
-                  dense
-                  outlined
-                  style="border-radius:50px; width:270px"
-                ></v-select>
-              </li>
-              <li>
-                <v-select
-                  :items="version"
-                  label="請選擇車系"
-                  dense
-                  outlined
-                  style="border-radius:50px; width:270px"
-                ></v-select>
-              </li>
-              <li>
-                <v-btn rounded color="#F34841" dark width="150" height="40">加入</v-btn>
-              </li>
-            </ul>
-          </div>
+            <div class="card_tile">
+              <div class="card_title_name text-h6 font-weight-bold">選擇車款進行比較</div>
+            </div>
+            <div class="select_bar">
+              <ul class="bar">
+                <li>
+                  <v-select
+                    :items="items"
+                    label="請選擇車廠"
+                    dense
+                    outlined
+                    style="border-radius:50px; width:270px"
+                  ></v-select>
+                </li>
+                <li>
+                  <v-select
+                    :items="brands"
+                    label="請選擇車款"
+                    dense
+                    outlined
+                    style="border-radius:50px; width:270px"
+                  ></v-select>
+                </li>
+                <li>
+                  <v-select
+                    :items="version"
+                    label="請選擇車系"
+                    dense
+                    outlined
+                    style="border-radius:50px; width:270px"
+                  ></v-select>
+                </li>
+                <li>
+                  <v-btn rounded color="#F34841" dark width="150" height="40">加入</v-btn>
+                </li>
+              </ul>
+            </div>
 
-          <div class="liner"></div>
+            <div class="liner"></div>
 
-          <div class="card_photo_area">
-            <div class="inside_area">
-              <div class="card_photo"></div>
+            <div class="card_photo_area">
+              <div class="inside_area">
                 <div class="card_photo"></div>
-                <div class="card_photo_area_btn">
-                  <div class="area_btn_inside">
-                    <div class="area_btn_word text-h6 font-weight-bold">目 前 選 擇<span class="area_btn_num"> 0 </span>輛</div>
-                    <v-btn rounded color="#F34841" dark width="150" height="40" to="/compareinside">開始比較</v-btn>
+                  <div class="card_photo"></div>
+                  <div class="card_photo_area_btn">
+                    <div class="area_btn_inside">
+                      <div class="area_btn_word text-h6 font-weight-bold">目 前 選 擇<span class="area_btn_num"> 0 </span>輛</div>
+                      <v-btn rounded color="#F34841" dark width="150" height="40" to="/compareinside">開始比較</v-btn>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </v-card>
+        </div>
+
+        <div class="middle_title_outside">
+          <div class="title_outside">
+            <h3 class="pk_title text-h6 font-weight-bold
+            ">熱門新車PK <div class="pk_liner"></div></h3>
+            <h3 class="hotcar_title text-h6 font-weight-bold
+            ">熱門車排行 <div class="hotcar_liner"></div></h3>
+          </div>
+        </div>
+
+        <div class="middle_outside">
+          <div class="compare_middle">
+            <div class="compare_middle_left">
+              <div class="photo_left" v-for="newImage in newImages" :key="newImage.id" :src="newImage.src">
+                <img :src="newImage.src" class="newcar_photo">
+              </div>
+              <div style="background-color: #fff; width: 90px; height: 90px; border-radius: 50px; color: #F34841; position: absolute; margin-top: 70px; margin-left: 392px;" class="d-flex align-center justify-center">VS</div>
+              <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; color: #F34841; position: absolute; margin-top: 350px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
+              <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; color: #F34841; position: absolute; margin-top: 615px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
+              <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; color: #F34841; position: absolute; margin-top: 880px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
+              <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 180px; margin-left: 360px;" to="/compareinside">比較結果</v-btn>
+              <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 450px; margin-left: 360px;" to="/compareinside">比較結果</v-btn>
+              <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 715px; margin-left: 360px;" to="/compareinside">比較結果</v-btn>
+              <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 980px; margin-left: 360px;" to="/compareinside">比較結果</v-btn>
+            </div>
+            <div class="compare_middle_right">
+              <v-hover v-slot="{ hover }">
+                <div class="hotcar">
+                  <div class="hotcar_img_outside">
+                    <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 685px; right: 400px"> -->
+                    <img src="../assets/accessories-pic/speaker09.png" class="hotcar_img">
+                  </div>
+                  <div class="hotcar_info">
+                    <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
+                    <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
+                    <v-expand-transition>
+                        <div
+                          v-if="hover"
+                          class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
+                        >
+                          去搶購
+                        </div>
+                      </v-expand-transition>
                   </div>
                 </div>
+              </v-hover>
+
+              <v-hover v-slot="{ hover }">
+                <div class="hotcar">
+                  <div class="hotcar_img_outside">
+                    <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1020px; right: 400px"> -->
+                    <img src="../assets/accessories-pic/speaker/speaker.jpg" class="hotcar_img">
+                  </div>
+                  <div class="hotcar_info">
+                    <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
+                    <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
+                    <v-expand-transition>
+                        <div
+                          v-if="hover"
+                          class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
+                        >
+                          去搶購
+                        </div>
+                      </v-expand-transition>
+                  </div>
+                </div>
+              </v-hover>
+
+              <v-hover v-slot="{ hover }">
+                <div class="hotcar">
+                  <div class="hotcar_img_outside">
+                    <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1355px; right: 400px"> -->
+                    <img src="../assets/accessories-pic/gps_icon.jpg" class="hotcar_img">
+                  </div>
+                  <div class="hotcar_info">
+                    <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
+                    <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
+                    <v-expand-transition>
+                        <div
+                          v-if="hover"
+                          class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
+                        >
+                          去搶購
+                        </div>
+                      </v-expand-transition>
+                  </div>
+                </div>
+              </v-hover>
+
+              <v-hover v-slot="{ hover }">
+                <div class="hotcar">
+                  <div class="hotcar_img_outside">
+                    <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1690px; right: 400px"> -->
+                    <img src="../assets/accessories-pic/oil.png" class="hotcar_img">
+                  </div>
+                  <div class="hotcar_info">
+                    <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
+                    <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
+                    <v-expand-transition>
+                        <div
+                          v-if="hover"
+                          class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
+                        >
+                          去搶購
+                        </div>
+                      </v-expand-transition>
+                  </div>
+                </div>
+              </v-hover>
             </div>
-          </div>
-        </v-card>
-      </div>
-
-      <div class="middle_title_outside">
-        <div class="title_outside">
-          <h3 class="pk_title text-h6 font-weight-bold
-          ">熱門新車PK <div class="pk_liner"></div></h3>
-          <h3 class="hotcar_title text-h6 font-weight-bold
-          ">熱門車排行 <div class="hotcar_liner"></div></h3>
-        </div>
-      </div>
-
-      <div class="middle_outside">
-        <div class="compare_middle">
-          <div class="compare_middle_left">
-            <div class="photo_left" v-for="newImage in newImages" :key="newImage.id" :src="newImage.src">
-              <img :src="newImage.src" class="newcar_photo">
-            </div>
-            <div style="background-color: #fff; width: 90px; height: 90px; border-radius: 50px; color: #F34841; position: absolute; margin-top: 70px; margin-left: 392px;" class="d-flex align-center justify-center">VS</div>
-            <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; color: #F34841; position: absolute; margin-top: 350px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
-            <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; color: #F34841; position: absolute; margin-top: 615px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
-            <div style="background-color: #fff; width: 80px; height: 80px; border-radius: 50px; color: #F34841; position: absolute; margin-top: 880px; margin-left: 397px;" class="d-flex align-center justify-center">VS</div>
-            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 180px; margin-left: 360px;" to="/compareinside">比較結果</v-btn>
-            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 450px; margin-left: 360px;" to="/compareinside">比較結果</v-btn>
-            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 715px; margin-left: 360px;" to="/compareinside">比較結果</v-btn>
-            <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 980px; margin-left: 360px;" to="/compareinside">比較結果</v-btn>
-          </div>
-          <div class="compare_middle_right">
-            <v-hover v-slot="{ hover }">
-              <div class="hotcar">
-                <div class="hotcar_img_outside">
-                  <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 685px; right: 400px"> -->
-                  <img src="../assets/accessories-pic/speaker09.png" class="hotcar_img">
-                </div>
-                <div class="hotcar_info">
-                  <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
-                  <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
-                  <v-expand-transition>
-                      <div
-                        v-if="hover"
-                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
-                      >
-                        去搶購
-                      </div>
-                    </v-expand-transition>
-                </div>
-              </div>
-            </v-hover>
-
-            <v-hover v-slot="{ hover }">
-              <div class="hotcar">
-                <div class="hotcar_img_outside">
-                  <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1020px; right: 400px"> -->
-                  <img src="../assets/accessories-pic/speaker/speaker.jpg" class="hotcar_img">
-                </div>
-                <div class="hotcar_info">
-                  <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
-                  <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
-                  <v-expand-transition>
-                      <div
-                        v-if="hover"
-                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
-                      >
-                        去搶購
-                      </div>
-                    </v-expand-transition>
-                </div>
-              </div>
-            </v-hover>
-
-            <v-hover v-slot="{ hover }">
-              <div class="hotcar">
-                <div class="hotcar_img_outside">
-                  <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1355px; right: 400px"> -->
-                  <img src="../assets/accessories-pic/gps_icon.jpg" class="hotcar_img">
-                </div>
-                <div class="hotcar_info">
-                  <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
-                  <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
-                  <v-expand-transition>
-                      <div
-                        v-if="hover"
-                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
-                      >
-                        去搶購
-                      </div>
-                    </v-expand-transition>
-                </div>
-              </div>
-            </v-hover>
-
-            <v-hover v-slot="{ hover }">
-              <div class="hotcar">
-                <div class="hotcar_img_outside">
-                  <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1690px; right: 400px"> -->
-                  <img src="../assets/accessories-pic/oil.png" class="hotcar_img">
-                </div>
-                <div class="hotcar_info">
-                  <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
-                  <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
-                  <v-expand-transition>
-                      <div
-                        v-if="hover"
-                        class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
-                      >
-                        去搶購
-                      </div>
-                    </v-expand-transition>
-                </div>
-              </div>
-            </v-hover>
           </div>
         </div>
       </div>
-    </div>
+    </media>
+    <!-- ---------------------------------------------------------------- -->
+    <media :query="{ maxWidth: '400px' }">
+      <div>
+        <div
+          class="compare_info"
+          style="max-width: 375px; height: 2000px; border: 2px solid #00f"
+        >
+          <div
+            class="title mt-8"
+            style="width: 100%; border: 1px solid #f20;"
+          >
+            <h3
+              class="title_name text-h5 font-weight-bold d-flex justify-space-between align-center"
+              style="width: 350px; margin: 0 auto; border:1px solid black"
+            >
+            車款比較
+            <div style="border-radius:10px; width:67%; height:8px; background-color:#F34841"></div>
+            </h3>
+          </div>
+
+          <div
+            class="card"
+            style="width: 100%; border: 1px solid #f20"
+          >
+            <v-card
+              outline
+              width="350"
+              height="450"
+              class="d-flex flex-column justify-space-around align-center"
+              style="border:2px solid black; margin:0 auto;"
+            >
+              <div
+                class="d-flex"
+                style="border: 1px solid blue; width: 330px; height:180px"
+              >
+                <ul
+                  class="text-h6 font-weight-bold d-flex flex-column justify-space-between"
+                  style="list-style: none; padding:0; width: 30%;">
+                  <li
+                    class="d-flex justify-center align-center"
+                    style="border: 1px solid #000; height:46px"
+                  >車廠</li>
+                  <li
+                    class="d-flex justify-center align-center"
+                    style="border: 1px solid #000; height:46px"
+                  >車系</li>
+                  <li
+                    class="d-flex justify-center align-center"
+                    style="border: 1px solid #000; height:46px"
+                  >車款</li>
+                </ul>
+                <ul
+                  class="d-flex flex-column justify-space-between"
+                  style="list-style: none; padding: 0; width: 70%;"
+                >
+                  <li
+                    class="d-flex justify-center align-center"
+                    style="border: 1px solid black">
+                    <v-select
+                      :items="items"
+                      label="請選擇車廠"
+                      dense
+                      outlined
+                      style="border-radius:50px; width:180px"
+                    ></v-select>
+                  </li>
+                  <li
+                    class="d-flex justify-center align-center"
+                    style="border: 1px solid black">
+                    <v-select
+                      :items="brands"
+                      label="請選擇車款"
+                      dense
+                      outlined
+                      style="border-radius:50px; width:180px"
+                    ></v-select>
+                  </li>
+                  <li
+                    class="d-flex justify-center align-center"
+                    style="border: 1px solid black">
+                    <v-select
+                      :items="version"
+                      label="請選擇車系"
+                      dense
+                      outlined
+                      style="border-radius:50px; width:180px"
+                    ></v-select>
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="d-flex justify-space-between"
+                style="border:1px solid black; width:330px; height:120px"
+              >
+                <div
+                  style="border:1px solid red; width:49%; height:100%; background-color:gray;"
+                ></div>
+                <div
+                  style="border:1px solid red; width:49%; height:100%; background-color:gray;"
+                ></div>
+              </div>
+
+              <div style="border:1px solid blue; width:330px">
+                <v-btn rounded color="#F34841" dark width="330" height="40" to="/compareinside">開始比較</v-btn>
+              </div>
+            </v-card>
+          </div>
+
+          <div style="border:1px solid red; width: 100%" class="mt-10">
+            <div style="border:1px solid black; width:350px; margin: 0 auto;">
+              <h3
+                class="text-h6 font-weight-bold d-flex justify-space-between align-center"
+                style="border:1px solid blue; width:100%"
+              >
+                熱門新車PK
+                <div
+                  style="border-radius:10px; width:67%; height:8px; background-color:#F34841"
+                ></div>
+              </h3>
+            </div>
+          </div>
+
+          <div
+            class="mt-10 d-flex flex-column justify-space-between"
+            style="border:1px solid red; width: 100%; height:550px"
+          >
+            <div
+              v-for="image in images"
+              :key="image"
+              class="d-flex justify-space-between"
+              style="border:1px solid black; width:350px; height:120px; margin:0 auto;"
+            >
+              <div style="position: absolute; margin-top:45px; margin-left:130px">
+                <v-btn rounded color="#F34841" dark width="90" height="25" to="/compareinside">開始比較</v-btn>
+              </div>
+              <div
+                style="border:1px solid red; width:49%; height:100%;"
+              >
+                <img :src="image.src" style="width:100%; height:100%">
+              </div>
+
+              <div
+                style="border:1px solid red; width:49%; height:100%;"
+              >
+                <img :src="image.src02" style="width:100%; height:100%">
+              </div>
+            </div>
+          </div>
+
+          <div style="border:1px solid red; width: 100%" class="mt-10">
+            <div style="border:1px solid black; width:350px; margin: 0 auto;">
+              <h3
+                class="text-h6 font-weight-bold d-flex justify-space-between align-center"
+                style="border:1px solid blue; width:100%"
+              >
+                熱門配件專區
+                <div
+                  style="border-radius:10px; width:62%; height:8px; background-color:#F34841"
+                ></div>
+              </h3>
+            </div>
+          </div>
+
+            <div
+              class="mt-10 d-flex flex-column justify-space-between"
+              style="border:1px solid red; width: 100%; height:500px"
+            >
+              <div
+                class="d-flex justify-space-between"
+                style="border:1px solid black; width:350px; margin:0 auto;"
+              >
+                <div
+                  style="border:2px solid red; width:49%; height:230px;"
+                >
+                  <div style="width:100%; height:78%">
+                    <img src="../assets/accessories-pic/speaker09.png" style="width:100%; height:100%">
+                  </div>
+                  <div style="width:100%; height:22%">
+                    <v-btn color="#F34841" dark width="100%" height="100%" to="/compareinside">去搶購</v-btn>
+                  </div>
+                </div>
+
+                <div
+                  style="border:2px solid red; width:49%; height:230px;"
+                >
+                  <div style="width:100%; height:78%">
+                    <img src="../assets/accessories-pic/speaker/speaker.jpg" style="width:100%; height:100%">
+                  </div>
+                  <div style="width:100%; height:22%">
+                    <v-btn color="#F34841" dark width="100%" height="100%" to="/compareinside">去搶購</v-btn>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="d-flex justify-space-between"
+                style="border:1px solid black; width:350px; margin:0 auto;"
+              >
+                <div
+                  style="border:2px solid red; width:49%; height:230px;"
+                >
+                  <div style="width:100%; height:78%">
+                    <img src="../assets/accessories-pic/gps_icon.jpg" style="width:100%; height:100%">
+                  </div>
+                  <div style="width:100%; height:22%">
+                    <v-btn color="#F34841" dark width="100%" height="100%" to="/compareinside">去搶購</v-btn>
+                  </div>
+                </div>
+
+                <div
+                  style="border:2px solid red; width:49%; height:230px;"
+                >
+                  <div style="width:100%; height:78%">
+                    <img src="../assets/accessories-pic/oil.png" style="width:100%; height:100%">
+                  </div>
+                  <div style="width:100%; height:22%">
+                    <v-btn color="#F34841" dark width="100%" height="100%" to="/compareinside">去搶購</v-btn>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </media>
   </div>
 </template>
 
 <script>
+import Media from 'vue-media'
 export default {
+  components: {
+    Media
+  },
   data: () => ({
     cols: 'true',
     items: ['Austin Martin', 'Benz', 'BMW', 'Toyota', 'Audi', 'Ford', 'Honda'],
@@ -232,6 +463,28 @@ export default {
       {
         id: '8',
         src: require('../assets/compare-car-pic/newcar08.png')
+      }
+    ],
+    images: [
+      {
+        id: '1',
+        src: require('../assets/compare-car-pic/newcar01.png'),
+        src02: require('../assets/compare-car-pic/newcar02.png')
+      },
+      {
+        id: '2',
+        src: require('../assets/compare-car-pic/newcar03.png'),
+        src02: require('../assets/compare-car-pic/newcar04.png')
+      },
+      {
+        id: '3',
+        src: require('../assets/compare-car-pic/newcar05.png'),
+        src02: require('../assets/compare-car-pic/newcar06.png')
+      },
+      {
+        id: '4',
+        src: require('../assets/compare-car-pic/newcar07.png'),
+        src02: require('../assets/compare-car-pic/newcar08.png')
       }
     ]
   })
@@ -478,18 +731,4 @@ export default {
 }
 }
 
-@media only screen and (max-width: 575px) {
-*{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-.compare_info{
-  border: 1px solid #f20;
-  width: 100%;
-  min-height: 4000px;
-  // background: #000;
-}
-}
 </style>

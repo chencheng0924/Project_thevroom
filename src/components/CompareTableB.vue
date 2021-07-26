@@ -1,6 +1,7 @@
 <template>
   <div class="bottom_second">
-    <div class="btm_sec">
+    <media :query="{ minWidth: '401px' }">
+      <div class="btm_sec">
         <div class="btm_sec_inside">
           <div style="width: 100%; height: 75px" class="d-flex text-subtitle-1 font-weight-light" v-for="tech in techs" :key="tech">
             <div style="border: 1px solid black; width: 20%; height: 100%; font-weight: 700; border-right: none; border-bottom: none;" class="d-flex align-center justify-center">{{ tech.title }}</div>
@@ -9,10 +10,28 @@
           </div>
         </div>
       </div>
+    </media>
+    <!-- ---------------------------------------------------------------- -->
+    <media :query="{ maxWidth: '400px' }">
+      <div>
+        <div
+          style="max-width: 375px; border: 2px solid #00f"
+        >
+          <div style="border: 1px solid black; width: 350px; height:180px; margin: 0 auto;" v-for="tech in techs" :key="tech">
+            <div style="border: 1px solid red; width: 100%; height: 50%; background-color:lightgray" class="d-flex align-center justify-center">{{ tech.title }}</div>
+            <div style="border: 1px solid red; width: 100%; height: 50%" class="d-flex">
+              <div style="border: 1px solid green; width: 50%; height:100%" class="d-flex align-center justify-center">{{ tech.contentA }}</div>
+              <div style="border: 1px solid green; width: 50%; height:100%" class="d-flex align-center justify-center">{{ tech.contentB }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </media>
   </div>
 </template>
 
 <script>
+import Media from 'vue-media'
 export default {
   data: () => ({
     techs: [
@@ -65,7 +84,10 @@ export default {
         contentB: '235ltr'
       }
     ]
-  })
+  }),
+  components: {
+    Media
+  }
 }
 </script>
 
