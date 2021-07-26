@@ -1,11 +1,12 @@
 <template>
   <div id="app">
     <v-app>
-      <the-header></the-header>
+      <the-header v-if="showheader"></the-header>
       <div class="fixHeader">
         <router-view />
       </div>
       <the-footer></the-footer>
+      <home class="d-none"></home>
     </v-app>
   </div>
 </template>
@@ -13,11 +14,23 @@
 <script>
 import TheHeader from './components/layout/TheHeader.vue'
 import TheFooter from './components/layout/TheFooter.vue'
+import Home from './views/Home.vue'
 
 export default {
+  data () {
+    return {
+      // showheader: true
+    }
+  },
   components: {
     TheHeader,
-    TheFooter
+    TheFooter,
+    Home
+  },
+  computed: {
+    showheader () {
+      return this.$store.getters.gethappy
+    }
   }
 }
 </script>
