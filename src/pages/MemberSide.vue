@@ -175,15 +175,24 @@
           class="black white--text d-flex justify-space-around align-center"
           style="height:70px"
         >
-          <button @click="(componentM = 'member-data-m')">
+          <button
+            @click="(componentM = 'member-data-m'), gogo(num)"
+            :class="{ redgo: num == 1 }"
+          >
             帳戶管理
           </button>
           <div class="grey" style="width:1px;height:35px"></div>
-          <button @click="(componentM = 'member-auction-m')">賣場管理</button>
+          <button @click="(componentM = 'member-auction-m'), gogo2(num)"
+            :class="{ redgo: num == 2 }"
+          >賣場管理</button>
           <div class="grey" style="width:1px;height:35px"></div>
-          <button>貼文管理</button>
+          <button @click="(componentM = ''), gogo3(num)"
+            :class="{ redgo: num == 3 }"
+          >貼文管理</button>
           <div class="grey" style="width:1px;height:35px"></div>
-          <button>我的追蹤</button>
+          <button @click="(componentM = ''), gogo4(num)"
+           :class="{ redgo: num == 4 }"
+          >我的追蹤</button>
         </div>
         <div>
           <component :is="componentM"></component>
@@ -239,9 +248,30 @@ export default {
         title: '賣場狀態',
         status: '進行中'
       }
-    ]
+    ],
+    num: 1,
+    count1: 1,
+    count2: 2,
+    count3: 3,
+    count4: 4
   }),
   methods: {
+    gogo (num) {
+      this.num = num
+      this.num = this.count1
+    },
+    gogo2 (num) {
+      this.num = num
+      this.num = this.count2
+    },
+    gogo3 (num) {
+      this.num = num
+      this.num = this.count3
+    },
+    gogo4 (num) {
+      this.num = num
+      this.num = this.count4
+    }
   },
   mounted () {
     this.$store.dispatch('happy', true)
@@ -280,5 +310,10 @@ export default {
   .v-date-picker-table {
     height: 220px;
   }
+}
+.redgo{
+  background-color: red;
+  border-radius: 20px;
+  padding:5px
 }
 </style>
