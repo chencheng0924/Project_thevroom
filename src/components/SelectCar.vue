@@ -1,37 +1,56 @@
 <template>
-    <div class="wholepage d-flex">
-        <div class="insideWhole d-flex">
-            <div class="leftpart d-flex flex-column">
-                <the-headline titleName="近期競標場次" style="height: 100px;" class="pt-8 d-flex"></the-headline>
-                <div v-for="(item, index) in carList" :key="item.id" class="leftitem d-flex align-center justify-space-between" :class="{ addcolor:index == count}" @click="addBg(index)">
-                    <div class="text-h6 font-weight-regular">{{ item.carname }}</div>
-                    <div :class="{ viewbar:index == count}" class="viewcolor d-flex align-center justify-center">
-                      <router-link :to="carlink">
-                        <div style="color: #181818;">{{ viewtag }}</div>
-                      </router-link>
-                    </div>
-                </div>
-                <div class="moreAu d-flex align-center">
-                  <router-link to="/auctionoverview" style="color: #BFBDBD;" class="mt-3 text-subtitle-1 font-weight-medium">
-                    查看更多場次
-                  <v-icon class="mb-1" color="#BFBDBD">mdi-arrow-right</v-icon>
-                  </router-link>
-                </div>
-            </div>
-            <div class="rightpart d-flex flex-column justify-space-between">
-                <div class="carImg mt-10">
-                    <img :src="showImg" class="imgSize">
-                </div>
-                <div class="timer">01:08:54:36''</div>
-            </div>
-        </div>
-    </div>
+  <div>
+    <media :query="{ minWidth: '401px' }">
+      <div class="wholepage d-flex">
+          <div class="insideWhole d-flex">
+              <div class="leftpart d-flex flex-column">
+                  <the-headline titleName="近期競標場次" style="height: 100px;" class="pt-8 d-flex"></the-headline>
+                  <div v-for="(item, index) in carList"
+                  :key="item.id"
+                  class="leftitem d-flex align-center justify-space-between"
+                  :class="{ addcolor:index == count}" @click="addBg(index)">
+                      <div class="text-h6 font-weight-regular">{{ item.carname }}</div>
+                      <div :class="{ viewbar:index == count}" class="viewcolor d-flex align-center justify-center">
+                        <router-link :to="carlink">
+                          <div style="color: #181818;">{{ viewtag }}</div>
+                        </router-link>
+                      </div>
+                  </div>
+                  <div class="moreAu d-flex align-center">
+                    <router-link to="/auctionoverview" style="color: #BFBDBD;" class="mt-3 text-subtitle-1 font-weight-medium">
+                      查看更多場次
+                    <v-icon class="mb-1" color="#BFBDBD">mdi-arrow-right</v-icon>
+                    </router-link>
+                  </div>
+              </div>
+              <div class="rightpart d-flex flex-column justify-space-between">
+                  <div class="carImg mt-10">
+                      <img :src="showImg" class="imgSize">
+                  </div>
+                  <div class="timer">01:08:54:36''</div>
+              </div>
+          </div>
+      </div>
+    </media>
+    <!-- ----------mobile---------- -->
+    <media :query="{ maxWidth: '400px' }">
+      <div>
+        <select-car-rwd/>
+      </div>
+    </media>
+  </div>
 </template>
 
 <script>
 import gsap from 'gsap'
+import Media from 'vue-media'
+import SelectCarRwd from '../components/SelectCarRwd.vue'
 
 export default {
+  components: {
+    Media,
+    SelectCarRwd
+  },
   data () {
     return {
       show: false,
