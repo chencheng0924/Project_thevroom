@@ -96,6 +96,7 @@
                 name="input-7-4"
                 label="物件敘述"
                 value="請輸入物件敘述"
+                color="#181818"
                 ></v-textarea>
               </div>
             </div>
@@ -145,6 +146,7 @@
                   solo
                   outlined
                   dense
+                  color="#181818"
                   style="width: 100px;"
                   ></v-select>
                 </div>
@@ -316,7 +318,6 @@ export default {
   },
   data () {
     return {
-      path: require('../assets/index-select-car/car4.jpg'),
       options: {
         licenseKey: 'YOUR_KEY_HERE',
         afterLoad: this.afterLoad,

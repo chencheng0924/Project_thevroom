@@ -1,56 +1,59 @@
 <template>
-    <div class="singleAuction">
-        <div class="scrollWhole d-flex">
-            <div class="rightContent d-flex">
-                <div class="leftPoint d-flex flex-column justify-center">
-                    <div class="leftDots d-flex flex-column justify-center">
-                        <span @click="moveback"></span>
-                        <span @click="moveright" class="mt-4"></span>
-                        <span @click="moveleft" class="mt-4"></span>
-                    </div>
-                </div>
-                <div class="rightIn d-flex flex-column align-center">
-                    <div class="titleAu">Mercedes-Benz</div>
-                    <div class="titleAu">GLC Coupe 300</div>
-                    <div class="carAu">
-                        <media :query="{maxWidth: '800px'}">
-                          <img class="moCar" src="../assets/carlist/benz30.png" style="width: 100px;">
-                        </media>
-                        <media :query="{maxWidth: '2000px', minWidth: '801px'}">
-                          <img class="moCar" src="../assets/carlist/benz30.png">
-                        </media>
-                    </div>
-                    <div class="btnAu d-flex justify-center">
-                        <v-btn
-                        rounded
-                        color="#F34841"
-                        class="btn mr-4"
-                        width="130"
-                        @click="moveleft"
-                        dark>
-                        開始競標
-                        </v-btn>
-                        <v-btn
-                        rounded
-                        outlined
-                        color="#BFBDBD"
-                        class="btn"
-                        dark>
-                        追蹤此拍賣場
-                        </v-btn>
-                    </div>
-                </div>
-                <div class="rightPoint"></div>
-            </div>
-        </div>
-        <div class="scrollWholetwo"></div>
-        <div class="scrollWholethree">
-          <single-car-info/>
-        </div>
-        <div class="scrollWholefour">
-          <single-car-bid-record/>
-        </div>
-    </div>
+  <div>
+    <media :query="{minWidth: '401px'}">
+      <div class="singleAuction">
+          <div class="scrollWhole d-flex align-center">
+              <div class="rightContent d-flex">
+                  <div class="leftPoint d-flex flex-column justify-center">
+                      <div class="leftDots d-flex flex-column justify-center">
+                          <span @click="moveback"></span>
+                          <span @click="moveright" class="mt-4"></span>
+                          <span @click="moveleft" class="mt-4"></span>
+                      </div>
+                  </div>
+                  <div class="rightIn d-flex flex-column align-center">
+                      <div class="titleAu">Mercedes-Benz</div>
+                      <div class="titleAu">GLC Coupe 300</div>
+                      <div class="carAu">
+                            <img class="moCar" src="../assets/carlist/benz30.png">
+                      </div>
+                      <div class="btnAu d-flex justify-center">
+                          <v-btn
+                          rounded
+                          color="#F34841"
+                          class="btn mr-4"
+                          width="130"
+                          @click="moveleft"
+                          dark>
+                          開始競標
+                          </v-btn>
+                          <v-btn
+                          rounded
+                          outlined
+                          color="#BFBDBD"
+                          class="btn"
+                          dark>
+                          追蹤此拍賣場
+                          </v-btn>
+                      </div>
+                  </div>
+                  <div class="rightPoint"></div>
+              </div>
+          </div>
+          <div class="scrollWholetwo"></div>
+          <div class="scrollWholethree d-flex align-center">
+            <single-car-info/>
+          </div>
+          <div class="scrollWholefour d-flex align-center">
+            <single-car-bid-record/>
+          </div>
+      </div>
+  </media>
+<!-- -----------mobile----------- -->
+  <media :query="{maxWidth: '400px'}">
+    <rwd-single-auction/>
+  </media>
+  </div>
 </template>
 
 <script>
@@ -59,6 +62,7 @@ import Media from 'vue-media'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import singleCarInfo from '../components/singleCarInfo.vue'
 import singleCarBidRecord from '../components/singleCarBidRecord.vue'
+import RwdSingleAuction from '../components/RwdSingleAuction.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -69,7 +73,8 @@ export default {
   components: {
     singleCarInfo,
     singleCarBidRecord,
-    Media
+    Media,
+    RwdSingleAuction
   },
   methods: {
     moveright () {
