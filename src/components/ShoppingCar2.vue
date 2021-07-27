@@ -1,4 +1,6 @@
 <template>
+ <div>
+  <media :query="{ minWidth: '401px' }">
   <div style="max-width:1200px;" class="ma-auto">
     <div
       class="d-flex mb-10 align-center"
@@ -122,11 +124,154 @@
       </div>
     </div>
   </div>
+  </media>
+  <!-- ------------------------------------------------------------------------------------------- -->
+  <media :query="{ maxWidth: '400px' }">
+  <div style="max-width:1200px;" class="ma-auto">
+    <div style="max-width:100%;" class="ma-auto">
+    <div
+      class="d-flex flex-column mb-5 align-center"
+      v-for="list in prolist"
+      :key="list.id"
+    >
+    <div class="d-flex justify-space-around" style="width:85%">
+      <div class="py-3" style="width:35%;">
+        <img style="width:100px;height:100px" :src="list.proSrc" alt="圖壞了" />
+      </div>
+      <div style="width:65%" class="ma-auto d-flex flex-column align-center">
+        <div class="d-flex flex-column justify-center" style="width:75%" align-center>
+          <div class="py-3 text-h5 font-weight-bold" >
+            {{ list.proName }}
+          </div>
+          <div class="py-3 align-self-end" >
+            <i class="fas fa-minus"></i>
+            {{ list.proCount }}
+            <i class="fas fa-plus"></i>
+          </div>
+          <div class="mb-3 align-self-end" >
+            NT$:{{ list.proPrice * list.proCount }}
+          </div>
+        </div>
+      </div>
+      </div>
+      <div style="width:90%;height:2px;background-color:rgba(0,0,0,.3)"></div>
+    </div>
+  </div>
+    <div style="margin:100px 0px;width:90%" class="mt-15 ma-auto">
+      <div class="text-h5 font-weight-bold mb-3">付款方式</div>
+      <div style="border:1px solid black" class="py-5">
+        <label class="mx-8 text-body1 font-weight-medium"
+          ><input
+            type="radio"
+            name="city"
+            value="taipei"
+            checked
+          />信用卡付款</label
+        >
+        <label class="mx-8 text-body1 font-weight-medium"
+          ><input type="radio" name="city" value="taoyuan" />到店取貨</label
+        >
+      </div>
+      <div style="border:1px solid black;border-top:0" class="pa-5">
+        <div class="text-h6 font-weight-bold">信用卡資訊</div>
+        <div>
+          <v-form v-model="valid">
+            <v-container>
+              <v-row>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="cardname"
+                    :rules="cardRules"
+                    label="信用卡號"
+                    required
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" md="2">
+                  <v-text-field
+                    v-model="date"
+                    :rules="dateRules"
+                    label="到期日期"
+                    required
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" md="2">
+                  <v-text-field
+                    v-model="cardsuc"
+                    :rules="cardsucRules"
+                    label="安全碼"
+                    required
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-form>
+        </div>
+        <v-checkbox v-model="checkbox">
+          <template v-slot:label>
+            <div>
+              本人聲明下訂即表示並詳細閱讀
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <a
+                    target="_blank"
+                    href="https://tw.yahoo.com/"
+                    @click.stop
+                    v-on="on"
+                  >
+                    『thevroom』
+                  </a>
+                </template>
+                Turn to yahoo
+              </v-tooltip>
+              車行之相關購車條款規定，並確認下訂車輛。
+            </div>
+          </template>
+        </v-checkbox>
+      </div>
+    </div>
+    <div class="d-flex justify-end mt-10 mb-5 ma-auto" style="width:90%">
+      <div class="text-h6 font-weight-bold">
+        共<span class="red--text">{{ totalitem }}</span
+        >項商品,
+      </div>
+      <div class="text-h6 font-weight-bold">
+        總金額<span class="red--text">{{ totalprice }}</span
+        >元
+      </div>
+    </div>
+    <div class="d-flex justify-center">
+    <div style="width:80%">
+     <v-checkbox v-model="checkbox" style="width:400px">
+          <template v-slot:label>
+            <div>
+              本人表示理解相關配件資訊和『thevroom』車行之相關購物條款規定，並確認下訂商品。
+            </div>
+          </template>
+        </v-checkbox>
+    </div>
+    </div>
+    <div class="my-10 ma-auto" style="width:90%">
+      <div class="d-flex justify-space-between align-center">
+      <button-news buttonName="繼續購物" />
+      <div class="d-flex align-center">
+        <div @click=";(component = 'shopping-car3'), gogo">
+          <button-submit class="ml-5" buttonSubmit="下一步" />
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  </media>
+ </div>
 </template>
 
 <script>
+import Media from 'vue-media'
 import shoppingcar3 from './ShoppingCar3.vue'
 export default {
+  components: { Media },
   data () {
     return {
       components: {

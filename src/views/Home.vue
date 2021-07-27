@@ -4,6 +4,7 @@
     <index-banner/>
     <select-car></select-car>
     <direct-buy />
+    <index-forum-m />
     <about-us />
     <index-forum/>
   </div>
@@ -16,6 +17,7 @@ import SelectCar from '../components/SelectCar.vue'
 import indexForum from '../components/indexForum.vue'
 // import SearchBanner from '../components/SearchBanner.vue'
 import indexBanner from '../components/indexBanner.vue'
+import indexForumM from '../components/indexForumM.vue'
 
 export default {
   name: 'Home',
@@ -25,7 +27,8 @@ export default {
     SelectCar,
     indexForum,
     // SearchBanner,
-    indexBanner
+    indexBanner,
+    indexForumM
   },
   created () {
     this.$store.dispatch('happy', false)
