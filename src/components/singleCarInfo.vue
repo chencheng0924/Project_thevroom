@@ -2,7 +2,7 @@
     <div class="carInfo d-flex">
         <div class="spaceLeft"></div>
         <div class="infoCar d-flex flex-column">
-            <div class="infoT d-flex flex-column mt-6">
+            <div class="infoT d-flex flex-column">
                 <div class="titleY">2021</div>
                 <div class="titleB">M-Benz GLC Coupe 300</div>
                 <div class="titleLine mt-2"></div>
