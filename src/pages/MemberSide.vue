@@ -21,7 +21,7 @@
                             @click="component = 'member-data'"
                             class="d-flex justify-center font-weight-bold pa-6"
                             style="cursor: pointer; font-size:18px"
-                            >帳戶</v-list-item-title
+                            >帳戶管理</v-list-item-title
                           >
                         </v-list-item-content>
                       </v-list-item>
@@ -197,6 +197,9 @@
         <div>
           <component :is="componentM"></component>
         </div>
+        <div>
+          <date-act />
+        </div>
       </div>
     </media>
   </div>
@@ -209,6 +212,7 @@ import MemberAuction from '../components/MemberAuction.vue'
 import MemberAuctionM from '../components/MemberAuctionM.vue'
 import MemberBid from '../components/MemberBid.vue'
 import MemberArticle from '../components/MemberArticle.vue'
+import DateAct from '../components/DateAct.vue'
 import Media from 'vue-media'
 export default {
   components: {
@@ -218,6 +222,7 @@ export default {
     'member-auction-m': MemberAuctionM,
     'member-bid': MemberBid,
     'member-article': MemberArticle,
+    'date-act': DateAct,
     Media
   },
   data: () => ({

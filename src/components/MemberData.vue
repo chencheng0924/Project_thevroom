@@ -11,7 +11,7 @@
             style="width:90%;height:70px"
           >
             <div class="d-flex justify-space-between align-center">
-              <h2>帳戶資料更改</h2>
+              <h2>帳戶資料</h2>
               <button class="red white--text pa-3" style="border-radius:20px">
                 升級會員
               </button>
@@ -30,6 +30,7 @@
                 filled
                 rounded
                 dense
+                disabled
               ></v-text-field>
             </v-col>
           </div>
@@ -89,13 +90,9 @@
               ></v-text-field>
             </v-col>
           </div>
-          <div class="mt-8 align-self-end mr-6">
-            <button
-              class="black white--text px-4 py-2 mb-1 mr-2"
-              style="border-radius:20px"
-            >
-              保存
-            </button>
+          <div class="mt-8 align-self-center">
+            <button class="text-h6 font-weight-bold red white--text pa-2 px-5 mr-8 rounded-pill">修改</button>
+            <button class="text-h6 font-weight-bold black white--text pa-2 px-5 ml-8 rounded-pill">保存</button>
           </div>
         </div>
       </div>
