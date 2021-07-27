@@ -1,5 +1,5 @@
 <template>
-    <div class="indexBan">
+    <div class="indexBan d-flex flex-column">
         <div class="navbar d-flex justify-space-between align-center mt-2">
             <div class="logoBan">
                 <router-link to="/" tag="span" style="cursor: pointer">
@@ -40,18 +40,38 @@
                 </router-link>
             </div>
         </div>
-        <img class="bannerImg" src="../assets/test2.png">
+        <div class="banContent">
+            <div class="banleft ml-16 d-flex flex-column justify-space-around">
+                <div>
+                    <div class="text-h2 font-weight-bold indexTitle">TheVroom</div>
+                    <div class="indexline mt-6"></div>
+                </div>
+                <div class="banBtn">
+                    <v-btn rounded outlined color="#F34841" class="inbtn" to="/auctionoverview">
+                    競標場入口
+                    </v-btn>
+                </div>
+            </div>
+            <div class="banright">
+                <div></div>
+            </div>
+        </div>
     </div>
 </template>
 
 <style lang="scss">
 .indexBan{
-    // border: 1px solid orange;
+    border: 1px solid orange;
     width: 100%;
     height: 100vh;
     overflow: hidden;
+    background-color: #181818;
     // transform: translateY(-64px);
     .navbar{
+        border: 1px solid yellow;
+        position: absolute;
+        width: 100%;
+        height: 64px;
         .logoBan{
             .logoImg{
                 width: 200px;
@@ -62,14 +82,24 @@
             color: #FFFFFF;
         }
     }
-    .bannerImg{
+    .banContent{
         width: 100%;
-    }
-    .navbar{
-        // border: 1px solid yellow;
-        position: absolute;
-        width: 100%;
-        height: 64px;
+        height: 700px;
+        border: 1px solid blue;
+        margin: 70px auto 0 auto;
+        .banleft{
+            width: 500px;
+            height: 700px;
+            border: 1px solid green;
+            .indexTitle{
+                color: #FFFFFF;
+            }
+            .indexline{
+                width: 400px;
+                height: 5px;
+                background-color: #F34841;
+            }
+        }
     }
 }
 </style>
