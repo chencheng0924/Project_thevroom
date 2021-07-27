@@ -404,7 +404,8 @@ div.banner {
 }
 
 h1 {
-  margin: 20px 10px;
+  margin: 40px 0px;
+  max-width:1200px;
   img {
     height: 30px;
   }
@@ -517,4 +518,13 @@ div.main {
     }
   }
 }
+@media(max-width:576px){
+  div.main{
+    max-width: 100%;
+    div.accessories{
+      display: none;
+    }
+  }
+}
+
 </style>
