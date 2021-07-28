@@ -15,13 +15,15 @@
     <media :query="{ maxWidth: '400px' }">
       <div>
         <div
-          style="max-width: 375px; border: 2px solid #00f"
+          style="max-width: 375px;"
         >
-          <div style="border: 1px solid black; width: 350px; height:180px; margin: 0 auto;" v-for="info in infos" :key="info">
-            <div style="border: 1px solid red; width: 100%; height: 50%; background-color:lightgray" class="d-flex align-center justify-center">{{ info.title }}</div>
-            <div style="border: 1px solid red; width: 100%; height: 50%" class="d-flex">
-              <div style="border: 1px solid green; width: 50%; height:100%" class="d-flex align-center justify-center">{{ info.contentA }}</div>
-              <div style="border: 1px solid green; width: 50%; height:100%" class="d-flex align-center justify-center">{{ info.contentB }}</div>
+          <div style="border: 2px solid black; border-bottom: none; width: 350px; margin: 0 auto;">
+            <div style="width: 350px; height:180px;" v-for="info in infos" :key="info">
+              <div style="border-bottom: 2px solid black; width: 99%; height: 50%; background-color:lightgray" class="d-flex align-center justify-center">{{ info.title }}</div>
+              <div style="width: 100%; height: 50%" class="d-flex">
+                <div style="border: 2px solid black; border-top:none; border-left: none; border-right: none; width: 50%; height:100%" class="d-flex align-center justify-center">{{ info.contentA }}</div>
+                <div style="border: 2px solid black; border-top:none; border-right: none; width: 49%; height:100%" class="d-flex align-center justify-center">{{ info.contentB }}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -94,7 +96,7 @@ export default {
 <style lang="scss">
   .bottom_first {
     .bottom{
-        border: 1px solid #f20;
+        // border: 1px solid #f20;
         width: 100%;
         // height: 600px;
         // margin-top: 50px;
