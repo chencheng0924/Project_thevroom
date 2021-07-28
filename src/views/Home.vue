@@ -31,7 +31,7 @@ export default {
     indexForumM
   },
   created () {
-    this.$store.dispatch('happy', false)
+    this.$store.dispatch('happy', [false, 'margin-top: 0px'])
   },
   beforeDestroy () {
     this.$store.dispatch('happy', true)

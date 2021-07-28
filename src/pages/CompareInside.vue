@@ -45,6 +45,8 @@
                       </li>
                     </ul>
                   </div>
+
+                  <div style="height:50px; color: #F34841" class="d-flex align-center text-h6 font-weight-regular">$ 990W</div>
                 </div>
               </div>
               <div class="middle_third">
@@ -83,6 +85,8 @@
                       </li>
                     </ul>
                   </div>
+
+                  <div style="height:50px; color: #F34841" class="d-flex align-center text-h6 font-weight-regular">$ 990W</div>
                 </div>
               </div>
             </diV>
@@ -131,31 +135,35 @@
     <!-- ---------------------------------------------------------------- -->
     <media :query="{ maxWidth: '400px' }">
       <div>
+        <rwd-banner rwdtitle="市場行情" :pathImg="banner"/>
         <div
-          style="max-width: 375px; height: 2500px; border: 2px solid #00f"
+          class="mt-10"
+          style="max-width: 375px; height: 2500px;"
         >
           <div
-            style="width: 100%; border: 1px solid #f20;"
+            style="width: 100%;"
           >
             <div
-              style="border: 1px solid black; width:350px; height:800px; margin: 0 auto;"
+              style="border: 1px solid black; width:350px; height:900px; margin: 0 auto;"
             >
               <div
                 class="d-flex justify-center align-center"
-                style="border: 1px solid blue; width: 100%; height:50%"
+                style="border: 1px solid black; width: 100%; height:50%"
               >
                 <div
-                  style="border: 1px solid green; width: 300px; height:80%"
+                  style="width: 300px; height:80%"
                 >
-                  <div style="border: 1px solid red; width: 100%; height:50%"></div>
-                  <div style="border: 1px solid red; width: 100%; height:50%">
+                  <div style="width: 100%; height:50%">
+                    <img :src="comparerwd01" style="width: 100%; height:100%">
+                  </div>
+                  <div style="width: 100%; height:50%">
                     <ul
-                      class="d-flex flex-column justify-space-between"
+                      class="d-flex flex-column justify-space-between pt-3"
                       style="list-style: none; padding: 0; width: 100%; height:100%"
                     >
                       <li
                         class="d-flex justify-center align-center"
-                        style="border: 1px solid black">
+                      >
                         <v-select
                           :items="items"
                           label="請選擇車廠"
@@ -166,7 +174,7 @@
                       </li>
                       <li
                         class="d-flex justify-center align-center"
-                        style="border: 1px solid black">
+                      >
                         <v-select
                           :items="brands"
                           label="請選擇車款"
@@ -177,7 +185,7 @@
                       </li>
                       <li
                         class="d-flex justify-center align-center"
-                        style="border: 1px solid black">
+                      >
                         <v-select
                           :items="version"
                           label="請選擇車系"
@@ -188,25 +196,29 @@
                       </li>
                     </ul>
                   </div>
+
+                  <div style="height:50px; color: #F34841" class="d-flex align-center text-h6 font-weight-regular">$ 990W</div>
                 </div>
               </div>
 
               <div
                 class="d-flex justify-center align-center"
-                style="border: 1px solid blue; width: 100%; height:50%"
+                style="border: 1px solid black; width: 100%; height:50%"
               >
                 <div
-                  style="border: 1px solid green; width: 300px; height:80%"
+                  style="width: 300px; height:80%"
                 >
-                  <div style="border: 1px solid red; width: 100%; height:50%"></div>
-                  <div style="border: 1px solid red; width: 100%; height:50%">
+                  <div style="width: 100%; height:50%">
+                    <img :src="comparerwd02" style="width: 100%; height:100%">
+                  </div>
+                  <div style="width: 100%; height:50%">
                     <ul
-                      class="d-flex flex-column justify-space-between"
+                      class="d-flex flex-column justify-space-between pt-3"
                       style="list-style: none; padding: 0; width: 100%; height:100%"
                     >
                       <li
                         class="d-flex justify-center align-center"
-                        style="border: 1px solid black">
+                      >
                         <v-select
                           :items="items"
                           label="請選擇車廠"
@@ -217,7 +229,7 @@
                       </li>
                       <li
                         class="d-flex justify-center align-center"
-                        style="border: 1px solid black">
+                      >
                         <v-select
                           :items="brands"
                           label="請選擇車款"
@@ -228,7 +240,7 @@
                       </li>
                       <li
                         class="d-flex justify-center align-center"
-                        style="border: 1px solid black">
+                      >
                         <v-select
                           :items="version"
                           label="請選擇車系"
@@ -239,6 +251,8 @@
                       </li>
                     </ul>
                   </div>
+
+                  <div style="height:50px; color: #F34841" class="d-flex align-center text-h6 font-weight-regular">$ 990W</div>
                 </div>
               </div>
             </div>
@@ -246,11 +260,11 @@
 
           <div
             class="mt-10"
-            style="border: 1px solid red; width: 100%;">
+            style="width: 100%;">
             <div
               class="d-flex"
-              style="border: 1px solid black; width: 350px; height:60px; margin: 0 auto;">
-              <div style="border: 1px solid blue; width:50%; height:100%">
+              style="width: 350px; height:60px; margin: 0 auto;">
+              <div style="width:50%; height:100%">
                 <v-btn
                     x-large
                     color="#F34841"
@@ -262,7 +276,7 @@
                     基本資訊
                   </v-btn>
               </div>
-              <div style="border: 1px solid blue; width:50%; height:100%">
+              <div style="width:50%; height:100%">
                 <v-btn
                     x-large
                     color="#363636"
@@ -276,7 +290,7 @@
             </div>
           </div>
 
-          <div style="margin-top: 50px">
+          <div class="mt-10">
             <component :is="component"></component>
           </div>
         </div>
@@ -287,15 +301,20 @@
 </template>
 
 <script>
+import RwdBanner from '../components/layout/RwdBanner.vue'
 import CompareTableA from '../components/CompareTableA.vue'
 import CompareTableB from '../components/CompareTableB.vue'
 import Media from 'vue-media'
 
 export default {
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+  },
   components: {
     'table-one': CompareTableA,
     'table-two': CompareTableB,
-    Media
+    Media,
+    RwdBanner
   },
   data: () => ({
     component: 'table-one',
@@ -311,7 +330,10 @@ export default {
       '2014',
       '2013'
     ],
-    version: ['1', '2', '3', '4', '5', '6', '7', '8']
+    version: ['1', '2', '3', '4', '5', '6', '7', '8'],
+    banner: require('../assets/123.png'),
+    comparerwd01: require('../assets/compare-car-pic/hotcar01.png'),
+    comparerwd02: require('../assets/compare-car-pic/hotcar02.png')
   })
 }
 </script>
@@ -322,11 +344,11 @@ export default {
   display: none !important;
   }
     .inside {
-      border: 2px solid #00f;
+      // border: 2px solid #00f;
       width: 100%;
       height: 1600px;
       .inside_card{
-        border: 1px solid #f20;
+        // border: 1px solid #f20;
         width: 100%;
         margin-top: 50px;
         .table{
@@ -375,11 +397,11 @@ export default {
             align-items: center;
             justify-content: center;
             .middle_sec_in{
-              border: 1px solid #000;
+              // border: 1px solid #000;
               width:50%;
               height: 80%;
               .sec_in_img{
-                border: 1px solid #f20;
+                // border: 1px solid #f20;
                 width:100%;
                 height: 50%;
                 .sec_image{
@@ -388,7 +410,7 @@ export default {
                 }
               }
               .sec_in_select{
-                border: 1px solid #00f;
+                // border: 1px solid #00f;
                 width:100%;
                 height: 50%;
               }
@@ -404,11 +426,11 @@ export default {
             align-items: center;
             justify-content: center;
             .middle_thr_in{
-              border: 1px solid #000;
+              // border: 1px solid #000;
               width:50%;
               height: 80%;
               .thr_in_img{
-                border: 1px solid #f20;
+                // border: 1px solid #f20;
                 width:100%;
                 height: 50%;
                 .thr_image{
@@ -417,7 +439,7 @@ export default {
                 }
               }
               .thr_in_select{
-                border: 1px solid #00f;
+                // border: 1px solid #00f;
                 width:100%;
                 height: 50%;
               }
@@ -453,23 +475,23 @@ export default {
         }
       }
       .btn_middle{
-        border: 1px solid #f20;
+        // border: 1px solid #f20;
         width: 100%;
         height: 75px;
         margin-top: 50px;
         .btn_mid_inside{
-          border: 1px solid #000;
+          // border: 1px solid #000;
           width: 1200px;
           height: 100%;
           margin: 0 auto;
           display: flex;
           .btn_first{
-            border: 1px solid #00f;
+            // border: 1px solid #00f;
             width: 50%;
             height: 100%;
           }
           .btn_second{
-            border: 1px solid green;
+            // border: 1px solid green;
             width: 50%;
             height: 100%;
           }

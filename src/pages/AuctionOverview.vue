@@ -45,7 +45,7 @@ import MobileOverviewContent from '../components/MobileOverviewContent.vue'
 
 export default {
   mounted () {
-    this.$store.dispatch('happy', true)
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
   },
   data: () => ({
     imagePath: require('../assets/carlist/benz10.png'),
