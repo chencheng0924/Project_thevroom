@@ -277,7 +277,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('happy', true)
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
   }
 }
 </script>
