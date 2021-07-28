@@ -8,7 +8,7 @@
         <img :src="logochatbox" class="logochatbox">
         <br>
         <img :src="logochat" alt="">
-        <span class="questions" v-for="index in groupquestion" :key="index">{{index.group}}</span>
+        <div class="questions" v-for="index in groupquestion" :key="index">{{index.group}}</div>
         <br>
         <img :src="customer" alt="">
         <span class="answers">hii</span>
@@ -100,17 +100,22 @@
     <div class="sell">
       <h1 text-h4 font-weight-bold>新手買車-線上估價</h1>
       <form action="">
-       車輛廠牌：<input type="text">
-       出廠年份：<input type="text">
-       里程數：<input type="text">
-       姓名：<input type="text">
-       email：<input type="text">
+       車輛廠牌：<input type="text" style="outline: none;">
+       <br>
+       出廠年份：<input type="text" style="outline: none;">
+       <br>
+       里程數：<input type="text" style="outline: none;">
+       <br>
+       姓名：<input type="text" style="outline: none;">
+       <br>
+       email：<input type="text" style="outline: none;">
+       <br>
        <button>送出</button>
       </form>
       <div class="gogo">
       <img :src="gogo" class="go">
       <br>
-      <button type="button" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--rounded theme--dark v-size--default" style="background-color: rgb(243, 72, 65); border-color: rgb(243, 72, 65);" @click="driver"><router-link to="/AuctionOverview" style='color:#ffffff'>前往拍賣會場</router-link></button>
+      <button type="button" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--rounded theme--dark v-size--default" style="background-color: rgb(243, 72, 65); border-color: rgb(243, 72, 65);"><router-link to="/AuctionOverview" style='color:#ffffff' @click.prevent="setTimeout(driver,2000)">前往拍賣會場</router-link></button>
       </div>
     </div>
   </div>
@@ -131,6 +136,7 @@ export default ({
       logochatbox: require('../assets/logowhite-transparent.png'),
       phonebanner: require('../assets/new-driver-pic/forphone.jpg'),
       downArrow: require('../assets/new-driver-pic/down-arrow.png'),
+      currentChoose: null,
       groupquestion: [
         { group: '競標相關' },
         { group: '會員相關' },
@@ -140,6 +146,7 @@ export default ({
       ask: [
         {
           question: '競標流程是什麼？我需要準備什麼資料嗎？',
+          category: '競標相關',
           answer: '競標流程非常簡單，只要鎖定拍賣商品，之後加入會員，就可以出價參加競標了！看看拍賣會場'
         },
         {
@@ -388,23 +395,32 @@ div.buy{
 div.sell{
   width:1200px;
   margin:0 auto;
+  position: relative;
   form{
     border:1px solid #181818;
     width:1000px;
     margin:50px auto;
     font-size: 20px;
+    padding:10px 20px;
+    border-radius: 20px;
     input{
       //  display: flex;
-      position: relative;
-      border-bottom:1px solid #181818;
+      // position: relative;
+      border-bottom:1px solid hsla(0, 0%,0%, .5);
+      border-radius: 10px;
+      margin-bottom: 20px;
       width:100%;
+      background-color:hsla(0, 100%,100%, .7);
+      box-shadow: hsla(0, 100%,100%, .7);
       }
       button{
         color:#ffffff;
         background-color: $parnerColor;
         text-align: center;
-        width: 100%;
+        width: 50%;
         padding:5px 0px;
+        border-radius: 20px;
+        transform: translateX(50%);
       }
     }
    .gogo{
@@ -543,6 +559,9 @@ div.sell{
     button{
       text-align: center;
       }
+    input:focus{
+      outline: none;
+    }
   }
 }
 
