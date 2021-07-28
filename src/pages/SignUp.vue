@@ -344,7 +344,7 @@
                 </v-container>
                 <div class="align-self-end mt-1">
                   <button
-                    class="px-2 py-1 green white--text text-subtitle-2 font-weight-medium"
+                    class="px-2 py-1 white--text text-subtitle-2 font-weight-medium"
                     style="border:1px solid black;border-radius:20px;"
                   >
                     獲取驗證碼
@@ -354,7 +354,7 @@
               <div class="align-self-center mt-5" style="width:80%">
                 <div class="d-flex flex-column">
                   <button-submit buttonSubmit="註冊"></button-submit>
-                  <h6 class="align-self-end">
+                  <h6 class="align-self-end mt-4">
                     <router-link to="/signin"
                       >已經是會員嗎?立即登入</router-link
                     >
@@ -373,6 +373,9 @@
 import ButtonSubmit from '../components/layout/ButtonSubmit.vue'
 import Media from 'vue-media'
 export default {
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+  },
   components: { ButtonSubmit, Media },
   data () {
     return {

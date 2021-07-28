@@ -286,6 +286,9 @@
 import Media from 'vue-media'
 import ButtonBtnBanner from '../components/layout/RwdBtnBanner.vue'
 export default {
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+  },
   components: {
     Media,
     ButtonBtnBanner

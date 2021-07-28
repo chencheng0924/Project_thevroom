@@ -534,6 +534,9 @@
 // import ButtonSubmit from './layout/ButtonSubmit.vue'
 import Media from 'vue-media'
 export default {
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+  },
   components: {
     Media
   },

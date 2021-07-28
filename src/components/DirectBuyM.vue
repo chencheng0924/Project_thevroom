@@ -30,7 +30,7 @@
             {{ item.conFive }}
           </div>
         </div>
-        <button-submit class="mt-10" buttonSubmit='進入競標場' />
+          <button-submit class="mt-10" buttonSubmit='進入競標場' webPath='/AuctionOverview'/>
         </div>
       </v-carousel-item>
   </v-carousel>

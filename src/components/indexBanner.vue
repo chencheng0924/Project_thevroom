@@ -38,7 +38,10 @@
                     <div class="iconBan">
                         <v-icon left class="mr-5" color="#FFFFFF">mdi-cart-outline</v-icon>
                         <router-link to="/signin" tag="span" style="cursor: pointer">
-                            <v-icon left class="mr-7" color="#FFFFFF">mdi-login</v-icon>
+                            <v-icon left class="mr-5" color="#FFFFFF">mdi-login</v-icon>
+                        </router-link>
+                        <router-link to="/memberside" tag="span" style="cursor: pointer">
+                            <v-icon left class="mr-6" color="#FFFFFF">mdi-account-circle-outline</v-icon>
                         </router-link>
                     </div>
                 </div>

@@ -5,11 +5,11 @@
     <div class="d-flex justify-center ma-auto">
       <div
         class="my-10 red d-flex justify-center"
-        style="width:300px;height:70px;border-radius:30px"
+        style="width:300px;height:70px;border-radius:20px"
       >
         <div
-          class="white red--text px-2 mr-3 align-self-center"
-          style="height:30px;border:1px solid black;border-radius:50%"
+          class="white red--text px-2 mr-3 align-self-center d-flex justify-center align-center"
+          style="width:30px;height:30px;border:1px solid black;border-radius:50%"
         >
           1
         </div>
@@ -19,14 +19,14 @@
       </div>
       <div
         class="my-10 mx-10 d-flex justify-center"
-        style="width:300px;height:70px;border:1px solid black;border-radius:30px"
+        style="width:300px;height:70px;border:1px solid black;border-radius:20px"
         :class="{
           red1: component == 'shopping-car2' || component == 'shopping-car3'
         }"
       >
         <div
-          class="px-2 mr-3 align-self-center black--text"
-          style="height:30px;border:1px solid black;border-radius:50%"
+          class="px-2 mr-3 align-self-center black--text d-flex justify-center align-center"
+          style="width:30px;height:30px;border:1px solid black;border-radius:50%"
           :class="{
             red2: component == 'shopping-car2' || component == 'shopping-car3'
           }"
@@ -39,19 +39,18 @@
       </div>
       <div
         class="my-10 d-flex justify-center"
-        style="width:300px;height:70px;border:1px solid black;border-radius:30px"
+        style="width:300px;height:70px;border:1px solid black;border-radius:20px"
         :class="{ red1: component == 'shopping-car3' }"
       >
         <div
-          class="px-2 mr-3 align-self-center black--text"
-          style="height:30px;border:1px solid black;border-radius:50%"
+          class="px-2 mr-3 align-self-center black--text d-flex justify-center align-center"
+          style="width:30px;height:30px;border:1px solid black;border-radius:50%"
           :class="{ red2: component == 'shopping-car3' }"
         >
           3
         </div>
         <button class="text-h6 font-weight-bold" @click=";(component = 'shopping-car3'), gogo2">完成</button>
       </div>
-      ;
     </div>
     <div
       style="max-width:1200px;"
@@ -180,7 +179,6 @@
         </div>
         <button class="text-overline font-weight-bold" @click=";(component = 'shopping-car3'), gogo2">完成</button>
       </div>
-      ;
     </div>
     <div
       style="width:90%"
@@ -239,6 +237,9 @@ import ButtonNews from '../components/layout/ButtonNews.vue'
 import ButtonSubmit from '../components/layout/ButtonSubmit.vue'
 import Media from 'vue-media'
 export default {
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+  },
   components: {
     'shopping-car1': shoppingcar1,
     'shopping-car2': shoppingcar2,

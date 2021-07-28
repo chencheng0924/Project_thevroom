@@ -67,7 +67,7 @@
             </div>
             <div class="align-self-start ml-10">
               <div class="d-flex">
-                <button-submit buttonSubmit="註冊"></button-submit>
+                <button-submit buttonSubmit="登入"></button-submit>
                 <h6 class="align-self-end ml-10">
                   <router-link to="/signup">還不是會員嗎? 立即註冊</router-link>
                 </h6>
@@ -135,8 +135,8 @@
             </div>
             <div class="align-self-center">
               <div class="d-flex flex-column" style="width:100%">
-                <button-submit style="width:300px" buttonSubmit="註冊"></button-submit>
-                <h6 class="align-self-end ml-10">
+                <button-submit style="width:300px" buttonSubmit="登入"></button-submit>
+                <h6 class="align-self-end ml-10 mt-5">
                   <router-link to="/signup">還不是會員嗎? 立即註冊</router-link>
                 </h6>
               </div>
@@ -155,6 +155,9 @@
 import ButtonSubmit from '../components/layout/ButtonSubmit.vue'
 import Media from 'vue-media'
 export default {
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+  },
   components: { ButtonSubmit, Media },
   data () {
     return {

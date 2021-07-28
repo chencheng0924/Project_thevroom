@@ -1,8 +1,8 @@
 <template>
   <div>
     <media :query="{ minWidth: '401px' }">
-      <div class="wholepage d-flex">
-          <div class="insideWhole d-flex">
+      <div class="wholepage d-flex align-center">
+          <div class="insideWhole d-flex align-center">
               <div class="leftpart d-flex flex-column">
                   <the-headline titleName="近期競標場次" style="height: 100px;" class="pt-8 d-flex"></the-headline>
                   <div v-for="(item, index) in carList"
@@ -104,13 +104,13 @@ export default {
 <style lang="scss" scoped>
 .wholepage {
   width: 100vw;
-  height: 700px;
+  height: 900px;
   background-color: #181818;
     .insideWhole{
         // border: 1px solid yellow;
         width: 1200px;
         height: 650px;
-        margin: 20px auto 0 auto;
+        margin: 0 auto;
     }
     .leftpart {
     // border: 1px solid yellow;

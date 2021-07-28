@@ -12,16 +12,6 @@
                 <div>
                     <v-btn
                     rounded
-                    color="#F34841"
-                    class="rwdSAbtn"
-                    width="310"
-                    dark>
-                    開始競標
-                    </v-btn>
-                </div>
-                <div>
-                    <v-btn
-                    rounded
                     outlined
                     width="310"
                     color="#BFBDBD"
@@ -102,7 +92,7 @@
                 自動出價
                 </v-btn>
             </div>
-            <div class="ml-8 mt-10">
+            <div class="ml-8 mt-10 mb-5">
                 <v-expansion-panels style="width: 310px;">
                     <v-expansion-panel>
                         <v-expansion-panel-header style="background-color: #BFBDBD;" class="text-subtitle-1 font-weight-bold">
@@ -168,7 +158,7 @@ export default {
     }
     .rwdSAmid{
         width: 100%;
-        height: 1500px;
+        // height: 1500px;
         border: 1px solid yellow;
         .midTitle{
             .SAline{

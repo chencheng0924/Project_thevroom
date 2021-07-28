@@ -38,7 +38,7 @@
           </v-navigation-drawer>
         </div>
         <img class="indexBanrwd" src="../assets/rwdbanner.png">
-        <v-btn rounded outlined width="300px" class="btn white--text" to="/auctionoverview" style="position: absolute; z-index: 10; left: 50%; top: 800px; transform: translateX(-50%)">
+        <v-btn rounded outlined width="300px" class="btn white--text" to="/auctionoverview" style="position: absolute; z-index: 10; left: 50%; top: 700px; transform: translateX(-50%)">
             進入競標場
         </v-btn>
     </div>
