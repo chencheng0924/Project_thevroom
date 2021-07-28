@@ -16,9 +16,11 @@
             <v-spacer></v-spacer>
             <v-icon left class="mr-6" color="#FFFFFF">mdi-cart-outline</v-icon>
             <router-link to="/signin" tag="span" style="cursor: pointer">
-              <v-icon left class="mr-4" color="#FFFFFF">mdi-login</v-icon>
+              <v-icon left class="mr-6" color="#FFFFFF">mdi-login</v-icon>
             </router-link>
-            <!-- <v-icon left class="mr-4" color="#FFFFFF">mdi-account-circle-outline</v-icon> -->
+            <router-link to="/memberside" tag="span" style="cursor: pointer">
+            <v-icon left class="mr-4" color="#FFFFFF">mdi-account-circle-outline</v-icon>
+            </router-link>
             <!-- <v-icon left class="mr-4" color="#FFFFFF">mdi-logout</v-icon> -->
           </v-toolbar>
           <v-navigation-drawer v-model="sideNav" absolute temporary height="100vh" style="z-index: 20;">
@@ -56,7 +58,10 @@
             <v-spacer></v-spacer>
             <v-icon left class="mr-3" color="#181818">mdi-cart-outline</v-icon>
             <router-link to="/signin" tag="span" style="cursor: pointer">
-              <v-icon left class="mr-2" color="#181818">mdi-login</v-icon>
+              <v-icon left class="mr-3" color="#181818">mdi-login</v-icon>
+            </router-link>
+            <router-link to="/memberside" tag="span" style="cursor: pointer">
+            <v-icon left class="mr-1" color="#181818">mdi-account-circle-outline</v-icon>
             </router-link>
             <!-- <v-icon left class="mr-4" color="#FFFFFF">mdi-account-circle-outline</v-icon> -->
             <!-- <v-icon left class="mr-4" color="#FFFFFF">mdi-logout</v-icon> -->

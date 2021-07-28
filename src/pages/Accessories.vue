@@ -112,6 +112,9 @@
 </template>
 <script>
 export default {
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+  },
   data () {
     return {
       big: require('../assets/accessories-pic/aoto-part-banner2.jpg'),

@@ -4,9 +4,7 @@
             <div class="addTitleLine ml-6"></div>
             <div class="titleOne text-h5 font-weight-bold ml-5">{{ rwdtitle }}</div>
         </div>
-        <div>
-            <img :src="pathImg">
-        </div>
+        <img :src="pathImg">
     </div>
 </template>
 
@@ -18,6 +16,7 @@ export default {
 
 <style lang="scss">
 .rwdBanner{
+  max-height: 230px;
     .addTitle{
       width: 100%;
       height: 64px;

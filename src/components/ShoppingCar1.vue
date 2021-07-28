@@ -9,7 +9,7 @@
       :key="list.id"
     >
       <div class="py-3" style="width:15%;text-align:center;">
-        <img style="width:80px;height:80px" :src="list.proSrc" alt="圖壞了" />
+        <img style="width:100px; height: 100px; object-fit: contain;" class="fitImg" :src="list.proSrc" alt="圖壞了" />
       </div>
       <div class="py-3" style="width:45%;text-align:center;">
         {{ list.proName }}
@@ -35,7 +35,7 @@
     >
     <div class="d-flex justify-space-around" style="width:85%">
       <div class="py-3" style="width:35%;">
-        <img style="width:100px;height:100px" :src="list.proSrc" alt="圖壞了" />
+        <img style="width:100px; height: 100px; object-fit: contain;" :src="list.proSrc" alt="圖壞了" />
       </div>
       <div style="width:65%" class="ma-auto d-flex flex-column align-center">
         <div class="d-flex flex-column justify-center" style="width:75%" align-center>
@@ -94,3 +94,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.fitImg{
+  object-fit: cover;
+}
+</style>

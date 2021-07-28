@@ -1,4 +1,6 @@
 <template>
+<div>
+    <media :query="{ minWidth: '401px' }">
   <div class="aboutus" style="100%">
     <div class="leftandright d-flex">
       <!-- <div class="leftgo px-5 mr-3" @click="move"><i class="fas fa-caret-left"></i></div>
@@ -51,10 +53,41 @@
       </div>
     </div>
   </div>
+  </media>
+  <!-- -------------------------------------------------------------------------- -->
+  <media :query="{ maxWidth: '400px' }">
+  <div class="d-flex flex-column">
+    <div v-for="item in listM" :key="item.id" class="mb-10" style="max-width:375px">
+          <div  style="width:100%">
+            <v-img
+              class="white--text align-end"
+              style="height:220px"
+              :src="item.imgsrc"
+            >
+              <!-- <v-card-title>經典新款</v-card-title> -->
+            </v-img>
+
+            <v-card-subtitle class="text-h5 font-weight-bold">
+              {{ item.title }}
+              <div style="width:50%;height:3px" class="red"></div>
+            </v-card-subtitle>
+
+            <v-card-text class="text-subtitle-1 font-weight-light">
+              <div>
+                {{ item.info }}
+              </div>
+            </v-card-text>
+          </div>
+        </div>
+  </div>
+  </media>
+  </div>
 </template>
 
 <script>
+import Media from 'vue-media'
 export default {
+  components: { Media },
   data () {
     return {
       list: [
@@ -97,6 +130,35 @@ export default {
           title: '完整化服務',
           info:
             '購買車輛後不只提供牌照、燃料及車險等等一系列服務，在購車起算後一年內額外提供保固維修，讓你在購車之餘多享受一份安心。'
+        }
+      ],
+      listM: [
+        {
+          id: '1',
+          imgsrc: require('../assets/indexaboutus1.jpg'),
+          num: '01',
+          icon: 'fas fa-dna',
+          title: '系統化競價',
+          info:
+            '我們規劃出一套細膩的競價系統，以及透明化的出價紀錄，讓使用者能夠輕鬆競標，快樂得標．'
+        },
+        {
+          id: '2',
+          imgsrc: require('../assets/indexaboutus2.jpg'),
+          num: '01',
+          icon: 'fas fa-dna',
+          title: '專業化團隊',
+          info:
+            '結合最優秀、專業之車檢人員並引進日本最先進的車輛檢查技術，為拍賣流通之車輛作把關，使會員於競拍車輛時更能快速、即時判斷車況及行情，競標到自己屬意的車輛。'
+        },
+        {
+          id: '3',
+          imgsrc: require('../assets/indexaboutus3.jpg'),
+          num: '01',
+          icon: 'fas fa-dna',
+          title: '透明化車況',
+          info:
+            '由合格認證的專業查定士，對於車輛進行22部位，共105項的檢查及鑑定；並將查定的結果於『查定結果表』上忠實呈現，一舉將目前拍賣車無法啟動檢視的風險降至最低！'
         }
       ],
       train: 0,

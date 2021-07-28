@@ -50,60 +50,145 @@
               </div>
               <div class="d-flex justify-center mt-3 text-subtitle-1 font-weight-medium">性能舒適性 專為卓越汽車打造</div>
             </div>
-          </v-card>
-        </div>
 
-        <div class="inside_middle" style="width:600px; height:100%">
-          <component :is="component"></component>
-        </div>
+            <div class="inside_middle" style="width:600px; height:100%">
+              <component :is="component"></component>
+            </div>
 
-        <div class="inside_right d-flex flex-column justify-space-between" style="width:300px; height:100%">
-          <div style="height:265px">
-            <v-date-picker
-              v-model="date1"
-              :events="arrayEvents"
-              event-color="green lighten-1"
-              dark
-              width="299"
-            ></v-date-picker>
-          </div>
-          <div>
-            <v-card width="300" height="560" style="border: 2px solid #000" class="d-flex flex-column justify-space-between">
-              <div style="width: 100%; height: 10%"  class="d-flex align-center">
-                <div style="font-size: 20px; font-weight: bold;" class="pl-4 text-h6 font-weight-bold">當日排程</div>
+            <div
+              class="inside_right d-flex flex-column justify-space-between"
+              style="width:300px; height:100%"
+            >
+              <div style="height:265px">
+                <v-date-picker
+                  v-model="date1"
+                  :events="arrayEvents"
+                  event-color="green lighten-1"
+                  dark
+                  width="299"
+                ></v-date-picker>
               </div>
-              <div style="height: 90%; width: 100%;" class="d-flex flex-column justify-space-around align-center">
-                <div v-for="date in dates" :key="date" style="border: 1px solid #000; border-radius:5px; width:260px; height:130px" class="d-flex flex-column justify-space-around">
-                  <div class="d-flex">
-                    <div style="width: 60%" class="d-flex justify-center align-center text-subtitle-1 font-weight-light">{{ date.name }}</div>
-                    <div style="width: 40%; color:#F34841" class="d-flex justify-center align-center text-h6 font-weight-bold">{{ date.time }}</div>
+              <div>
+                <v-card
+                  width="300"
+                  height="560"
+                  style="border: 2px solid #000"
+                  class="d-flex flex-column justify-space-between"
+                >
+                  <div
+                    style="width: 100%; height: 10%"
+                    class="d-flex align-center"
+                  >
+                    <div
+                      style="font-size: 20px; font-weight: bold;"
+                      class="pl-4 text-h6 font-weight-bold"
+                    >
+                      當日排程
+                    </div>
                   </div>
-                  <div class="d-flex align-center pl-5 text-subtitle-1 font-weight-light">{{ date.reserve }} : {{ date.price }}</div>
-                  <div class="d-flex align-center pl-5 text-subtitle-1 font-weight-light">{{ date.title }} : {{ date.status }}</div>
-                </div>
+                  <div
+                    style="height: 90%; width: 100%;"
+                    class="d-flex flex-column justify-space-around align-center"
+                  >
+                    <div
+                      v-for="date in dates"
+                      :key="date.name"
+                      style="border: 1px solid #000; border-radius:5px; width:260px; height:130px"
+                      class="d-flex flex-column justify-space-around"
+                    >
+                      <div class="d-flex">
+                        <div
+                          style="width: 60%"
+                          class="d-flex justify-center align-center text-subtitle-1 font-weight-light"
+                        >
+                          {{ date.name }}
+                        </div>
+                        <div
+                          style="width: 40%; color:#F34841"
+                          class="d-flex justify-center align-center text-h6 font-weight-bold"
+                        >
+                          {{ date.time }}
+                        </div>
+                      </div>
+                      <div
+                        class="d-flex align-center pl-5 text-subtitle-1 font-weight-light"
+                      >
+                        {{ date.reserve }} : {{ date.price }}
+                      </div>
+                      <div
+                        class="d-flex align-center pl-5 text-subtitle-1 font-weight-light"
+                      >
+                        {{ date.title }} : {{ date.status }}
+                      </div>
+                    </div>
+                  </div>
+                </v-card>
               </div>
-            </v-card>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </media>
+    <!-- --------------------------------------------------------------------------------------------------------------- -->
+    <media :query="{ maxWidth: '400px' }">
+      <div>
+        <div
+          class="black white--text d-flex justify-space-around align-center"
+          style="height:70px"
+        >
+          <button
+            @click="(componentM = 'member-data-m'), gogo(num)"
+            :class="{ redgo: num == 1 }"
+          >
+            帳戶管理
+          </button>
+          <div class="grey" style="width:1px;height:35px"></div>
+          <button @click="(componentM = 'member-auction-m'), gogo2(num)"
+            :class="{ redgo: num == 2 }"
+          >賣場管理</button>
+          <div class="grey" style="width:1px;height:35px"></div>
+          <button @click="(componentM = ''), gogo3(num)"
+            :class="{ redgo: num == 3 }"
+          >貼文管理</button>
+          <div class="grey" style="width:1px;height:35px"></div>
+          <button @click="(componentM = ''), gogo4(num)"
+           :class="{ redgo: num == 4 }"
+          >我的追蹤</button>
+        </div>
+        <div>
+          <component :is="componentM"></component>
+        </div>
+        <div>
+          <date-act />
+        </div>
+      </div>
+    </media>
   </div>
 </template>
 
 <script>
 import MemberData from '../components/MemberData.vue'
+import MemberDataM from '../components/MemberDateM.vue'
 import MemberAuction from '../components/MemberAuction.vue'
+import MemberAuctionM from '../components/MemberAuctionM.vue'
 import MemberBid from '../components/MemberBid.vue'
 import MemberArticle from '../components/MemberArticle.vue'
+import DateAct from '../components/DateAct.vue'
+import Media from 'vue-media'
 export default {
   components: {
     'member-data': MemberData,
+    'member-data-m': MemberDataM,
     'member-auction': MemberAuction,
+    'member-auction-m': MemberAuctionM,
     'member-bid': MemberBid,
-    'member-article': MemberArticle
+    'member-article': MemberArticle,
+    'date-act': DateAct,
+    Media
   },
   data: () => ({
     component: 'member-data',
+    componentM: 'member-data-m',
     dates: [
       {
         name: '2021 BMW 330i',
@@ -129,8 +214,34 @@ export default {
         title: '賣場狀態',
         status: '進行中'
       }
-    ]
-  })
+    ],
+    num: 1,
+    count1: 1,
+    count2: 2,
+    count3: 3,
+    count4: 4
+  }),
+  methods: {
+    gogo (num) {
+      this.num = num
+      this.num = this.count1
+    },
+    gogo2 (num) {
+      this.num = num
+      this.num = this.count2
+    },
+    gogo3 (num) {
+      this.num = num
+      this.num = this.count3
+    },
+    gogo4 (num) {
+      this.num = num
+      this.num = this.count4
+    }
+  },
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+  }
 }
 </script>
 
@@ -158,12 +269,17 @@ export default {
       // display: none;
       height: 60px;
     }
-    }
-    .v-date-picker-header {
-      padding: 0;
-    }
-    .v-date-picker-table {
-      height: 220px;
-    }
   }
+  .v-date-picker-header {
+    padding: 0;
+  }
+  .v-date-picker-table {
+    height: 220px;
+  }
+}
+.redgo{
+  background-color: red;
+  border-radius: 20px;
+  padding:5px
+}
 </style>

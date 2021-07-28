@@ -2,7 +2,7 @@
   <div id="app">
     <v-app>
       <the-header v-if="showheader"></the-header>
-      <div class="fixHeader">
+      <div class="fixHeader" :style="nomargin">
         <router-view />
       </div>
       <the-footer></the-footer>
@@ -19,7 +19,7 @@ import Home from './views/Home.vue'
 export default {
   data () {
     return {
-      // showheader: true
+      topstyle: 'margin-top: 64px;'
     }
   },
   components: {
@@ -30,6 +30,9 @@ export default {
   computed: {
     showheader () {
       return this.$store.getters.gethappy
+    },
+    nomargin () {
+      return this.$store.getters.getsad
     }
   }
 }

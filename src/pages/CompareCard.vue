@@ -415,6 +415,9 @@
 import Media from 'vue-media'
 import RwdBanner from '../components/layout/RwdBanner.vue'
 export default {
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+  },
   components: {
     Media,
     RwdBanner
