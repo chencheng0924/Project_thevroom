@@ -257,7 +257,7 @@ export default {
           }
           button {
             width: 100px;
-            background-color: red;
+            background-color: #F34841;
             color: #fff;
             height: 25px;
             border-radius: 5px;

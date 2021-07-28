@@ -96,6 +96,7 @@
                 name="input-7-4"
                 label="物件敘述"
                 value="請輸入物件敘述"
+                color="#181818"
                 ></v-textarea>
               </div>
             </div>
@@ -145,6 +146,7 @@
                   solo
                   outlined
                   dense
+                  color="#181818"
                   style="width: 100px;"
                   ></v-select>
                 </div>
@@ -292,7 +294,7 @@
           <div class="addConThree ml-6 d-flex flex-column justify-center">
             <div class="text-h5 font-weight-bold mb-16">恭喜開設拍賣會成功！</div>
             <div class="d-flex flex-column">
-              <v-btn rounded outlined width="330">回會員介面</v-btn>
+              <v-btn rounded outlined width="330" to="/memberside">回會員介面</v-btn>
               <v-btn rounded color="#F34841" class="btn mt-5" dark width="330" to="/"
                 >回首頁</v-btn>
             </div>
@@ -310,13 +312,11 @@ import AddpageFour from '../components/AddpageFour.vue'
 import Media from 'vue-media'
 
 export default {
-  name: 'app',
   mounted () {
-    this.$store.dispatch('happy', true)
+    this.$store.dispatch('happy', [true, 'margin-top:64px'])
   },
   data () {
     return {
-      path: require('../assets/index-select-car/car4.jpg'),
       options: {
         licenseKey: 'YOUR_KEY_HERE',
         afterLoad: this.afterLoad,

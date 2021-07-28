@@ -72,7 +72,7 @@
   <div class="d-flex flex-column">
     <div style="max-width:100%;max-height:500px">
       <img
-        style="display: block;;width:100%;height:300px"
+        style="display: block;;width:100%;"
         src="../assets/Issuepage1.jpg"
       />
     </div>
@@ -140,6 +140,9 @@
 <script>
 import Media from 'vue-media'
 export default {
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+  },
   components: {
     Media
   },

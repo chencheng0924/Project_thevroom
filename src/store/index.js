@@ -5,11 +5,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    happy: true
+    happy: true,
+    sad: 'margin-top: 64px'
   },
   mutations: {
     sethappy (state, payload) {
-      state.happy = payload
+      state.happy = payload[0]
+      state.sad = payload[1]
     }
   },
   actions: {
@@ -22,6 +24,10 @@ export default new Vuex.Store({
   getters: {
     gethappy (state) {
       return state.happy
+    },
+    getsad (state) {
+      console.log(state.sad)
+      return state.sad
     }
   }
 })

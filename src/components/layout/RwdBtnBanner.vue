@@ -11,14 +11,13 @@
                 </router-link>
             </div>
         </div>
-        <div>
-            <img src="../../assets/Issuepage1.jpg">
-        </div>
+        <img src="../../assets/Issuepage1.jpg">
     </div>
 </template>
 
 <style lang="scss">
 .rwdBanner{
+    max-height: 220px;
     .addTitle{
       width: 100%;
       height: 64px;

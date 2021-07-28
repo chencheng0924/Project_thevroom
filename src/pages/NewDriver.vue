@@ -122,6 +122,9 @@
 </template>
 <script>
 export default ({
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+  },
   data () {
     return {
       banner: require('../assets/new-driver-pic/new-driver-banner.jpg'),
@@ -220,7 +223,7 @@ div#banner{
     }
     img.chat{
     position: fixed;
-    z-index: 99;
+    z-index: 10;
     width:100px;
     top:300px;
     &:hover{

@@ -156,7 +156,7 @@
             style="width:90%"
           >
             <div class="mt-10 text-h5 font-weight-bold">{{ newli.title }}</div>
-            <div style="width:100%;height:5px;" class="orange"></div>
+            <div style="width:100%;height:5px; background-color: #F34841;" class="mt-5"></div>
             <div class="my-10">
               <img style="width:100%;height:100%" :src="newli.src" />
             </div>
@@ -174,7 +174,7 @@
         class="d-flex flex-column align-center justify-center ma-auto"
         style="max-width:1000px;max-height:100%">
         <div style="width:80%" class="text-h4 font-weight-bold justify-start">回應區</div>
-        <div style="width:90%;height:3px" class="orange"></div>
+        <div style="width:90%;height:3px; background-color: #F34841;" class="mt-3"></div>
         <div
           v-for="message in messagelist"
           :key="message"
@@ -210,7 +210,7 @@
           class="align-self-center grey lighten-2 px-3"
           style="width:50%;border-radius:15px;height:45px;outline:0"
         />
-        <v-btn class="align-self-center ml-5" rounded color="orange" dark
+        <v-btn class="align-self-center ml-5" rounded color="#F34841" dark
           >送出</v-btn
         >
       </div>
@@ -228,6 +228,9 @@
 import ReportDialogs from '../components/interactive/ReportDialogs.vue'
 import Media from 'vue-media'
 export default {
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+  },
   components: {
     ReportDialogs,
     Media

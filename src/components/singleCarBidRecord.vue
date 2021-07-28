@@ -77,7 +77,6 @@ export default {
         height: 630px;
         // border: 1px solid yellow;
         .bidTitle{
-            margin-top: 10px;
             width: 500px;
             height: 80px;
             // border: 1px solid lawngreen;

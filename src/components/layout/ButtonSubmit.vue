@@ -5,6 +5,7 @@
       color="#F34841"
       dark
       class="submitbutton"
+      :to="webPath"
     >
       {{ buttonSubmit }}
     </v-btn>
@@ -13,7 +14,7 @@
 
 <script>
 export default {
-  props: ['buttonSubmit']
+  props: ['buttonSubmit', 'webPath']
 }
 </script>
 

@@ -19,9 +19,9 @@
                         <v-list-item-content>
                           <v-list-item-title
                             @click="component = 'member-data'"
-                            class="d-flex justify-center font-weight-bold pa-6"
-                            style="cursor: pointer; font-size:18px"
-                            >帳戶</v-list-item-title
+                            class="d-flex justify-center text-h6 font-weight-bold pa-6"
+                            style="cursor: pointer;"
+                            >帳戶管理</v-list-item-title
                           >
                         </v-list-item-content>
                       </v-list-item>
@@ -30,8 +30,8 @@
                         <v-list-item-content>
                           <v-list-item-title
                             @click="component = 'member-auction'"
-                            class="d-flex justify-center font-weight-bold pa-6"
-                            style="cursor: pointer; font-size:18px"
+                            class="d-flex justify-center text-h6 font-weight-bold pa-6"
+                            style="cursor: pointer;"
                             >賣場管理</v-list-item-title
                           >
                         </v-list-item-content>
@@ -41,9 +41,9 @@
                         <v-list-item-content>
                           <v-list-item-title
                             @click="component = 'member-article'"
-                            class="d-flex justify-center font-weight-bold pa-6"
-                            style="cursor: pointer; font-size:18px"
-                            >最新消息</v-list-item-title
+                            class="d-flex justify-center text-h6 font-weight-bold pa-6"
+                            style="cursor: pointer;"
+                            >貼文管理</v-list-item-title
                           >
                         </v-list-item-content>
                       </v-list-item>
@@ -52,8 +52,8 @@
                         <v-list-item-content>
                           <v-list-item-title
                             @click="component = 'member-bid'"
-                            class="d-flex justify-center font-weight-bold pa-6"
-                            style="cursor: pointer; font-size:18px"
+                            class="d-flex justify-center text-h6 font-weight-bold pa-6"
+                            style="cursor: pointer;"
                             >我的追蹤</v-list-item-title
                           >
                         </v-list-item-content>
@@ -62,15 +62,14 @@
                   </v-list>
                 </div>
                 <div class="mb-12">
-                  <div style="font-size: 16px" class="d-flex justify-center">
+                  <div class="d-flex justify-center text-subtitle-1 font-weight-ligh">
                     贊助
                   </div>
                   <div class="d-flex justify-center mt-1">
                     <img src="../assets/sponsor(2).png" style="width:150px" />
                   </div>
                   <div
-                    style="font-size: 12px"
-                    class="d-flex justify-center mt-1"
+                    class="d-flex justify-center mt-1 text-subtitle-1 font-weight-ligh"
                   >
                     透過馳家保養您的愛車
                   </div>
@@ -81,8 +80,7 @@
                     />
                   </div>
                   <div
-                    style="font-size: 12px"
-                    class="d-flex justify-center mt-3"
+                    class="d-flex justify-center mt-3 text-subtitle-1 font-weight-ligh"
                   >
                     性能舒適性 專為卓越汽車打造
                   </div>
@@ -175,18 +173,30 @@
           class="black white--text d-flex justify-space-around align-center"
           style="height:70px"
         >
-          <button @click="(componentM = 'member-data-m')">
+          <button
+            @click="(componentM = 'member-data-m'), gogo(num)"
+            :class="{ redgo: num == 1 }"
+          >
             帳戶管理
           </button>
           <div class="grey" style="width:1px;height:35px"></div>
-          <button @click="(componentM = 'member-auction-m')">賣場管理</button>
+          <button @click="(componentM = 'member-auction-m'), gogo2(num)"
+            :class="{ redgo: num == 2 }"
+          >賣場管理</button>
           <div class="grey" style="width:1px;height:35px"></div>
-          <button>貼文管理</button>
+          <button @click="(componentM = 'member-article'), gogo3(num)"
+            :class="{ redgo: num == 3 }"
+          >貼文管理</button>
           <div class="grey" style="width:1px;height:35px"></div>
-          <button>我的追蹤</button>
+          <button @click="(componentM = 'member-bid'), gogo4(num)"
+            :class="{ redgo: num == 4 }"
+          >我的追蹤</button>
         </div>
         <div>
           <component :is="componentM"></component>
+        </div>
+        <div>
+          <date-act />
         </div>
       </div>
     </media>
@@ -200,6 +210,7 @@ import MemberAuction from '../components/MemberAuction.vue'
 import MemberAuctionM from '../components/MemberAuctionM.vue'
 import MemberBid from '../components/MemberBid.vue'
 import MemberArticle from '../components/MemberArticle.vue'
+import DateAct from '../components/DateAct.vue'
 import Media from 'vue-media'
 export default {
   components: {
@@ -209,6 +220,7 @@ export default {
     'member-auction-m': MemberAuctionM,
     'member-bid': MemberBid,
     'member-article': MemberArticle,
+    'date-act': DateAct,
     Media
   },
   data: () => ({
@@ -239,9 +251,30 @@ export default {
         title: '賣場狀態',
         status: '進行中'
       }
-    ]
+    ],
+    num: 1,
+    count1: 1,
+    count2: 2,
+    count3: 3,
+    count4: 4
   }),
   methods: {
+    gogo (num) {
+      this.num = num
+      this.num = this.count1
+    },
+    gogo2 (num) {
+      this.num = num
+      this.num = this.count2
+    },
+    gogo3 (num) {
+      this.num = num
+      this.num = this.count3
+    },
+    gogo4 (num) {
+      this.num = num
+      this.num = this.count4
+    }
   },
   mounted () {
     this.$store.dispatch('happy', true)
@@ -251,18 +284,18 @@ export default {
 
 <style lang="scss">
 .member {
-  border: 2px solid #00f;
+  // border: 2px solid #00f;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   height: 1200px;
   .member_out {
-    border: 1px solid #f20;
+    // border: 1px solid #f20;
     width: 100%;
     height: 905px;
     margin-top: 50px;
     .member_in {
-      border: 1px solid #000;
+      // border: 1px solid #000;
       max-width: 1200px;
       height: 100%;
       margin: 0 auto;
@@ -280,5 +313,10 @@ export default {
   .v-date-picker-table {
     height: 220px;
   }
+}
+.redgo{
+  background-color: red;
+  border-radius: 20px;
+  padding:5px
 }
 </style>

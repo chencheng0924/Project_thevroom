@@ -207,6 +207,9 @@ export default {
     'a-sign': AccSign,
     'a-rwd': AccRwd
   },
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+  },
   data () {
     return {
       component: 'a-suggestion',

@@ -254,7 +254,7 @@
           <v-card class="mx-2" max-width="300">
             <v-img
               class="white--text align-end"
-              style="height:220px"
+              style="height:150px"
               :src="carnew.src"
             >
               <v-card-title>經典新款</v-card-title>
@@ -286,6 +286,9 @@
 import Media from 'vue-media'
 import ButtonBtnBanner from '../components/layout/RwdBtnBanner.vue'
 export default {
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+  },
   components: {
     Media,
     ButtonBtnBanner

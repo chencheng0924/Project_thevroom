@@ -6,20 +6,14 @@
         :key="item.id">
         <div style="border:2px solid #181818;border-radius:20px;width:95%;height:100%" class="ma-auto">
         <div class="d-flex flex-column mt-5">
-          <div class="text-h5 font-weight-bold">Mercedes-Benz</div>
-          <div class="text-h5 font-weight-bold">GLE 350 4MATIC</div>
+          <div class="text-h5 font-weight-bold">{{ item.brand }}</div>
+          <div class="text-h5 font-weight-bold">{{ item.series }}</div>
           <div class="mt-2"></div>
         </div>
         <div class="aoCardImg">
           <img style="width:200px;height:150px" :src="item.imgsrc" />
         </div>
         <div class="aoCardCon d-flex flex-column">
-          <div class="con text-subtitle-1 font-weight-medium">
-            {{ item.brand }}
-          </div>
-          <div class="con text-subtitle-1 font-weight-medium">
-            {{ item.series }}
-          </div>
           <div class="con text-subtitle-1 font-weight-medium">
             {{ item.conOne }}
           </div>
@@ -36,7 +30,7 @@
             {{ item.conFive }}
           </div>
         </div>
-        <button-submit buttonSubmit='進入競標場' />
+          <button-submit class="mt-10" buttonSubmit='進入競標場' webPath='/AuctionOverview'/>
         </div>
       </v-carousel-item>
   </v-carousel>
