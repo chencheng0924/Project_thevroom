@@ -185,26 +185,14 @@
     <!-- ---------------------------------------------------------------- -->
     <media :query="{ maxWidth: '400px' }">
       <div>
+        <rwd-banner rwdtitle="市場行情" :pathImg="banner"/>
         <div
           class="compare_info"
-          style="max-width: 375px; height: 2000px; border: 2px solid #00f"
+          style="max-width: 375px; height: 1800px;"
         >
-          <div
-            class="title mt-8"
-            style="width: 100%; border: 1px solid #f20;"
-          >
-            <h3
-              class="title_name text-h5 font-weight-bold d-flex justify-space-between align-center"
-              style="width: 350px; margin: 0 auto; border:1px solid black"
-            >
-            車款比較
-            <div style="border-radius:10px; width:67%; height:8px; background-color:#F34841"></div>
-            </h3>
-          </div>
 
           <div
-            class="card"
-            style="width: 100%; border: 1px solid #f20"
+            style="width: 100%; margin-top: 120px"
           >
             <v-card
               outline
@@ -215,22 +203,22 @@
             >
               <div
                 class="d-flex"
-                style="border: 1px solid blue; width: 330px; height:180px"
+                style="width: 330px; height:180px"
               >
                 <ul
                   class="text-h6 font-weight-bold d-flex flex-column justify-space-between"
                   style="list-style: none; padding:0; width: 30%;">
                   <li
                     class="d-flex justify-center align-center"
-                    style="border: 1px solid #000; height:46px"
+                    style="height:46px"
                   >車廠</li>
                   <li
                     class="d-flex justify-center align-center"
-                    style="border: 1px solid #000; height:46px"
+                    style="height:46px"
                   >車系</li>
                   <li
                     class="d-flex justify-center align-center"
-                    style="border: 1px solid #000; height:46px"
+                    style="height:46px"
                   >車款</li>
                 </ul>
                 <ul
@@ -239,7 +227,7 @@
                 >
                   <li
                     class="d-flex justify-center align-center"
-                    style="border: 1px solid black">
+                  >
                     <v-select
                       :items="items"
                       label="請選擇車廠"
@@ -250,7 +238,7 @@
                   </li>
                   <li
                     class="d-flex justify-center align-center"
-                    style="border: 1px solid black">
+                  >
                     <v-select
                       :items="brands"
                       label="請選擇車款"
@@ -261,7 +249,7 @@
                   </li>
                   <li
                     class="d-flex justify-center align-center"
-                    style="border: 1px solid black">
+                  >
                     <v-select
                       :items="version"
                       label="請選擇車系"
@@ -275,27 +263,27 @@
 
               <div
                 class="d-flex justify-space-between"
-                style="border:1px solid black; width:330px; height:120px"
+                style="width:330px; height:120px"
               >
                 <div
-                  style="border:1px solid red; width:49%; height:100%; background-color:gray;"
+                  style="width:49%; height:100%; background-color:gray;"
                 ></div>
                 <div
-                  style="border:1px solid red; width:49%; height:100%; background-color:gray;"
+                  style="width:49%; height:100%; background-color:gray;"
                 ></div>
               </div>
 
-              <div style="border:1px solid blue; width:330px">
+              <div style="width:330px">
                 <v-btn rounded color="#F34841" dark width="330" height="40" to="/compareinside">開始比較</v-btn>
               </div>
             </v-card>
           </div>
 
-          <div style="border:1px solid red; width: 100%" class="mt-10">
-            <div style="border:1px solid black; width:350px; margin: 0 auto;">
+          <div style="width: 100%" class="mt-10">
+            <div style="width:350px; margin: 0 auto;">
               <h3
                 class="text-h6 font-weight-bold d-flex justify-space-between align-center"
-                style="border:1px solid blue; width:100%"
+                style="width:100%"
               >
                 熱門新車PK
                 <div
@@ -307,36 +295,36 @@
 
           <div
             class="mt-10 d-flex flex-column justify-space-between"
-            style="border:1px solid red; width: 100%; height:550px"
+            style="width: 100%; height:550px"
           >
             <div
               v-for="image in images"
               :key="image"
               class="d-flex justify-space-between"
-              style="border:1px solid black; width:350px; height:120px; margin:0 auto;"
+              style="width:350px; height:120px; margin:0 auto;"
             >
               <div style="position: absolute; margin-top:45px; margin-left:130px">
                 <v-btn rounded color="#F34841" dark width="90" height="25" to="/compareinside">開始比較</v-btn>
               </div>
               <div
-                style="border:1px solid red; width:49%; height:100%;"
+                style="width:49%; height:100%;"
               >
                 <img :src="image.src" style="width:100%; height:100%">
               </div>
 
               <div
-                style="border:1px solid red; width:49%; height:100%;"
+                style="width:49%; height:100%;"
               >
                 <img :src="image.src02" style="width:100%; height:100%">
               </div>
             </div>
           </div>
 
-          <div style="border:1px solid red; width: 100%" class="mt-10">
-            <div style="border:1px solid black; width:350px; margin: 0 auto;">
+          <div style="width: 100%" class="mt-10">
+            <div style="width:350px; margin: 0 auto;">
               <h3
                 class="text-h6 font-weight-bold d-flex justify-space-between align-center"
-                style="border:1px solid blue; width:100%"
+                style="width:100%"
               >
                 熱門配件專區
                 <div
@@ -348,11 +336,11 @@
 
             <div
               class="mt-10 d-flex flex-column justify-space-between"
-              style="border:1px solid red; width: 100%; height:500px"
+              style="width: 100%; height:500px"
             >
               <div
                 class="d-flex justify-space-between"
-                style="border:1px solid black; width:350px; margin:0 auto;"
+                style="width:350px; margin:0 auto;"
               >
                 <div
                   style="border:2px solid red; width:49%; height:230px;"
@@ -379,7 +367,7 @@
 
               <div
                 class="d-flex justify-space-between"
-                style="border:1px solid black; width:350px; margin:0 auto;"
+                style="width:350px; margin:0 auto;"
               >
                 <div
                   style="border:2px solid red; width:49%; height:230px;"
@@ -412,12 +400,14 @@
 
 <script>
 import Media from 'vue-media'
+import RwdBanner from '../components/layout/RwdBanner.vue'
 export default {
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
   },
   components: {
-    Media
+    Media,
+    RwdBanner
   },
   data: () => ({
     cols: 'true',
@@ -489,7 +479,8 @@ export default {
         src: require('../assets/compare-car-pic/newcar07.png'),
         src02: require('../assets/compare-car-pic/newcar08.png')
       }
-    ]
+    ],
+    banner: require('../assets/123.png')
   })
 }
 </script>
@@ -592,7 +583,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     .card_photo{
-    border: 1px solid #f20;
+    // border: 1px solid #f20;
     width: 350px;
     height: 200px;
     background-color: lightgray;
@@ -659,17 +650,17 @@ export default {
 }
 
 .middle_outside{
-  border: 1px solid #f20;
+  // border: 1px solid #f20;
   width: 100%;
   margin-top: 30px;
   .compare_middle{
-  border: 1px solid #000;
+  // border: 1px solid #000;
   width: 1200px;
   height: 1300px;
   margin: 0 auto;
   display: flex;
   .compare_middle_left{
-    border: 1px solid #00f;
+    // border: 1px solid #00f;
     width: 73%;
     height: 1070px;
     display: flex;
@@ -685,7 +676,7 @@ export default {
     }
   }
   .compare_middle_right{
-    border: 1px solid green;
+    // border: 1px solid green;
     width: 27%;
     height: 1300px;
     display: flex;

@@ -1,10 +1,12 @@
 <template>
   <div>
+    <media :query="{ minWidth: '401px' }">
+      <div>
     <div class="banner">
       <img style="width:100%;height:700px" :src="big" class="big" />
     </div>
     <div
-      style="width:80%"
+      style="width:100%"
       class="ma-auto my-10 d-flex flex-column justify-center align-center"
     >
       <div class="align-self-start ma-auto" style="width:80%">
@@ -13,45 +15,81 @@
         </h1>
       </div>
       <div class="main">
-        <div class="accessories">
+        <div class="accessories" style="postition:sticky;">
           <span class="search">搜尋配件</span>
           <ul class="productList">
-            <span>雨刷</span>
-            <li>硬骨型</li>
-            <li>軟骨型</li>
-            <li>後窗專用型</li>
+            <span class="grouptitle"
+            :class="{'-active':component === 'a-rain'}"
+                  @click="component='a-rain'"
+                  style="cursor:pointer;">雨刷</span>
+            <li :class="{'-active':component === 'a-stiff-rain'}"
+                        @click="component='a-stiff-rain'">硬骨型</li>
+            <li :class="{'-active':component === 'a-soft-rain'}"
+                         @click="component='a-soft-rain'">軟骨型</li>
+            <li :class="{'-active':component === 'a-back-rain'}"
+                   @click="component='a-back-rain'">後窗專用型</li>
           </ul>
           <ul class="productList">
-            <span>小燈/方向燈/煞車燈</span>
-            <li>小燈/方向燈/第三煞車燈</li>
-            <li>牌照燈</li>
+            <span class="grouptitle"
+            :class="{'-active':component === 'a-light'}"
+                  @click="component='a-light'"
+                  style="cursor:pointer;">小燈/方向燈/煞車燈</span>
+            <li :class="{'-active':component === 'a-small-light'}"
+                      @click="component='a-small-light'">小燈/方向燈/第三煞車燈</li>
+            <li :class="{'-active':component === 'a-broad-light'}"
+                      @click="component='a-board-light'" >牌照燈</li>
           </ul>
           <ul class="productList">
-            <span>音響</span>
-            <li>高音揚聲器</li>
-            <li>低音砲管</li>
+            <span class="grouptitle"
+            :class="{'-active':component === 'a-speaker'}"
+                  @click="component='a-speaker'"
+                  style="cursor:pointer;">音響</span>
+            <li :class="{'-active':component === 'a-speaker-high'}"
+                  @click="component='a-speaker-high'"
+                  style="cursor:pointer;">高音揚聲器</li>
+            <li :class="{'-active':component === 'a-speaker-low'}"
+                  @click="component='a-speaker-low'"
+                  style="cursor:pointer;">低音砲管</li>
           </ul>
           <ul class="productList">
-            <span>胎壓偵測器</span>
-            <li>胎內</li>
-            <li>胎外</li>
+            <span class="grouptitle"
+            :class="{'-active':component === 'a-wheel'}"
+                  @click="component='a-wheel'"
+                  style="cursor:pointer;">胎壓偵測器</span>
+            <li :class="{'-active':component === 'a-inside-wheel'}"
+                  @click="component='a-inside-wheel'"
+                  style="cursor:pointer;">胎內</li>
+            <li :class="{'-active':component === 'a-outside-wheel'}"
+                  @click="component='a-outside-wheel'"
+                  style="cursor:pointer;">胎外</li>
           </ul>
           <ul class="productList">
-            <span>救車/哇電/警告標誌</span>
-            <li>電源供應器</li>
-            <li>千斤頂</li>
-            <li>警告標示</li>
+            <span class="grouptitle"
+            :class="{'-active':component === 'a-save'}"
+                  @click="component='a-save'"
+                  style="cursor:pointer;">救車/哇電/警告標誌</span>
+            <li
+            :class="{'-active':component === 'a-power'}"
+                  @click="component='a-power'"
+                  style="cursor:pointer;">電源供應器</li>
+            <li
+            :class="{'-active':component === 'a-kg'}"
+                  @click="component='a-kg'"
+                  style="cursor:pointer;">千斤頂</li>
+            <li
+            :class="{'-active':component === 'a-sign'}"
+                  @click="component='a-sign'"
+                  style="cursor:pointer;">警告標示</li>
           </ul>
-          <span class="btn text-subtitle-1 font-weight-light">搜尋</span>
         </div>
         <div class="productList">
+          <component :is="component" class="component"></component>
           <div class="product" v-for="items in productList" :key="items">
             <img :src="items.imgURL" />
             <br />
             <span class="title text-subtitle-1 font-weight-bold">{{
               items.title
             }}</span>
-            <br />
             <span class="size">{{ items.size }}</span>
             <br />
             <div class="information d-flex justify-space-around align-center">
@@ -108,298 +146,84 @@
         </div>
       </div>
     </div>
-  </div>
+      </div>
+  </media>
+      <media :query="{ maxWidth: '400px' }">
+        <div>
+          <div class="rwdbanner">
+            <rwd-banner rwdtitle="配件專區" :pathImg="pathimg"></rwd-banner>
+          </div>
+          <div class="main">
+          <component :is="'a-rwd'" class="component"></component>
+          </div>
+        </div>
+      </media>
+     </div>
 </template>
 <script>
+import RwdBanner from '../components/layout/RwdBanner.vue'
+import ARain from '../components/AccessoriesRain.vue'
+import ALight from '../components/AccessoriesLight.vue'
+import ASpeaker from '../components/AccessoriesSpeaker.vue'
+import AWheel from '../components/AccessoriesWheel.vue'
+import ASave from '../components/AccessoriesSave.vue'
+import ASuggestion from '../components/AccessoriesSuggestion.vue'
+import AccSoftRain from '../components/AccSoftRain.vue'
+import AccStiffRain from '../components/AccStiffRain.vue'
+import AccBackRain from '../components/AccBackRain.vue'
+import AccSmallLight from '../components/AccSmallLight.vue'
+import AccBoardLight from '../components/AccBroadLight.vue'
+import AccSpeakerHigh from '../components/AccSpeakerHigh.vue'
+import AccSpeakerLow from '../components/AccSpeakerLow.vue'
+import AccInsideWheel from '../components/AccInsideWheel.vue'
+import AccOutsideWheel from '../components/AccOutsideWheel.vue'
+import AccKg from '../components/AccKg.vue'
+import AccPower from '../components/AccPower.vue'
+import AccSign from '../components/AccSign.vue'
+import AccRwd from '../components/AccRwd.vue'
+import Media from 'vue-media'
+
 export default {
+  components: {
+    Media,
+    RwdBanner,
+    'a-rain': ARain,
+    'a-light': ALight,
+    'a-speaker': ASpeaker,
+    'a-wheel': AWheel,
+    'a-save': ASave,
+    'a-suggestion': ASuggestion,
+    'a-soft-rain': AccSoftRain,
+    'a-stiff-rain': AccStiffRain,
+    'a-back-rain': AccBackRain,
+    'a-small-light': AccSmallLight,
+    'a-board-light': AccBoardLight,
+    'a-speaker-high': AccSpeakerHigh,
+    'a-speaker-low': AccSpeakerLow,
+    'a-inside-wheel': AccInsideWheel,
+    'a-outside-wheel': AccOutsideWheel,
+    'a-kg': AccKg,
+    'a-power': AccPower,
+    'a-sign': AccSign,
+    'a-rwd': AccRwd
+  },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
   },
   data () {
     return {
+      component: 'a-suggestion',
+      pathimg: require('../assets/accessories-pic/aoto-part-banner2.jpg'),
       big: require('../assets/accessories-pic/aoto-part-banner2.jpg'),
-      house: require('../assets/accessories-pic/house.png'),
-      productList: [
-        {
-          pid: 1,
-          imgURL: require('../assets/accessories-pic/rain/soft_rain.jpeg'),
-          id: 'softrain158',
-          title: 'BOSCH 新款軟骨雨刷',
-          size: '16吋',
-          price: '$158',
-          ds: [
-            '乾淨優異的刷拭表現 - 經德國萊因TUV測試，在連續刷拭20萬次考驗下，仍有優異表現，測試分數更大幅領先同級競爭品牌。',
-            '空氣動力學導流板設計 - Bosch專利設計，能降低氣流的干擾，將雨刷壓力均勻分布於車窗表面，高速行駛下的穩定度。',
-            '安靜順暢的使用體驗 - 特殊的石墨塗層，有效解決跳動與噪音困擾，安靜又安心的好選擇'
-          ]
-        },
-        {
-          pid: 2,
-          imgURL: require('../assets/accessories-pic/rain/soft_rain_1068.jpeg'),
-          id: 'softrain1068',
-          title: 'PIAA 歐系通用雨刷 Si-TECH 軟骨',
-          size: '24吋',
-          price: '$1068',
-          ds: [
-            '多種接頭，90%可讓歐洲車使用',
-            '擦拭後玻璃形成撥水效果，不留痕',
-            '有效降低雨刷跳動及雜音',
-            '耐熱、抗氧化、高壽命',
-            '高質量的矽膠撥水雨刷'
-          ]
-        },
-        {
-          pid: 3,
-          imgURL: require('../assets/accessories-pic/rain/back_rain369.png'),
-          id: 'backrain369',
-          title: 'CARBUFF 日系車後雨刷',
-          size: 'M-GRA30款 12吋/305mm',
-          price: '$369',
-          ds: [
-            '日系車規格適用',
-            '採用日本膠條，流暢、穩壓',
-            '塗敷超微粒子膠條，刷的更乾淨',
-            '節式穩壓設計，受力更均勻',
-            '撥水效果佳，降低磨擦異音產生'
-          ]
-        },
-        {
-          pid: 4,
-          imgURL: require('../assets/accessories-pic/rain/back_rain550.webp'),
-          id: 'backrain550',
-          title: 'BOSCH後雨刷 C4-RJ13-330',
-          size: '13吋/330mm',
-          price: '$550',
-          ds: [
-            'BOSCH 原廠專用後雨刷(非通用型',
-            '本雨刷不適用於前擋風玻璃',
-            '選購前請在確認圖示雨刷接頭、尺寸是否與需求相符'
-          ]
-        },
-        {
-          pid: 5,
-          imgURL: require('../assets/accessories-pic/rain/stiff_rain245.webp'),
-          id: 'stiffrain245',
-          title: 'CARBUFF 硬骨雨刷',
-          size: '12吋',
-          price: '$245',
-          ds: [
-            '一般12吋雨刷大多用在後擋風玻璃',
-            '採用日本膠條',
-            '有效減緩玻璃摩擦',
-            '有效降低異音產生',
-            '可增加穩定度、撥水效果佳'
-          ]
-        },
-        {
-          pid: 6,
-          imgURL: require('../assets/accessories-pic/light/broad_1288.jpeg'),
-          id: 'light1288',
-          title: 'RF 牌照燈組Yaris',
-          price: '$1288',
-          ds: [
-            '壽命較傳統鹵素燈泡長',
-            '高亮度，採用台灣大廠LED',
-            '型號與原車一致，不需改線路，直接安裝',
-            '低耗能，有效減少電路、電瓶負擔'
-          ]
-        },
-        {
-          pid: 7,
-          imgURL: require('../assets/accessories-pic/light/broad_audi1288.jpeg'),
-          id: 'lightaudi1288',
-          title: 'RF牌照燈組AUDI A4/A5/Q5 ',
-          price: '$1288',
-          ds: [
-            '壽命較傳統鹵素燈泡長',
-            '高亮度，採用台灣大廠LED',
-            '型號與原車一致，不需改線路，直接安裝',
-            '低耗能，有效減少電路、電瓶負擔'
-          ]
-        },
-        {
-          pid: 8,
-          imgURL: require('../assets/accessories-pic/light/light_blue780.jpeg'),
-          id: 'lightblue780',
-          title: '【OSRAM】T10 LED藍光 ',
-          size: 'OSRAM 2880BL 2入',
-          price: '$780',
-          ds: [
-            '不需改裝，安裝簡易，各種車款皆適用',
-            '創新照明科技，2次光學設計不刺眼，行車更安全',
-            'LED壽命達5000小時',
-            '與標準燈相比節能效益達80%'
-          ]
-        },
-        {
-          pid: 9,
-          imgURL: require('../assets/accessories-pic/light/light_stop100.jpeg'),
-          id: 'lightstop100',
-          title: '第三煞車燈 黃光橘光',
-          price: '$100',
-          ds: [
-            '商品特點：採用黑色耐熱底座',
-            '晶片種類：13顆 5050 SMD LED，側面3顆*4，正面1顆',
-            '底座規格：T10',
-            'LED是電子零件，為了給您最高品質的產品，我們一律使用抗靜電包裝防止LED遭靜電擊穿，確保產品的最高品質'
-          ]
-        },
-        {
-          pid: 10,
-          imgURL: require('../assets/accessories-pic/light/light_stop930.jpeg'),
-          id: 'lightstop930',
-          title: 'FOCUS MK3專用煞車燈',
-          size: '2入',
-          price: '$930',
-          ds: [
-            '紅光如火焰般火紅、完美焊接點 精良組奘品質',
-            '長時間點亮不會光衰',
-            'LED溫度遠較燈泡低，不會將燈座熔掉',
-            '燈泡只要點燈5秒鐘，就燙到手無法摸；而LED只是微溫'
-          ]
-        },
-        {
-          pid: 11,
-          imgURL: require('../assets/accessories-pic/speaker/speaker.jpg'),
-          id: 'speaker1500',
-          title: 'BOSS 音頻SVC低音炮',
-          size: 'P10SVC 1200W',
-          price: '$1500',
-          ds: [
-            '許多現代車輛的空間有限，因此很難安裝傳統的低音炮。我們設計了一系列低調的低音炮， 以適應這些深度受限的空間，以提供優質的音頻性能，而不會因缺乏深度而受到影響'
-          ]
-        },
-        {
-          pid: 12,
-          imgURL: require('../assets/accessories-pic/speaker/speaker_3.jpg'),
-          id: 'speaker4800',
-          title: 'Sondpex雙端口無源低音炮外殼',
-          size: ' 450W 帶 2"x5" 喇叭高音揚聲器和LED',
-          price: '$5500',
-          ds: [
-            '通用 8" 雙端口無源 450W 低音炮外殼，帶有兩個 2"x5" 喇叭高音揚聲器和 Sondpex® 的 LED。 使用 Sondpex 的這款產品為您的立體聲系統添加重擊聲，開始派對。'
-          ]
-        },
-        {
-          pid: 13,
-          imgURL: require('../assets/accessories-pic/speaker/speaker_4.jpg'),
-          id: 'speaker4800',
-          title: 'Audiopipe歐姆低音砲管',
-          size: 'Audiopipe® - AP-DX',
-          price: '$3600',
-          ds: [
-            'Audiopipe® 的通用 AP-DX 系列 10" 500W 4 歐姆單前向發射端口有源低音砲管。Audiopipe 提供的產品必定會擊中現場並滿足那些選擇完美性價比的客戶的目的。'
-          ]
-        },
-        {
-          pid: 14,
-          imgURL: require('../assets/accessories-pic/speaker/speaker_5.jpg'),
-          id: 'speaker4800',
-          title: 'DS18® 鋁製超級子彈頭高音揚聲器',
-          size: 'PRO 1240W VC',
-          price: '$900',
-          ds: [
-            'DS18® 的 Universal PRO 1" 240W VC 鋁製超級子彈頭高音揚聲器。成對出售。阻抗：4 歐姆。 在美國設計和設計，DS18 PRO 高音揚聲器是專業音頻/Voceteo 市場的頂級產品。'
-          ]
-        },
-        {
-          pid: 15,
-          imgURL: require('../assets/accessories-pic/save/kgs850.webp'),
-          id: 'kgs',
-          title: '象王 車用油壓千斤頂',
-          size: '5T',
-          price: '$900',
-          ds: [
-            '愛車急救必備工具',
-            '隨貨附贈：專屬精美收納盒',
-            '使用簡單，粉領族都可輕易上手',
-            '小巧好收納不佔車內空間',
-            '多種用途，汽車、堆疊重物皆可使用'
-          ]
-        },
-        {
-          pid: 16,
-          imgURL: require('../assets/accessories-pic/save/power2088_red.jpeg'),
-          id: 'powerred',
-          title: '電力坦克電源供應器 ',
-          size: '4000cc 汽油',
-          price: '$2088',
-          ds: [
-            'USB輸出兩組 可充 智慧型手機 總和為5V  3A輸出',
-            'USB輸出等同行動電源24000mA',
-            '內建3W LED 有4種模式 100%亮 50%亮 閃爍模式 長按SOS模式'
-          ]
-        },
-        {
-          pid: 17,
-          imgURL: require('../assets/accessories-pic/save/sign150.jpeg'),
-          id: 'sign',
-          title: '警告標誌',
-          price: '$150',
-          ds: [
-            '三角架裡的"驚嘆號"為鉚釘接合,無法另外拆除',
-            '可折疊'
-          ]
-        },
-        {
-          pid: 18,
-          imgURL: require('../assets/accessories-pic/save/sign_led.jpeg'),
-          id: 'signled',
-          title: '警告標誌 極光LED三角警示架',
-          price: '$558',
-          ds: [
-            'LED燈亮光明顯，本產品含27顆高亮度LED燈，主動示警可以避免二次車禍。',
-            '具發光與閃爍雙模式',
-            '夜間可是距離達500公尺'
-          ]
-        },
-        {
-          pid: 19,
-          imgURL: require('../assets/accessories-pic/aboutwheel/inside_t254680.jpeg'),
-          id: 'inside_wheel',
-          title: 'TPMS胎內Mio MiTire T25 胎壓模組',
-          price: '$3200',
-          ds: [
-            'MiTIRE T25 KIT USB式胎壓偵測套件，與行車記錄器完美結合。適當的胎壓與胎溫能有效預防爆胎事故，提高駕駛安全，同時能節省油耗與維持輪胎抓地力，並延長輪胎使用壽命，增加駕駛舒適性。MiTIRE T25 KIT通過NCC認證，是您最佳選擇。',
-            '通過BSMI檢磁認證',
-            '台灣設計、製造'
-          ]
-        },
-        {
-          pid: 20,
-          imgURL: require('../assets/accessories-pic/aboutwheel/outside1190.jpeg'),
-          id: 'outside_wheel',
-          title: 'TTP-Q5外部太陽能胎壓胎溫偵測器',
-          price: '$1190',
-          ds: [
-            '多種接頭，90%可讓歐洲車使用',
-            '擦拭後玻璃形成撥水效果，不留痕',
-            '有效降低雨刷跳動及雜音',
-            '耐熱、抗氧化、高壽命',
-            '高質量的矽膠撥水雨刷'
-          ]
-        },
-        {
-          pid: 21,
-          imgURL: require('../assets/accessories-pic/aboutwheel/orange_inside.jpeg'),
-          id: 'inside_wheel7988',
-          title: '儀錶板整合型胎壓偵測器',
-          size: 'OrangeVW/Audi/Skoda專用',
-          price: '$7988',
-          ds: [
-            '多種接頭，90%可讓歐洲車使用',
-            '擦拭後玻璃形成撥水效果，不留痕',
-            '有效降低雨刷跳動及雜音',
-            '耐熱、抗氧化、高壽命',
-            '高質量的矽膠撥水雨刷'
-          ]
-        }
-      ]
+      house: require('../assets/accessories-pic/house.png')
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+div.rwdbanner{
+  display: none;
+}
 div.banner {
   img {
     max-width: 100%;
@@ -407,7 +231,8 @@ div.banner {
 }
 
 h1 {
-  margin: 20px 10px;
+  margin-bottom: 40px;
+  max-width:1200px;
   img {
     height: 30px;
   }
@@ -443,16 +268,16 @@ div.main {
     ul.productList {
       margin: 30px 10px;
       position: relative;
-      &:after {
-        position: absolute;
-        content: '';
-        background-color: #bfbdbd;
-        left: 0;
-        top: 100%;
-        width: 70%;
-        height: 2px;
-        margin-top: 15px;
-      }
+      // &:after {
+      //   position: absolute;
+      //   content: '';
+      //   background-color: #bfbdbd;
+      //   left: 0;
+      //   top: 100%;
+      //   width: 70%;
+      //   height: 2px;
+      //   margin-top: 15px;
+      // }
       span {
         position: relative;
         font-weight: bold;
@@ -466,6 +291,13 @@ div.main {
       li {
         list-style: none;
         margin: 15px 0;
+        cursor: pointer;
+      }
+      span.-active{
+        color:#f34841;
+      }
+      li.-active{
+        color:#f34841;
       }
     }
   }
@@ -504,17 +336,6 @@ div.main {
           position: absolute;
           vertical-align: middle;
           position: relative;
-          &:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 100%;
-            width: 250px;
-            height: 2px;
-            background-color: #bfbdbd;
-            margin-top: 10px;
-            transform: translateX(-20%);
-          }
         }
       }
     }

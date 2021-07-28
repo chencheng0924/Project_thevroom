@@ -19,8 +19,8 @@
                         <v-list-item-content>
                           <v-list-item-title
                             @click="component = 'member-data'"
-                            class="d-flex justify-center font-weight-bold pa-6"
-                            style="cursor: pointer; font-size:18px"
+                            class="d-flex justify-center text-h6 font-weight-bold pa-6"
+                            style="cursor: pointer;"
                             >帳戶管理</v-list-item-title
                           >
                         </v-list-item-content>
@@ -30,8 +30,8 @@
                         <v-list-item-content>
                           <v-list-item-title
                             @click="component = 'member-auction'"
-                            class="d-flex justify-center font-weight-bold pa-6"
-                            style="cursor: pointer; font-size:18px"
+                            class="d-flex justify-center text-h6 font-weight-bold pa-6"
+                            style="cursor: pointer;"
                             >賣場管理</v-list-item-title
                           >
                         </v-list-item-content>
@@ -41,9 +41,9 @@
                         <v-list-item-content>
                           <v-list-item-title
                             @click="component = 'member-article'"
-                            class="d-flex justify-center font-weight-bold pa-6"
-                            style="cursor: pointer; font-size:18px"
-                            >最新消息</v-list-item-title
+                            class="d-flex justify-center text-h6 font-weight-bold pa-6"
+                            style="cursor: pointer;"
+                            >貼文管理</v-list-item-title
                           >
                         </v-list-item-content>
                       </v-list-item>
@@ -52,8 +52,8 @@
                         <v-list-item-content>
                           <v-list-item-title
                             @click="component = 'member-bid'"
-                            class="d-flex justify-center font-weight-bold pa-6"
-                            style="cursor: pointer; font-size:18px"
+                            class="d-flex justify-center text-h6 font-weight-bold pa-6"
+                            style="cursor: pointer;"
                             >我的追蹤</v-list-item-title
                           >
                         </v-list-item-content>
@@ -62,15 +62,14 @@
                   </v-list>
                 </div>
                 <div class="mb-12">
-                  <div style="font-size: 16px" class="d-flex justify-center">
+                  <div class="d-flex justify-center text-subtitle-1 font-weight-ligh">
                     贊助
                   </div>
                   <div class="d-flex justify-center mt-1">
                     <img src="../assets/sponsor(2).png" style="width:150px" />
                   </div>
                   <div
-                    style="font-size: 12px"
-                    class="d-flex justify-center mt-1"
+                    class="d-flex justify-center mt-1 text-subtitle-1 font-weight-ligh"
                   >
                     透過馳家保養您的愛車
                   </div>
@@ -81,8 +80,7 @@
                     />
                   </div>
                   <div
-                    style="font-size: 12px"
-                    class="d-flex justify-center mt-3"
+                    class="d-flex justify-center mt-3 text-subtitle-1 font-weight-ligh"
                   >
                     性能舒適性 專為卓越汽車打造
                   </div>
@@ -186,12 +184,12 @@
             :class="{ redgo: num == 2 }"
           >賣場管理</button>
           <div class="grey" style="width:1px;height:35px"></div>
-          <button @click="(componentM = ''), gogo3(num)"
+          <button @click="(componentM = 'member-article'), gogo3(num)"
             :class="{ redgo: num == 3 }"
           >貼文管理</button>
           <div class="grey" style="width:1px;height:35px"></div>
-          <button @click="(componentM = ''), gogo4(num)"
-           :class="{ redgo: num == 4 }"
+          <button @click="(componentM = 'member-bid'), gogo4(num)"
+            :class="{ redgo: num == 4 }"
           >我的追蹤</button>
         </div>
         <div>
@@ -279,25 +277,25 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+    this.$store.dispatch('happy', true)
   }
 }
 </script>
 
 <style lang="scss">
 .member {
-  border: 2px solid #00f;
+  // border: 2px solid #00f;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   height: 1200px;
   .member_out {
-    border: 1px solid #f20;
+    // border: 1px solid #f20;
     width: 100%;
     height: 905px;
     margin-top: 50px;
     .member_in {
-      border: 1px solid #000;
+      // border: 1px solid #000;
       max-width: 1200px;
       height: 100%;
       margin: 0 auto;
