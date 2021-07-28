@@ -28,13 +28,11 @@
           <div
             style="max-width: 100%; height:100%;"
           >
-            <div style="width: 350px; margin: 0 auto;" class="mt-10">
-              <div style="width: 350px; height:800px; margin: 0 auto; overflow: auto;" class="d-flex flex-column">
-                <div style="border: 2px solid black; border-radius:10px; width: 330px; height:150px;" v-for="test in tests" :key="test" class="mb-4">
+            <div style="width: 350px; height:1200px; margin: 0 auto;" class="d-flex flex-column justify-space-around mt-10">
+              <div style="border: 2px solid black; border-radius:10px; width: 350px; height:150px;" v-for="test in tests" :key="test">
                 <div style="width:100%; height:70%" class="text-subtitle-1 font-weight-light pa-3">{{ test.word }}</div>
                 <div style="width:100%; height:30%" class="d-flex align-center justify-end pr-3"><v-btn color="#F34841" text>閱覽文章</v-btn></div>
               </div>
-            </div>
             </div>
           </div>
         </div>

@@ -137,8 +137,7 @@
       <div>
         <rwd-banner rwdtitle="市場行情" :pathImg="banner"/>
         <div
-          class="mt-10"
-          style="max-width: 375px; height: 2500px;"
+          style="max-width: 375px; height: 2600px; margin-top: 120px"
         >
           <div
             style="width: 100%;"

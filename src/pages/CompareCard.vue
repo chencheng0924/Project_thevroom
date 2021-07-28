@@ -188,24 +188,11 @@
         <rwd-banner rwdtitle="市場行情" :pathImg="banner"/>
         <div
           class="compare_info"
-          style="max-width: 375px; height: 2000px;"
+          style="max-width: 375px; height: 1800px;"
         >
-          <div
-            class="title mt-10"
-            style="width: 100%;"
-          >
-            <h3
-              class="title_name text-h5 font-weight-bold d-flex justify-space-between align-center"
-              style="width: 350px; margin: 0 auto;"
-            >
-            車款比較
-            <div style="border-radius:10px; width:67%; height:8px; background-color:#F34841"></div>
-            </h3>
-          </div>
 
           <div
-            class="mt-10"
-            style="width: 100%;"
+            style="width: 100%; margin-top: 120px"
           >
             <v-card
               outline
