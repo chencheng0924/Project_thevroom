@@ -4,17 +4,17 @@
       <div style="width: 100%; height: 900px;">
         <div style="width: 600px; height: 100%; margin: 0 auto;" class="d-flex justify-center align-center">
           <div style="width: 600px; height: 95%; overflow: auto;">
-              <div style="border: 2px solid black; border-radius:10px; width:570px; height:160px;" class="d-flex mb-6" v-for="test in tests" :key="test">
-                <div style="width:35%; height:100%" class="d-flex align-center justify-center">
-                  <img :src="test.img" style="width:85%; height:85%">
-                </div>
-                <div style="width:65%; height:100%">
-                  <div style="width: 100%; height: 70%;" class="pl-3 pt-3 pr-3 text-subtitle-1 font-weight-light">{{ test.word }}</div>
-                  <div style="width: 100%; height: 30%" class="d-flex justify-end align-center">
-                    <v-btn color="#F34841" text>閱覽文章</v-btn>
-                  </div>
+            <div style="border: 2px solid black; border-radius:10px; width:570px; height:160px;" class="d-flex mb-6" v-for="test in tests" :key="test">
+              <div style="width:35%; height:100%" class="d-flex align-center justify-center">
+                <img :src="test.img" style="width:85%; height:85%">
+              </div>
+              <div style="width:65%; height:100%">
+                <div style="width: 100%; height: 70%;" class="pl-3 pt-3 pr-3 text-subtitle-1 font-weight-light">{{ test.word }}</div>
+                <div style="width: 100%; height: 30%" class="d-flex justify-end align-center">
+                  <v-btn color="#F34841" text>閱覽文章</v-btn>
                 </div>
               </div>
+            </div>
           </div>
         </div>
       </div>
@@ -28,11 +28,13 @@
           <div
             style="max-width: 100%; height:100%;"
           >
-            <div style="width: 350px; height:1200px; margin: 0 auto;" class="d-flex flex-column justify-space-around">
-              <div style="border: 2px solid black; border-radius:10px; width: 350px; height:150px;" v-for="test in tests" :key="test">
+            <div style="width: 350px; margin: 0 auto;" class="mt-10">
+              <div style="width: 350px; height:800px; margin: 0 auto; overflow: auto;" class="d-flex flex-column">
+                <div style="border: 2px solid black; border-radius:10px; width: 330px; height:150px;" v-for="test in tests" :key="test" class="mb-4">
                 <div style="width:100%; height:70%" class="text-subtitle-1 font-weight-light pa-3">{{ test.word }}</div>
                 <div style="width:100%; height:30%" class="d-flex align-center justify-end pr-3"><v-btn color="#F34841" text>閱覽文章</v-btn></div>
               </div>
+            </div>
             </div>
           </div>
         </div>
