@@ -115,7 +115,7 @@
       <div class="gogo">
       <img :src="gogo" class="go">
       <br>
-      <button type="button" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--rounded theme--dark v-size--default" style="background-color: rgb(243, 72, 65); border-color: rgb(243, 72, 65);"><router-link to="/AuctionOverview" style='color:#ffffff' @click.prevent="setTimeout(driver,2000)">前往拍賣會場</router-link></button>
+      <button type="button" class=" carbtn v-btn v-btn--is-elevated v-btn--has-bg v-btn--rounded theme--dark v-size--default" style="background-color: rgb(243, 72, 65); border-color: rgb(243, 72, 65);" @click="driver">前往拍賣會場</button>
       </div>
     </div>
   </div>
@@ -127,6 +127,7 @@ export default ({
   },
   data () {
     return {
+      count: '',
       banner: require('../assets/new-driver-pic/new-driver-banner.jpg'),
       bannerSoul: '勝負心是促使人們前進的原動力',
       stepOne: require('../assets/new-driver-pic/step1-whitecar.png'),
@@ -188,6 +189,10 @@ export default ({
     driver () {
       const img = document.querySelector('.go')
       img.classList.add('isActive')
+      setTimeout(() => this.$router.push({ path: '/AuctionOverview' }), 3000)
+    },
+    created () {
+      setTimeout(() => this.$router.push({ path: '/AuctionOverview' }), 4000)
     }
   }
 })
@@ -385,14 +390,20 @@ div.buy{
   }
 
 @keyframes letsgo {
+  100%{
+    transform: scale(0.1);
+  }
   70%{
-    transform: scale(0.7);
+    transform: scale(0.1);
   }
   50%{
-     transform: scale(0.5);
+     transform: scale(0.3);
   }
   30%{
-    transform: scale(0.3);
+    transform: scale(0.5);
+  }
+  0%{
+    transform: scale(0.7);
   }
 }
 div.sell{
