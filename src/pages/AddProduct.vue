@@ -5,7 +5,7 @@
               <full-page ref="fullpage" :options="options" id="fullpage">
               <div class="section">
                   <addpage></addpage>
-                  <!-- <v-btn rounded outlined width="100" @click="$refs.fullpage.api.moveSectionDown()">上一步</v-btn> -->
+                  <v-btn rounded outlined width="100" @click="$refs.fullpage.api.moveSectionDown()">上一步</v-btn>
               </div>
               <div class="section">
                   <addpage-two></addpage-two>

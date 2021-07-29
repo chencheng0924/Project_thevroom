@@ -20,13 +20,7 @@
                 <div class="goBidTi text-h6 font-weight-bold">每口叫價</div>
                 <div class="goBidPr text-h6 font-weight-bold ml-2">5000</div>
                 <div class="goBidBtn ml-4">
-                    <v-btn
-                    rounded
-                    color="#F34841"
-                    class="btn"
-                    dark>
-                        <v-icon>mdi-gavel</v-icon>
-                    </v-btn>
+                    <bid-dialogs/>
                 </div>
                 <div class="checkAuto ml-16">
                     <v-checkbox
@@ -57,11 +51,13 @@
 <script>
 import bidRecord from './bidRecord.vue'
 import AuctionDialogs from './interactive/AuctionDialogs.vue'
+import BidDialogs from './interactive/BidDialogs.vue'
 
 export default {
   components: {
     bidRecord,
-    AuctionDialogs
+    AuctionDialogs,
+    BidDialogs
   }
 }
 </script>

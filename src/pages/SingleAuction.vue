@@ -6,9 +6,9 @@
               <div class="rightContent d-flex">
                   <div class="leftPoint d-flex flex-column justify-center">
                       <div class="leftDots d-flex flex-column justify-center">
-                          <span @click="moveback"></span>
-                          <span @click="moveright" class="mt-4"></span>
-                          <span @click="moveleft" class="mt-4"></span>
+                        <span @click="moveback"></span>
+                        <span @click="moveright" class="mt-4"></span>
+                        <span @click="moveleft" class="mt-4"></span>
                       </div>
                   </div>
                   <div class="rightIn d-flex flex-column align-center">
@@ -215,7 +215,7 @@ export default {
             // border: 1px solid blue;
             .leftDots{
                 // border: 1px solid yellow;
-                width: 100px;
+                width: 140px;
                 height: 200px;
                 position: relative;
                 z-index: 10;

@@ -14,16 +14,18 @@
                     @change="previewMultiImage"
                     class="form-control-file"
                     id="my-file"
+                    style="width:200px"
                   />
                   <!-- accept="image/*" -- 如只接受影像圖檔（包含 jpg、png、gif 等各種圖檔） -->
                 </div>
                 <div
-                  class="text-center pa-2"
-                  style="background-color:black;border-radius:20px;color:white;width:200px"
+                  class="text-center py-1"
+                  style="background-color:black;border-radius:20px;color:white;max-width:150px"
                 >
                   <button style="width:100px" @click.prevent="reset">刪除圖檔</button>
                 </div>
               </div>
+              <media :query="{ minWidth: '401px' }">
               <div class="border p-2 mt-3 d-flex">
                 <template v-if="preview_list.length">
                   <div v-for="(item, index) in preview_list" :key="index">
@@ -36,6 +38,21 @@
                   </div>
                 </template>
               </div>
+              </media>
+              <media :query="{ maxWidth: '400px' }">
+              <div class="border p-2 mt-3 d-flex flex-column">
+                <template v-if="preview_list.length">
+                  <div v-for="(item, index) in preview_list" :key="index">
+                    <img
+                      style="width:200px;height:200px"
+                      :src="item"
+                      class="img-fluid"
+                    />
+                    <p class="mb-0">檔案名稱: {{ image_list[index].name }}</p>
+                  </div>
+                </template>
+              </div>
+              </media>
             </div>
           </form>
         </div>
@@ -45,7 +62,11 @@
 </template>
 
 <script>
+import Media from 'vue-media'
 export default {
+  components: {
+    Media
+  },
   data () {
     return {
       preview: null,

@@ -34,12 +34,20 @@
                     </v-btn>
                   </template>
 
+<<<<<<< HEAD
                   <v-card style="height:365px">
+=======
+                  <v-card style="min-height:250px">
+>>>>>>> 77b963d3f95b86036381c6c4d6eee67ff0fbe998
                     <v-card-title class="text-h5 orange lighten-2">
                       商品細項
                     </v-card-title>
 
+<<<<<<< HEAD
                     <v-card-text style="height:250px">
+=======
+                    <v-card-text style="min-height:250px">
+>>>>>>> 77b963d3f95b86036381c6c4d6eee67ff0fbe998
                       <ol class="d-flex flex-column justify-center">
                         <li style="line-height:3" v-for="item in items.ds" :key="item">{{ item }}</li>
                       </ol>

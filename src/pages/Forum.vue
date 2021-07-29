@@ -137,6 +137,13 @@
             </v-card-actions>
           </v-card>
         </div>
+        <div class="text-center" style="width:100%">
+          <v-pagination
+            v-model="page"
+            :length="10"
+            :total-visible="5"
+          ></v-pagination>
+        </div>
       </div>
     </div>
     </media>
@@ -277,6 +284,13 @@
             </v-card-actions>
           </v-card>
         </div>
+        <div class="text-center" style="width:100%">
+          <v-pagination
+            v-model="page"
+            :length="10"
+            :total-visible="5"
+          ></v-pagination>
+        </div>
       </div>
      </div>
     </media>
@@ -295,6 +309,7 @@ export default {
   },
   data () {
     return {
+      page: 1,
       goimg: require('../assets/forum/Benz1.png'),
       count: null,
       active: false,
