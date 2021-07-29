@@ -105,13 +105,13 @@ export default {
           ease: 'slow'
         })
         .to('.bigC', {
-          x: 1200,
+          x: 1300,
           duration: 3,
           delay: 0.2,
           ease: 'power'
         })
         .to('.bigB', {
-          x: 1200,
+          x: 1300,
           duration: 3,
           ease: 'rough',
           delay: -2.8
@@ -130,7 +130,7 @@ export default {
           ease: 'slow'
         })
         .to('.mocaR', {
-          x: 1300,
+          x: 1400,
           duration: 2,
           opacity: 1,
           delay: -0.5
