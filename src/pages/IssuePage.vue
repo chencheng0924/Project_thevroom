@@ -101,10 +101,10 @@
         <div class="text-h6 font-weight-bold">主題:</div>
         <v-text-field :rules="rules"></v-text-field>
       </div>
-      <div class="d-flex justify-start align-center ma-auto mb-10"
+      <div class="d-flex flex-column justify-start align-start ma-auto mb-10"
         style="width:75%;">
           <div style="width:100px" class="text-h6 font-weight-bold">圖片上傳:</div>
-          <upload-image></upload-image>
+          <div style="max-width:200px"><upload-image></upload-image></div>
       </div>
       <div
         class="d-flex flex-column justify-start align-center ma-auto mb-10"

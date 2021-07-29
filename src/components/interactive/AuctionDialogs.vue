@@ -10,7 +10,7 @@
             v-on="on"
             width="50"
             dark
-          >END</v-btn>
+          >test</v-btn>
         </template>
         <template v-slot:default="dialog">
           <v-card>
@@ -27,9 +27,19 @@
             </v-card-text>
             <v-card-actions class="justify-end">
               <v-btn
+              rounded
+              outlined
+              color="#181818"
+              class="btn mr-4"
+              width="130"
+              to="/memberside"
+              dark>
+              回會員介面
+              </v-btn>
+              <v-btn
                 text
                 @click="dialog.value = false"
-              >Close</v-btn>
+              >關閉</v-btn>
             </v-card-actions>
           </v-card>
         </template>
