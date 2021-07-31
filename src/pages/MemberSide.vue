@@ -32,7 +32,7 @@
                             @click="component = 'member-auction'"
                             class="d-flex justify-center text-h6 font-weight-bold pa-6"
                             style="cursor: pointer;"
-                            >賣場管理</v-list-item-title
+                            >訂單管理</v-list-item-title
                           >
                         </v-list-item-content>
                       </v-list-item>
@@ -180,9 +180,9 @@
             帳戶管理
           </button>
           <div class="grey" style="width:1px;height:35px"></div>
-          <button @click="(componentM = 'member-auction-m'), gogo2(num)"
+          <button @click="(componentM = 'member-auction'), gogo2(num)"
             :class="{ redgo: num == 2 }"
-          >賣場管理</button>
+          >訂單管理</button>
           <div class="grey" style="width:1px;height:35px"></div>
           <button @click="(componentM = 'member-notify'), gogo3(num)"
             :class="{ redgo: num == 3 }"
@@ -207,7 +207,7 @@
 import MemberData from '../components/MemberData.vue'
 import MemberDataM from '../components/MemberDateM.vue'
 import MemberAuction from '../components/MemberAuction.vue'
-import MemberAuctionM from '../components/MemberAuctionM.vue'
+// import MemberAuctionM from '../components/MemberAuctionM.vue'
 import MemberBid from '../components/MemberBid.vue'
 import MemberArticle from '../components/MemberArticle.vue'
 import MemberNotify from '../components/MemberNotify.vue'
@@ -218,7 +218,7 @@ export default {
     'member-data': MemberData,
     'member-data-m': MemberDataM,
     'member-auction': MemberAuction,
-    'member-auction-m': MemberAuctionM,
+    // 'member-auction-m': MemberAuctionM,
     'member-bid': MemberBid,
     'member-article': MemberArticle,
     'date-act': DateAct,
