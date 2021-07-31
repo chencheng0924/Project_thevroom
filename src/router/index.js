@@ -20,7 +20,11 @@ import SignIn from '../pages/SignIn.vue'
 import MemberData from '../components/MemberData.vue'
 import MemberAuction from '../components/MemberAuction.vue'
 import MemberBid from '../components/MemberBid.vue'
+<<<<<<< HEAD
 import testg from '../components/testg.vue'
+=======
+import Test from '../components/Test.vue'
+>>>>>>> TY
 
 Vue.use(VueRouter)
 
@@ -141,9 +145,15 @@ const routes = [
     component: MemberBid
   },
   {
+<<<<<<< HEAD
     path: '/testg',
     name: 'testg',
     component: testg
+=======
+    path: '/test',
+    name: 'Test',
+    component: Test
+>>>>>>> TY
   }
 ]
 
