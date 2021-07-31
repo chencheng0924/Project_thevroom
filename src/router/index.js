@@ -22,9 +22,13 @@ import MemberAuction from '../components/MemberAuction.vue'
 import MemberBid from '../components/MemberBid.vue'
 <<<<<<< HEAD
 import testg from '../components/testg.vue'
+<<<<<<< HEAD
 =======
 import Test from '../components/Test.vue'
 >>>>>>> TY
+=======
+import MemberNotify from '../components/MemberNotify.vue'
+>>>>>>> 2d0873248876192b819de93590a4601886678a84
 
 Vue.use(VueRouter)
 
@@ -149,11 +153,19 @@ const routes = [
     path: '/testg',
     name: 'testg',
     component: testg
+<<<<<<< HEAD
 =======
     path: '/test',
     name: 'Test',
     component: Test
 >>>>>>> TY
+=======
+  },
+  {
+    path: '/membernotify',
+    name: 'MemberNotify',
+    component: MemberNotify
+>>>>>>> 2d0873248876192b819de93590a4601886678a84
   }
 ]
 

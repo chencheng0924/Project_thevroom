@@ -40,10 +40,10 @@
                       <v-list-item>
                         <v-list-item-content>
                           <v-list-item-title
-                            @click="component = 'member-article'"
+                            @click="component = 'member-notify'"
                             class="d-flex justify-center text-h6 font-weight-bold pa-6"
                             style="cursor: pointer;"
-                            >貼文管理</v-list-item-title
+                            >通知總攬</v-list-item-title
                           >
                         </v-list-item-content>
                       </v-list-item>
@@ -184,9 +184,9 @@
             :class="{ redgo: num == 2 }"
           >訂單管理</button>
           <div class="grey" style="width:1px;height:35px"></div>
-          <button @click="(componentM = 'member-article'), gogo3(num)"
+          <button @click="(componentM = 'member-notify'), gogo3(num)"
             :class="{ redgo: num == 3 }"
-          >貼文管理</button>
+          >通知總攬</button>
           <div class="grey" style="width:1px;height:35px"></div>
           <button @click="(componentM = 'member-bid'), gogo4(num)"
             :class="{ redgo: num == 4 }"
@@ -210,6 +210,7 @@ import MemberAuction from '../components/MemberAuction.vue'
 // import MemberAuctionM from '../components/MemberAuctionM.vue'
 import MemberBid from '../components/MemberBid.vue'
 import MemberArticle from '../components/MemberArticle.vue'
+import MemberNotify from '../components/MemberNotify.vue'
 import DateAct from '../components/DateAct.vue'
 import Media from 'vue-media'
 export default {
@@ -221,6 +222,7 @@ export default {
     'member-bid': MemberBid,
     'member-article': MemberArticle,
     'date-act': DateAct,
+    'member-notify': MemberNotify,
     Media
   },
   data: () => ({
