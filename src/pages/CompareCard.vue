@@ -94,89 +94,97 @@
               <v-btn rounded absolute color="#F34841" dark width="150" height="40" style="margin-top: 980px; margin-left: 360px;" to="/compareinside">比較結果</v-btn>
             </div>
             <div class="compare_middle_right">
-              <v-hover v-slot="{ hover }">
-                <div class="hotcar">
-                  <div class="hotcar_img_outside">
-                    <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 685px; right: 400px"> -->
-                    <img src="../assets/accessories-pic/speaker09.png" class="hotcar_img">
+              <v-card>
+                <v-hover v-slot="{ hover }">
+                  <div class="hotcar">
+                    <div class="hotcar_img_outside">
+                      <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 685px; right: 400px"> -->
+                      <img src="../assets/accessories-pic/wheel.jpg" class="hotcar_img" style="object-fit: contain">
+                    </div>
+                    <div class="hotcar_info">
+                      <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
+                      <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
+                      <v-expand-transition>
+                          <div
+                            v-if="hover"
+                            class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
+                          >
+                            去搶購
+                          </div>
+                        </v-expand-transition>
+                    </div>
                   </div>
-                  <div class="hotcar_info">
-                    <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
-                    <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
-                    <v-expand-transition>
-                        <div
-                          v-if="hover"
-                          class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
-                        >
-                          去搶購
-                        </div>
-                      </v-expand-transition>
-                  </div>
-                </div>
-              </v-hover>
+                </v-hover>
+              </v-card>
 
-              <v-hover v-slot="{ hover }">
-                <div class="hotcar">
-                  <div class="hotcar_img_outside">
-                    <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1020px; right: 400px"> -->
-                    <img src="../assets/accessories-pic/speaker/speaker.jpg" class="hotcar_img">
+              <v-card>
+                <v-hover v-slot="{ hover }">
+                  <div class="hotcar">
+                    <div class="hotcar_img_outside">
+                      <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1020px; right: 400px"> -->
+                      <img src="../assets/accessories-pic/speaker/speaker.jpg" class="hotcar_img" style="object-fit: contain">
+                    </div>
+                    <div class="hotcar_info">
+                      <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
+                      <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
+                      <v-expand-transition>
+                          <div
+                            v-if="hover"
+                            class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
+                          >
+                            去搶購
+                          </div>
+                        </v-expand-transition>
+                    </div>
                   </div>
-                  <div class="hotcar_info">
-                    <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
-                    <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
-                    <v-expand-transition>
-                        <div
-                          v-if="hover"
-                          class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
-                        >
-                          去搶購
-                        </div>
-                      </v-expand-transition>
-                  </div>
-                </div>
-              </v-hover>
+                </v-hover>
+              </v-card>
 
-              <v-hover v-slot="{ hover }">
-                <div class="hotcar">
-                  <div class="hotcar_img_outside">
-                    <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1355px; right: 400px"> -->
-                    <img src="../assets/accessories-pic/gps_icon.jpg" class="hotcar_img">
+              <v-card>
+                <v-hover v-slot="{ hover }">
+                  <div class="hotcar">
+                    <div class="hotcar_img_outside">
+                      <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1355px; right: 400px"> -->
+                      <img src="../assets/accessories-pic/gps_icon.jpg" class="hotcar_img" style="object-fit: contain">
+                    </div>
+                    <div class="hotcar_info">
+                      <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
+                      <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
+                      <v-expand-transition>
+                          <div
+                            v-if="hover"
+                            class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
+                          >
+                            去搶購
+                          </div>
+                        </v-expand-transition>
+                    </div>
                   </div>
-                  <div class="hotcar_info">
-                    <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
-                    <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
-                    <v-expand-transition>
-                        <div
-                          v-if="hover"
-                          class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
-                        >
-                          去搶購
-                        </div>
-                      </v-expand-transition>
-                  </div>
-                </div>
-              </v-hover>
+                </v-hover>
+              </v-card>
 
-              <v-hover v-slot="{ hover }">
-                <div class="hotcar">
-                  <div class="hotcar_img_outside">
-                    <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1690px; right: 400px"> -->
-                    <img src="../assets/accessories-pic/oil.png" class="hotcar_img">
+              <v-card>
+                <v-hover v-slot="{ hover }">
+                  <div class="hotcar">
+                    <div class="hotcar_img_outside">
+                      <!-- <img src="../../assets/logo-only(2).png" style="position: absolute; width: 75px; height: 50px; top: 1690px; right: 400px"> -->
+                      <img src="../assets/accessories-pic/oil.png" class="hotcar_img" style="object-fit: contain">
+                    </div>
+                    <div class="hotcar_info">
+                      <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
+                      <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
+                      <v-expand-transition>
+                          <div
+                            v-if="hover"
+                            class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
+                          >
+                            去搶購
+                          </div>
+                        </v-expand-transition>
+                    </div>
                   </div>
-                  <div class="hotcar_info">
-                    <div class="hotcar_title text-h6 font-weight-bold">Auston Martin</div>
-                    <div class="hotcar_price text-h6 font-weight-bold">$ 990W</div>
-                    <v-expand-transition>
-                        <div
-                          v-if="hover"
-                          class="d-flex transition-fast-in-fast-out v-card--reveal text-h6 font-weight-bold white--text"
-                        >
-                          去搶購
-                        </div>
-                      </v-expand-transition>
-                  </div>
-                </div>
-              </v-hover>
+                </v-hover>
+              </v-card>
             </div>
           </div>
         </div>
@@ -688,11 +696,11 @@ export default {
 }
 
 .hotcar{
-  border: 2px solid #F34841;
+  // border: 2px solid #F34841;
   width: 270px;
   height: 290px;
   .hotcar_img_outside{
-    border-bottom: 2px solid #F34841;
+    // border-bottom: 2px solid #F34841;
     width: 100%;
     height: 70%;
     .hotcar_img{

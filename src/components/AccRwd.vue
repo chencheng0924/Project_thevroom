@@ -60,7 +60,7 @@
               </div>
               <router-link to="/shoppingcar">
               <div>
-               <img :src="shoppingcart" alt="" style="height:30px">
+              <img :src="shoppingcart" alt="" style="height:30px">
               </div>
               </router-link>
             </div>

@@ -12,7 +12,7 @@
               <div class="middle_second">
                 <div class="middle_sec_in">
                   <div class="sec_in_img">
-                    <img src="../assets/compare-car-pic/hotcar01.png" class="sec_image">
+                    <img src="../assets/compare-car-pic/hotcar01.png" class="sec_image" style="object-fit: contain">
                   </div>
                   <div class="sec_in_select">
                     <ul style="list-style: none; padding: 10px 0 0 0; height: 100%" class="d-flex flex-column justify-space-around">
@@ -52,7 +52,7 @@
               <div class="middle_third">
                 <div class="middle_thr_in">
                   <div class="thr_in_img">
-                    <img src="../assets/compare-car-pic/hotcar02.png" class="thr_image">
+                    <img src="../assets/compare-car-pic/hotcar02.png" class="thr_image" style="object-fit: contain">
                   </div>
                   <div class="thr_in_select">
                     <ul style="list-style: none; padding: 10px 0 0 0; height: 100%" class="d-flex flex-column justify-space-around">
