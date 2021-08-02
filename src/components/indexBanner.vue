@@ -46,17 +46,19 @@
                     </div>
                 </div>
                 <!-- ----------------------------------------------- -->
-                <div class="banContent1 d-flex align-center justify-space-between mt-16" style="position: relative;">
-                    <div class="disappear2"></div>
-                    <div class="bigC1" style="width: 1000px; height: 500px; position: absolute; z-index: 20; bottom: 100%; left: 19%; opacity: 0;">
-                        <img class="circle" src="../assets/index-banner/ring.png">
-                        <img class="logoImgC" src="../assets/small_logowhite-transparent.png" style="width:200px; position: absolute; top: 45%; left: 38%; opacity: .5;">
+                <div class="disappear2"></div>
+                <div class="disappear3">
+                    <div class="bigC1" style="position: absolute; z-index: 20; opacity: 1; left: 50%; top: -100%; transform: translateX(-50%)">
+                        <img class="circle" src="../assets/index-banner/ring.png" style="width: 900px;">
+                        <img class="logoImgC" src="../assets/small_logowhite-transparent.png" style="width:200px; position: absolute; left: 50%; top: 50%; opacity: .5; transform: translate(-50%, -50%)">
                     </div>
-                    <div class="bigB1" style="width: 1000px; height: 500px; position: absolute; z-index: 20; bottom: 100%; left: 18%; opacity: 0;">
-                        <img class="circleT" src="../assets/index-banner/ring.png">
+                    <div class="bigB1" style="position: absolute; z-index: 20; opacity: 1; left: 50%; transform: translateX(-50%); top: -100%;">
+                        <img class="circleT" src="../assets/index-banner/ring.png" style="width: 900px;">
                     </div>
-                    <div class="mt-16">
-                        <img class="mocaR1" src="../assets/index-banner/ctwo.png" style="width: 700px; position: relative; left: -100%;">
+                </div>
+                <div class="banContent1 d-flex align-center justify-space-between mt-16 position: absolute;">
+                    <div>
+                        <img class="mocaR1" src="../assets/index-banner/ctwo.png" style="width: 600px; transform: translate(-100%, 30px)">
                     </div>
                     <div>
                         <div style="width: 600px; height: 500px;" class="alltitle1 d-flex flex-column justify-space-between mr-16">
@@ -97,45 +99,50 @@ export default {
     setTimeout(function () {
       gsap.timeline()
         .to('.bigC1', {
-          y: 630,
+          yPercent: 200,
           duration: 1.5,
           opacity: 1,
           ease: 'slow'
         })
         .to('.bigB1', {
-          y: 630,
+          yPercent: 200,
           duration: 1.5,
           opacity: 1,
           delay: -1.5,
           ease: 'slow'
         })
         .to('.bigC1', {
-          x: 1300,
+          xPercent: 100,
           duration: 3,
-          delay: 0.2,
+          delay: 0.5,
           ease: 'power'
         })
         .to('.bigB1', {
-          x: 1300,
+          xPercent: 100,
           duration: 3,
-          ease: 'rough',
+          ease: 'power',
           delay: -2.8
         })
         .to('.disappear2', {
           height: 0,
           duration: 1,
-          delay: -2,
+          delay: -1.3,
           ease: 'slow'
+        })
+        .to('.disappear3', {
+          height: 0,
+          duration: 0.8,
+          delay: -1.3
         })
         .to('.navbar', {
           y: 0,
           duration: 1,
           opacity: 1,
-          delay: -0.5,
+          delay: -0.3,
           ease: 'slow'
         })
         .to('.mocaR1', {
-          x: 900,
+          xPercent: 130,
           duration: 2,
           opacity: 1,
           delay: -0.5
@@ -181,35 +188,34 @@ export default {
             color: #FFFFFF;
         }
     }
+    .disappear2{
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        background-color: black;
+        z-index: 10;
+    }
+    .disappear3{
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        // background-color: orange;
+        z-index: 10;
+        .bigC1{
+            .circle{
+                animation: rCircle 2s linear infinite;
+            }
+        }
+        .bigB1{
+            .circleT{
+                animation: rCircle 2s linear infinite;
+            }
+        }
+    }
     .banContent1{
-        width: 100%;
-        height: 700px;
+        width: 100vw;
+        height: 100vh;
         margin: 0 auto;
-        .disappear2{
-            width: 100vw;
-            height: 100vh;
-            position: absolute;
-            background-color: black;
-            z-index: 10;
-        }
-        .circle{
-            width: 100%;
-            position: absolute;
-            z-index: 11;
-            // left: 15%;
-            // top: 1.8%;
-            opacity: .4;
-            animation: rCircle 2s linear infinite;
-        }
-        .circleT{
-            width: 100%;
-            position: absolute;
-            z-index: 11;
-            // left: 15%;
-            // top: 2%;
-            opacity: .4;
-            animation: rCircle 2s linear infinite;
-        }
     }
 }
 @keyframes rCircle {

@@ -21,10 +21,8 @@ import MemberData from '../components/MemberData.vue'
 import MemberAuction from '../components/MemberAuction.vue'
 import MemberBid from '../components/MemberBid.vue'
 import Test from '../components/Test.vue'
-<<<<<<< HEAD
 import MemberNotify from '../components/MemberNotify.vue'
-=======
->>>>>>> TY
+import testfileload from '../components/testfileload.vue'
 
 Vue.use(VueRouter)
 
@@ -145,6 +143,7 @@ const routes = [
     component: MemberBid
   },
   {
+<<<<<<< HEAD
     path: '/test',
     name: 'Test',
     component: Test
@@ -156,6 +155,16 @@ const routes = [
     component: MemberNotify
 =======
 >>>>>>> TY
+=======
+    path: '/testg',
+    name: 'testg',
+    component: testg
+  },
+  {
+    path: '/testfileload',
+    name: 'testfileload',
+    component: testfileload
+>>>>>>> mt
   }
 ]
 
