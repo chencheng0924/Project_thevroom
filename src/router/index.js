@@ -21,6 +21,7 @@ import MemberData from '../components/MemberData.vue'
 import MemberAuction from '../components/MemberAuction.vue'
 import MemberBid from '../components/MemberBid.vue'
 import testg from '../components/testg.vue'
+import testfileload from '../components/testfileload.vue'
 
 Vue.use(VueRouter)
 
@@ -144,6 +145,11 @@ const routes = [
     path: '/testg',
     name: 'testg',
     component: testg
+  },
+  {
+    path: '/testfileload',
+    name: 'testfileload',
+    component: testfileload
   }
 ]
 

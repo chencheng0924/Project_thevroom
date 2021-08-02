@@ -90,12 +90,14 @@
                                 上傳圖檔：
                             </v-col>
                             <v-col cols="2">
-                                <v-file-input
-                                    label="上傳圖片"
-                                    outlined
-                                    multiple
-                                    prepend-icon="mdi-camera"
-                                ></v-file-input>
+                                <v-form>
+                                    <v-file-input
+                                        label="上傳圖片"
+                                        outlined
+                                        prepend-icon="mdi-camera"
+                                        name="file"
+                                    ></v-file-input>
+                                </v-form>
                             </v-col>
                         </v-row>
                     </v-form>
@@ -114,6 +116,9 @@
 import AddLeft from './AddLeft.vue'
 
 export default {
+  components: {
+    AddLeft
+  },
   data: () => ({
     colorList: ['黑', '白', '銀', '灰', '紅', '藍', '棕', '綠', '黃', '紫', '其他'],
     airList: ['1200cc 以下', '1201cc~1800cc', '1801cc~2400cc', '2401cc~3000cc', '3001cc~3600cc', '3601cc 以上']
@@ -125,9 +130,6 @@ export default {
     reloadPage () {
       window.location.reload()
     }
-  },
-  components: {
-    AddLeft
   }
 }
 </script>
