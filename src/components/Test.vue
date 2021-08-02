@@ -9,7 +9,7 @@ export default {
   methods: {
     async gogoro () {
       const res = await fetch('http://localhost/test2.php')
-      console.dir(res)
+      console.log(res)
       const resdata = await res.json()
       console.log(resdata)
     }
