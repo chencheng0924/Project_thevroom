@@ -143,19 +143,16 @@ const routes = [
     component: MemberBid
   },
   {
-<<<<<<< HEAD
     path: '/test',
     name: 'Test',
     component: Test
-<<<<<<< HEAD
   },
   {
     path: '/membernotify',
     name: 'MemberNotify',
     component: MemberNotify
-=======
->>>>>>> TY
-=======
+  },
+  {
     path: '/testg',
     name: 'testg',
     component: testg
@@ -164,7 +161,6 @@ const routes = [
     path: '/testfileload',
     name: 'testfileload',
     component: testfileload
->>>>>>> mt
   }
 ]
 
