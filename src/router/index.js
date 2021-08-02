@@ -21,7 +21,10 @@ import MemberData from '../components/MemberData.vue'
 import MemberAuction from '../components/MemberAuction.vue'
 import MemberBid from '../components/MemberBid.vue'
 import Test from '../components/Test.vue'
+<<<<<<< HEAD
 import MemberNotify from '../components/MemberNotify.vue'
+=======
+>>>>>>> TY
 
 Vue.use(VueRouter)
 
@@ -145,11 +148,14 @@ const routes = [
     path: '/test',
     name: 'Test',
     component: Test
+<<<<<<< HEAD
   },
   {
     path: '/membernotify',
     name: 'MemberNotify',
     component: MemberNotify
+=======
+>>>>>>> TY
   }
 ]
 
