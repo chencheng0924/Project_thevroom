@@ -1,13 +1,13 @@
 <template>
   <div id="banner">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
     <div class="chat">
       <img :src="iconchat" alt="" class="chat">
       <span class="askQuestion">有問題嗎？</span>
-      <div class="questionblock" style="display:none">
-        <img :src="logochatbox" class="logochatbox">
+      <div class="questionblock" style="">
+        <img :src="logowhitewide" class="logochatbox">
         <br>
-        <img :src="logochat" alt="">
+        <img :src="logochat" alt="" class="logochat">
         <div class="questions" v-for="index in groupquestion" :key="index">{{index.group}}</div>
         <br>
         <img :src="customer" alt="">
@@ -18,8 +18,8 @@
     <div class="bannerWord">
         <span></span>
         <span class="text-h4 font-weight-bold">{{bannerSoul}}</span>
-        <p class="ad text-h6 font-weight-bold">TheVroom 讓你遇見夢想車款</p>
-        <p class="ad text-h6 font-weight-bold">與理想的自己相遇</p>
+        <p class="ad text-h6 font-weight-bold" style="margin-left:40px; margin-top:20px;">TheVroom 讓你遇見夢想車款</p>
+        <p class="ad text-h6 font-weight-bold" style="margin-left:40px;">與理想的自己相遇</p>
     </div>
     <div class="phonebannerpart">
        <img :src="phonebanner" alt="" class="phonebanner">
@@ -100,18 +100,25 @@
     <div class="sell">
       <h1 text-h4 font-weight-bold>新手買車-線上估價</h1>
       <form action="">
-       車輛廠牌：<input type="text" style="outline: none;">
+       車輛廠牌：<input type="text" class="input" placeholder="請輸入車輛廠牌" @focus="input()" @blur="inputblur()">
        <br>
-       出廠年份：<input type="text" style="outline: none;">
+       出廠年份：<input type="text" class="input" placeholder="請輸入出廠年份" >
        <br>
-       里程數：<input type="text" style="outline: none;">
+       里程數：<input type="text" class="input" placeholder="請輸入里程數">
        <br>
-       姓名：<input type="text" style="outline: none;">
+       姓名：<input type="text" class="input" placeholder="王小明">
        <br>
-       email：<input type="text" style="outline: none;">
+       email：<input type="text" class="input" placeholder="123@gmail.com" >
        <br>
-       <button>送出</button>
+       <button type="button" class="sellonline" @click="popup()">送出</button>
       </form>
+      <div class="overlay" @click="closebtn()"></div>
+      <div class="formSubmit" @keyup="keyesp()">
+        <span class="popup">表單已送出！</span>
+        <span class="closebtn" style="cursor:pointer" @click="closebtn()">✕</span>
+        <p text-subtitle-1 font-weight-light>謝謝您的詢問，我們會儘快由專人與您聯繫</p>
+        <img :src="logo" alt="">
+      </div>
       <div class="gogo">
       <img :src="gogo" class="go">
       <br>
@@ -124,6 +131,7 @@
 export default ({
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+    this.imgbelate()
   },
   data () {
     return {
@@ -140,6 +148,8 @@ export default ({
       logochatbox: require('../assets/logowhite-transparent.png'),
       phonebanner: require('../assets/new-driver-pic/forphone.jpg'),
       downArrow: require('../assets/new-driver-pic/down-arrow.png'),
+      logo: require('../assets/new-driver-pic/logowidth.png'),
+      logowhitewide: require('../assets/new-driver-pic/logowhite.png'),
       currentChoose: null,
       groupquestion: [
         { group: '競標相關' },
@@ -155,30 +165,37 @@ export default ({
         },
         {
           question: '我要怎麼知道自己已經得標？',
+          category: '競標相關',
           answer: '競標時間結束後，我們會寄出得標通知email給得標者，同時也會寄出候補信給第二高價者，因此記得您心儀車款截標時間，並前往您的信箱收信就對囉~'
         },
         {
           question: '得標後要怎麼付款?',
+          category: '競標相關',
           answer: '本站一律採取線上付款，相關分期方案請洽您的信用卡公司。'
         },
         {
           question: '得標後天內要完成付款?',
+          category: '競標相關',
           answer: '得標後請在3天內完成付款，逾期將視同棄標，累計兩次將會停止您的帳號。'
         },
         {
           question: '每一個人都可以開拍賣場嗎?',
+          category: '競標相關',
           answer: '只有高級會員可以開設拍賣場，相關會員方案請洽會員專區'
         },
         {
           question: '拍賣會場的「自動出價功能」是什麼意思？',
+          category: '競標相關',
           answer: '「自動出價功能」是一個提供您不用一直在電腦前也可以競標愛車的服務。只要設定好您的上限金額，系統會自動幫您出價，只要沒超過預算，時間一到您就會收到得標通知囉！'
         },
         {
           question: '賣車起標價格有規定嗎？',
+          category: '競標相關',
           answer: '拍賣車輛的起標價格完全由開設拍賣場的會員自行決定，一但產品上架拍賣，我們即視起標價格為您接受的最低成交價，因此請務必在開設拍賣場時設定一個可以接受的價格，避免您的權益受損。'
         },
         {
           question: '什麼是每口叫價？',
+          category: '競標相關',
           answer: '「每口叫價」為每次競標應出價的價格區間，例如起標價為30萬，每口叫價為2萬，則第一次叫價對低金額為32萬。本站每口叫價價格由賣家自行決定。'
 
         }
@@ -191,8 +208,54 @@ export default ({
       img.classList.add('isActive')
       setTimeout(() => this.$router.push({ path: '/AuctionOverview' }), 3000)
     },
-    created () {
-      setTimeout(() => this.$router.push({ path: '/AuctionOverview' }), 4000)
+    imgbelate () {
+      const lateimg = document.querySelector('img.chat')
+      lateimg.classList.add('active')
+    },
+    input () {
+      const inputcar = document.querySelectorAll('input')
+      for (let i = 0; i < inputcar.length; i++) {
+        inputcar[i].addEventListener('focus', function () {
+          this.placeholder = ''
+          this.classList.remove('input')
+          this.classList.add('focus')
+        })
+      }
+    },
+    inputblur () {
+      const inputcar = document.querySelectorAll('input')
+      const placeholders = ['請輸入車輛廠牌', '請輸入出廠年份', '請輸入里程數', '王小明', '123@gmail/hotmail.com']
+      for (let i = 0; i < inputcar.length; i++) {
+        inputcar[i].addEventListener('blur', function () {
+          for (let j = 0; j < placeholders.length; j++) {
+            if (i === j) {
+              inputcar[i].placeholder = placeholders[j]
+            }
+          }
+          this.classList.remove('focus')
+          this.classList.add('input')
+        })
+      }
+    },
+    popup () {
+      const overlay = document.querySelector('.overlay')
+      overlay.classList.add('displayBlock')
+      const popup = document.querySelector('.formSubmit')
+      popup.classList.add('displayBlock')
+    },
+    closebtn () {
+      const overlay = document.querySelector('.overlay')
+      overlay.classList.remove('displayBlock')
+      const popup = document.querySelector('.formSubmit')
+      popup.classList.remove('displayBlock')
+    },
+    keyesp (e) {
+      const overlay = document.querySelector('.overlay')
+      const popup = document.querySelector('.formSubmit')
+      if (e.key === 'Escape' && popup.classList.contains('displayBlack')) {
+        overlay.classList.remove('displayBlock')
+        popup.classList.remove('displayBlock')
+      }
     }
   }
 })
@@ -204,7 +267,6 @@ $parnerColor:#f34841;
 *{
   font-family:'Noto Sans';
 }
-
 div#banner{
   img.banner{
   max-width: 100%;
@@ -213,51 +275,85 @@ div#banner{
   div.chat{
     position: relative;
     border:1px solid #181818;
+    &:hover span.askQuestion{
+      display: block;
+    }
      >span.askQuestion{
       background-color:#bfbdbd;
       color:$parnerColor;
       position: fixed;
       z-index: 98;
-      width:150px;
+      width:100px;
       top:350px;
-      left:80px;
+      right:60px;
       text-align: center;
       padding:20px 20px;
       border-radius: 20px;
-      // display: none;
+      font-size: 12px;
+      display: none;
     }
     img.chat{
     position: fixed;
     z-index: 10;
-    width:100px;
+    width:80px;
     top:300px;
+    right:0;
+    cursor:pointer;
+    // display: none;
+    // transform: translateX(100%);
     &:hover{
       transform: scale(1.1);
       cursor: pointer;
     }
-    // &:hover span.askQuestion{
-    //   display: block;
-    // }
   }
+
+@keyframes showup {
+  0%{
+    transform: translateX(100%)
+  }
+  50%{
+    transform: translateX(-50%);
+  }
+  100%{
+    transform: translateX(-70%) scale(1.1);
+  }
+}
+
+  .active{
+    display: block;
+    // transform: translateX(100%);
+    animation-name: showup;
+    animation-duration: 2s;
+  }
+
   div.questionblock{
     background-color: #ffffff;
-    width:200px;
+    width:400px;
     position: absolute;
     right:100px;
     z-index: 99;
     img{
       width:30px;
     }
-    span.questions{
+    img.logochat{
+      margin-top:10px;
+    }
+    div.questions{
       background-color:#f34841;
       color:#ffffff;
       padding:5px 10px;
+      width:100px;
+      margin-bottom:10px;
+      border-radius: 20px;
+      text-align: center;
+      transform: translate(35%,-60%);
+      cursor: pointer;
     }
     img.logochatbox{
-      height:100px;
-      width:100px;
+      width:110px;
       background-color: #181818;
       object-fit: contain;
+      padding: 5px;
     }
   }
   }
@@ -406,6 +502,15 @@ div.buy{
     transform: scale(0.7);
   }
 }
+.focus{
+  outline:none;
+  border:2px solid #181818;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width:100%;
+  background-color:hsla(0, 100%,100%, .7);
+  box-shadow: hsla(0, 100%,100%, .7);
+}
 div.sell{
   width:1200px;
   margin:0 auto;
@@ -417,7 +522,7 @@ div.sell{
     font-size: 20px;
     padding:10px 20px;
     border-radius: 20px;
-    input{
+    .input{
       //  display: flex;
       // position: relative;
       border-bottom:1px solid hsla(0, 0%,0%, .5);
@@ -426,6 +531,7 @@ div.sell{
       width:100%;
       background-color:hsla(0, 100%,100%, .7);
       box-shadow: hsla(0, 100%,100%, .7);
+      outline: none;
       }
       button{
         color:#ffffff;
@@ -436,6 +542,52 @@ div.sell{
         border-radius: 20px;
         transform: translateX(50%);
       }
+    }
+    .overlay{
+      position: absolute;
+      background-color: rgba(0, 0,0, .6);
+      top:0;
+      left:0;
+      width:100%;
+      height: 100%;
+      display: none;
+    }
+    .formSubmit{
+        max-width:500px;
+        margin: 0 auto;
+        text-align: center;
+        border:1px solid #181818;
+        padding:20px 30px;
+        position: relative;
+        border-radius: 20px;
+        position: absolute;
+        top:30%;
+        left:35%;
+        background-color: #ffffff;
+        display: none;
+        z-index: 10;
+        span.popup{
+          color:#181818;
+          font-weight: bold;
+          font-size:1.2rem;
+        }
+        span.closebtn{
+          font-weight:bold;
+          font-size: 25px;
+          position: absolute;
+          right: 10px;
+          top:0;
+        }
+        p{
+          margin-top: 20px;
+          color:#181818;
+        }
+        img{
+          height:60px;
+        }
+    }
+    .displayBlock{
+      display: block;
     }
    .gogo{
      width:1000px;
