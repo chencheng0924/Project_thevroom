@@ -4,7 +4,7 @@
           <div id="app">
               <full-page ref="fullpage" :options="options" id="fullpage">
               <div class="section">
-                  <addpage></addpage>
+                  <addpage @testsub="testpp"></addpage>
                   <!-- <v-btn rounded outlined width="100" @click="$refs.fullpage.api.moveSectionDown()">上一步</v-btn> -->
               </div>
               <div class="section">
@@ -317,6 +317,7 @@ export default {
   },
   data () {
     return {
+      alldata: [],
       options: {
         licenseKey: 'YOUR_KEY_HERE',
         afterLoad: this.afterLoad,
@@ -325,7 +326,6 @@ export default {
         menu: '#menu',
         navigation: true,
         anchors: ['page1', 'page2', 'page3', 'page4']
-        // sectionsColor: ['#41b883', '#ff5f45', '#0798ec', '#fec401', '#1bcee6', '#ee1a59', '#2c3e4f', '#ba5be9', '#b4b8ab']
       },
       sorts: [
         '四門房車 / 旅行車 / 掀背車',
@@ -363,6 +363,20 @@ export default {
     AddpageThree,
     AddpageFour,
     Media
+  },
+  methods: {
+    testpp (val) {
+      // this.alldata.push(val)
+      // console.log(this.alldata)
+      console.log(val)
+      // const formdata = new FormData()
+      // formdata.append('yoone', val)
+      // // console.log(formdata)
+      // fetch('/testinsert.php', {
+      //   method: 'POST',
+      //   body: formdata
+      // })
+    }
   }
 }
 </script>

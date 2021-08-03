@@ -8,7 +8,6 @@
                     <div class="line mt-1"></div>
                 </div>
                 <div class="mt-16">
-                    <v-form>
                         <v-row>
                             <v-col cols="2" class="auName mt-1 ml-7">
                                 拍賣品名稱：
@@ -19,10 +18,12 @@
                                 placeholder="請輸入拍賣會名稱"
                                 outlined
                                 dense
+                                v-model="acName"
+                                name="yoone"
                                 ></v-text-field>
+                                <v-btn @click="test">123</v-btn>
                             </v-col>
                         </v-row>
-                    </v-form>
                 </div>
                 <div class="mt-6">
                     <v-row>
@@ -140,6 +141,17 @@ export default {
     },
     reloadPage () {
       window.location.reload()
+    },
+    test () {
+      // console.log(this.acName)
+      this.$emit('testsub', this.acName)
+      const formdata = new FormData()
+      formdata.append('yoone', this.acName)
+      // console.log(formdata)
+      fetch('/testinsert.php', {
+        method: 'POST',
+        body: formdata
+      })
     }
   },
   components: {

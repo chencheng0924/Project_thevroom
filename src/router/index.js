@@ -153,11 +153,6 @@ const routes = [
     component: MemberNotify
   },
   {
-    path: '/testg',
-    name: 'testg',
-    component: testg
-  },
-  {
     path: '/testfileload',
     name: 'testfileload',
     component: testfileload
