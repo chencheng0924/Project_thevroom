@@ -320,12 +320,22 @@
 import ButtonSubmit from '../components/layout/ButtonSubmit.vue'
 import Media from 'vue-media'
 export default {
+  async created () {
+    const res = await fetch('http://localhost:8080/testid.php')
+    const resdata = await res.json()
+    console.log(resdata)
+    resdata.forEach((list) => {
+      // console.log(list.ID)
+      this.alreadyHave.push(list.ID)
+    })
+  },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
   },
   components: { ButtonSubmit, Media },
   data () {
     return {
+      alreadyHave: [],
       bir: '',
       testlist: [],
       testlisttwo: [],
@@ -349,11 +359,23 @@ export default {
       ],
       year: [2021],
       month: [1, 2, 3],
-      day: [1, 2, 3]
+      day: [1, 2, 3],
+      randomId: 0
     }
   },
   methods: {
     testbtn () {
+      // 設置亂數
+      // this.randomId = Math.floor(Math.random() * 999)
+      // console.log(this.randomId)
+      // this.alreadyHave.forEach((idlist) => {
+      //   // console.log(idlist)
+      //   if (this.randomId === parseInt(idlist)) {
+      //     console.log(this.randomId)
+      //     this.randomId = Math.floor(Math.random() * 999)
+      //     console.log('id重複了掰')
+      //   }
+      // })
       console.log(this.testlist)
       console.log(this.selectyear)
       console.log(this.selectmonth)
@@ -361,14 +383,8 @@ export default {
       console.log(this.testlisttwo)
       this.bir = this.selectyear + '-' + this.selectmonth + '-' + this.selectday
       console.log(this.bir)
-      // const abc = this.items1
-      // console.log(abc)
-      // abc.forEach((a) => {
-      //   console.log(a)
-      // })
-      // this.testlist.push(this.test)
-      // console.log(this.testlist)
       const formdata = new FormData()
+      // formdata.append('ID', this.randomId)
       formdata.append('PASSWORD', this.testlist[1])
       formdata.append('EMAIL', this.testlist[0])
       formdata.append('ADDRESS', this.testlisttwo[1])

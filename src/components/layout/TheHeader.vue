@@ -21,7 +21,7 @@
             <router-link to="/memberside" tag="span" style="cursor: pointer">
             <v-icon left class="mr-4" color="#FFFFFF">mdi-account-circle-outline</v-icon>
             </router-link>
-            <!-- <v-icon left class="mr-4" color="#FFFFFF">mdi-logout</v-icon> -->
+            <v-icon left class="mr-4" color="#FFFFFF" v-if="changesign">mdi-logout</v-icon>
           </v-toolbar>
           <v-navigation-drawer v-model="sideNav" absolute temporary height="100vh" style="z-index: 20;">
             <v-list rounded>
@@ -127,6 +127,11 @@ export default {
   }),
   components: {
     Media
+  },
+  computed: {
+    changesign () {
+      return this.$store.getters.getmember
+    }
   }
 }
 </script>
