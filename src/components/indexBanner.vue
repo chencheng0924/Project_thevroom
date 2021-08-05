@@ -46,16 +46,16 @@
                     </div>
                 </div>
                 <!-- ----------------------------------------------- -->
-                <div class="disappear2"></div>
-                <div class="disappear3">
-                    <div class="bigC1" style="position: absolute; z-index: 20; opacity: 1; left: 50%; top: -100%; transform: translateX(-50%)">
+                <!-- <div class="disappear2"></div> -->
+                <!-- <div class="disappear3"> -->
+                    <!-- <div class="bigC1" style="position: absolute; z-index: 20; opacity: 1; left: 50%; top: -100%; transform: translateX(-50%)">
                         <img class="circle" src="../assets/index-banner/ring.png" style="width: 900px;">
                         <img class="logoImgC" src="../assets/small_logowhite-transparent.png" style="width:200px; position: absolute; left: 50%; top: 50%; opacity: .5; transform: translate(-50%, -50%)">
                     </div>
                     <div class="bigB1" style="position: absolute; z-index: 20; opacity: 1; left: 50%; transform: translateX(-50%); top: -100%;">
                         <img class="circleT" src="../assets/index-banner/ring.png" style="width: 900px;">
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div> -->
                 <div class="banContent1 d-flex align-center justify-space-between mt-16 position: absolute;">
                     <div>
                         <img class="mocaR1" src="../assets/index-banner/ctwo.png" style="width: 600px; transform: translate(-100%, 30px)">
@@ -98,47 +98,47 @@ export default {
   mounted () {
     setTimeout(function () {
       gsap.timeline()
-        .to('.bigC1', {
-          yPercent: 200,
-          duration: 1.5,
-          opacity: 1,
-          ease: 'slow'
-        })
-        .to('.bigB1', {
-          yPercent: 200,
-          duration: 1.5,
-          opacity: 1,
-          delay: -1.5,
-          ease: 'slow'
-        })
-        .to('.bigC1', {
-          xPercent: 100,
-          duration: 3,
-          delay: 0.5,
-          ease: 'power'
-        })
-        .to('.bigB1', {
-          xPercent: 100,
-          duration: 3,
-          ease: 'power',
-          delay: -2.8
-        })
-        .to('.disappear2', {
-          height: 0,
-          duration: 1,
-          delay: -1.3,
-          ease: 'slow'
-        })
-        .to('.disappear3', {
-          height: 0,
-          duration: 0.8,
-          delay: -1.3
-        })
+        // .to('.bigC1', {
+        //   yPercent: 200,
+        //   duration: 1.5,
+        //   opacity: 1,
+        //   ease: 'slow'
+        // })
+        // .to('.bigB1', {
+        //   yPercent: 200,
+        //   duration: 1.5,
+        //   opacity: 1,
+        //   delay: -1.5,
+        //   ease: 'slow'
+        // })
+        // .to('.bigC1', {
+        //   xPercent: 100,
+        //   duration: 3,
+        //   delay: 0.5,
+        //   ease: 'power'
+        // })
+        // .to('.bigB1', {
+        //   xPercent: 100,
+        //   duration: 3,
+        //   ease: 'power',
+        //   delay: -2.8
+        // })
+        // .to('.disappear2', {
+        //   height: 0,
+        //   duration: 1,
+        //   delay: -1.3,
+        //   ease: 'slow'
+        // })
+        // .to('.disappear3', {
+        //   height: 0,
+        //   duration: 0.8,
+        //   delay: -1.3
+        // })
         .to('.navbar', {
           y: 0,
           duration: 1,
           opacity: 1,
-          delay: -0.3,
+          delay: 0,
           ease: 'slow'
         })
         .to('.mocaR1', {

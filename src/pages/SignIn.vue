@@ -187,6 +187,7 @@ export default {
         alert('87帳密錯誤')
       } else {
         this.$store.dispatch('membersign', resdata)
+        this.$router.replace('/') // 成功登入後導入首頁
       }
     }
   }
