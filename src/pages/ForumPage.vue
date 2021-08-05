@@ -14,7 +14,7 @@
                 style="width:20%"
               >
                 <i style="font-size:36px" class="fas fa-portrait"></i>
-                <div class="text-h4 font-weight-bold">-xxx-</div>
+                <div class="text-h4 font-weight-bold">-username-</div>
                 <h3
                   style="border:1px solid white; border-radius:20px"
                   class="pa-3 px-5 my-2"
@@ -90,10 +90,11 @@
               <div style="width:100%;height:1px;opacity:.3" class="black"></div>
             </div>
           </div>
-          <div class="my-8 d-flex justify-center align-center">
+          <div class="my-8 d-flex justify-center align-center" v-if="changesign">
             <div class="d-flex flex-column align-center mr-5">
               <i class="fas fa-portrait"></i>
-              <h3>tony</h3>
+              <!-- <h3>tony</h3> -->
+              <h3>{{ this.member[0].FULLNAME }}</h3>
             </div>
             <forum-page-input v-model="content" @input="getvalue"/>
             <v-btn
@@ -104,6 +105,9 @@
               dark
               >送出</v-btn
             >
+          </div>
+          <div class="my-8 d-flex justify-center align-center" v-else>
+            <router-link to="/signin"><div class="black white--text pa-3 rounded-pill">去登入拉白痴</div></router-link>
           </div>
         </div>
         <div
@@ -254,6 +258,8 @@ import Media from 'vue-media'
 export default {
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+    this.member = this.changesign
+    console.log(this.member)
   },
   components: {
     ReportDialogs,
@@ -262,6 +268,7 @@ export default {
   },
   data () {
     return {
+      member: [],
       content: '',
       username: 'username',
       date: new Date(),
@@ -347,11 +354,11 @@ export default {
         alert('請輸入內容')
         return
       }
-      console.log(this.date.getFullYear())
+      // console.log(this.date.getFullYear())
       this.year = this.date.getFullYear()
-      console.log(this.date.getMonth())
+      // console.log(this.date.getMonth())
       this.month = this.date.getMonth()
-      console.log(this.date.getDate())
+      // console.log(this.date.getDate())
       this.day = this.date.getDate()
       this.messagelist.push({
         name: this.username,
@@ -363,6 +370,11 @@ export default {
     },
     sendtodb () {
       console.log(this.content)
+    }
+  },
+  computed: {
+    changesign () {
+      return this.$store.getters.getmember
     }
   }
 }
