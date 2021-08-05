@@ -4,7 +4,7 @@
   <div class="d-flex flex-column">
     <div style="max-width:100%;max-height:500px">
       <img
-        style="display: block;;width:100%;height:500px"
+        style="display: block;;width:100%;height:500px;object-fit: cover;"
         src="../assets/Issuepage1.jpg"
       />
     </div>

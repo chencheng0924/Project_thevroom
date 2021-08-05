@@ -32,7 +32,7 @@
                   class="d-flex flex-column align-center mb-5"
                   style="width:90%"
                 >
-                  <v-container v-for="item in items1" :key="item.title">
+                  <v-container v-for="(item, i) in items1" :key="item.title">
                     <v-row fluid class="d-flex align-center">
                       <v-col cols="12" sm="3">
                         <h2>{{item.title}}:</h2>
@@ -45,51 +45,13 @@
                           rows="1"
                           row-height="10"
                           dense
+                          name="yoname"
+                          v-model="testlist[i]"
                         ></v-textarea>
+                        {{ item.yoname }}
                       </v-col>
                     </v-row>
                   </v-container>
-                </div>
-                <div
-                  class="d-flex align-center mb-5"
-                  style="height:50px;width:90%"
-                >
-                  <v-container>
-                    <v-row fluid class="d-flex align-center">
-                      <v-col cols="12" sm="4">
-                        <h2>姓名:</h2>
-                      </v-col>
-                      <v-col cols="12" sm="7">
-                        <v-textarea
-                          label="請輸入真實姓名"
-                          auto-grow
-                          outlined
-                          rows="1"
-                          row-height="10"
-                          dense
-                        ></v-textarea>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                  <div style="width:230px">
-                    <label style="font-size:26px;" class="mx-1"
-                      ><input
-                        type="radio"
-                        value="male"
-                        name="gender"
-                        checked
-                        dense
-                      />先生</label
-                    >
-                    <label style="font-size:26px;" class="mx-1"
-                      ><input
-                        type="radio"
-                        value="female"
-                        name="gender"
-                        dense
-                      />小姐</label
-                    >
-                  </div>
                 </div>
                 <div
                   class="d-flex align-center mb-5"
@@ -106,6 +68,7 @@
                           label="西元年份"
                           outlined
                           dense
+                          v-model="selectyear"
                         ></v-select>
                       </v-col>
                       <v-col class="d-flex" cols="12" sm="3">
@@ -114,6 +77,7 @@
                           label="月"
                           dense
                           outlined
+                          v-model="selectmonth"
                         ></v-select>
                       </v-col>
                       <v-col class="d-flex" cols="12" sm="3">
@@ -122,6 +86,7 @@
                           label="日"
                           dense
                           outlined
+                          v-model="selectday"
                         ></v-select>
                       </v-col>
                     </v-row>
@@ -131,7 +96,7 @@
                   class="d-flex flex-column align-center mb-5"
                   style="width:90%"
                 >
-                  <v-container v-for="item in items3" :key="item.title">
+                  <v-container v-for="(item, i) in items3" :key="item.title">
                     <v-row fluid class="d-flex align-center">
                       <v-col cols="12" sm="3">
                         <h2>{{item.title}}:</h2>
@@ -144,6 +109,7 @@
                           rows="1"
                           row-height="10"
                           dense
+                          v-model="testlisttwo[i]"
                         ></v-textarea>
                       </v-col>
                     </v-row>
@@ -181,7 +147,7 @@
                 </div>
                 <div class="align-self-start ml-10 mt-10">
                   <div class="d-flex">
-                    <button-submit buttonSubmit="註冊"></button-submit>
+                    <div @click="testbtn"><button-submit buttonSubmit="註冊"></button-submit></div>
                     <h6 class="align-self-end ml-10">
                       <router-link to="/signin"
                         >已經是會員嗎?立即登入</router-link
@@ -258,25 +224,6 @@
                       outlined
                     ></v-textarea>
                   </v-row>
-                  <v-row fluid class="d-flex align-center">
-                  <label style="font-size:12px;" class="mx-1"
-                    ><input
-                      type="radio"
-                      value="male"
-                      name="gender"
-                      checked
-                      dense
-                    />先生</label
-                  >
-                  <label style="font-size:12px;" class="mx-1"
-                    ><input
-                      type="radio"
-                      value="female"
-                      name="gender"
-                      dense
-                    />小姐</label
-                  >
-                 </v-row>
                 </v-container>
                 <v-container class="my-2">
                   <v-row fluid class="d-flex align-center flex-column align-start">
@@ -379,13 +326,17 @@ export default {
   components: { ButtonSubmit, Media },
   data () {
     return {
+      bir: '',
+      testlist: [],
+      testlisttwo: [],
       items1: [
         { title: '電子信箱', placeholder: '該資料為您日後的登入帳號' },
         {
           title: '密碼',
           placeholder: '請輸入6-12位英數混和 需區分大小寫 請勿使用特殊符號'
         },
-        { title: '確認密碼', placeholder: '請再次確認密碼' }
+        { title: '確認密碼', placeholder: '請再次確認密碼' },
+        { title: '姓名', placeholder: '請確認姓名' }
       ],
       items2: [
         { title: '身分證字號', placeholder: '請確認身分證字號' },
@@ -399,6 +350,34 @@ export default {
       year: [2021],
       month: [1, 2, 3],
       day: [1, 2, 3]
+    }
+  },
+  methods: {
+    testbtn () {
+      console.log(this.testlist)
+      console.log(this.selectyear)
+      console.log(this.selectmonth)
+      console.log(this.selectday)
+      console.log(this.testlisttwo)
+      this.bir = this.selectyear + '-' + this.selectmonth + '-' + this.selectday
+      console.log(this.bir)
+      // const abc = this.items1
+      // console.log(abc)
+      // abc.forEach((a) => {
+      //   console.log(a)
+      // })
+      // this.testlist.push(this.test)
+      // console.log(this.testlist)
+      const formdata = new FormData()
+      formdata.append('PASSWORD', this.testlist[1])
+      formdata.append('EMAIL', this.testlist[0])
+      formdata.append('ADDRESS', this.testlisttwo[1])
+      formdata.append('FULLNAME', this.testlist[3])
+      formdata.append('BIRTHDAY', this.bir)
+      fetch('http://localhost:8080/phpfile/testmember.php', {
+        method: 'POST',
+        body: formdata
+      })
     }
   }
 }

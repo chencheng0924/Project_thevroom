@@ -5,6 +5,8 @@
       <div class="fixHeader" :style="nomargin">
         <router-view />
       </div>
+      <!-- <v-btn @click="test">123</v-btn> -->
+      <testfileload/>
       <the-footer></the-footer>
       <home class="d-none"></home>
     </v-app>
@@ -15,6 +17,7 @@
 import TheHeader from './components/layout/TheHeader.vue'
 import TheFooter from './components/layout/TheFooter.vue'
 import Home from './views/Home.vue'
+import testfileload from './components/testfileload.vue'
 
 export default {
   data () {
@@ -25,7 +28,8 @@ export default {
   components: {
     TheHeader,
     TheFooter,
-    Home
+    Home,
+    testfileload
   },
   computed: {
     showheader () {
@@ -33,6 +37,15 @@ export default {
     },
     nomargin () {
       return this.$store.getters.getsad
+    }
+  },
+  methods: {
+    async test () {
+      const response = await fetch('http://localhost:8080/test2.php')
+      const responsedata = await response.json()
+
+      console.log(response)
+      console.log(responsedata)
     }
   }
 }
