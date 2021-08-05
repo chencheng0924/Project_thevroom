@@ -15,13 +15,20 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-icon left class="mr-6" color="#FFFFFF">mdi-cart-outline</v-icon>
-            <router-link to="/signin" tag="span" style="cursor: pointer">
+            <div v-if="changesign">
+              <div>歡迎xxx</div>
+              <v-icon left class="mr-4" color="#FFFFFF">mdi-logout</v-icon>
+            </div>
+            <router-link to="/signin" tag="span" style="cursor: pointer" v-else>
               <v-icon left class="mr-6" color="#FFFFFF">mdi-login</v-icon>
             </router-link>
             <router-link to="/memberside" tag="span" style="cursor: pointer">
             <v-icon left class="mr-4" color="#FFFFFF">mdi-account-circle-outline</v-icon>
             </router-link>
+<<<<<<< HEAD
             <v-icon left class="mr-4" color="#FFFFFF" v-if="changesign">mdi-logout</v-icon>
+=======
+>>>>>>> e75050f0ddd8fbe24404ad44e11a472201efad3d
           </v-toolbar>
           <v-navigation-drawer v-model="sideNav" absolute temporary height="100vh" style="z-index: 20;">
             <v-list rounded>
