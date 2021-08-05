@@ -1,10 +1,6 @@
 <template>
   <div>
     <div class="d-flex justify-center max-width:800px">
-      <div class="d-flex flex-column align-center mr-5">
-        <i class="fas fa-portrait"></i>
-        <h3>tony</h3>
-      </div>
       <input
         type="text"
         placeholder="回應..."
