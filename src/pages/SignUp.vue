@@ -374,7 +374,7 @@ export default {
       formdata.append('ADDRESS', this.testlisttwo[1])
       formdata.append('FULLNAME', this.testlist[3])
       formdata.append('BIRTHDAY', this.bir)
-      fetch('http://localhost:8080/testmember.php', {
+      fetch('http://localhost:8080/phpfile/testmember.php', {
         method: 'POST',
         body: formdata
       })

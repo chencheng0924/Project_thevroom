@@ -91,6 +91,10 @@
             </div>
           </div>
           <div class="my-8 d-flex justify-center align-center">
+            <div class="d-flex flex-column align-center mr-5">
+              <i class="fas fa-portrait"></i>
+              <h3>tony</h3>
+            </div>
             <forum-page-input v-model="content" @input="getvalue"/>
             <v-btn
               @click="send"
@@ -259,7 +263,11 @@ export default {
   data () {
     return {
       content: '',
-      username: 'tony',
+      username: 'username',
+      date: new Date(),
+      year: '',
+      month: '',
+      day: '',
       news: [
         {
           id: 1,
@@ -339,13 +347,22 @@ export default {
         alert('請輸入內容')
         return
       }
+      console.log(this.date.getFullYear())
+      this.year = this.date.getFullYear()
+      console.log(this.date.getMonth())
+      this.month = this.date.getMonth()
+      console.log(this.date.getDate())
+      this.day = this.date.getDate()
       this.messagelist.push({
         name: this.username,
-        // date: new Date(2021, 9, 24),
-        date: '2021/9/24',
+        date: this.year + '-' + this.month + '-' + this.day,
         message: this.content
       })
+      this.sendtodb()
       this.content = ''
+    },
+    sendtodb () {
+      console.log(this.content)
     }
   }
 }
