@@ -8,7 +8,7 @@
             style="width:100%;height:100%"
           >
             <div class="d-flex justify-end mb-10" style="width:80%">
-              <router-link style="text-decoration:none;" to="/issuePage"
+              <router-link style="text-decoration:none;" :to="signset"
                 ><button-news buttonName="我要發文"></button-news
               ></router-link>
             </div>
@@ -304,6 +304,12 @@
 import Media from 'vue-media'
 import ButtonBtnBanner from '../components/layout/RwdBtnBanner.vue'
 export default {
+  async created () {
+    const res = await fetch('http://localhost:8080/phpfile/forumselect.php')
+    const resdata = await res.json()
+    console.log(res)
+    console.log(resdata)
+  },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
   },
@@ -577,6 +583,16 @@ export default {
         if (this.carnews.length > 5 + this.carnewspush.length) {
           this.$refs.moredata.textContent = '----------資料已全部顯示----------'
         }
+      }
+    }
+  },
+  computed: {
+    signset () {
+      const data = this.$store.getters.getmember
+      if (data === 0) {
+        return '/Signin'
+      } else {
+        return '/IssuePage'
       }
     }
   }

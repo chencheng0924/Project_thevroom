@@ -321,11 +321,11 @@ import ButtonSubmit from '../components/layout/ButtonSubmit.vue'
 import Media from 'vue-media'
 export default {
   async created () {
-    const res = await fetch('http://localhost:8080/thevroom-php/testmember.php')
+    const res = await fetch('http://localhost:8080/testid.php')
     const resdata = await res.json()
     console.log(resdata)
     resdata.forEach((list) => {
-      console.log(list.ID)
+      // console.log(list.ID)
       this.alreadyHave.push(list.ID)
     })
   },
@@ -349,7 +349,7 @@ export default {
         { title: '姓名', placeholder: '請確認姓名' }
       ],
       items2: [
-        { title: '身分證字號', placeholder: '請確認身分證字號' },
+        { title: '電話號碼', placeholder: '請確認電話號碼' },
         { title: '居住地址', placeholder: '請確認居住地址' },
         { title: '驗證碼', placeholder: '請確認驗證碼' }
       ],
@@ -390,7 +390,7 @@ export default {
       formdata.append('ADDRESS', this.testlisttwo[1])
       formdata.append('FULLNAME', this.testlist[3])
       formdata.append('BIRTHDAY', this.bir)
-      fetch('http://localhost:8080/thevroom-php/testmember.php', {
+      fetch('http://localhost:8080/phpfile/testmember.php', {
         method: 'POST',
         body: formdata
       })
