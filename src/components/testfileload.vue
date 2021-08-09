@@ -31,7 +31,7 @@ export default {
       //   method: 'POST',
       //   body: formData
       // })
-      fetch('/FileUpload/SingleFile.php', {
+      fetch('http://localhost:8080/FileUpload/SingleFile.php', {
         method: 'POST',
         body: formData
       })

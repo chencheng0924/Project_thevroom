@@ -349,7 +349,7 @@ export default {
         { title: '姓名', placeholder: '請確認姓名' }
       ],
       items2: [
-        { title: '身分證字號', placeholder: '請確認身分證字號' },
+        { title: '電話號碼', placeholder: '請確認電話號碼' },
         { title: '居住地址', placeholder: '請確認居住地址' },
         { title: '驗證碼', placeholder: '請確認驗證碼' }
       ],
