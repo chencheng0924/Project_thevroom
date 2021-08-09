@@ -9,8 +9,11 @@
           <div class="main">
             <div class="aside">
                 <span class="search text-h6 font-weight-bold">搜尋配件</span>
-                <v-treeview v-model="tree" rounded hoverable activatable :items="items" :active="active" open-on-click 
-                 style="margin-top:30px; cursor:pointer;" @update:active="filterItem"></v-treeview>
+                <v-treeview v-model="tree" rounded hoverable activatable :items="items" selected-color="#f34841" open-on-click style="margin-top:30px; cursor:pointer;">
+                  <template slot='label' slot-scope="{item}">
+                    <div @click="filterItem(item,key)" :class="{'-active':item.active}">{{item.name}}</div>
+                  </template>
+                </v-treeview>
                 <!-- <img :src="search" alt="圖壞了"> -->
                 <input type="text" v-model="search" placeholder="搜尋">
             </div>
@@ -105,6 +108,7 @@ export default ({
         {
           id: 1,
           name: '雨刷',
+          active: false,
           children: [
             { id: 2, name: '硬骨型' },
             { id: 3, name: '軟骨型' },
@@ -371,7 +375,7 @@ export default ({
           pid: 18,
           imgURL: require('../assets/accessories-pic/save/sign_led.jpeg'),
           id: 'sign',
-          title: '警告標誌 極光LED三角警示架',
+          title: '極光LED三角警吿標示',
           price: '$558',
           ds: [
             'LED燈亮光明顯，本產品含27顆高亮度LED燈，主動示警可以避免二次車禍。',
@@ -476,8 +480,19 @@ export default ({
       document.querySelector('.shopcart').style.display = 'none'
       setTimeout(() => this.$router.push({ path: '/shoppingcar' }), 400)
     },
-    filterItem () {
-      console.log('filter', this.active)
+    filterItem (item, key) {
+      console.log(item.id)
+      console.log(key)
+      item.active = true
+      console.log(this.items)
+      // console.log(item)
+      // item.style.backgroundColor = '#f34841' //why? background undefind
+    },
+    async test () {
+      const response = await fetch('http://localhost/thevroom-php/test_acc.php')
+      const responsedata = await response.json()
+      console.log(response)
+      console.log(responsedata)
     }
   },
   computed: {
@@ -511,7 +526,7 @@ div.normalSize{
     width:1200px;
     margin: 0 auto;
     display:flex;
-    justify-content: space-between;
+    justify-content: left;
     div.aside{
       width:250px;
       line-height: 4.5;
@@ -542,8 +557,9 @@ div.normalSize{
     div.productpart{
       display: flex;
       flex-wrap: wrap;
+      justify-content:left;
       div.productlist{
-        width:280px;
+        width:calc(33.33% - 40px);
         background-color: #ffffff;
         // border:1px solid black;
         text-align: center;
@@ -554,7 +570,7 @@ div.normalSize{
           transform: scale(1.1);
         }
         img.itemimg{
-          width:250px;
+          width:100%;
         }
         img.shopcart{
           height:20px;

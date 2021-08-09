@@ -1,17 +1,31 @@
 <template>
   <div id="banner">
+    <div class="cover" @click="closecover"></div>
     <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
     <div class="chat">
-      <img :src="iconchat" alt="" class="chat">
-      <span class="askQuestion">有問題嗎？</span>
-      <div class="questionblock" style="">
+      <img :src="iconchat" alt="sorry img is gone" class="chat" @click="cover">
+      <span class="askQuestion">常見問題點我</span>
+      <div class="questionblock">
+        <perfect-scrollbar>
         <img :src="logowhitewide" class="logochatbox">
+        <span class="closebtnQ" style="cursor:pointer" @click="closecover()">✕</span>
         <br>
-        <img :src="logochat" alt="" class="logochat">
-        <div class="questions" v-for="index in groupquestion" :key="index">{{index.group}}</div>
+        <img :src="logochat" alt="sorry img is gone" class="logochat">
+        <div class="questions" v-for="bigq in groupquestion"  :key="bigq" @click="bigQ(bigq)" :class="{'block':currentCategory === bigq.category}">{{bigq.group}}
+        </div>
+        <div class="default">
+        <span style="color:#bfbdbd">_____________________________________________________________</span>
         <br>
-        <img :src="customer" alt="">
-        <span class="answers">hii</span>
+        <span style="color:#181818 ; width:100%; height:100%">點擊上方問題類別詢問</span>
+        </div>
+        <div class="givesmallq">
+          <div class="smallq1" v-for="smallq in ask" :key="smallq" :class="{'block':currentCategory === smallq.category}" v-html="smallq.question" @click="smallQ(smallq)"></div>
+        </div>
+        <div class="giveanswer">
+          <img :src="logochat" alt="sorry img is gone" class="logochat2" style="display:none">
+          <div class="answers" v-for="ans in answer" :key="ans" :class="{'block':currentChoose === ans.id}" v-html="ans.answer"></div>
+        </div>
+        </perfect-scrollbar>
       </div>
     </div>
     <img :src="banner" class="banner">
@@ -99,18 +113,18 @@
 
     <div class="sell">
       <h1 text-h4 font-weight-bold>新手買車-線上估價</h1>
-      <form action="">
-       車輛廠牌：<input type="text" class="input" placeholder="請輸入車輛廠牌" @focus="input()" @blur="inputblur()">
+      <form method="post" action="http://localhost/thevroom-php/test_evaluate.php">
+       車輛廠牌：<input type="text" name="CARBRAND" class="input" placeholder="請輸入車輛廠牌" @focus="input()" @blur="inputblur()">
        <br>
-       出廠年份：<input type="text" class="input" placeholder="請輸入出廠年份" >
+       出廠年份：<input type="text" name="PRODUCEDYEAR" class="input" placeholder="請輸入出廠年份" >
        <br>
-       里程數：<input type="text" class="input" placeholder="請輸入里程數">
+       里程數：<input type="text"  name="MILAGE" class="input" placeholder="請輸入里程數">
        <br>
-       姓名：<input type="text" class="input" placeholder="王小明">
+       姓名：<input type="text" name="NAME" class="input" placeholder="請輸入全名">
        <br>
-       email：<input type="text" class="input" placeholder="123@gmail.com" >
+       email：<input type="text" name="EMAIL" class="input" placeholder="123@gmail.com" >
        <br>
-       <button type="button" class="sellonline" @click="popup()">送出</button>
+       <button type="submit" class="sellonline" @click.prevent="popup()">送出</button>
       </form>
       <div class="overlay" @click="closebtn()"></div>
       <div class="formSubmit" @keyup="keyesp()">
@@ -151,53 +165,166 @@ export default ({
       logo: require('../assets/new-driver-pic/logowidth.png'),
       logowhitewide: require('../assets/new-driver-pic/logowhite.png'),
       currentChoose: null,
+      currentCategory: null,
       groupquestion: [
-        { group: '競標相關' },
-        { group: '會員相關' },
-        { group: '訂單相關' },
-        { group: '其他' }
+        {
+          group: '競標相關',
+          category: 'group1',
+          id: 1
+        },
+        {
+          group: '會員相關',
+          category: 'group2',
+          id: 2
+        },
+        {
+          group: '訂單相關',
+          category: 'group3',
+          id: 3
+        },
+        {
+          group: '其他',
+          category: 'group4',
+          id: 4
+        }
       ],
       ask: [
         {
           question: '競標流程是什麼？我需要準備什麼資料嗎？',
-          category: '競標相關',
-          answer: '競標流程非常簡單，只要鎖定拍賣商品，之後加入會員，就可以出價參加競標了！看看拍賣會場'
-        },
-        {
-          question: '我要怎麼知道自己已經得標？',
-          category: '競標相關',
-          answer: '競標時間結束後，我們會寄出得標通知email給得標者，同時也會寄出候補信給第二高價者，因此記得您心儀車款截標時間，並前往您的信箱收信就對囉~'
-        },
-        {
-          question: '得標後要怎麼付款?',
-          category: '競標相關',
-          answer: '本站一律採取線上付款，相關分期方案請洽您的信用卡公司。'
-        },
-        {
-          question: '得標後天內要完成付款?',
-          category: '競標相關',
-          answer: '得標後請在3天內完成付款，逾期將視同棄標，累計兩次將會停止您的帳號。'
-        },
-        {
-          question: '每一個人都可以開拍賣場嗎?',
-          category: '競標相關',
-          answer: '只有高級會員可以開設拍賣場，相關會員方案請洽會員專區'
+          category: 'group1',
+          id: 11
         },
         {
           question: '拍賣會場的「自動出價功能」是什麼意思？',
-          category: '競標相關',
-          answer: '「自動出價功能」是一個提供您不用一直在電腦前也可以競標愛車的服務。只要設定好您的上限金額，系統會自動幫您出價，只要沒超過預算，時間一到您就會收到得標通知囉！'
+          category: 'group1',
+          id: 12
+        },
+        {
+          question: '我要怎麼知道自己已經得標？',
+          category: 'group1',
+          id: 13
+        },
+        {
+          question: '每一個人都可以開拍賣場嗎?',
+          category: 'group1',
+          id: 14
+        },
+        {
+          question: '得標後要怎麼付款?',
+          category: 'group1',
+          id: 15
+        },
+        {
+          question: '得標後天內要完成付款?',
+          category: 'group1',
+          id: 16
         },
         {
           question: '賣車起標價格有規定嗎？',
-          category: '競標相關',
-          answer: '拍賣車輛的起標價格完全由開設拍賣場的會員自行決定，一但產品上架拍賣，我們即視起標價格為您接受的最低成交價，因此請務必在開設拍賣場時設定一個可以接受的價格，避免您的權益受損。'
+          category: 'group1',
+          id: 17
         },
         {
           question: '什麼是每口叫價？',
-          category: '競標相關',
-          answer: '「每口叫價」為每次競標應出價的價格區間，例如起標價為30萬，每口叫價為2萬，則第一次叫價對低金額為32萬。本站每口叫價價格由賣家自行決定。'
-
+          category: 'group1',
+          id: 18
+        },
+        {
+          question: '加入會員可以幹嘛？',
+          category: 'group2',
+          id: 19
+        },
+        {
+          question: '如何成為高級會員？',
+          category: 'group2',
+          id: 20
+        },
+        {
+          question: '如何編輯拍賣會場？',
+          category: 'group2',
+          id: 21
+        },
+        {
+          question: '得標汽車如何交車？',
+          category: 'group3',
+          id: 22
+        },
+        {
+          question: '商品配件要如何運送？',
+          category: 'group3',
+          id: 23
+        },
+        {
+          question: '我第一次買車可以教我要注意什麼嗎？',
+          category: 'group4',
+          id: 24
+        },
+        {
+          question: '請問你們有專人可以諮詢車輛相關事宜嗎？',
+          category: 'group4',
+          id: 25
+        }
+      ],
+      answer: [
+        {
+          answer: '競標流程非常簡單，只要鎖定拍賣商品，之後加入會員，就可以出價參加競標了！看看拍賣會場',
+          id: 11
+        },
+        {
+          answer: '「自動出價功能」是一個提供您不用一直在電腦前也可以競標愛車的服務。只要設定好您的上限金額，系統會自動幫您出價，只要沒超過預算，時間一到您就會收到得標通知囉！',
+          id: 12
+        },
+        {
+          answer: '競標時間結束後，我們會寄出得標通知email給得標者，同時也會寄出候補信給第二高價者，因此記得您心儀車款截標時間，並前往您的信箱收信就對囉~',
+          id: 13
+        },
+        {
+          answer: '只有高級會員可以開設拍賣場，相關會員方案請洽會員專區',
+          id: 14
+        },
+        {
+          answer: '本站一律採取線上付款，相關分期方案請洽您的信用卡公司。',
+          id: 15
+        },
+        {
+          answer: '得標後請在3天內完成付款，逾期將視同棄標，累計兩次將會停止您的帳號。',
+          id: 16
+        },
+        {
+          answer: '拍賣車輛的起標價格完全由開設拍賣場的會員自行決定，一但產品上架拍賣，我們即視起標價格為您接受的最低成交價，因此請務必在開設拍賣場時設定一個可以接受的價格，避免您的權益受損。',
+          id: 17
+        },
+        {
+          answer: '「每口叫價」為每次競標應出價的價格區間，例如起標價為30萬，每口叫價為2萬，則第一次叫價最低金額為32萬。本站每口叫價價格由賣家自行決定。',
+          id: 18
+        },
+        {
+          answer: '加入會員以享受我們提供的完整服務，加入會員才能競標商品與購買車輛或是配件，這是為了確保每位使用者都對本站有一定程度的瞭解，並且遵守使用規範。同時會員將擁有自己的會員專區，內可以管理有興趣的拍賣會場，並且也擁有自己的會員行事曆，讓您不錯過TheVroom上發生的每個精彩細節。而如果您滿意我們服務，可以升級為「高級會員」，「高級會員」擁有開設拍賣會場的權限。加入高級會員，開設拍賣會，讓您成為眾人追尋的對象吧！加入會員',
+          id: 19
+        },
+        {
+          answer: '「高級會員」資格需要購買，價格為一年3000元台幣。前往升級高級會員',
+          id: 20
+        },
+        {
+          answer: '首先您需要成為高級會員才有開設拍賣會場的相關權利，在開設完拍賣會場後，可以在「會員專區=>賣場管理」輕鬆編輯拍賣會場。',
+          id: 21
+        },
+        {
+          answer: '付了訂金後，專人會與您聯繫後續事宜。',
+          id: 22
+        },
+        {
+          answer: '配件商品一律「到店取貨」，至我們的服務據點取貨並讓我們協助您安裝。',
+          id: 23
+        },
+        {
+          answer: '我們提供「市場行情」頁面，讓您瞭解最新市場行情，比較當年度熱門車款，讓您輕鬆上手新車知識；如果您有其他買車相關問題，也可以上討論區，和大家一起討論喔。前往「市場行情」「前往討論區」',
+          id: 24
+        },
+        {
+          answer: '除了「線上估價系統」我們會在您填完表單後有專人聯繫協助外，其他的頁面皆不會有專人給予建議，如果您有任何疑問，可以聯繫我們的客服信箱：xxx@theVroom，或是至「討論區」與其他一樣愛好車的朋友們交流。前往討論區',
+          id: 25
         }
       ]
     }
@@ -224,7 +351,7 @@ export default ({
     },
     inputblur () {
       const inputcar = document.querySelectorAll('input')
-      const placeholders = ['請輸入車輛廠牌', '請輸入出廠年份', '請輸入里程數', '王小明', '123@gmail/hotmail.com']
+      const placeholders = ['請輸入車輛廠牌', '請輸入出廠年份', '請輸入里程數', '請輸入全名', '123@gmail/hotmail.com']
       for (let i = 0; i < inputcar.length; i++) {
         inputcar[i].addEventListener('blur', function () {
           for (let j = 0; j < placeholders.length; j++) {
@@ -256,6 +383,56 @@ export default ({
         overlay.classList.remove('displayBlock')
         popup.classList.remove('displayBlock')
       }
+    },
+    bigQ (bigq) {
+      this.currentCategory = bigq.category
+      this.currentChoose = null
+      this.chatlogohide()
+      document.querySelector('.default').style.display = 'none'
+    },
+    smallQ (smallq) {
+      this.currentChoose = smallq.id
+      if (smallq.id === 19) {
+        const memberans = document.querySelector('.giveanswer')
+        memberans.classList.add('formemberans')
+      }
+      this.chatlogoshow()
+    },
+    cover () {
+      const qBlock = document.querySelector('div.questionblock')
+      const darkBack = document.querySelector('div.cover')
+      qBlock.classList.add('block')
+      darkBack.style.display = 'block'
+    },
+    closecover () {
+      const darkBack = document.querySelector('div.cover')
+      darkBack.style.display = 'none'
+      const qBlock = document.querySelector('div.questionblock')
+      qBlock.classList.remove('block')
+    },
+    chatlogoshow () {
+      // const ans = document.querySelector('.answers')
+      const chatlogo = document.querySelector('.logochat2')
+      chatlogo.classList.add('block')
+    },
+    chatlogohide () {
+      const chatlogo = document.querySelector('.logochat2')
+      chatlogo.classList.remove('block')
+    },
+    async test () {
+      const response = await fetch('http://localhost/thevroom-php/test_evaluate.php')
+      const responsedata = await response.json()
+      console.log(response)
+      console.log(responsedata)
+    }
+  },
+  watch: {
+    chatlogoshow: function () {
+      const ans = document.querySelector('.answers')
+      const chatlogo = document.querySelector('.logochat2')
+      if (ans.classList.contains('block')) {
+        chatlogo.classList.add('block')
+      }
     }
   }
 })
@@ -267,10 +444,24 @@ $parnerColor:#f34841;
 *{
   font-family:'Noto Sans';
 }
+// perfectscrollbar 預設class
+.ps{
+  height:500px;
+}
 div#banner{
   img.banner{
   max-width: 100%;
   position: relative;
+  }
+  div.cover{
+      position: absolute;
+      background-color: rgba(0, 0,0, .4);
+      top:0;
+      left:0;
+      width:100%;
+      height: 100%;
+      z-index: 99;
+      display: none;
   }
   div.chat{
     position: relative;
@@ -283,7 +474,7 @@ div#banner{
       color:$parnerColor;
       position: fixed;
       z-index: 98;
-      width:100px;
+      width:120px;
       top:350px;
       right:60px;
       text-align: center;
@@ -325,17 +516,37 @@ div#banner{
     animation-name: showup;
     animation-duration: 2s;
   }
+  .block{
+    display: block !important;
+  }
+
+  .formemberans{
+    transform: translateY(10%);
+  }
 
   div.questionblock{
     background-color: #ffffff;
-    width:400px;
-    position: absolute;
-    right:100px;
+    width:420px;
+    position: fixed;
+    overflow: scroll;
+    top:0;
+    right:80px;
     z-index: 99;
-    img{
-      width:30px;
+    height: auto;
+    display: none;
+    box-shadow: white 0 0px 8px, black 3px 0px 2px, white -5px 0px 2px;
+    img.logochatbox{
+      width:40px;
+      margin-left: -5px;
+    }
+    span.closebtnQ{
+      position: absolute;
+      right:10px;
+      top:0;
+      font-size:30px;
     }
     img.logochat{
+      width:30px;
       margin-top:10px;
     }
     div.questions{
@@ -355,8 +566,46 @@ div#banner{
       object-fit: contain;
       padding: 5px;
     }
+    div.givesmallq{
+      div.smallq1{
+      // position: absolute;
+      // right:0;
+      // bottom: 0;
+      background-color:#181818;
+      color:#ffffff;
+      padding:5px 10px;
+      width:210px;
+      margin-bottom:10px;
+      border-radius: 20px;
+      text-align: left;
+      cursor: pointer;
+      transform: translate(90%,-40%);
+      display: none;
+      }
+      .smallQactive{
+          display: block;
+      }
+    }
+    .giveanswer{
+      img.logochat2{
+        width:30px
+      //   display: none;
+      }
+      div.answers{
+        background-color:#f34841;
+        color:#ffffff;
+        padding:5px 10px;
+        width:80%;
+        margin-bottom:30px;
+        border-radius: 20px;
+        text-align: left;
+        transform: translate(10%,-20%);
+        cursor: pointer;
+        display: none;
+      }
+    }
   }
-  }
+}
 div.bannerWord{
   background: url(../assets/new-driver-pic/banner-word.png);
   color:#fff;
