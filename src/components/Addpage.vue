@@ -8,7 +8,6 @@
                     <div class="line mt-1"></div>
                 </div>
                 <div class="mt-16">
-                    <v-form>
                         <v-row>
                             <v-col cols="2" class="auName mt-1 ml-7">
                                 拍賣品名稱：
@@ -19,10 +18,12 @@
                                 placeholder="請輸入拍賣會名稱"
                                 outlined
                                 dense
+                                v-model="acName"
+                                name="yoone"
                                 ></v-text-field>
+                                <v-btn @click="test">123</v-btn>
                             </v-col>
                         </v-row>
-                    </v-form>
                 </div>
                 <div class="mt-6">
                     <v-row>
@@ -40,8 +41,8 @@
                                     color="#F34841"
                                     >
                                         <v-list-item
-                                        v-for="(item, i) in items"
-                                        :key="i"
+                                        v-for="item in items"
+                                        :key="item.text"
                                         >
                                             <v-list-item-content>
                                                 <v-list-item-title v-text="item.text"></v-list-item-title>
@@ -60,6 +61,7 @@
                             max-width="400"
                             elevation="1"
                             v-if="showSelect"
+                            @click="showOption"
                             >
                                 <v-list max-height="180" style="overflow-y: scroll;">
                                     <v-list-item-group
@@ -86,7 +88,7 @@
                 </div>
                 <div style="width: 950px;" class="d-flex justify-end mt-16">
                     <v-btn rounded color="#F34841" class="btn mt-5" dark width="100"
-                    to="#page2" @click="reloadPage"
+                    to="#page2" @click="scrollone"
                      >下一步</v-btn>
                 </div>
             </div>
@@ -119,27 +121,57 @@ export default {
         text: 'Audi'
       },
       {
-        text: 'Benz'
-      },
-      {
         text: 'BMW'
       },
       {
-        text: 'Dodge'
+        text: 'Ford'
       },
       {
-        text: 'Land Rover'
+        text: 'Honda'
+      },
+      {
+        text: 'Jaguar'
+      },
+      {
+        text: 'Lexus'
+      },
+      {
+        text: 'Mercedes-Benz'
+      },
+      {
+        text: 'Nissan'
+      },
+      {
+        text: 'Toyota'
+      },
+      {
+        text: 'VolksWangon'
       }
     ],
-    model: 1,
-    modelT: 1
+    model: 1
   }),
   methods: {
     showOption () {
       this.showSelect = true
+      // console.log(this.items[this.model].text)
+      // console.log(this.brandList[this.modelT].text)
     },
     reloadPage () {
       window.location.reload()
+    },
+    test () {
+      // console.log(this.acName)
+      // this.$emit('testsub', this.acName, this.items[this.model].text, this.brandList[this.modelT].text)
+      // const formdata = new FormData()
+      // formdata.append('yoone', this.acName)
+      // // console.log(formdata)
+      // fetch('/testinsert.php', {
+      //   method: 'POST',
+      //   body: formdata
+      // })
+    },
+    scrollone () {
+      this.$emit('nextsrcoll', this.acName, this.items[this.model].text, this.brandList[this.modelT].text)
     }
   },
   components: {

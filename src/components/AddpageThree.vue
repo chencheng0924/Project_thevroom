@@ -15,6 +15,7 @@
                                 placeholder="請輸入西元年"
                                 outlined
                                 dense
+                                v-model="caryear"
                                 ></v-text-field>
                             </v-col>
                         </v-row>
@@ -28,6 +29,7 @@
                                 label="請選擇顏色"
                                 outlined
                                 dense
+                                v-model="carcolor"
                                 ></v-select>
                             </v-col>
                         </v-row>
@@ -41,6 +43,7 @@
                                 label="請選擇排氣量"
                                 outlined
                                 dense
+                                v-model="dis"
                                 ></v-select>
                             </v-col>
                         </v-row>
@@ -56,17 +59,17 @@
                                 >
                                 <v-radio
                                     label="三門"
-                                    value="3-doors"
+                                    value="三門"
                                     color="#F34841"
                                 ></v-radio>
                                 <v-radio
                                     label="四門"
-                                    value="4-doors"
+                                    value="四門"
                                     color="#F34841"
                                 ></v-radio>
                                 <v-radio
                                     label="五門"
-                                    value="5-doors"
+                                    value="五門"
                                     color="#F34841"
                                 ></v-radio>
                                 </v-radio-group>
@@ -82,6 +85,7 @@
                                 placeholder="請填入目前行駛里程，例16888"
                                 outlined
                                 dense
+                                v-model="door"
                                 ></v-text-field>
                             </v-col>
                         </v-row>
@@ -90,20 +94,14 @@
                                 上傳圖檔：
                             </v-col>
                             <v-col cols="2">
-                                <v-file-input
-                                    label="上傳圖片"
-                                    outlined
-                                    multiple
-                                    prepend-icon="mdi-camera"
-                                ></v-file-input>
+                                <input type="file" @change="addphoto" class="mt-3">
                             </v-col>
                         </v-row>
                     </v-form>
                 </div>
                 <div style="width: 950px;" class="d-flex justify-end">
-                    <v-btn rounded outlined width="100" to="#page2" @click="reloadPage">上一步</v-btn>
-                    <v-btn rounded color="#F34841" class="btn ml-16" dark width="100" to="#page4" @click="reloadPage"
-                     >下一步</v-btn>
+                    <v-btn rounded outlined width="100" to="#page2" @click="testo">上一步</v-btn>
+                    <v-btn rounded color="#F34841" class="btn ml-16" dark width="100" to="#page4" @click="testk">下一步</v-btn>
                 </div>
             </div>
         </v-container>
@@ -114,6 +112,9 @@
 import AddLeft from './AddLeft.vue'
 
 export default {
+  components: {
+    AddLeft
+  },
   data: () => ({
     colorList: ['黑', '白', '銀', '灰', '紅', '藍', '棕', '綠', '黃', '紫', '其他'],
     airList: ['1200cc 以下', '1201cc~1800cc', '1801cc~2400cc', '2401cc~3000cc', '3001cc~3600cc', '3601cc 以上']
@@ -122,12 +123,17 @@ export default {
     showOption () {
       this.showSelect = true
     },
-    reloadPage () {
-      window.location.reload()
+    testo () {
+      this.$emit('testyo')
+    },
+    testk () {
+      this.$emit('testl', this.caryear, this.carcolor, this.dis, this.row, this.door)
+    },
+    addphoto (e) {
+    //   console.log(e.target.files)
+      const photofile = e.target.files
+      this.$emit('passphoto', photofile)
     }
-  },
-  components: {
-    AddLeft
   }
 }
 </script>

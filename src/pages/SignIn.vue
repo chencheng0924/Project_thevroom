@@ -42,6 +42,7 @@
                       outlined
                       rows="1"
                       row-height="10"
+                      v-model="signemail"
                     ></v-textarea>
                   </v-col>
                 </v-row>
@@ -60,6 +61,7 @@
                       outlined
                       rows="1"
                       row-height="10"
+                      v-model="signpassword"
                     ></v-textarea>
                   </v-col>
                 </v-row>
@@ -67,7 +69,9 @@
             </div>
             <div class="align-self-start ml-10">
               <div class="d-flex">
-                <button-submit buttonSubmit="登入"></button-submit>
+                <div @click="sign">
+                  <button-submit buttonSubmit="登入"></button-submit>
+                </div>
                 <h6 class="align-self-end ml-10">
                   <router-link to="/signup">還不是會員嗎? 立即註冊</router-link>
                 </h6>
@@ -135,7 +139,7 @@
             </div>
             <div class="align-self-center">
               <div class="d-flex flex-column" style="width:100%">
-                <button-submit style="width:300px" buttonSubmit="登入"></button-submit>
+                  <button-submit style="width:300px" buttonSubmit="登入"></button-submit>
                 <h6 class="align-self-end ml-10 mt-5">
                   <router-link to="/signup">還不是會員嗎? 立即註冊</router-link>
                 </h6>
@@ -162,6 +166,29 @@ export default {
   data () {
     return {
       count: 0
+    }
+  },
+  methods: {
+    async sign () {
+      const fd = new FormData()
+      fd.append('SIGNEM', this.signemail)
+      fd.append('SIGNPA', this.signpassword)
+      // fetch('http://localhost:8080/testsignin.php', {
+      //   method: 'POST',
+      //   body: fd
+      // })
+      const res = await fetch('http://localhost:8080/testsignin.php', {
+        method: 'POST',
+        body: fd
+      })
+      const resdata = await res.json()
+      console.log(resdata)
+      if (resdata.length === 0) {
+        alert('87帳密錯誤')
+      } else {
+        this.$store.dispatch('membersign', resdata)
+        this.$router.replace('/') // 成功登入後導入首頁
+      }
     }
   }
 }

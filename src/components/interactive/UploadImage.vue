@@ -40,7 +40,7 @@
               </div>
               </media>
               <media :query="{ maxWidth: '400px' }">
-              <div class="border p-2 mt-3 d-flex flex-column">
+              <div class="border p-2 mt-3 d-flex flex-column photoside">
                 <template v-if="preview_list.length">
                   <div v-for="(item, index) in preview_list" :key="index">
                     <img

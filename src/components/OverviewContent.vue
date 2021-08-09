@@ -34,7 +34,7 @@
             </div>
             <div class="btnOv d-flex align-end justify-end">
                 <v-btn
-                to="/addproduct"
+                :to="signSet"
                 outlined
                 rounded
                 color="#F34841"
@@ -57,7 +57,19 @@
 
 <script>
 export default {
-  props: ['titleYear', 'titleBrand', 'description', 'milesT', 'priceT', 'imgPath']
+  props: ['titleYear', 'titleBrand', 'description', 'milesT', 'priceT', 'imgPath'],
+  computed: {
+    // 假設未登入會直接導入登入頁面
+    signSet () {
+      const data = this.$store.getters.getmember
+      console.log(data)
+      if (data === 0) {
+        return '/signin'
+      } else {
+        return '/AddProduct'
+      }
+    }
+  }
 }
 </script>
 

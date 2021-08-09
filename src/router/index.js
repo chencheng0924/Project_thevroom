@@ -20,6 +20,9 @@ import SignIn from '../pages/SignIn.vue'
 import MemberData from '../components/MemberData.vue'
 import MemberAuction from '../components/MemberAuction.vue'
 import MemberBid from '../components/MemberBid.vue'
+import Test from '../components/Test.vue'
+import MemberNotify from '../components/MemberNotify.vue'
+import testfileload from '../components/testfileload.vue'
 
 Vue.use(VueRouter)
 
@@ -138,6 +141,21 @@ const routes = [
     path: '/memberbid',
     name: 'MemberBid',
     component: MemberBid
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: Test
+  },
+  {
+    path: '/membernotify',
+    name: 'MemberNotify',
+    component: MemberNotify
+  },
+  {
+    path: '/testfileload',
+    name: 'testfileload',
+    component: testfileload
   }
 ]
 

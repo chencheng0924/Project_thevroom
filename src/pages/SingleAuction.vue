@@ -69,12 +69,12 @@ gsap.registerPlugin(ScrollTrigger)
 export default {
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
-    const elHtml = document.querySelector('html')
-    elHtml.style.overflowY = 'hidden'
+    // const elHtml = document.querySelector('html')
+    // elHtml.style.overflowY = 'hidden'
   },
   destroyed () {
-    const elHtml = document.querySelector('html')
-    elHtml.style.overflowY = null
+    // const elHtml = document.querySelector('html')
+    // elHtml.style.overflowY = null
   },
   components: {
     singleCarInfo,

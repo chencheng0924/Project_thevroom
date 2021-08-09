@@ -1,7 +1,7 @@
 <template>
     <div>
         <media :query="{ minWidth: '401px' }">
-            <div class="indexBan d-flex flex-column">
+            <div class="indexBan2 d-flex flex-column">
                 <div class="navbar d-flex justify-space-between align-center mt-2" style="opacity: 0; transform: translateY(40px);">
                     <div class="logoBan">
                         <router-link to="/" tag="span" style="cursor: pointer">
@@ -46,25 +46,32 @@
                     </div>
                 </div>
                 <!-- ----------------------------------------------- -->
-                <div class="banContent">
-                    <div class="disappear"></div>
-                    <div class="bigC" style="width: 1000px; height: 500px; position: absolute; z-index: 20; top: -10%; left: 19%; opacity: 0;">
-                        <img class="circle" src="../assets/index-banner/ring.png">
-                        <img class="logoImgC" src="../assets/small_logowhite-transparent.png" style="width:200px; position: absolute; top: 45%; left: 38%; opacity: .5;">
+                <!-- <div class="disappear2"></div> -->
+                <!-- <div class="disappear3"> -->
+                    <!-- <div class="bigC1" style="position: absolute; z-index: 20; opacity: 1; left: 50%; top: -100%; transform: translateX(-50%)">
+                        <img class="circle" src="../assets/index-banner/ring.png" style="width: 900px;">
+                        <img class="logoImgC" src="../assets/small_logowhite-transparent.png" style="width:200px; position: absolute; left: 50%; top: 50%; opacity: .5; transform: translate(-50%, -50%)">
                     </div>
-                    <div class="bigB" style="width: 1000px; height: 500px; position: absolute; z-index: 20; top: -10%; left: 18%; opacity: 0;">
-                        <img class="circleT" src="../assets/index-banner/ring.png">
+                    <div class="bigB1" style="position: absolute; z-index: 20; opacity: 1; left: 50%; transform: translateX(-50%); top: -100%;">
+                        <img class="circleT" src="../assets/index-banner/ring.png" style="width: 900px;">
+                    </div> -->
+                <!-- </div> -->
+                <div class="banContent1 d-flex align-center justify-space-between mt-16 position: absolute;">
+                    <div>
+                        <img class="mocaR1" src="../assets/index-banner/ctwo.png" style="width: 600px; transform: translate(-100%, 30px)">
                     </div>
-                    <img class="mocaR" src="../assets/index-banner/ctwo.png" style="position: absolute; width: 700px; top: 230px; left: -70%;">
-                    <img src="../assets/index-banner/btwo.png" style="width: 100%;">
-                    <div style="width: 500px; height: 200px; position: absolute; top: 150px; right:200px;" class="alltitle">
-                        <div style="color: #FFFFFF; opacity: 0;" class="text-h4 font-weight-bold mt-5 btitle">WELCOME TO THEVROOM</div>
-                        <div style="width: 0px; height: 4px; background-color: #F34841;" class="bline mt-3"></div>
-                    </div>
-                    <div class="banBtn" style="position: absolute; top: 13%; right: 35%;">
-                        <v-btn rounded color="#F34841" class="inbtn" style="opacity: 0;" dark to="/auctionoverview">
-                        競標場入口
-                        </v-btn>
+                    <div>
+                        <div style="width: 600px; height: 500px;" class="alltitle1 d-flex flex-column justify-space-between mr-16">
+                            <div>
+                                <div style="color: #FFFFFF; opacity: 0;" class="text-h4 font-weight-bold mt-5 btitle">WELCOME TO THEVROOM</div>
+                                <div style="width: 0px; height: 4px; background-color: #F34841;" class="bline mt-3"></div>
+                            </div>
+                            <div class="banBtn1">
+                                <v-btn rounded outlined color="#FFFFFF" class="inbtn1" style="opacity: 0;" to="/auctionoverview">
+                                競標場入口
+                                </v-btn>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -91,46 +98,51 @@ export default {
   mounted () {
     setTimeout(function () {
       gsap.timeline()
-        .to('.bigC', {
-          y: 630,
-          duration: 1.5,
-          opacity: 1,
-          ease: 'slow'
-        })
-        .to('.bigB', {
-          y: 630,
-          duration: 1.5,
-          opacity: 1,
-          delay: -1.5,
-          ease: 'slow'
-        })
-        .to('.bigC', {
-          x: 1300,
-          duration: 3,
-          delay: 0.2,
-          ease: 'power'
-        })
-        .to('.bigB', {
-          x: 1300,
-          duration: 3,
-          ease: 'rough',
-          delay: -2.8
-        })
-        .to('.disappear', {
-          height: 0,
-          duration: 1,
-          delay: -2,
-          ease: 'slow'
-        })
+        // .to('.bigC1', {
+        //   yPercent: 200,
+        //   duration: 1.5,
+        //   opacity: 1,
+        //   ease: 'slow'
+        // })
+        // .to('.bigB1', {
+        //   yPercent: 200,
+        //   duration: 1.5,
+        //   opacity: 1,
+        //   delay: -1.5,
+        //   ease: 'slow'
+        // })
+        // .to('.bigC1', {
+        //   xPercent: 100,
+        //   duration: 3,
+        //   delay: 0.5,
+        //   ease: 'power'
+        // })
+        // .to('.bigB1', {
+        //   xPercent: 100,
+        //   duration: 3,
+        //   ease: 'power',
+        //   delay: -2.8
+        // })
+        // .to('.disappear2', {
+        //   height: 0,
+        //   duration: 1,
+        //   delay: -1.3,
+        //   ease: 'slow'
+        // })
+        // .to('.disappear3', {
+        //   height: 0,
+        //   duration: 0.8,
+        //   delay: -1.3
+        // })
         .to('.navbar', {
           y: 0,
           duration: 1,
           opacity: 1,
-          delay: -0.5,
+          delay: 0,
           ease: 'slow'
         })
-        .to('.mocaR', {
-          x: 1400,
+        .to('.mocaR1', {
+          xPercent: 130,
           duration: 2,
           opacity: 1,
           delay: -0.5
@@ -146,7 +158,7 @@ export default {
           opacity: 1,
           delay: -2
         })
-        .to('.inbtn', {
+        .to('.inbtn1', {
           opacity: 1,
           duration: 1,
           delay: -2
@@ -157,11 +169,11 @@ export default {
 </script>
 
 <style lang="scss">
-.indexBan{
+.indexBan2{
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    background-color: #181818;
+    background-image: url('../assets/index-banner/btwo.png');
     .navbar{
         position: absolute;
         width: 100%;
@@ -176,47 +188,34 @@ export default {
             color: #FFFFFF;
         }
     }
-    .banContent{
-        width: 100%;
-        height: 700px;
+    .disappear2{
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        background-color: black;
+        z-index: 10;
+    }
+    .disappear3{
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        // background-color: orange;
+        z-index: 10;
+        .bigC1{
+            .circle{
+                animation: rCircle 2s linear infinite;
+            }
+        }
+        .bigB1{
+            .circleT{
+                animation: rCircle 2s linear infinite;
+            }
+        }
+    }
+    .banContent1{
+        width: 100vw;
+        height: 100vh;
         margin: 0 auto;
-        .banleft{
-            width: 500px;
-            height: 700px;
-            .indexTitle{
-                color: #FFFFFF;
-            }
-            .indexline{
-                width: 400px;
-                height: 5px;
-                background-color: #F34841;
-            }
-        }
-        .disappear{
-            width: 100vw;
-            height: 100vh;
-            position: absolute;
-            background-color: black;
-            z-index: 10;
-        }
-        .circle{
-            width: 100%;
-            position: absolute;
-            z-index: 11;
-            // left: 15%;
-            // top: 1.8%;
-            opacity: .4;
-            animation: rCircle 2s linear infinite;
-        }
-        .circleT{
-            width: 100%;
-            position: absolute;
-            z-index: 11;
-            // left: 15%;
-            // top: 2%;
-            opacity: .4;
-            animation: rCircle 2s linear infinite;
-        }
     }
 }
 @keyframes rCircle {
