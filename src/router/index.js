@@ -58,7 +58,7 @@ const routes = [
     component: Forum
   },
   {
-    path: '/forumPage',
+    path: '/forumPage/:id',
     name: 'ForumPage',
     component: ForumPage
   },
