@@ -4,14 +4,13 @@
           <div id="app">
               <full-page ref="fullpage" :options="options" id="fullpage">
               <div class="section">
-                  <addpage @testsub="testpp"></addpage>
-                  <!-- <v-btn rounded outlined width="100" @click="$refs.fullpage.api.moveSectionDown()">上一步</v-btn> -->
+                  <addpage @nextsrcoll="scrollone"></addpage>
               </div>
               <div class="section">
-                  <addpage-two></addpage-two>
+                  <addpage-two @tosrcoll="scrolltwo" @srcollthree="srcollthree"></addpage-two>
               </div>
               <div class="section">
-                  <addpage-three></addpage-three>
+                  <addpage-three @testyo="testj" @testl="scrolltwice" @passphoto="photopass"></addpage-three>
               </div>
               <div class="section">
                   <addpage-four></addpage-four>
@@ -278,7 +277,6 @@
                 <v-file-input
                 label="上傳圖片"
                 outlined
-                multiple
                 prepend-icon="mdi-camera"
                 style="width: 330px;"
                 ></v-file-input>
@@ -354,7 +352,27 @@ export default {
       colors: ['黑', '白', '銀', '灰', '紅', '藍', '棕', '綠', '黃', '紫', '其他'],
       airs: ['1200cc 以下', '1201cc~1800cc', '1801cc~2400cc', '2401cc~3000cc', '3001cc~3600cc', '3601cc 以上'],
       doors: ['三門', '四門', '五門'],
-      rigs: ['台北市', '新北市', '基隆市', '桃園市', '新竹市']
+      rigs: ['台北市', '新北市', '基隆市', '桃園市', '新竹市'],
+      acName: '',
+      acCarSort: '',
+      acCarBrand: '',
+      acCarSeries: '',
+      acCarDes: '',
+      acRegion: '',
+      acAddress: '',
+      acPrice: '',
+      acyear: '',
+      acmonth: '',
+      acdate: '',
+      achour: '',
+      acDuDay: '',
+      acCarYear: '',
+      acCarColor: '',
+      acDis: '',
+      acDoor: '',
+      acMile: '',
+      acfile: [],
+      start: ''
     }
   },
   components: {
@@ -365,17 +383,85 @@ export default {
     Media
   },
   methods: {
-    testpp (val) {
-      // this.alldata.push(val)
-      // console.log(this.alldata)
-      console.log(val)
-      // const formdata = new FormData()
-      // formdata.append('yoone', val)
-      // // console.log(formdata)
-      // fetch('/testinsert.php', {
-      //   method: 'POST',
-      //   body: formdata
-      // })
+    scrollone (val, valone, valtwo) {
+      this.$refs.fullpage.api.moveSectionDown()
+      // console.log(val)
+      // console.log(valone)
+      // console.log(valtwo)
+      this.acName = val
+      this.acCarSort = valone
+      this.acCarBrand = valtwo
+      console.log(this.acName)
+      console.log(this.acCarSort)
+      console.log(this.acCarBrand)
+    },
+    scrolltwo () {
+      this.$refs.fullpage.api.moveSectionUp()
+    },
+    srcollthree (one, two, three, four, five, six, seven, eight, nine, ten) {
+      this.$refs.fullpage.api.moveSectionDown()
+      this.acCarSeries = one
+      this.acCarDes = two
+      this.acRegion = three
+      this.acAddress = four
+      this.acPrice = five
+      this.acyear = six
+      this.acmonth = seven
+      this.acdate = eight
+      this.achour = nine
+      this.acDuDay = ten
+      this.start = this.acyear + '-' + this.acmonth + '-' + this.acdate + '-' + this.achour
+      console.log(this.acCarSeries)
+      console.log(this.acCarDes)
+      console.log(this.acRegion)
+      console.log(this.acAddress)
+      console.log(this.acPrice)
+      console.log(this.acyear)
+      console.log(this.acmonth)
+      console.log(this.achour)
+      console.log(this.acdate)
+      console.log(this.acDuDay)
+    },
+    testj () {
+      this.$refs.fullpage.api.moveSectionUp()
+    },
+    scrolltwice (one, two, three, four, five) {
+      this.$refs.fullpage.api.moveSectionDown()
+      this.acCarYear = one
+      this.acCarColor = two
+      this.Dis = three
+      this.Door = four
+      this.Mile = five
+      console.log(this.acCarYear)
+      console.log(this.acCarColor)
+      console.log(this.Dis)
+      console.log(this.Door)
+      console.log(this.Mile)
+      const fd = new FormData()
+      fd.append('NAME', this.acName)
+      fd.append('CARSORT', this.acCarSort)
+      fd.append('CARBRAND', this.acCarBrand)
+      fd.append('CARSERIES', this.acCarSeries)
+      fd.append('DESCRIPTION', this.acCarDes)
+      fd.append('REGION', this.acRegion)
+      fd.append('ADDRESS', this.acAddress)
+      fd.append('RESERVEPRICE', this.acPrice)
+      fd.append('STARTINGTIME', this.start)
+      fd.append('DURATION', this.acDuDay)
+      fd.append('YEAR', this.acCarYear)
+      fd.append('COLOR', this.acCarColor)
+      fd.append('DISPLACEMENT', this.Dis)
+      fd.append('DOOR', this.Door)
+      fd.append('MILES', this.Mile)
+      fetch('http://localhost:8080/phpfile/addauction.php', {
+        method: 'POST',
+        body: fd
+      })
+    },
+    photopass (val) {
+      // console.log(val)
+      this.acfile = val
+      console.log(this.acfile)
     }
   }
 }

@@ -7,35 +7,37 @@
                     <v-form>
                         <v-row>
                             <v-col cols="2" class="auName mt-1 ml-7">
-                                物件標題：
+                                車輛型號：
                             </v-col>
                             <v-col cols="4">
                                 <v-text-field
-                                label="請輸入物件標題"
-                                placeholder="請輸入物件標題"
+                                label="請輸入車輛型號"
+                                placeholder="請輸入車輛型號"
                                 outlined
                                 dense
+                                v-model="series"
                                 ></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col cols="2" class="auName mt-1 ml-7">
-                                物件敘述：
+                                車輛敘述：
                             </v-col>
                             <v-col cols="4">
                                 <v-textarea
                                 solo
                                 name="input-7-4"
-                                label="請敘述物件詳細內容"
+                                label="請敘述車輛詳細內容"
                                 outlined
                                 elevation="0"
                                 height="100"
+                                v-model="des"
                                 ></v-textarea>
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col cols="2" class="auName mt-1 ml-7">
-                                物件所在區域：
+                                車輛所在區域：
                             </v-col>
                             <v-col cols="2">
                                 <v-select
@@ -43,6 +45,7 @@
                                 label="請選擇縣市"
                                 outlined
                                 dense
+                                v-model="region"
                                 ></v-select>
                             </v-col>
                             <v-col cols="5">
@@ -51,6 +54,7 @@
                                 placeholder="請輸入詳細地址"
                                 outlined
                                 dense
+                                v-model="address"
                                 ></v-text-field>
                             </v-col>
                         </v-row>
@@ -64,38 +68,42 @@
                                 placeholder="請輸入物件底價"
                                 outlined
                                 dense
+                                v-model="price"
                                 ></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row style="width: 1000px;">
-                            <v-col cols="2" class="auName mt-1 ml-10">
+                            <v-col cols="2" class="auName mt-1 ml-14">
                                 拍賣開始時間：
                             </v-col>
-                            <v-col auto>
+                            <v-col cols="2">
                                 <v-select
                                 :items="yearList"
                                 label="年份"
                                 outlined
                                 dense
                                 class="slc"
+                                v-model="year"
                                 ></v-select>
                             </v-col>
-                            <v-col auto>
+                            <v-col cols="2">
                                 <v-select
                                 :items="monthList"
                                 label="月份"
                                 outlined
                                 dense
                                 class="slc"
+                                v-model="month"
                                 ></v-select>
                             </v-col>
-                            <v-col auto>
+                            <v-col cols="2">
                                 <v-select
                                 :items="dayList"
                                 label="日期"
                                 outlined
                                 dense
                                 class="slc"
+                                v-model="date"
                                 ></v-select>
                             </v-col>
                             <v-col auto>
@@ -105,15 +113,7 @@
                                 outlined
                                 dense
                                 class="slc"
-                                ></v-select>
-                            </v-col>
-                            <v-col>
-                                <v-select
-                                :items="minList"
-                                label="分"
-                                outlined
-                                dense
-                                class="slc"
+                                v-model="hour"
                                 ></v-select>
                             </v-col>
                         </v-row>
@@ -127,15 +127,16 @@
                                 label="天數"
                                 outlined
                                 dense
+                                v-model="day"
                                 ></v-select>
                             </v-col>
                         </v-row>
                     </v-form>
                 </div>
                 <div style="width: 950px;" class="d-flex justify-end mt-16">
-                    <v-btn rounded outlined width="100" to="#page1" @click="reloadPage">上一步</v-btn>
+                    <v-btn rounded outlined width="100" to="#page1" @click="scrollpage">上一步</v-btn>
                     <v-btn rounded color="#F34841" class="btn ml-16" dark width="100"
-                     to="#page3" @click="reloadPage"
+                     to="#page3" @click="scrollpagetwo"
                      >下一步</v-btn>
                 </div>
             </div>
@@ -162,8 +163,11 @@ export default {
     AddLeft
   },
   methods: {
-    reloadPage () {
-      window.location.reload()
+    scrollpage () {
+      this.$emit('tosrcoll')
+    },
+    scrollpagetwo () {
+      this.$emit('srcollthree', this.series, this.des, this.region, this.address, this.price, this.year, this.month, this.date, this.hour, this.day)
     }
   }
 }

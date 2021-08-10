@@ -45,7 +45,7 @@ import MobileOverviewContent from '../components/MobileOverviewContent.vue'
 
 export default {
   async created () {
-    const res = await fetch('http://localhost:8080/testselect.php')
+    const res = await fetch('http://localhost:8080/thevroom-php/testselect.php')
     const resdata = await res.json()
     console.log(res)
     console.log(resdata[resdata.length - 1][0])
