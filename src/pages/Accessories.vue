@@ -2,58 +2,90 @@
   <div>
     <media :query="{ minWidth: '401px' }">
       <div class="normalSize">
-          <div class="banner">
-              <img :src="big" alt="圖壞了">
+        <div class="banner">
+          <img :src="big" alt="圖壞了" />
+        </div>
+        <h1><img :src="house" alt="圖壞了" /> 配件專區</h1>
+        <div class="main">
+          <div class="aside">
+            <span class="search text-h6 font-weight-bold">搜尋配件</span>
+            <v-treeview
+              v-model="tree"
+              rounded
+              hoverable
+              activatable
+              :items="items"
+              selected-color="#f34841"
+              open-on-click
+              style="margin-top: 30px; cursor: pointer"
+            >
+              <template slot="label" slot-scope="{ item }">
+                <div
+                  @click="filterItem(item, key)"
+                  :class="{ '-active': item.active }"
+                >
+                  {{ item.name }}
+                </div>
+              </template>
+            </v-treeview>
+            <!-- <img :src="search" alt="圖壞了"> -->
+            <input type="text" v-model="search" placeholder="搜尋" />
           </div>
-           <h1> <img :src="house" alt="圖壞了"> 配件專區</h1>
-          <div class="main">
-            <div class="aside">
-                <span class="search text-h6 font-weight-bold">搜尋配件</span>
-                <v-treeview v-model="tree" rounded hoverable activatable :items="items" selected-color="#f34841" open-on-click style="margin-top:30px; cursor:pointer;">
-                  <template slot='label' slot-scope="{item}">
-                    <div @click="filterItem(item,key)" :class="{'-active':item.active}">{{item.name}}</div>
-                  </template>
-                </v-treeview>
-                <!-- <img :src="search" alt="圖壞了"> -->
-                <input type="text" v-model="search" placeholder="搜尋">
-            </div>
-            <div class="productpart">
-                <div class="productlist" v-for="product in filteredBlogs" :key="product">
-                  <img :src="product.imgURL" alt="圖壞了" class="itemimg">
-                  <br>
-                  <span class="text-subtitle-1 font-weight-bold">{{product.title}}</span>
-                  <br>
-                  <span class="price"
-                        style="color:#f34841; font-size:16px; font-weight:bold">
-                        {{product.price}}</span>
-                  <img :src="shoppingcart" alt="圖壞了" title="加入購物車" class="shopcart" @click="linkshop()">
-                  <img :src="goshopping" alt="圖壞了" class="goshopping">
-                  <div class="detail">
-                    <template>
-                        <div class="text-center">
-                          <v-dialog
-                            v-model="dialog"
-                            width="500"
-                          >
-                            <template v-slot:activator="{ on, attrs }">
-                              <v-btn
-                                color="#181818 lighten-2"
-                                dark
-                                v-bind="attrs"
-                                v-on="on"
-                                style="width:80px; height:30px; font-size:13px;"
-                              >
-                                立即選看
-                              </v-btn>
-                            </template>
-                            <v-card style="height:365px">
+          <div class="productpart">
+            <div
+              class="productlist"
+              v-for="product in filteredBlogs"
+              :key="product"
+            >
+              <img :src="product.imgURL" alt="圖壞了" class="itemimg" />
+              <br />
+              <span class="text-subtitle-1 font-weight-bold">{{
+                product.title
+              }}</span>
+              <br />
+              <span
+                class="price"
+                style="color: #f34841; font-size: 16px; font-weight: bold"
+              >
+                {{ product.price }}</span
+              >
+              <img
+                :src="shoppingcart"
+                alt="圖壞了"
+                title="加入購物車"
+                class="shopcart"
+                @click="linkshop()"
+              />
+              <img :src="goshopping" alt="圖壞了" class="goshopping" />
+              <div class="detail">
+                <template>
+                  <div class="text-center">
+                    <v-dialog v-model="dialog" width="500">
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                          color="#181818 lighten-2"
+                          dark
+                          v-bind="attrs"
+                          v-on="on"
+                          style="width: 80px; height: 30px; font-size: 13px"
+                        >
+                          立即選看
+                        </v-btn>
+                      </template>
+                      <v-card style="height: 365px">
                         <v-card-title class="text-h5 orange lighten-2">
                           商品細項
                         </v-card-title>
 
-                        <v-card-text style="height:250px">
+                        <v-card-text style="height: 250px">
                           <ol class="d-flex flex-column justify-center">
-                            <li style="line-height:3" v-for="item in product.ds" :key="item">{{item}}</li>
+                            <li
+                              style="line-height: 3"
+                              v-for="item in product.ds"
+                              :key="item"
+                            >
+                              {{ item }}
+                            </li>
                           </ol>
                         </v-card-text>
 
@@ -62,39 +94,51 @@
                         <v-card-actions>
                           <v-spacer></v-spacer>
                           <v-btn color="primary" text>
-                          <router-link to="/shoppingcar">
-                            加入購物車
-                          </router-link>
+                            <router-link to="/shoppingcar">
+                              加入購物車
+                            </router-link>
                           </v-btn>
                         </v-card-actions>
                       </v-card>
-                          </v-dialog>
-                        </div>
-                      </template>
+                    </v-dialog>
                   </div>
-                </div>
+                </template>
+              </div>
             </div>
           </div>
+        </div>
       </div>
     </media>
     <media :query="{ maxWidth: '400px' }">
-        <div>
-          <component :is="'a-rwd'" class="component"></component>
-        </div>
-      </media>
+      <div>
+        <component :is="'a-rwd'" class="component"></component>
+      </div>
+    </media>
   </div>
 </template>
 <script>
 // import RwdBanner from '../components/layout/RwdBanner.vue'
 import Media from 'vue-media'
 import AccRwd from '../components/AccRwd.vue'
-export default ({
+export default {
   components: {
     Media,
     'a-rwd': AccRwd
   },
-  mounted () {
+  async mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+    // alert('123')
+    const response = await fetch('http://localhost:8080/thevroom-php/test_acc.php')
+    const responsedata = await response.json()
+    console.log(response)
+    console.log(responsedata)
+  },
+  async created () {
+    const response = await fetch('http://localhost:8080/thevroom-php/test_acc.php')
+    const responsedata = await response.json()
+    alert('456')
+    console.log(response)
+    console.log(responsedata)
   },
   data () {
     return {
@@ -366,10 +410,7 @@ export default ({
           id: 'sign',
           title: '警告標誌',
           price: '$150',
-          ds: [
-            '三角架裡的"驚嘆號"為鉚釘接合,無法另外拆除',
-            '可折疊'
-          ]
+          ds: ['三角架裡的"驚嘆號"為鉚釘接合,無法另外拆除', '可折疊']
         },
         {
           pid: 18,
@@ -469,7 +510,6 @@ export default ({
             '搭配高質感螢幕，胎壓資訊一目了然',
             '讓爆胎的夢魘遠離，保障您的行車安全'
           ]
-
         }
       ]
     }
@@ -487,12 +527,6 @@ export default ({
       console.log(this.items)
       // console.log(item)
       // item.style.backgroundColor = '#f34841' //why? background undefind
-    },
-    async test () {
-      const response = await fetch('http://localhost/thevroom-php/test_acc.php')
-      const responsedata = await response.json()
-      console.log(response)
-      console.log(responsedata)
     }
   },
   computed: {
@@ -502,39 +536,39 @@ export default ({
       })
     }
   }
-})
+}
 </script>
 <style lang='scss' scoped>
-div.normalSize{
-  div.banner{
-  img{
-     width: 100%;
-     object-fit: contain;
+div.normalSize {
+  div.banner {
+    img {
+      width: 100%;
+      object-fit: contain;
     }
   }
-  h1{
-      margin:50px auto;
-      width:1200px;
-      img{
-        width:30px;
-      }
+  h1 {
+    margin: 50px auto;
+    width: 1200px;
+    img {
+      width: 30px;
     }
-  .-active{
-    color:#f34841;
   }
-  div.main{
-    width:1200px;
+  .-active {
+    color: #f34841;
+  }
+  div.main {
+    width: 1200px;
     margin: 0 auto;
-    display:flex;
+    display: flex;
     justify-content: left;
-    div.aside{
-      width:250px;
+    div.aside {
+      width: 250px;
       line-height: 4.5;
-      margin-right:80px;
-      span.search{
-        color:#ffffff;
+      margin-right: 80px;
+      span.search {
+        color: #ffffff;
         background-color: #181818;
-        width:250px;
+        width: 250px;
         padding: 15px 50px;
         text-align: center;
       }
@@ -542,11 +576,11 @@ div.normalSize{
       //   height:30px;
       //   margin-top: 10px;
       // }
-      input{
+      input {
         border: 2px solid#181818;
         border-radius: 10px;
-        height:45px;
-        width:150px;
+        height: 45px;
+        width: 150px;
         margin-left: 10px;
         text-align: center;
       }
@@ -554,39 +588,39 @@ div.normalSize{
       //   display: inline-block;
       // }
     }
-    div.productpart{
+    div.productpart {
       display: flex;
       flex-wrap: wrap;
-      justify-content:left;
-      div.productlist{
-        width:calc(33.33% - 40px);
+      justify-content: left;
+      div.productlist {
+        width: calc(33.33% - 40px);
         background-color: #ffffff;
         // border:1px solid black;
         text-align: center;
         // padding: 20px 30px;
-        margin:20px 10px;
+        margin: 20px 10px;
         box-shadow: white 0 0px 1px, black 1px 0px 2px, white -1px 0px 2px;
-        &:hover{
+        &:hover {
           transform: scale(1.1);
         }
-        img.itemimg{
-          width:100%;
+        img.itemimg {
+          width: 100%;
         }
-        img.shopcart{
-          height:20px;
-          cursor:pointer;
+        img.shopcart {
+          height: 20px;
+          cursor: pointer;
           position: relative;
         }
-        img.goshopping{
-          height:20px;
+        img.goshopping {
+          height: 20px;
           display: none;
         }
-        div.detail{
-          margin-top:10px;
+        div.detail {
+          margin-top: 10px;
           margin-bottom: 10px;
         }
       }
     }
-    }
+  }
 }
 </style>
