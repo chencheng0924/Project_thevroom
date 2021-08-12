@@ -182,13 +182,19 @@ export default {
         body: fd
       })
       const resdata = await res.json()
-      console.log(resdata)
+      // console.log(resdata)
       if (resdata.length === 0) {
         alert('87帳密錯誤')
       } else {
         this.$store.dispatch('membersign', resdata)
         this.$router.replace('/') // 成功登入後導入首頁
       }
+      const memberinfo = this.$store.getters.getmember
+      const account = memberinfo[0].EMAIL
+      const password = memberinfo[0].PASSWORD
+      // console.log('abc')
+      localStorage.setItem('memberac', account)
+      localStorage.setItem('memberpa', password)
     }
   }
 }

@@ -108,7 +108,7 @@ const routes = [
     component: Accessories
   },
   {
-    path: '/singleauction',
+    path: '/singleauction/:id',
     name: 'SingleAuction',
     component: SingleAuction
   },
