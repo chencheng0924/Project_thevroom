@@ -15,17 +15,12 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-icon left class="mr-6" color="#FFFFFF">mdi-cart-outline</v-icon>
-<<<<<<< HEAD
             <router-link to="/signin" tag="span" style="cursor: pointer">
               <v-icon left class="mr-6" color="#FFFFFF">mdi-login</v-icon>
             </router-link>
             <router-link to="/memberside" tag="span" style="cursor: pointer">
             <v-icon left class="mr-4" color="#FFFFFF">mdi-account-circle-outline</v-icon>
             </router-link>
-            <v-icon left class="mr-4" color="#FFFFFF" v-if="changesign">mdi-logout</v-icon>
-<<<<<<< HEAD
-=======
-=======
             <div v-if="changesign" class="d-flex">
               <router-link to="/memberside" tag="span" style="cursor: pointer" class="mr-5">
                 <v-icon left class="mr-4" color="#FFFFFF">mdi-account-circle-outline</v-icon>
@@ -38,8 +33,6 @@
                 <v-icon left class="mr-6" color="#FFFFFF">mdi-login</v-icon>
               </router-link>
             </div>
->>>>>>> 4c459fdae7c60fc622f8619bc15ea3114e6a433a
->>>>>>> c26342b11ec87f0d19fdc793f80b33e052dd1e0f
           </v-toolbar>
           <v-navigation-drawer v-model="sideNav" absolute temporary height="100vh" style="z-index: 20;">
             <v-list rounded>
@@ -150,14 +143,11 @@ export default {
     changesign () {
       return this.$store.getters.getmember
     }
-<<<<<<< HEAD
-=======
   },
   methods: {
     logout () {
       this.$store.dispatch('membersign', 0)
     }
->>>>>>> 4c459fdae7c60fc622f8619bc15ea3114e6a433a
   }
 }
 </script>
