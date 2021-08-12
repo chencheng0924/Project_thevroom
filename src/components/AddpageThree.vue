@@ -130,7 +130,7 @@ export default {
       this.$emit('testl', this.caryear, this.carcolor, this.dis, this.row, this.door)
     },
     addphoto (e) {
-    //   console.log(e.target.files)
+      console.log(e.target.files)
       const photofile = e.target.files
       this.$emit('passphoto', photofile)
     }

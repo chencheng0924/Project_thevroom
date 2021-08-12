@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="rightOv">
+                <div class="rightOv ml-5">
                     <img :src="imgPath">
                 </div>
             </div>
@@ -43,7 +43,7 @@
                 開設競標場
                 </v-btn>
                 <v-btn
-                to="/singleauction"
+                :to="/singleauction/ + this.acid"
                 rounded
                 color="#F34841"
                 class="btn ml-10"
@@ -57,7 +57,7 @@
 
 <script>
 export default {
-  props: ['titleYear', 'titleBrand', 'description', 'milesT', 'priceT', 'imgPath'],
+  props: ['titleYear', 'titleBrand', 'description', 'milesT', 'priceT', 'imgPath', 'acid'],
   computed: {
     // 假設未登入會直接導入登入頁面
     signSet () {
@@ -128,6 +128,8 @@ export default {
                 height: 360px;
                 img{
                     width: 550px;
+                    height: 300px;
+                    object-fit: cover;
                 }
             }
         }

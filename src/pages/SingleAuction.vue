@@ -32,8 +32,9 @@
                           outlined
                           color="#BFBDBD"
                           class="btn"
+                          @click="moveright"
                           dark>
-                          追蹤此拍賣場
+                          車輛詳細資訊
                           </v-btn>
                       </div>
                   </div>
@@ -42,10 +43,10 @@
           </div>
           <div class="scrollWholetwo"></div>
           <div class="scrollWholethree d-flex align-center">
-            <single-car-info/>
+            <single-car-info @gomove="movegogo"/>
           </div>
           <div class="scrollWholefour d-flex align-center">
-            <single-car-bid-record/>
+            <single-car-bid-record @moveback="backmove"/>
           </div>
       </div>
   </media>
@@ -67,6 +68,24 @@ import RwdSingleAuction from '../components/RwdSingleAuction.vue'
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
+  data () {
+    return {
+      auctionid: ''
+    }
+  },
+  async created () {
+    console.log(this.$route.params.id)
+    const fd = new FormData()
+    fd.append('IDac', this.$route.params.id)
+
+    const res = await fetch('http://localhost:8080/phpfile/singleauction.php', {
+      method: 'POST',
+      body: fd
+    })
+    const resdata = await res.json()
+    console.log(res)
+    console.log(resdata)
+  },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
     // const elHtml = document.querySelector('html')
@@ -83,6 +102,52 @@ export default {
     RwdSingleAuction
   },
   methods: {
+    backmove () {
+      gsap.to('.moCar', {
+        x: 700,
+        duration: 2
+      })
+      gsap.to('.titleAu', {
+        y: -300,
+        duration: 2
+      })
+      gsap.to('.scrollWholetwo', {
+        yPercent: -100,
+        duration: 2
+      })
+      gsap.to('.leftDots', {
+        x: 0,
+        duration: 2
+      })
+      gsap.to('.scrollWholethree', {
+        xPercent: 0,
+        yPercent: -200,
+        delay: 0.5,
+        duration: 2
+      })
+      gsap.to('.scrollWholefour', {
+        yPercent: 0,
+        duration: 2
+      })
+    },
+    movegogo () {
+      gsap.to('.moCar', {
+        x: -700,
+        duration: 2
+      })
+      gsap.to('.leftDots', {
+        x: 1100,
+        duration: 2
+      })
+      gsap.to('.scrollWholefour', {
+        yPercent: -300,
+        duration: 2
+      })
+      gsap.to('.scrollWholethree', {
+        xPercent: -100,
+        duration: 1
+      })
+    },
     moveright () {
       gsap.to('.moCar', {
         x: 700,
@@ -237,7 +302,7 @@ export default {
                 width: 800px;
                 font-size: 40px;
                 font-weight: bolder;
-                transform: translateY(50px);
+                // transform: translateY(50px);
                 color: #FFFFFF;
             }
             .carAu{

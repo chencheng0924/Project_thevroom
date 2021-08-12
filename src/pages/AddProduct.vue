@@ -310,6 +310,12 @@ import AddpageFour from '../components/AddpageFour.vue'
 import Media from 'vue-media'
 
 export default {
+  created () {
+    console.log(this.$store.getters.getmember)
+    const memberinfo = this.$store.getters.getmember
+    this.memberid = memberinfo[0][0]
+    console.log(this.memberid)
+  },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top:64px'])
   },
@@ -372,6 +378,7 @@ export default {
       acDoor: '',
       acMile: '',
       acfile: [],
+      memberid: '',
       start: ''
     }
   },
@@ -410,7 +417,7 @@ export default {
       this.acdate = eight
       this.achour = nine
       this.acDuDay = ten
-      this.start = this.acyear + '-' + this.acmonth + '-' + this.acdate + '-' + this.achour
+      this.start = this.acyear + '-' + this.acmonth + '-' + this.acdate
       console.log(this.acCarSeries)
       console.log(this.acCarDes)
       console.log(this.acRegion)
@@ -425,6 +432,11 @@ export default {
     testj () {
       this.$refs.fullpage.api.moveSectionUp()
     },
+    photopass (val) {
+      // console.log(val)
+      this.acfile = val
+      console.log(this.acfile)
+    },
     scrolltwice (one, two, three, four, five) {
       this.$refs.fullpage.api.moveSectionDown()
       this.acCarYear = one
@@ -438,6 +450,7 @@ export default {
       console.log(this.Door)
       console.log(this.Mile)
       const fd = new FormData()
+      fd.append('MEMBER_ID', this.memberid)
       fd.append('NAME', this.acName)
       fd.append('CARSORT', this.acCarSort)
       fd.append('CARBRAND', this.acCarBrand)
@@ -453,15 +466,11 @@ export default {
       fd.append('DISPLACEMENT', this.Dis)
       fd.append('DOOR', this.Door)
       fd.append('MILES', this.Mile)
+      fd.append('IMGPATH', this.acfile[0])
       fetch('http://localhost:8080/phpfile/addauction.php', {
         method: 'POST',
         body: fd
       })
-    },
-    photopass (val) {
-      // console.log(val)
-      this.acfile = val
-      console.log(this.acfile)
     }
   }
 }

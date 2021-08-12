@@ -15,12 +15,6 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-icon left class="mr-6" color="#FFFFFF">mdi-cart-outline</v-icon>
-            <router-link to="/signin" tag="span" style="cursor: pointer">
-              <v-icon left class="mr-6" color="#FFFFFF">mdi-login</v-icon>
-            </router-link>
-            <router-link to="/memberside" tag="span" style="cursor: pointer">
-            <v-icon left class="mr-4" color="#FFFFFF">mdi-account-circle-outline</v-icon>
-            </router-link>
             <div v-if="changesign" class="d-flex">
               <router-link to="/memberside" tag="span" style="cursor: pointer" class="mr-5">
                 <v-icon left class="mr-4" color="#FFFFFF">mdi-account-circle-outline</v-icon>
@@ -147,6 +141,8 @@ export default {
   methods: {
     logout () {
       this.$store.dispatch('membersign', 0)
+      localStorage.clear()
+      this.$store.dispatch('keepsign', 0)
     }
   }
 }
