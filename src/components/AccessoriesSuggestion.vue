@@ -167,10 +167,11 @@ export default ({
     div.product {
       width: 290px;
       // position: relative;
-      // border:1px solid black;
-      margin: 10px 15px;
+      border:1px solid black;
+      margin: 10px 20px;
       img {
         height: 250px;
+        margin-top: 30px;
         object-fit: contain;
       }
       span.title {

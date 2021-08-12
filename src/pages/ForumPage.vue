@@ -2,19 +2,19 @@
   <div>
     <media :query="{ minWidth: '401px' }">
       <div>
-        <div class="forumtop white--text">
+        <div class="forumtop white--text" v-for="item in news11" :key="item.ARTICLEID">
           <div
             class="forumblack d-flex flex-column justify-space-around align-center py-10"
             style="width:100%;height:100%"
           >
-            <h2 class="mb-5 text-h4 font-weight-bold">--文章分享--</h2>
+            <h2 class="mb-5 text-h4 font-weight-bold">--{{ item.TOPICTYPE }}--</h2>
             <div class="d-flex" style="width:1200px">
               <div
                 class="d-flex flex-column mr-15 justify-start align-center"
                 style="width:20%"
               >
                 <i style="font-size:36px" class="fas fa-portrait"></i>
-                <div class="text-h4 font-weight-bold">-username-</div>
+                <div class="text-h4 font-weight-bold">-{{ item.MEMBERID }}-</div>
                 <h3
                   style="border:1px solid white; border-radius:20px"
                   class="pa-3 px-5 my-2"
@@ -24,11 +24,9 @@
               </div>
               <div
                 class="d-flex flex-column ml-15"
-                v-for="newli in news"
-                :key="newli.id"
                 style="width:80%"
               >
-                <h2 class="text-h4 font-weight-bold">{{ newli.title }}</h2>
+                <h2 class="text-h4 font-weight-bold">{{ item.SUBJECTNAME }}</h2>
                 <div style="width:100%" class="d-flex justify-end">
                   <router-link to="/forum">
                     <button-news
@@ -45,11 +43,11 @@
                 </div>
                 <div style="width:100%;height:5px;" class="orange"></div>
                 <div class="my-10">
-                  <img style="width:90%;height:100%" :src="newli.src" />
+                  <img style="width:70%;height:85%" :src="item.ARTICLEIMG" />
                 </div>
                 <div>
                   <p style="line-height:3;text-subtitle-1 font-weight-light">
-                    {{ newli.content }}
+                    {{ item.CONTENT }}
                   </p>
                 </div>
               </div>
@@ -65,23 +63,23 @@
             <div style="width:100%;height:3px" class="orange"></div>
             <div
               v-for="message in messagelist"
-              :key="message"
+              :key="message.FORUMREPLYID"
               style="width:100%;"
               class="d-flex flex-column align-space-around"
             >
               <div class="d-flex justify-space-around my-4">
                 <div class="d-flex flex-column align-center mr-5">
                   <i class="fas fa-portrait"></i>
-                  <h3 class="text-h6 font-weight-bold">{{ message.name }}</h3>
+                  <h3 class="text-h6 font-weight-bold">{{ message.FULLNAME }}</h3>
                   <h5 class="-text-subtitle-1 font-weight-light">
-                    date:{{ message.date }}
+                    date:{{ message.DATE }}
                   </h5>
                 </div>
                 <div
                   class="d-flex align-center justify-start"
                   style="width:80%"
                 >
-                  <p>{{ message.message }}</p>
+                  <p>{{ message.MESSAGECONTENT }}</p>
                 </div>
                 <report-dialogs
                   style="cursor: pointer;font-size:10px"
@@ -93,7 +91,6 @@
           <div class="my-8 d-flex justify-center align-center" v-if="changesign">
             <div class="d-flex flex-column align-center mr-5">
               <i class="fas fa-portrait"></i>
-              <!-- <h3>tony</h3> -->
               <h3>{{ this.member[0].FULLNAME }}</h3>
             </div>
             <forum-page-input v-model="content" @input="getvalue"/>
@@ -115,8 +112,8 @@
           v-observe-visibility="handleScrolledToBottom"
         ></div>
       </div>
-      <!-- ---------------------------------------------------- -->
     </media>
+      <!-- ---------------------------------------------------- -->
     <media :query="{ maxWidth: '400px' }">
       <div>
         <div class="forumtop white--text">
@@ -256,10 +253,35 @@ import ReportDialogs from '../components/interactive/ReportDialogs.vue'
 import ForumPageInput from '../components/ForumPageInput.vue'
 import Media from 'vue-media'
 export default {
+  async created () {
+    const formdata = new FormData()
+    formdata.append('FORUMID', this.$route.params.id)
+    const res = await fetch('http://localhost:8080/phpfile/forumpageselect.php', {
+      method: 'POST',
+      body: formdata
+    })
+    // console.log(res)
+    const resdata = await res.json()
+    // console.log(resdata)
+    this.news11 = resdata
+    // console.log(this.news11)
+    const issue = await fetch('http://localhost:8080/phpfile/forumreply.php', {
+      method: 'POST',
+      body: formdata
+    })
+    const issuelist = await issue.json()
+    // console.log(issue)
+    // console.log(issuelist)
+    // console.log(issuelist[0].FULLNAME)
+    this.username = issuelist[0].FULLNAME
+    // console.log(this.username)
+    this.messagelist = [...issuelist]
+    // console.log(this.messagelist)
+  },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
     this.member = this.changesign
-    console.log(this.member)
+    // console.log(this.member)
   },
   components: {
     ReportDialogs,
@@ -270,11 +292,16 @@ export default {
     return {
       member: [],
       content: '',
-      username: 'username',
+      username: '',
       date: new Date(),
       year: '',
       month: '',
       day: '',
+      hours: '',
+      minutes: '',
+      seconds: '',
+      news11: [],
+      newsday: '',
       news: [
         {
           id: 1,
@@ -284,52 +311,54 @@ export default {
           src: require('../assets/forum/toyota-supra.jpg')
         }
       ],
-      messagelist: [
-        {
-          messageid: 1,
-          name: 'tony',
-          date: '2021/7/16',
-          message:
-            'Volkswagen T-Roc 280算是CUV中造型好看的，尤其是全彩全螢幕的駕駛儀表板最讓人心'
-        },
-        {
-          messageid: 2,
-          name: 'allen',
-          date: '2021/7/16',
-          message:
-            '我是覺得要試TROC,順便試Tiguan,比較一下，入門差5萬，很容易就被轉向了...'
-        },
-        {
-          messageid: 3,
-          name: 'jisoo',
-          date: '2021/7/16',
-          message:
-            '大小剛好跟我現在正在駕駛的車差不多，外型與油耗也都很符合，後廂空間為 445 公升更是我想要的空間!'
-        }
-      ],
-      messagelist2: [
-        {
-          messageid: 1,
-          name: 'tony',
-          date: '2021/7/16',
-          message:
-            'Volkswagen T-Roc 280算是CUV中造型好看的，尤其是全彩全螢幕的駕駛儀表板最讓人心'
-        },
-        {
-          messageid: 2,
-          name: 'allen',
-          date: '2021/7/16',
-          message:
-            '我是覺得要試TROC,順便試Tiguan,比較一下，入門差5萬，很容易就被轉向了...'
-        },
-        {
-          messageid: 3,
-          name: 'jessie',
-          date: '2021/7/16',
-          message:
-            '大小剛好跟我現在正在駕駛的車差不多，外型與油耗也都很符合，後廂空間為 445 公升更是我想要的空間!'
-        }
-      ]
+      messagelist: [],
+      // messagelist: [
+      //   {
+      //     messageid: 1,
+      //     name: 'tony',
+      //     date: '2021/7/16',
+      //     message:
+      //       'Volkswagen T-Roc 280算是CUV中造型好看的，尤其是全彩全螢幕的駕駛儀表板最讓人心'
+      //   },
+      //   {
+      //     messageid: 2,
+      //     name: 'allen',
+      //     date: '2021/7/16',
+      //     message:
+      //       '我是覺得要試TROC,順便試Tiguan,比較一下，入門差5萬，很容易就被轉向了...'
+      //   },
+      //   {
+      //     messageid: 3,
+      //     name: 'jisoo',
+      //     date: '2021/7/16',
+      //     message:
+      //       '大小剛好跟我現在正在駕駛的車差不多，外型與油耗也都很符合，後廂空間為 445 公升更是我想要的空間!'
+      //   }
+      // ],
+      messagelist2: []
+      // messagelist2: [
+      //   {
+      //     messageid: 1,
+      //     name: 'tony',
+      //     date: '2021/7/16',
+      //     message:
+      //       'Volkswagen T-Roc 280算是CUV中造型好看的，尤其是全彩全螢幕的駕駛儀表板最讓人心'
+      //   },
+      //   {
+      //     messageid: 2,
+      //     name: 'allen',
+      //     date: '2021/7/16',
+      //     message:
+      //       '我是覺得要試TROC,順便試Tiguan,比較一下，入門差5萬，很容易就被轉向了...'
+      //   },
+      //   {
+      //     messageid: 3,
+      //     name: 'jessie',
+      //     date: '2021/7/16',
+      //     message:
+      //       '大小剛好跟我現在正在駕駛的車差不多，外型與油耗也都很符合，後廂空間為 445 公升更是我想要的空間!'
+      //   }
+      // ],
     }
   },
   methods: {
@@ -360,16 +389,30 @@ export default {
       this.month = this.date.getMonth()
       // console.log(this.date.getDate())
       this.day = this.date.getDate()
+      this.hours = this.date.getHours()
+      this.minutes = this.date.getMinutes()
+      this.seconds = this.date.getSeconds()
       this.messagelist.push({
-        name: this.username,
-        date: this.year + '-' + this.month + '-' + this.day,
-        message: this.content
+        FULLNAME: this.username,
+        DATE: this.year + '-' + (this.month + 1) + '-' + this.day + ' ' + this.hours + ':' + this.minutes + ':' + this.seconds,
+        MESSAGECONTENT: this.content
       })
       this.sendtodb()
       this.content = ''
     },
     sendtodb () {
-      console.log(this.content)
+      console.log(this.news11)
+      const formdata = new FormData()
+      formdata.append('MEMBERID', this.$store.getters.getmember[0][0])
+      formdata.append('ARTICLEID', this.news11[0].ARTICLEID)
+      formdata.append('FULLNAME', this.$store.getters.getmember[0][4])
+      formdata.append('MESSAGECONTENT', this.content)
+      formdata.append('DATE', this.year + '-' + (this.month + 1) + '-' + this.day + ' ' + this.hours + ':' + this.minutes + ':' + this.seconds)
+      // formdata.append('TIME', '2021-8-9 21:00:00')
+      fetch('http://localhost:8080/phpfile/forumreplyinsert.php', {
+        method: 'POST',
+        body: formdata
+      })
     }
   },
   computed: {

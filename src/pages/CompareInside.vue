@@ -34,19 +34,8 @@
                           style="border-radius:50px; width:270px"
                         ></v-select>
                       </li>
-                      <li>
-                        <v-select
-                          :items="version"
-                          label="請選擇車系"
-                          dense
-                          outlined
-                          style="border-radius:50px; width:270px"
-                        ></v-select>
-                      </li>
                     </ul>
                   </div>
-
-                  <div style="height:50px; color: #F34841" class="d-flex align-center text-h6 font-weight-regular">$ 990W</div>
                 </div>
               </div>
               <div class="middle_third">
@@ -74,26 +63,15 @@
                           style="border-radius:50px; width:270px"
                         ></v-select>
                       </li>
-                      <li>
-                        <v-select
-                          :items="version"
-                          label="請選擇車系"
-                          dense
-                          outlined
-                          style="border-radius:50px; width:270px"
-                        ></v-select>
-                      </li>
                     </ul>
                   </div>
-
-                  <div style="height:50px; color: #F34841" class="d-flex align-center text-h6 font-weight-regular">$ 990W</div>
                 </div>
               </div>
             </diV>
             <diV class="table_bottom">
-              <div class="bottom_first text-subtitle-1 font-weight-light">比較優勢</div>
-              <div class="bottom_second"></div>
-              <div class="bottom_third"></div>
+              <div class="bottom_first text-subtitle-1 font-weight-light">比較價格</div>
+              <div style="color: #F34841" class="bottom_second d-flex align-center justify-center text-h6 font-weight-regular">$ 990W</div>
+              <div style="color: #F34841" class="bottom_third d-flex align-center justify-center text-h6 font-weight-regular">$ 990W</div>
             </diV>
           </div>
         </div>

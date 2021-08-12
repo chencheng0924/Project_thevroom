@@ -33,9 +33,9 @@
                   </div>
                 </v-card-text>
                 <v-card-actions class="d-flex justify-end">
-                  <v-btn color="orange" text>
+                  <v-btn color="orange" text @click="test">
                     <router-link
-                      to="/ForumPage"
+                      to="/ForumPage/"
                       style="text-decoration:none;width:100%;color:#F34841"
                     >
                       閱覽文章
@@ -65,7 +65,11 @@
                   </v-card-text>
                   <v-card-actions class="d-flex justify-end">
                     <v-btn color="#F34841" text>
+                      <router-link
+                      to="/ForumPage/"
+                      style="text-decoration:none;width:100%;color:#F34841">
                       閱覽文章
+                      </router-link>
                     </v-btn>
                   </v-card-actions>
                 </v-card>
@@ -104,32 +108,36 @@
           </div>
         </div>
         <div
-          class="d-flex justify-start flex-wrap mb-10 ma-auto"
+          class="d-flex justify-around flex-wrap mb-10 ma-auto"
           style="width:1200px;"
         >
-          <div v-for="carnew in carnews" :key="carnew" class="mb-10">
-            <v-card class="mx-10" max-width="300">
+          <div v-for="carnew in carnewsfirst" :key="carnew[0]" class="mb-10" style="width:400px">
+            <v-card class="mx-10 d-flex flex-column">
               <v-img
                 class="white--text align-end"
                 style="height:220px"
-                :src="carnew.src"
+                :src="carnew[3]"
               >
-                <v-card-title>經典新款</v-card-title>
+                <v-card-title></v-card-title>
               </v-img>
 
               <v-card-subtitle class="-h6 font-weight-bold">
-                {{ carnew.title }}
+                {{ carnew[4] }}
               </v-card-subtitle>
 
               <v-card-text class="text-subtitle-1 font-weight-light">
                 <div>
-                  {{ carnew.content }}
+                  {{ carnew[5] }}
                 </div>
               </v-card-text>
 
-              <v-card-actions>
+              <v-card-actions class="align-self-end">
                 <v-btn color="#F34841" text>
+                  <router-link
+                  :to="/ForumPage/ + carnew.ARTICLEID"
+                  style="text-decoration:none;width:100%;color:#F34841">
                   閱覽文章
+                  </router-link>
                 </v-btn>
               </v-card-actions>
             </v-card>
@@ -141,7 +149,7 @@
           >
             <div
               @click="moredata"
-              style="border:1px solid #f34841;width:300px;cursor: pointer;"
+              style="border:1px solid #f34841;width:300px;cursor: pointer;color:#f34841"
               class="rounded-pill py-5"
             >
               更多資料
@@ -268,7 +276,7 @@
                 style="height:150px"
                 :src="carnew.src"
               >
-                <v-card-title>經典新款</v-card-title>
+                <v-card-title></v-card-title>
               </v-img>
 
               <v-card-subtitle class="-h6 font-weight-bold">
@@ -309,6 +317,14 @@ export default {
     const resdata = await res.json()
     console.log(res)
     console.log(resdata)
+    this.alllist = [...resdata]
+    console.log(this.alllist)
+    this.carnews1 = resdata.reverse()
+    console.log(this.carnews1)
+    this.carnewsfirst = this.carnews1.slice(0, 6)
+    console.log(this.carnewsfirst)
+    this.carnewspush = this.carnews1.splice(6, this.carnews1.length - 6)
+    console.log(this.carnewspush)
   },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
@@ -326,206 +342,10 @@ export default {
       goimg: require('../assets/forum/Benz1.png'),
       count: null,
       active: false,
-      carnews: [
-        {
-          id: 1,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 2,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自日本的經典戰車',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 3,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 4,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自美國的經典名車',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 5,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 6,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自瑞士的經典名車',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        }
-      ],
-      carnewspush: [
-        {
-          id: 1,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車1',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 2,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自日本的經典戰車2',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 3,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車3',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 4,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自美國的經典名車4',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 5,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車5',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 6,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自瑞士的經典名車6',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 1,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車7',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 2,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自日本的經典戰車8',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 3,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車9',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 4,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自美國的經典名車10',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 5,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車11',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 6,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自瑞士的經典名車12',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 1,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車13',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 2,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自日本的經典戰車14',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 3,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車15',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 4,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自美國的經典名車16',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 5,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車17',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 6,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自瑞士的經典名車18',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 1,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車19',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 2,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自日本的經典戰車20',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 3,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車21',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 3,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車22',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        }
-      ],
+      alllist: [],
+      carnews1: [],
+      carnewsfirst: [],
+      carnewspush: [],
       news: [
         {
           id: 1,
@@ -566,13 +386,13 @@ export default {
       this.goimg = this.titles[index].src
     },
     moredata () {
-      console.log(this.carnews.length)
+      console.log(this.carnewsfirst.length)
       console.log(this.carnewspush.length)
-      if (this.carnews.length > 5 + this.carnewspush.length) {
+      if (this.carnewsfirst.length > 5 + this.carnewspush.length) {
         return
       }
-      if (this.carnews.length < this.carnews.length + this.carnewspush.length) {
-        this.carnews.push(
+      if (this.carnewsfirst.length < this.carnews1.length + this.carnewspush.length) {
+        this.carnewsfirst.push(
           ...this.carnewspush.slice(
             this.num1 + 6 * this.newscount,
             this.num2 + 6 * this.newscount
@@ -580,10 +400,18 @@ export default {
         )
         // this.carnews.push(...this.carnewspush.slice(6, 12))
         this.newscount += 1
-        if (this.carnews.length > 5 + this.carnewspush.length) {
+        if (this.carnewsfirst.length > 5 + this.carnewspush.length) {
           this.$refs.moredata.textContent = '----------資料已全部顯示----------'
         }
       }
+    },
+    test () {
+      console.log(this.alllist.reverse())
+    },
+    issuerouter (e) {
+      console.log(this.alllist)
+      console.log(e.target)
+      return '/ForumPage/1'
     }
   },
   computed: {
@@ -620,7 +448,7 @@ export default {
 .moredata {
   :hover {
     background-color: #f34841;
-    color: #fff;
+    color: white;
   }
 }
 </style>

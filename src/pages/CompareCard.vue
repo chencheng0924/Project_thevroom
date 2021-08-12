@@ -25,7 +25,7 @@
                     label="請選擇車廠"
                     dense
                     outlined
-                    style="border-radius:50px; width:270px"
+                    style="border-radius:50px; width:420px"
                   ></v-select>
                 </li>
                 <li>
@@ -34,16 +34,7 @@
                     label="請選擇車款"
                     dense
                     outlined
-                    style="border-radius:50px; width:270px"
-                  ></v-select>
-                </li>
-                <li>
-                  <v-select
-                    :items="version"
-                    label="請選擇車系"
-                    dense
-                    outlined
-                    style="border-radius:50px; width:270px"
+                    style="border-radius:50px; width:420px"
                   ></v-select>
                 </li>
                 <li>
@@ -431,7 +422,6 @@ export default {
       '2014',
       '2013'
     ],
-    version: ['1', '2', '3', '4', '5', '6', '7', '8'],
     newImages: [
       {
         id: '1',
@@ -553,6 +543,7 @@ export default {
   justify-content: center;
   .bar{
     // border: 1px solid #f20;
+    padding: 0;
     width: 1100px;
     list-style: none;
     display: flex;

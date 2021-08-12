@@ -13,10 +13,11 @@
               items.title
             }}</span>
             <br />
-            <span class="size" style="font-size:12px;">{{ items.size }}</span>
-            <br />
             <div class="information d-flex justify-space-around align-center">
               <div class="price" style="color:#f34841">{{ items.price }}</div>
+               <router-link to="/shoppingcar">
+              <img :src="shoppingcart" alt="" style="height:30px">
+              </router-link>
               <br />
               <!-- <span class="btn text-subtitle-1 font-weight-bold" style="cursor: pointer;"
                 >立即選看</span> -->
@@ -24,7 +25,8 @@
                 <v-dialog v-model="dialog" width="500">
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                      color="white lighten-2"
+                      color="#181818 lighten-2"
+                      dark
                       v-bind="attrs"
                       v-on="on"
                       class="rounded-pill"
@@ -178,7 +180,7 @@ export default ({
         },
         {
           pid: 8,
-          imgURL: require('../assets/accessories-pic/light/light_blue780.jpeg'),
+          imgURL: require('../assets/accessories-pic/light/light_t10.jpeg'),
           id: 'lightblue780',
           title: '【OSRAM】T10 LED藍光 ',
           size: 'OSRAM 2880BL 2入',
@@ -429,15 +431,6 @@ div.productList {
       span.size{
         position: relative;
         margin-bottom: 10px;
-        &:after{
-          content: "";
-          position: absolute;
-          height: 3px;
-          width:200px;
-          left: 0;
-          top:100%;
-          background-color: #bfbdbd;
-        }
       }
       div.information {
         margin-top:5px;
