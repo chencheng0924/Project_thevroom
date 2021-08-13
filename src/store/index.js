@@ -7,11 +7,7 @@ export default new Vuex.Store({
   state: {
     happy: true,
     sad: 'margin-top: 64px',
-<<<<<<< HEAD
-    sign: false
-=======
     sign: 0
->>>>>>> 4c459fdae7c60fc622f8619bc15ea3114e6a433a
   },
   mutations: {
     sethappy (state, payload) {
