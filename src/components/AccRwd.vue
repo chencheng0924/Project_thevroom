@@ -60,14 +60,11 @@
                   </v-card>
                 </v-dialog>
               </div>
-<<<<<<< HEAD
-=======
-              <router-link to="/shoppingcar">
+              <!-- <router-link to="/shoppingcar">
               <div>
               <img :src="shoppingcart" alt="" style="height:30px">
               </div>
-              </router-link>
->>>>>>> 27d92a913df889d8da2ebf0977f9a473f82c6fde
+              </router-link> -->
             </div>
           </div>
         </div>

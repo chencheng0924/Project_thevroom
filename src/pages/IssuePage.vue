@@ -91,7 +91,7 @@
             class="mr-5"
             color="orange darken-1"
             text
-            :to="/ForumPage/ + this.lastforum[0][0]"
+            :to="/ForumPage/ + this.lastforum"
           >
             查看文章
           </v-btn>
@@ -220,7 +220,8 @@ export default {
       pic: [],
       resdata1: [],
       resdata11: [],
-      lastforum: {}
+      lastforum1: 0,
+      lastforum: 0
     }
   },
   methods: {
@@ -269,7 +270,11 @@ export default {
       console.log(resdata1)
       this.resdata11 = resdata1.reverse()
       console.log(this.resdata11)
-      this.lastforum = this.resdata11
+      console.log(this.resdata11[0])
+      console.log(this.resdata11[0][0])
+      this.lastforum1 = this.resdata11[0][0]
+      this.lastforum = parseInt(this.lastforum1) + 1
+      console.log(this.lastforum)
     }
   }
 }

@@ -23,23 +23,18 @@ import testfileload from './components/testfileload.vue'
 export default {
   mounted () {
     console.log(this.$store.getters)
-    const ac = localStorage.getItem('memberac')
-    const ps = localStorage.getItem('memberpa')
-    if (ac) {
-      this.$store.dispatch('keepsign', [ac, ps])
+    // const member123 = JSON.parse(localStorage[member])
+    // console.log(member123)
+    // const ac = localStorage.getItem('memberac')
+    // const ps = localStorage.getItem('memberpa')
+    // console.log(JSON.parse(localStorage.getItem('member')))
+    const member123 = JSON.parse(localStorage.getItem('member'))
+    console.log(member123)
+    if (member123) {
+      this.$store.dispatch('keepsign', member123)
+      console.log('123')
       console.log(this.$store.getters)
     }
-    // console.log(ac)
-    // console.log(ps)
-    // const fc = new FormData()
-    // fc.append('SIGNEM', ac)
-    // fc.append('SIGNPA', ps)
-    // const res = await fetch('http://localhost:8080/phpfile/testsignin.php', {
-    //   method: 'POST',
-    //   body: fc
-    // })
-    // const reslist = await res.json()
-    // console.log(reslist)
   },
   data () {
     return {

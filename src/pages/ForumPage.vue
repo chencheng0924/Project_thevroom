@@ -91,7 +91,7 @@
           <div class="my-8 d-flex justify-center align-center" v-if="changesign">
             <div class="d-flex flex-column align-center mr-5">
               <i class="fas fa-portrait"></i>
-              <h3>{{ this.member[0].FULLNAME }}</h3>
+              <h3>{{ this.username }}</h3>
             </div>
             <forum-page-input v-model="content" @input="getvalue"/>
             <v-btn
@@ -254,6 +254,8 @@ import ForumPageInput from '../components/ForumPageInput.vue'
 import Media from 'vue-media'
 export default {
   async created () {
+    console.log(this.$store.getters.getmember)
+    console.log('123')
     console.log(this.$route)
     const formdata = new FormData()
     formdata.append('FORUMID', this.$route.params.id)
@@ -271,13 +273,15 @@ export default {
       body: formdata
     })
     const issuelist = await issue.json()
+    console.log(issuelist)
+    console.log(this.$store.getters.getmember)
+    console.log(this.$store.getters.getmember[0].FULLNAME)
     this.messagelist = [...issuelist]
     this.username = this.$store.getters.getmember[0].FULLNAME
   },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
     this.member = this.changesign
-    // console.log(this.member)
   },
   components: {
     ReportDialogs,
