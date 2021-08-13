@@ -38,8 +38,8 @@
     </div>
     <div class="phonebannerpart">
       <img :src="phonebanner" alt="" class="phonebanner" />
-      <span class="text-h4 font-weight-bold first">Welcome</span>
-      <span class="text-h4 font-weight-bold second">TheVroom</span>
+      <span class="text-h4 font-weight-bold first">TheVroom</span>
+      <span class="text-h4 font-weight-bold second">新手上路</span>
       <img :src="downArrow" alt="" class="godown" />
     </div>
     <div class="buy">
@@ -102,24 +102,24 @@
 
     <div class="sell">
       <h1 text-h4 font-weight-bold>新手買車-線上估價</h1>
-      <form method="post" action="http://localhost:8888/thevroom-php/test_evaluate.php">
-        車輛廠牌：<input type="text" name="CARBRAND" class="input" placeholder="請輸入車輛廠牌" @focus="input()" @blur="inputblur()" />
+      <form method="post" action="http://localhost:8080/phpfile/eva.php">
+        車輛廠牌：<input type="text" required v-model="carb" class="input" placeholder="請輸入車輛廠牌" :class="{'focus':inputbar === true}"  @focus="inputbrand" @blur="blurbrand" />
         <br />
-        出廠年份：<input type="text" name="PRODUCEDYEAR" class="input" placeholder="請輸入出廠年份" />
+        出廠年份：<input type="text" required v-model="pyear" class="input" placeholder="請輸入出廠年份" :class="{'focus':inputyearbar === true}" @focus="inputyear" @blur="bluryear" />
         <br />
-        里程數：<input type="text" name="MILAGE" class="input" placeholder="請輸入里程數" />
+        里程數：<input type="text" required v-model="long" class="input" placeholder="請輸入里程數" :class="{'focus':inputmilebar === true}" @focus="inputmile" @blur="blurmile"/>
         <br />
-        姓名：<input type="text" name="NAME" class="input" placeholder="請輸入全名" />
+        姓名：<input type="text"  required v-model="person" class="input" placeholder="請輸入全名"  :class="{'focus':inputnamebar === true}" @focus="inputname" @blur="blurname"/>
         <br />
-        email：<input type="text" name="EMAIL" class="input" placeholder="123@gmail.com" />
+        email：<input type="email" required v-model="emailaddress" class="input" placeholder="123@gmail.com" :class="{'focus':emailbar === true}"  @focus="inputemail" @blur="bluremail" />
         <br />
         <button type="submit" class="sellonline" @click.prevent="popup()">送出</button>
       </form>
       <div class="overlay" @click="closebtn()"></div>
       <div class="formSubmit" @keyup="keyesp()">
-        <span class="popup">表單已送出！</span>
+        <span class="popup"></span>
         <span class="closebtn" style="cursor: pointer" @click="closebtn()">✕</span>
-        <p text-subtitle-1 font-weight-light>謝謝您的詢問，我們會儘快由專人與您聯繫</p>
+        <p text-subtitle-1 font-weight-light class="popupp"></p>
         <img :src="logo" alt="" />
       </div>
       <div class="gogo">
@@ -143,9 +143,25 @@ export default {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
     this.imgbelate()
   },
+  // async created () {
+  //   const response = await fetch('http://localhost:8080/test_eva.php')
+  //   const responsedata = await response.json()
+  //   console.log(response)
+  //   console.log(responsedata)
+  // },
   data () {
     return {
+      carbrand: '',
+      year: '',
+      milage: '',
+      name: '',
+      email: '',
       count: '',
+      inputbar: false,
+      inputyearbar: false,
+      inputmilebar: false,
+      inputnamebar: false,
+      emailbar: false,
       banner: require('../assets/new-driver-pic/new-driver-banner.jpg'),
       bannerSoul: '勝負心是促使人們前進的原動力',
       stepOne: require('../assets/new-driver-pic/step1-whitecar.png'),
@@ -338,36 +354,88 @@ export default {
       const lateimg = document.querySelector('img.chat')
       lateimg.classList.add('active')
     },
-    input () {
-      const inputcar = document.querySelectorAll('input')
-      for (let i = 0; i < inputcar.length; i++) {
-        inputcar[i].addEventListener('focus', function () {
-          this.placeholder = ''
-          this.classList.remove('input')
-          this.classList.add('focus')
-        })
-      }
+    inputbrand () {
+      this.inputbar = true
     },
-    inputblur () {
-      const inputcar = document.querySelectorAll('input')
-      const placeholders = ['請輸入車輛廠牌', '請輸入出廠年份', '請輸入里程數', '請輸入全名', '123@gmail/hotmail.com']
-      for (let i = 0; i < inputcar.length; i++) {
-        inputcar[i].addEventListener('blur', function () {
-          for (let j = 0; j < placeholders.length; j++) {
-            if (i === j) {
-              inputcar[i].placeholder = placeholders[j]
-            }
-          }
-          this.classList.remove('focus')
-          this.classList.add('input')
-        })
-      }
+    blurbrand () {
+      this.inputbar = false
+    },
+    inputyear () {
+      this.inputyearbar = true
+    },
+    bluryear () {
+      this.inputyearbar = false
+    },
+    inputmile () {
+      this.inputmilebar = true
+    },
+    blurmile () {
+      this.inputmilebar = false
+    },
+    inputname () {
+      this.inputnamebar = true
+    },
+    blurname () {
+      this.inputnamebar = false
+    },
+    inputemail () {
+      this.emailbar = true
+    },
+    bluremail () {
+      this.emailbar = false
     },
     popup () {
+      this.carbrand = this.carb
+      this.year = this.pyear
+      this.milage = this.long
+      this.name = this.person
+      this.email = this.emailaddress
+      const fd = new FormData()
+      fd.append('carbrand', this.carbrand)
+      fd.append('year', this.year)
+      fd.append('milage', this.milage)
+      fd.append('name', this.name)
+      fd.append('email', this.email)
+      fetch('http://localhost:8080/phpfile/eva.php', {
+        method: 'POST',
+        body: fd
+      })
       const overlay = document.querySelector('.overlay')
       overlay.classList.add('displayBlock')
       const popup = document.querySelector('.formSubmit')
       popup.classList.add('displayBlock')
+      const sent = document.querySelector('.popup')
+      const popupp = document.querySelector('.popupp')
+      sent.innerHTML = '表單已送出'
+      popupp.innerHTML = '我們會儘快與您聯繫'
+
+      const everyinput = document.querySelectorAll('.input')
+      everyinput.forEach(function (e) {
+        e.value = ''
+      })
+      // const sent = document.querySelector('.popup')
+      // const popupp = document.querySelector('.popupp')
+      // for ( let i = 0; i < everyinput.length; i++){
+      //     const overlay = document.querySelector('.overlay')
+      //     overlay.classList.add('displayBlock')
+      //     const popup = document.querySelector('.formSubmit')
+      //     popup.classList.add('displayBlock')
+      //     sent.innerHTML = '表單已送出'
+      //     popupp.innerHTML = '我們會儘快與您聯繫'
+      //   if (everyinput[i].value != ''){
+      //   }else if (everyinput[0].value === ''){
+      //     alert ('請填寫車輛廠牌')
+      //     everyinput[0].style = 'border = 1px solid #f34841'
+      //   }else if (everyinput[1].value === ''){
+      //     alert('請填寫出廠年份')
+      //   }else if (everyinput[2].value === ''){
+      //     alert('請填寫里程數')
+      //   }else if (everyinput[3].value === ''){
+      //     alert('請輸入姓名')
+      //   }else if (everyinput[4].value === ''){
+      //     alert('請輸入email')
+      //   }
+      // }
     },
     closebtn () {
       const overlay = document.querySelector('.overlay')
@@ -417,12 +485,6 @@ export default {
     chatlogohide () {
       const chatlogo = document.querySelector('.logochat2')
       chatlogo.classList.remove('block')
-    },
-    async test () {
-      const response = await fetch('http://localhost:8888/thevroom-php/test_evaluate.php')
-      const responsedata = await response.json()
-      console.log(response)
-      console.log(responsedata)
     }
   }
 }
@@ -520,7 +582,7 @@ div#banner {
       position: fixed;
       overflow: scroll;
       top: 0;
-      right: 80px;
+      right: 0;
       z-index: 99;
       height: auto;
       display: none;
@@ -892,6 +954,15 @@ div.phonebannerpart {
     }
   }
 
+  div.questionblock{
+    max-width:95%;
+    div.givesmallq{
+      div.smallq1{
+        transform: translate(60%,-40%) !important;
+      }
+    }
+  }
+
   div.buy {
     max-width: 100%;
     margin: 0 auto;
@@ -968,6 +1039,9 @@ div.phonebannerpart {
       input:focus {
         outline: none;
       }
+    }
+    div.formSubmit{
+      left:20% ;
     }
   }
 
