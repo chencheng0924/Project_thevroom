@@ -165,7 +165,8 @@ export default {
   components: { ButtonSubmit, Media },
   data () {
     return {
-      count: 0
+      count: 0,
+      member: []
     }
   },
   methods: {
@@ -177,18 +178,26 @@ export default {
       //   method: 'POST',
       //   body: fd
       // })
-      const res = await fetch('http://localhost:8080/testsignin.php', {
+      const res = await fetch('http://localhost:8080/phpfile/testsignin.php', {
         method: 'POST',
         body: fd
       })
       const resdata = await res.json()
-      console.log(resdata)
+      // console.log(resdata)
       if (resdata.length === 0) {
         alert('87帳密錯誤')
       } else {
         this.$store.dispatch('membersign', resdata)
         this.$router.replace('/') // 成功登入後導入首頁
       }
+      const memberinfo = this.$store.getters.getmember
+      // const account = memberinfo[0].EMAIL
+      // const password = memberinfo[0].PASSWORD
+      // console.log('abc')
+      console.log(memberinfo)
+      // localStorage.setItem('memberac', account)
+      // localStorage.setItem('memberpa', password)
+      localStorage.setItem('member', JSON.stringify(memberinfo))
     }
   }
 }

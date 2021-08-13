@@ -2,7 +2,7 @@
   <div>
     <media :query="{ minWidth: '401px' }">
       <div>
-        <div class="forumtop ma-auto">
+        <div class="ma-auto">
           <div
             class="forumblack d-flex flex-column justify-center align-center pt-10 pb-15"
             style="width:100%;height:100%"
@@ -12,73 +12,163 @@
                 ><button-news buttonName="我要發文"></button-news
               ></router-link>
             </div>
+            <div style="width:1200px" class="d-flex align-center">
+              <div style="width:35%;height:3px" class="black"></div>
+              <div style="width:30%" class=" text-h4 font-weight-bold text-center">發燒分享</div>
+              <div style="width:35%;height:3px" class="black"></div>
+            </div>
             <div
               class="d-flex align-center justify-sm-space-around"
               style="width:1200px;height:100%"
             >
-              <v-card class="mr-15" max-width="650" height="600">
+              <!-- <v-card class="mr-15" min-width="650" height="600">
                 <v-img
                   class="white--text align-end"
-                  height="450px"
-                  src="../assets/forum/TDI SUV.png"
+                  max-height="470px"
+                  :src="this.max[3]"
                 >
-                  <v-card-title>Top 10 Australian car</v-card-title>
+                  <v-card-title>{{this.max[4]}}</v-card-title>
                 </v-img>
                 <v-card-text class="text--primary">
                   <div class="d-flex justify-center">
                     <h2 class="text-h6 font-weight-bold">
-                      VW Arteon Shooting Brake v.s Peugeot 508 SW ｜ 200
-                      萬級美型 Wagon 對決！
+                      {{this.max[5]}}
                     </h2>
                   </div>
                 </v-card-text>
                 <v-card-actions class="d-flex justify-end">
-                  <v-btn color="orange" text>
+                  <v-btn color="orange" text @click="test">
                     <router-link
-                      to="/ForumPage"
+                      :to="/ForumPage/ + this.max[0]"
                       style="text-decoration:none;width:100%;color:#F34841"
                     >
                       閱覽文章
                     </router-link>
                   </v-btn>
                 </v-card-actions>
-              </v-card>
-              <div class="d-flex flex-column mt-8">
-                <v-card
-                  class="mx-auto mb-8"
-                  max-width="350"
-                  height="285"
-                  v-for="item in news"
-                  :key="item.id"
-                >
+              </v-card> -->
+              <div class="d-flex mt-8">
+                 <v-card
+                  class="mb-8 mx-1"
+                  width='400'
+                  height="500"
+                 >
+                 <div style="position:relative;">
                   <v-img
                     class="white--text align-end"
-                    height="150px"
-                    :src="item.image"
+                    width='400'
+                    height="500"
+                    :src="this.max[3]"
+                    style="object-fit: contain;object-position: center;"
                   >
-                    <v-card-title>Top 10 Australian beaches</v-card-title>
-                  </v-img>
-                  <v-card-text class="text--primary">
-                    <div class="-text-subtitle-1 font-weight-bold">
-                      {{ item.content }}
+                   </v-img>
+                    <div style="position:absolute;bottom:0;left:0;">
+                      <div class="d-flex flex-column">
+                      <div class="white--text text-center ml-4" style="background:#f34841;width:80px">{{this.max[4]}}</div>
+                      <v-card-text class="text--primary">
+                      <div class="white--text text-h5 font-weight-bold" style="height:70px">
+                        {{ this.max[5] }}
+                      </div>
+                      </v-card-text>
+                      <v-card-actions class="d-flex justify-start">
+                      <v-btn color="#F34841" text>
+                        <router-link
+                        class="white--text"
+                        :to="/ForumPage/ + this.max[0]"
+                        style="text-decoration:none;width:100%;color:#F34841">
+                        閱覽文章
+                        </router-link>
+                      </v-btn>
+                      </v-card-actions>
+                      </div>
                     </div>
-                  </v-card-text>
-                  <v-card-actions class="d-flex justify-end">
-                    <v-btn color="#F34841" text>
-                      閱覽文章
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
+                  </div>
+                 </v-card>
+                 <v-card
+                  class="mb-8 mx-1"
+                  width='400'
+                  height="500"
+                 >
+                 <div style="position:relative;">
+                  <v-img
+                    class="white--text align-end"
+                    height="500px"
+                    :src="this.sec[3]"
+                    style="object-fit: contain;object-position: center;"
+                  >
+                   </v-img>
+                    <div style="position:absolute;bottom:0;left:0;">
+                      <div class="d-flex flex-column">
+                      <div class="white--text text-center ml-4" style="background:#f34841;width:80px">{{this.max[4]}}</div>
+                      <v-card-text class="text--primary">
+                      <div class="white--text text-h5 font-weight-bold" style="height:70px">
+                        {{ this.sec[5] }}
+                      </div>
+                      </v-card-text>
+                      <v-card-actions class="d-flex justify-start">
+                      <v-btn color="#F34841" text>
+                        <router-link
+                        class="white--text"
+                        :to="/ForumPage/ + this.sec[0]"
+                        style="text-decoration:none;width:100%;color:#F34841">
+                        閱覽文章
+                        </router-link>
+                      </v-btn>
+                      </v-card-actions>
+                      </div>
+                    </div>
+                  </div>
+                 </v-card>
+                 <v-card
+                  class="mb-8 mx-1"
+                  width='400'
+                  height="500"
+                 >
+                 <div style="position:relative;">
+                  <v-img
+                    class="white--text align-end"
+                    height="500px"
+                    :src="this.thr[3]"
+                    style="object-fit: contain;object-position: center;"
+                  >
+                   </v-img>
+                    <div style="position:absolute;bottom:0;left:0;">
+                      <div class="d-flex flex-column">
+                      <div class="white--text text-center ml-4" style="background:#f34841;width:80px">{{this.max[4]}}</div>
+                      <v-card-text class="text--primary">
+                      <div class="white--text text-h5 font-weight-bold" style="height:70px">
+                        {{ this.thr[5] }}
+                      </div>
+                      </v-card-text>
+                      <v-card-actions class="d-flex justify-start">
+                      <v-btn color="#F34841" text>
+                        <router-link
+                        class="white--text"
+                        :to="/ForumPage/ + this.thr[0]"
+                        style="text-decoration:none;width:100%;color:#F34841">
+                        閱覽文章
+                        </router-link>
+                      </v-btn>
+                      </v-card-actions>
+                      </div>
+                    </div>
+                  </div>
+                 </v-card>
               </div>
             </div>
           </div>
         </div>
         <div class="mb-15" style="max-width:100%;">
-          <div class="d-flex flex-column align-center" style="max-width:100%">
+          <!-- <div class="d-flex flex-column align-center" style="max-width:100%">
             <h1 class="align-self-center ma-auto mb-2 mt-10" style="width:70%;">
-              今日最新消息
+              熱門討論專區
             </h1>
             <div class="newtitle" style="width:80%;height:5px;"></div>
+          </div> -->
+          <div style="width:1200px" class="d-flex align-center ma-auto">
+              <div style="width:35%;height:3px" class="black"></div>
+              <div style="width:30%" class=" text-h4 font-weight-bold text-center">熱門討論專區</div>
+              <div style="width:35%;height:3px" class="black"></div>
           </div>
           <div
             class="d-flex justify-space-around mt-10 ma-auto"
@@ -91,45 +181,51 @@
               class="d-flex flex-column justify-space-around"
               style="width:500px"
             >
-              <div v-for="(title, index) in titles" :key="title.id">
+              <div class="d-flex flex-column" v-for="(title, index) in titles" :key="title[0]">
                 <h2
-                  @click="gogo(index)"
+                  @mouseover="gogo(index)"
                   :class="{ yellow: index == count }"
                   class="text-h6 font-weight-bold"
                 >
-                  {{ title.title }}
+                <!-- {{ title[5] }} -->
+                <router-link :to="/ForumPage/ + title[0]">{{ "『" + title[4] + "』" + title[5] }}</router-link>
                 </h2>
+                <h4 class="align-self-end">{{title[2]}}</h4>
               </div>
             </div>
           </div>
         </div>
         <div
-          class="d-flex justify-start flex-wrap mb-10 ma-auto"
+          class="d-flex justify-around flex-wrap mb-10 ma-auto"
           style="width:1200px;"
         >
-          <div v-for="carnew in carnews" :key="carnew" class="mb-10">
-            <v-card class="mx-10" max-width="300">
+          <div v-for="carnew in carnewsfirst" :key="carnew[0]" class="mb-10" style="width:400px;">
+            <v-card class="mx-10 d-flex flex-column orange lighten-5">
               <v-img
                 class="white--text align-end"
-                style="height:220px"
-                :src="carnew.src"
+                style="height:250px"
+                :src="carnew[3]"
               >
-                <v-card-title>經典新款</v-card-title>
+                <v-card-title></v-card-title>
               </v-img>
 
-              <v-card-subtitle class="-h6 font-weight-bold">
-                {{ carnew.title }}
+              <v-card-subtitle class="-h6 font-weight-bold text-center">
+                <div style="width:30%" class="grey lighten-3 pa-2">{{ carnew[4] }}</div>
               </v-card-subtitle>
 
-              <v-card-text class="text-subtitle-1 font-weight-light">
+              <v-card-text class="text-subtitle-1 font-weight-light" style="height:100px">
                 <div>
-                  {{ carnew.content }}
+                  {{ carnew[5] }}
                 </div>
               </v-card-text>
 
-              <v-card-actions>
+              <v-card-actions class="align-self-end">
                 <v-btn color="#F34841" text>
+                  <router-link
+                  :to="/ForumPage/ + carnew.ARTICLEID"
+                  style="text-decoration:none;width:100%;color:#F34841">
                   閱覽文章
+                  </router-link>
                 </v-btn>
               </v-card-actions>
             </v-card>
@@ -141,7 +237,7 @@
           >
             <div
               @click="moredata"
-              style="border:1px solid #f34841;width:300px;cursor: pointer;"
+              style="border:1px solid #f34841;width:300px;cursor: pointer;color:#fff;background-color:#f34841"
               class="rounded-pill py-5"
             >
               更多資料
@@ -268,7 +364,7 @@
                 style="height:150px"
                 :src="carnew.src"
               >
-                <v-card-title>經典新款</v-card-title>
+                <v-card-title></v-card-title>
               </v-img>
 
               <v-card-subtitle class="-h6 font-weight-bold">
@@ -309,6 +405,29 @@ export default {
     const resdata = await res.json()
     console.log(res)
     console.log(resdata)
+    this.alllist = [...resdata]
+    console.log(this.alllist)
+    this.alllist.forEach(list => {
+      console.log(list)
+    })
+    this.carnews1 = resdata.reverse()
+    console.log(this.carnews1)
+    this.carnewsfirst = this.carnews1.slice(0, 6)
+    console.log(this.carnewsfirst)
+    this.carnewspush = this.carnews1.splice(6, this.carnews1.length - 6)
+    console.log(this.carnewspush)
+    const forumre = await fetch('http://localhost:8080/phpfile/forumreplyall.php')
+    const forumreply = await forumre.json()
+    console.log(forumreply)
+    this.max = forumreply[0]
+    this.sec = forumreply[1]
+    this.thr = forumreply[2]
+    console.log(this.max)
+    console.log(this.sec)
+    console.log(this.thr)
+    this.titles = forumreply.slice(3, 6)
+    console.log(this.titles)
+    this.goimg = this.titles[0][3]
   },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
@@ -319,260 +438,40 @@ export default {
   },
   data () {
     return {
+      max: {},
+      sec: {},
+      thr: {},
       page: 1,
       num1: 0,
       num2: 6,
       newscount: 0,
-      goimg: require('../assets/forum/Benz1.png'),
       count: null,
       active: false,
-      carnews: [
-        {
-          id: 1,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 2,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自日本的經典戰車',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 3,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 4,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自美國的經典名車',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 5,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 6,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自瑞士的經典名車',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        }
-      ],
-      carnewspush: [
-        {
-          id: 1,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車1',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 2,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自日本的經典戰車2',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 3,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車3',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 4,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自美國的經典名車4',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 5,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車5',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 6,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自瑞士的經典名車6',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 1,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車7',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 2,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自日本的經典戰車8',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 3,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車9',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 4,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自美國的經典名車10',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 5,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車11',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 6,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自瑞士的經典名車12',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 1,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車13',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 2,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自日本的經典戰車14',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 3,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車15',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 4,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自美國的經典名車16',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 5,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車17',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 6,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自瑞士的經典名車18',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 1,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車19',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 2,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自日本的經典戰車20',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 3,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車21',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        },
-        {
-          id: 3,
-          src: require('../assets/forum/toyota-supra.jpg'),
-          title: '來自德國的經典名車22',
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血駕馭 身手的潮流玩家！'
-        }
-      ],
-      news: [
-        {
-          id: 1,
-          image: require('../assets/forum/Benz1.png'),
-          content:
-            'Land Rover Range Rover Evoque P250R-Dynamic SE 新年式試駕｜安全、科技一併升級！'
-        },
-        {
-          id: 2,
-          image: require('../assets/forum/MINI JCW.jpg'),
-          content:
-            'MINI JCW Countryman ALL4 試駕，具有高性能與熱血身手的潮流玩家！'
-        }
-      ],
-      titles: [
-        {
-          id: 0,
-          title: 'Audi Q2 35 TFSI S Line試駕 │ 享有個性的價值...',
-          src: require('../assets/forum/toyota-supra.jpg')
-        },
-        {
-          id: 1,
-          title: 'Audi Q2 35 TFSI S Line試駕 │ 享有個性的價值...',
-          src: require('../assets/forum/TDI SUV.png')
-        },
-        {
-          id: 2,
-          title: 'Audi Q2 35 TFSI S Line試駕 │ 享有個性的價值...',
-          src: require('../assets/forum/Benz1.png')
-        }
-      ]
+      alllist: [],
+      carnews1: [],
+      carnewsfirst: [],
+      carnewspush: [],
+      replylist: [],
+      res: {},
+      titles: [],
+      goimg: ''
     }
   },
   methods: {
     gogo (index) {
       // console.log(this.$refs.gogoro)
       this.count = index
-      this.goimg = this.titles[index].src
+      this.goimg = this.titles[index][3]
     },
     moredata () {
-      console.log(this.carnews.length)
+      console.log(this.carnewsfirst.length)
       console.log(this.carnewspush.length)
-      if (this.carnews.length > 5 + this.carnewspush.length) {
+      console.log(this.carnews1.length)
+      if (this.carnewsfirst.length > 5 + this.carnewspush.length) {
         return
       }
-      if (this.carnews.length < this.carnews.length + this.carnewspush.length) {
-        this.carnews.push(
+      if (this.carnewsfirst.length < this.carnews1.length + this.carnewspush.length) {
+        this.carnewsfirst.push(
           ...this.carnewspush.slice(
             this.num1 + 6 * this.newscount,
             this.num2 + 6 * this.newscount
@@ -580,10 +479,18 @@ export default {
         )
         // this.carnews.push(...this.carnewspush.slice(6, 12))
         this.newscount += 1
-        if (this.carnews.length > 5 + this.carnewspush.length) {
+        if (this.carnewsfirst.length > 5 + this.carnewspush.length) {
           this.$refs.moredata.textContent = '----------資料已全部顯示----------'
         }
       }
+    },
+    test () {
+      console.log(this.alllist.reverse())
+    },
+    issuerouter (e) {
+      console.log(this.alllist)
+      console.log(e.target)
+      return '/ForumPage/1'
     }
   },
   computed: {
@@ -619,8 +526,8 @@ export default {
 }
 .moredata {
   :hover {
-    background-color: #f34841;
-    color: #fff;
+    background-color: #fff;
+    color: #f34841;
   }
 }
 </style>

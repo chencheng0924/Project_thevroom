@@ -141,6 +141,8 @@ export default {
   methods: {
     logout () {
       this.$store.dispatch('membersign', 0)
+      localStorage.clear()
+      this.$store.dispatch('keepsign', 0)
     }
   }
 }

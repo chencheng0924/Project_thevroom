@@ -58,7 +58,7 @@ const routes = [
     component: Forum
   },
   {
-    path: '/forumPage',
+    path: '/forumPage/:id',
     name: 'ForumPage',
     component: ForumPage
   },
@@ -108,7 +108,7 @@ const routes = [
     component: Accessories
   },
   {
-    path: '/singleauction',
+    path: '/singleauction/:id',
     name: 'SingleAuction',
     component: SingleAuction
   },
