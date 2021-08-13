@@ -14,7 +14,7 @@
                 style="width:20%"
               >
                 <i style="font-size:36px" class="fas fa-portrait"></i>
-                <div class="text-h4 font-weight-bold">-{{ item.MEMBERID }}-</div>
+                <div class="text-h4 font-weight-bold">-{{ item.FULLNAME }}-</div>
                 <h3
                   style="border:1px solid white; border-radius:20px"
                   class="pa-3 px-5 my-2"
@@ -91,7 +91,7 @@
           <div class="my-8 d-flex justify-center align-center" v-if="changesign">
             <div class="d-flex flex-column align-center mr-5">
               <i class="fas fa-portrait"></i>
-              <h3>{{ this.member[0].FULLNAME }}</h3>
+              <h3>{{ this.username }}</h3>
             </div>
             <forum-page-input v-model="content" @input="getvalue"/>
             <v-btn
@@ -226,7 +226,7 @@
           <div class="mt-6 d-flex justify-center max-width:800px">
             <div class="d-flex flex-column align-center mr-5">
               <i class="fas fa-portrait"></i>
-              <h3>tony</h3>
+              <!-- <h3>tony</h3> -->
             </div>
             <input
               type="text"
@@ -254,6 +254,9 @@ import ForumPageInput from '../components/ForumPageInput.vue'
 import Media from 'vue-media'
 export default {
   async created () {
+    console.log(this.$store.getters.getmember)
+    console.log('123')
+    console.log(this.$route)
     const formdata = new FormData()
     formdata.append('FORUMID', this.$route.params.id)
     const res = await fetch('http://localhost:8080/phpfile/forumpageselect.php', {
@@ -262,7 +265,7 @@ export default {
     })
     // console.log(res)
     const resdata = await res.json()
-    // console.log(resdata)
+    console.log(resdata)
     this.news11 = resdata
     // console.log(this.news11)
     const issue = await fetch('http://localhost:8080/phpfile/forumreply.php', {
@@ -270,18 +273,15 @@ export default {
       body: formdata
     })
     const issuelist = await issue.json()
-    // console.log(issue)
-    // console.log(issuelist)
-    // console.log(issuelist[0].FULLNAME)
-    this.username = issuelist[0].FULLNAME
-    // console.log(this.username)
+    console.log(issuelist)
+    console.log(this.$store.getters.getmember)
+    console.log(this.$store.getters.getmember[0].FULLNAME)
     this.messagelist = [...issuelist]
-    // console.log(this.messagelist)
+    this.username = this.$store.getters.getmember[0].FULLNAME
   },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
     this.member = this.changesign
-    // console.log(this.member)
   },
   components: {
     ReportDialogs,
@@ -312,53 +312,7 @@ export default {
         }
       ],
       messagelist: [],
-      // messagelist: [
-      //   {
-      //     messageid: 1,
-      //     name: 'tony',
-      //     date: '2021/7/16',
-      //     message:
-      //       'Volkswagen T-Roc 280算是CUV中造型好看的，尤其是全彩全螢幕的駕駛儀表板最讓人心'
-      //   },
-      //   {
-      //     messageid: 2,
-      //     name: 'allen',
-      //     date: '2021/7/16',
-      //     message:
-      //       '我是覺得要試TROC,順便試Tiguan,比較一下，入門差5萬，很容易就被轉向了...'
-      //   },
-      //   {
-      //     messageid: 3,
-      //     name: 'jisoo',
-      //     date: '2021/7/16',
-      //     message:
-      //       '大小剛好跟我現在正在駕駛的車差不多，外型與油耗也都很符合，後廂空間為 445 公升更是我想要的空間!'
-      //   }
-      // ],
       messagelist2: []
-      // messagelist2: [
-      //   {
-      //     messageid: 1,
-      //     name: 'tony',
-      //     date: '2021/7/16',
-      //     message:
-      //       'Volkswagen T-Roc 280算是CUV中造型好看的，尤其是全彩全螢幕的駕駛儀表板最讓人心'
-      //   },
-      //   {
-      //     messageid: 2,
-      //     name: 'allen',
-      //     date: '2021/7/16',
-      //     message:
-      //       '我是覺得要試TROC,順便試Tiguan,比較一下，入門差5萬，很容易就被轉向了...'
-      //   },
-      //   {
-      //     messageid: 3,
-      //     name: 'jessie',
-      //     date: '2021/7/16',
-      //     message:
-      //       '大小剛好跟我現在正在駕駛的車差不多，外型與油耗也都很符合，後廂空間為 445 公升更是我想要的空間!'
-      //   }
-      // ],
     }
   },
   methods: {

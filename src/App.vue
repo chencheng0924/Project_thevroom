@@ -7,6 +7,7 @@
       </div>
       <!-- <v-btn @click="test">123</v-btn> -->
       <testfileload/>
+      <!-- <button @click="test123">123</button> -->
       <the-footer></the-footer>
       <home class="d-none"></home>
     </v-app>
@@ -20,8 +21,26 @@ import Home from './views/Home.vue'
 import testfileload from './components/testfileload.vue'
 
 export default {
+  mounted () {
+    console.log(this.$store.getters)
+    // const member123 = JSON.parse(localStorage[member])
+    // console.log(member123)
+    // const ac = localStorage.getItem('memberac')
+    // const ps = localStorage.getItem('memberpa')
+    // console.log(JSON.parse(localStorage.getItem('member')))
+    const member123 = JSON.parse(localStorage.getItem('member'))
+    console.log(member123)
+    if (member123) {
+      this.$store.dispatch('keepsign', member123)
+      console.log('123')
+      console.log(this.$store.getters)
+    }
+  },
   data () {
     return {
+      memberac: '',
+      memberps: '',
+      abc: '',
       topstyle: 'margin-top: 64px;'
     }
   },
@@ -40,6 +59,23 @@ export default {
     }
   },
   methods: {
+    test123 () {
+      const memberinfo = this.$store.getters.getmember
+      if (memberinfo === 0) {
+      } else {
+        // console.log(memberinfo[0].EMAIL)
+        // console.log(memberinfo[0].PASSWORD)
+        this.memberid = localStorage.getItem('memberac')
+        this.memberps = localStorage.getItem('memberpa')
+        console.log(this.memberid)
+        console.log(this.memberps)
+        // this.$cookies.set('memberac', account)
+        // this.$cookies.set('memberpa', password)
+        // console.log(document.$cookie)
+        // console.log(this.$cookies.isKey('memberpa'))
+        // console.log(this.$cookies.get('memberac'))
+      }
+    },
     async test () {
       const response = await fetch('http://localhost:8080/test2.php')
       const responsedata = await response.json()

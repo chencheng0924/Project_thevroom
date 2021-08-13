@@ -14,6 +14,7 @@ import ButtonDirectbuy from './components/layout/ButtonDirectbuy'
 import VueObserVisibility from 'vue-observe-visibility'
 import UploadImage from './components/interactive/UploadImage.vue'
 import Media from 'vue-media'
+import VueCookies from 'vue-cookies'
 import PerfectScrollbar from 'vue2-perfect-scrollbar'
 import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
 
@@ -21,6 +22,7 @@ Vue.use(VueObserVisibility)
 Vue.config.productionTip = false
 Vue.use(VueFullPage)
 Vue.use(Media)
+Vue.use(VueCookies)
 Vue.use(PerfectScrollbar)
 
 Vue.component('the-headline', TheHeadline)

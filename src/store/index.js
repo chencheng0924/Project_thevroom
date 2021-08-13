@@ -16,6 +16,9 @@ export default new Vuex.Store({
     },
     setsign (state, payload) {
       state.sign = payload
+    },
+    setkeep (state, payload) {
+      state.sign = payload
     }
   },
   actions: {
@@ -24,6 +27,9 @@ export default new Vuex.Store({
     },
     membersign (context, payload) {
       context.commit('setsign', payload)
+    },
+    keepsign (context, payload) {
+      context.commit('setkeep', payload)
     }
   },
   modules: {
@@ -33,7 +39,7 @@ export default new Vuex.Store({
       return state.happy
     },
     getsad (state) {
-      console.log(state.sad)
+      // console.log(state.sad)
       return state.sad
     },
     getmember (state) {

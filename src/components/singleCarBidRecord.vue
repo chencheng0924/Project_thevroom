@@ -1,6 +1,11 @@
 <template>
     <div class="singleBid d-flex">
-        <div class="spaceLeft"></div>
+        <div class="spaceLeft">
+            <div class="d-flex" style="cursor: pointer;" @click="moveback">
+                <v-icon>mdi-arrow-left-thick</v-icon>
+                <div class="text-subtitle-1 font-weight-medium ml-2" style="color: gray;">返回車輛資訊</div>
+            </div>
+        </div>
         <div class="bidContent">
             <div class="bidTitle d-flex align-end">
                 <div class="bidT text-h6 font-weight-bold">目前競標價錢：</div>
@@ -14,7 +19,8 @@
             </div>
             <div class="bidTime d-flex align-center mt-5">
                 <div class="bidTimeTitle text-h6 font-weight-bold">拍賣會剩餘時間：</div>
-                <div class="bidTimer text-h3 font-weight-bold ml-2">01天08時25分30秒</div>
+                <div class="bidTimer text-h3 font-weight-bold ml-2 mr-5">01天08時25分30秒</div>
+                <auction-dialogs/>
             </div>
             <div class="goBid d-flex align-center mt-5">
                 <div class="goBidTi text-h6 font-weight-bold">每口叫價</div>
@@ -39,8 +45,16 @@
                         :disabled="false"
                     ></v-text-field>
                 </div>
-                <div class="ml-10">
-                    <auction-dialogs/>
+                <div style="margin-left: 85px;">
+                    <v-btn
+                          rounded
+                          outlined
+                          color="#BFBDBD"
+                          class="btn"
+                          to="/AuctionOverview"
+                          dark>
+                          回拍賣會總覽
+                    </v-btn>
                 </div>
             </div>
         </div>
@@ -58,6 +72,11 @@ export default {
     bidRecord,
     AuctionDialogs,
     BidDialogs
+  },
+  methods: {
+    moveback () {
+      this.$emit('moveback')
+    }
   }
 }
 </script>
@@ -93,7 +112,7 @@ export default {
             // border: 1px solid purple;
         }
         .goBid{
-            width: 750px;
+            width: 850px;
             height: 70px;
             // border: 1px solid khaki;
         }
