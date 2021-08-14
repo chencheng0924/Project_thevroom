@@ -11,11 +11,11 @@
         <v-divider></v-divider>
         <v-card-text style="height: 300px;">
           <v-radio-group v-model="dialogm1" column>
-            <v-radio label="帶有惡意字眼" value="1"></v-radio>
-            <v-radio label="侮辱他人" value="2"></v-radio>
-            <v-radio label="挑起戰爭" value="3"></v-radio>
-            <v-radio label="不當內容" value="4"></v-radio>
-            <v-radio label="廣告罐頭訊息" value="5"></v-radio>
+            <v-radio label="帶有惡意字眼" value="帶有惡意字眼"></v-radio>
+            <v-radio label="侮辱他人" value="侮辱他人"></v-radio>
+            <v-radio label="挑起戰爭" value="挑起戰爭"></v-radio>
+            <v-radio label="不當內容" value="不當內容"></v-radio>
+            <v-radio label="廣告罐頭訊息" value="廣告罐頭訊息"></v-radio>
           </v-radio-group>
         </v-card-text>
         <v-divider></v-divider>
@@ -23,7 +23,7 @@
           <v-btn color="blue darken-1" text @click="dialog = false">
             取消
           </v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">
+          <v-btn color="blue darken-1" text @click.prevent="sendout">
             送出
           </v-btn>
         </v-card-actions>
@@ -38,6 +38,14 @@ export default {
     return {
       dialogm1: '',
       dialog: false
+    }
+  },
+  methods: {
+    sendout () {
+      console.log(this.dialogm1)
+      this.$emit('gogororo2', this.dialogm1)
+      this.$emit('gogororo')
+      this.dialog = false
     }
   }
 }
