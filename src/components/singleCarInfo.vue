@@ -1,7 +1,7 @@
 <template>
     <div class="carInfo d-flex flex-column mb-10">
         <router-link to="/AuctionOverview">
-            <div class="d-flex mb-9" @click="moveup">
+            <div class="d-flex mb-9">
                 <v-icon>mdi-arrow-left-thick</v-icon>
                 <div class="text-subtitle-1 font-weight-medium ml-2" style="color: gray;">返回拍賣會總覽</div>
             </div>
@@ -10,35 +10,35 @@
             <div class="spaceLeft"></div>
             <div class="infoCar d-flex flex-column">
                 <div class="infoT d-flex flex-column">
-                    <div class="titleY">2021</div>
-                    <div class="titleB">M-Benz GLC Coupe 300</div>
+                    <div class="titleY">{{ year }}</div>
+                    <div class="titleB">{{ cbrand }} {{ cseries }}</div>
                     <div class="titleLine mt-2"></div>
                 </div>
-                <div class="infoC pt-3">相較於先前車款，新G-Class的車身尺碼全面放大，帶來更具份量感的視覺效果，對於乘坐空間也有實質助益，但不變的是，G-Class風靡車壇近40年的經典比例，完整延續。</div>
+                <div class="infoC pt-3">{{ des }}</div>
                 <div class="d-flex">
                     <div class="infoM d-flex justify-space-between">
                         <div class="infoBoxL d-flex flex-column justify-space-around">
                             <div class="cnBox d-flex flex-column">
                                 <div class="inCBox">車身座位</div>
-                                <div class="inBox">5門5人座</div>
+                                <div class="inBox">{{ door }}</div>
                             </div>
                             <div class="cnBox d-flex flex-column">
-                                <div class="inCBox">變速系統</div>
-                                <div class="inBox">9速手自排</div>
+                                <div class="inCBox">車色</div>
+                                <div class="inBox">{{ color }}</div>
                             </div>
                             <div class="cnBox d-flex flex-column">
                                 <div class="inCBox">排氣量</div>
-                                <div class="inBox">3982cc</div>
+                                <div class="inBox">{{ dis }}</div>
                             </div>
                         </div>
                         <div class="infoBoxR d-flex flex-column justify-space-around">
                             <div class="cnBox d-flex flex-column">
-                                <div class="inCBox">性能數據</div>
-                                <div class="inBox">422hp@5250~5500rpm 62.2kgm@2000~4750rpm</div>
+                                <div class="inCBox">排氣量</div>
+                                <div class="inBox">{{ dis }}</div>
                             </div>
                             <div class="cnBox d-flex flex-column">
-                                <div class="inCBox">能量消耗</div>
-                                <div class="inBox">平均 7.3km/ltr 市區 5.4km/ltr 高速 9.12km/ltr</div>
+                                <div class="inCBox">里程數</div>
+                                <div class="inBox">{{ miles }}</div>
                             </div>
                             <div class="cnBox d-flex flex-column">
                                 <div class="inCBox">引擎形式</div>
@@ -67,6 +67,41 @@
 
 <script>
 export default {
+  data () {
+    return {
+      year: '',
+      cbrand: '',
+      cseries: '',
+      des: '',
+      door: '',
+      color: '',
+      dis: '',
+      miles: ''
+    }
+  },
+  async created () {
+    console.log('route', this.$route.params.id)
+    const fd = new FormData()
+    fd.append('IDac', this.$route.params.id)
+
+    const res = await fetch('http://localhost:8080/phpfile/singleauction.php', {
+      method: 'POST',
+      body: fd
+    })
+    const resdata = await res.json()
+    console.log(res)
+    console.log(resdata)
+    this.year = resdata[0].YEAR
+    this.cbrand = resdata[0].CARBRAND
+    this.cseries = resdata[0].CARSERIES
+    this.des = resdata[0].DESCRIPTION
+    this.door = resdata[0].DOOR
+    this.color = resdata[0].COLOR
+    this.dis = resdata[0].DISPLACEMENT
+    this.miles = resdata[0].MILES
+    console.log(this.miles)
+  },
+  //   props: ['year', 'cbrand', 'cseries', 'des', 'door', 'color', 'dis', 'miles'],
   methods: {
     movegogo () {
       this.$emit('gomove')
