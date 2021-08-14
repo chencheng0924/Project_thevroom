@@ -165,7 +165,8 @@ export default {
   components: { ButtonSubmit, Media },
   data () {
     return {
-      count: 0
+      count: 0,
+      member: []
     }
   },
   methods: {
@@ -190,11 +191,13 @@ export default {
         this.$router.replace('/') // 成功登入後導入首頁
       }
       const memberinfo = this.$store.getters.getmember
-      const account = memberinfo[0].EMAIL
-      const password = memberinfo[0].PASSWORD
+      // const account = memberinfo[0].EMAIL
+      // const password = memberinfo[0].PASSWORD
       // console.log('abc')
-      localStorage.setItem('memberac', account)
-      localStorage.setItem('memberpa', password)
+      console.log(memberinfo)
+      // localStorage.setItem('memberac', account)
+      // localStorage.setItem('memberpa', password)
+      localStorage.setItem('member', JSON.stringify(memberinfo))
     }
   }
 }

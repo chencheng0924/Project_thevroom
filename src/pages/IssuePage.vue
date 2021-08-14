@@ -60,11 +60,56 @@
         <input
           type="checkbox"
           class="mr-2"
+          v-model="gocheck"
+          ref="gocheck"
         />我已閱讀並同意遵守討論區規則、本站服務條款與個人資料保護法
       </div>
       <div class="ma-auto d-flex justify-space-around" style="width:900px">
       <router-link to="/forum"><button-submit buttonSubmit="返回上一頁" class="mb-10"></button-submit></router-link>
-      <div @click="submit"><button-submit buttonSubmit="送出" class="mb-10"></button-submit></div>
+      <div class="text-center">
+        <v-btn
+            @click.stop="submit"
+            style="background-color:#f34841;width:150px"
+            class="rounded-pill"
+            dark>
+          送出
+        </v-btn>
+          <!-- 彈窗內容 -->
+    <v-row justify="center">
+      <v-dialog
+        v-model="dialog"
+        persistent
+        max-width="290">
+       <v-card>
+        <v-card-title class="text-h6">
+          新增成功！！！
+        </v-card-title>
+        <v-card-text>文章已新增至討論區</v-card-text>
+        <v-card-actions class="d-flex justify-center" style="width:290px">
+          <v-btn
+            @click="dialog = false"
+            class="mr-5"
+            color="orange darken-1"
+            text
+            :to="/ForumPage/ + this.lastforum"
+          >
+            查看文章
+          </v-btn>
+          <v-btn
+            class="ml-5"
+            color="orange darken-1"
+            text
+            @click="dialog = false"
+            to="/forum/"
+          >
+            返回討論區
+          </v-btn>
+        </v-card-actions>
+       </v-card>
+      </v-dialog>
+     </v-row>
+     <!---->
+      </div>
       </div>
     </div>
   </form>
@@ -143,9 +188,9 @@
 import Media from 'vue-media'
 export default {
   async created () {
-    const res = await fetch('http://localhost:8080/phpfile/testsignin.php')
-    const resdata = await res.json()
-    console.log(resdata)
+    // const res = await fetch('http://localhost:8080/phpfile/testsignin.php')
+    // const resdata = await res.json()
+    console.log(this.$store.getters.getmember)
     console.log(this.$store.getters.getmember[0][0])
     this.member = this.$store.getters.getmember[0][0]
     // resdata.forEach((list) => {
@@ -160,6 +205,9 @@ export default {
   },
   data () {
     return {
+      member123: [],
+      dialog: false,
+      gocheck: false,
       alreadyHave: [],
       types: ['車訊新聞', '會員分享'],
       preview: null,
@@ -169,34 +217,64 @@ export default {
       date: new Date(),
       inputday: '',
       member: 0,
-      pic: []
+      pic: [],
+      resdata1: [],
+      resdata11: [],
+      lastforum1: 0,
+      lastforum: 0
     }
   },
   methods: {
     updatepic (list) {
       this.pic = list
     },
-    submit () {
-      // console.log(this.date.getFullYear())
-      // console.log(this.date.getMonth())
-      // console.log(this.date.getDate())
-      this.inputtday = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate()
-      console.log(this.inputtday)
-      console.log(this.inputtitle)
-      console.log(this.inputtext)
-      console.log(this.inputtype)
-      console.log(this.pic)
-      const formdata = new FormData()
-      formdata.append('MEMBERID', this.$store.getters.getmember[0][0])
-      formdata.append('DATE', this.inputtday)
-      formdata.append('ARTICLEIMG', this.pic[0])
-      formdata.append('TOPICTYPE', this.inputtype)
-      formdata.append('SUBJECTNAME', this.inputtitle)
-      formdata.append('CONTENT', this.inputtext)
-      fetch('http://localhost:8080/phpfile/Issueinsert.php', {
+    async submit () {
+      if (this.gocheck === false) {
+        alert('請確認同意規則')
+        this.dialog = false
+        console.log('hi')
+      } else {
+        this.dialog = true
+        // console.log(this.date.getFullYear())
+        // console.log(this.date.getMonth())
+        // console.log(this.date.getDate())
+        this.inputtday = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate()
+        // console.log(this.inputtday)
+        // console.log(this.inputtitle)
+        // console.log(this.inputtext)
+        // console.log(this.inputtype)
+        // console.log(this.pic)
+        const formdata = new FormData()
+        formdata.append('MEMBERID', this.$store.getters.getmember[0][0])
+        formdata.append('DATE', this.inputtday)
+        formdata.append('ARTICLEIMG', this.pic[0])
+        formdata.append('TOPICTYPE', this.inputtype)
+        formdata.append('SUBJECTNAME', this.inputtitle)
+        formdata.append('CONTENT', this.inputtext)
+        fetch('http://localhost:8080/phpfile/Issueinsert.php', {
+          method: 'POST',
+          body: formdata
+        })
+        this.getback()
+      }
+    },
+    async getback () {
+      const formdata1 = new FormData()
+      formdata1.append('MEMBERID', this.$store.getters.getmember[0][0])
+      const res1 = await fetch('http://localhost:8080/phpfile/forumselectown.php', {
         method: 'POST',
-        body: formdata
+        body: formdata1
       })
+      const resdata1 = await res1.json()
+      this.resdata1 = [...resdata1]
+      console.log(resdata1)
+      this.resdata11 = resdata1.reverse()
+      console.log(this.resdata11)
+      console.log(this.resdata11[0])
+      console.log(this.resdata11[0][0])
+      this.lastforum1 = this.resdata11[0][0]
+      this.lastforum = parseInt(this.lastforum1) + 1
+      console.log(this.lastforum)
     }
   }
 }
