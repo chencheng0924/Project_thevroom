@@ -49,7 +49,7 @@
                     <v-btn
                           rounded
                           outlined
-                          color="#BFBDBD"
+                          color="#181818"
                           class="btn"
                           to="/AuctionOverview"
                           dark>
