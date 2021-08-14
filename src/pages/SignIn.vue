@@ -178,7 +178,7 @@ export default {
       //   method: 'POST',
       //   body: fd
       // })
-      const res = await fetch('http://localhost:8080/testsignin.php', {
+      const res = await fetch('http://localhost:8080/phpfile/testsignin.php', {
         method: 'POST',
         body: fd
       })
