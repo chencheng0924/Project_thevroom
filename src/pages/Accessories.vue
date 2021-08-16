@@ -34,7 +34,7 @@
           <div class="productpart">
             <div
               class="productlist"
-              v-for="product in productList"
+              v-for="product in filteredBlogs"
               :key="product"
             >
               <!-- :class="{block:itemname === currentsort}" -->
@@ -50,7 +50,7 @@
                           v-bind="attrs"
                           v-on="on"
                         >
-                        <img :src="product.imgURL" alt="圖壞了" class="itemimg" />
+                        <img :src="product.PRODUCTIMG" alt="圖壞了" class="itemimg" />
                         </span>
                         </template>
                         <v-card>
@@ -80,12 +80,12 @@
                 </template>
               </div>
               <br />
-              <span class="text-subtitle-1 font-weight-bold">{{product.PRODUCTNAME}}</span>
+              <span class="text-subtitle-2 font-weight-bold">{{product.PRODUCTNAME}}</span>
               <br />
               <span style="display:none;">{{product.SORT}}</span>
               <span
                 class="price"
-                style="color: #f34841; font-size: 16px; font-weight: bold"
+                style="color: #f34841; font-size: 14px; font-weight: bold"
               >
                 ${{ product.PRODUCTPRICE }}</span
               >
@@ -94,56 +94,9 @@
                 alt="圖壞了"
                 title="加入購物車"
                 class="shopcart"
-                @click="linkshop()"
               />
+                <!-- @click="linkshop()" -->
               <img :src="goshopping" alt="圖壞了" class="goshopping" />
-              <!-- <div class="detail">
-                <template>
-                  <div class="text-center">
-                    <v-dialog v-model="dialog" width="500">
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-                          color="#181818 lighten-2"
-                          dark
-                          v-bind="attrs"
-                          v-on="on"
-                          style="width: 80px; height: 30px; font-size: 13px"
-                        >
-                          立即選看
-                        </v-btn>
-                      </template>
-                      <v-card style="height: 365px">
-                        <v-card-title class="text-h5 orange lighten-2">
-                          商品細項
-                        </v-card-title>
-
-                        <v-card-text style="height: 250px">
-                          <ol class="d-flex flex-column justify-center">
-                            <li
-                              style="line-height: 3"
-                              v-for="item in productList"
-                              :key="item.PRODUCTINFO"
-                            >
-                              {{ item }}
-                            </li>
-                          </ol>
-                        </v-card-text>
-
-                        <v-divider></v-divider>
-
-                        <v-card-actions>
-                          <v-spacer></v-spacer>
-                          <v-btn color="primary" text>
-                            <router-link to="/shoppingcar">
-                              加入購物車
-                            </router-link>
-                          </v-btn>
-                        </v-card-actions>
-                      </v-card>
-                    </v-dialog>
-                  </div>
-                </template>
-              </div> -->
             </div>
           </div>
         </div>
@@ -257,7 +210,7 @@ export default {
   computed: {
     filteredBlogs: function () {
       return this.productList.filter((product) => {
-        return product.title.match(this.search)
+        return product.SORT.match(this.itemname)
       })
     }
   }
@@ -339,7 +292,7 @@ div.normalSize {
         background-color: #ffffff;
         // border:1px solid black;
         text-align: center;
-        // padding: 20px 30px;
+        padding: 10px 30px;
         margin: 20px 10px;
         box-shadow: white 0 0px 1px, black 1px 0px 2px, white -1px 0px 2px;
         &:hover {

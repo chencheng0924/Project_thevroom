@@ -12,10 +12,10 @@
                       </div>
                   </div>
                   <div class="rightIn d-flex flex-column align-center">
-                      <div class="titleAu">Mercedes-Benz</div>
-                      <div class="titleAu">GLC Coupe 300</div>
+                      <div class="titleAu">{{ brand }}</div>
+                      <div class="titleAu">{{ series }}</div>
                       <div class="carAu">
-                            <img class="moCar" src="../assets/carlist/benz30.png">
+                            <img class="moCar" :src="path">
                       </div>
                       <div class="btnAu d-flex justify-center">
                           <v-btn
@@ -70,7 +70,19 @@ gsap.registerPlugin(ScrollTrigger)
 export default {
   data () {
     return {
-      auctionid: ''
+      auctionid: '',
+      brand: '',
+      series: '',
+      path: '',
+      cy: '',
+      cb: '',
+      cs: '',
+      cdes: '',
+      cdoor: '',
+      cco: '',
+      cdis: '',
+      cm: '',
+      screenWidth: document.body.clientWidth
     }
   },
   async created () {
@@ -85,15 +97,49 @@ export default {
     const resdata = await res.json()
     console.log(res)
     console.log(resdata)
+    this.brand = resdata[0].CARBRAND
+    this.series = resdata[0].CARSERIES
+    this.path = resdata[0].IMGPATH
+    // this.cy = resdata[0].YEAR
+    // this.cb = resdata[0].CARBRAND
+    // this.cs = resdata[0].CARSERIES
+    // this.cdes = resdata[0].DESCRIPTION
+    // this.cdoor = resdata[0].DOOR
+    // this.cco = resdata[0].COLOR
+    // this.cdis = resdata[0].DISPLACEMENT
+    // this.cm = resdata[0].MILES
   },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
-    // const elHtml = document.querySelector('html')
-    // elHtml.style.overflowY = 'hidden'
+    const that = this
+    window.addEventListener('resize', function () {
+      return (() => {
+        window.screenWidth = document.body.clientWidth
+        that.screenWidth = window.screenWidth
+      })()
+    })
+    console.log(this.screenWidth)
+    // 頁面載入時鎖住y軸
+    const elHtml = document.querySelector('html')
+    elHtml.style.overflowY = 'hidden'
   },
   destroyed () {
-    // const elHtml = document.querySelector('html')
-    // elHtml.style.overflowY = null
+    const elHtml = document.querySelector('html')
+    elHtml.style.overflowY = null
+  },
+  watch: {
+    // 監聽視窗大小
+    screenWidth: function () {
+      if (this.screenWidth > 600) {
+        console.log('yo')
+        const elHtml = document.querySelector('html')
+        elHtml.style.overflowY = 'hidden'
+      } else {
+        console.log('hey')
+        const elHtml = document.querySelector('html')
+        elHtml.style.overflowY = 'auto'
+      }
+    }
   },
   components: {
     singleCarInfo,
@@ -312,6 +358,8 @@ export default {
                 .moCar{
                     // border: 1px solid pink;
                     width: 750px;
+                    height: 260px;
+                    object-fit: contain;
                     transform: translateY(30px);
                     position: relative;
                     z-index: 10;

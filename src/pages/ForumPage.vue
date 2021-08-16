@@ -62,13 +62,13 @@
             <div class="text-h4 font-weight-bold align-self-start">回應區</div>
             <div style="width:100%;height:3px" class="orange"></div>
             <div
-              v-for="message in messagelist"
-              :key="message.FORUMREPLYID"
-              style="width:100%;"
+              v-for="(message, index) in messagelist"
+              :key="index"
+              style="min-width:100%;"
               class="d-flex flex-column align-space-around"
             >
               <div class="d-flex justify-space-around my-4">
-                <div class="d-flex flex-column align-center mr-5">
+                <div class="d-flex flex-column align-center mr-5" style="width:200px">
                   <i class="fas fa-portrait"></i>
                   <h3 class="text-h6 font-weight-bold">{{ message.FULLNAME }}</h3>
                   <h5 class="-text-subtitle-1 font-weight-light">
@@ -82,8 +82,12 @@
                   <p>{{ message.MESSAGECONTENT }}</p>
                 </div>
                 <report-dialogs
+                  ref="warn"
                   style="cursor: pointer;font-size:10px"
+                  @gogororo2='reportgetvalue'
+                  @gogororo='reportdialog(index)'
                 ></report-dialogs>
+                <!-- <button @click="test(index)">123</button> -->
               </div>
               <div style="width:100%;height:1px;opacity:.3" class="black"></div>
             </div>
@@ -254,6 +258,7 @@ import ForumPageInput from '../components/ForumPageInput.vue'
 import Media from 'vue-media'
 export default {
   async created () {
+    console.log(this.$refs.warn)
     console.log(this.$store.getters.getmember)
     console.log('123')
     console.log(this.$route)
@@ -275,7 +280,7 @@ export default {
     const issuelist = await issue.json()
     console.log(issuelist)
     console.log(this.$store.getters.getmember)
-    console.log(this.$store.getters.getmember[0].FULLNAME)
+    // console.log(this.$store.getters.getmember[0].FULLNAME)
     this.messagelist = [...issuelist]
     this.username = this.$store.getters.getmember[0].FULLNAME
   },
@@ -290,6 +295,7 @@ export default {
   },
   data () {
     return {
+      theindex: 0,
       member: [],
       content: '',
       username: '',
@@ -312,10 +318,30 @@ export default {
         }
       ],
       messagelist: [],
-      messagelist2: []
+      messagelist2: [],
+      reportvalue: ''
     }
   },
   methods: {
+    reportgetvalue (val) {
+      this.reportvalue = val
+    },
+    reportdialog (index, val) {
+      this.theindex = index
+      console.log(this.reportvalue)
+      console.log(this.theindex)
+      console.log(this.messagelist[this.theindex])
+      const fd = new FormData()
+      fd.append('ARTICLEID', this.messagelist[this.theindex].ARTICLEID)
+      fd.append('FULLNAME', this.messagelist[this.theindex].FULLNAME)
+      fd.append('DATE', this.messagelist[this.theindex].DATE)
+      fd.append('MESSAGECONTENT', this.messagelist[this.theindex].MESSAGECONTENT)
+      fd.append('REASON', this.reportvalue)
+      fetch('http://localhost:8080/phpfile/reportdialog.php', {
+        method: 'POST',
+        body: fd
+      })
+    },
     handleScrolledToBottom (isVisavle) {
       if (!isVisavle) {
         return
