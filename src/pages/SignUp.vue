@@ -321,7 +321,7 @@ import ButtonSubmit from '../components/layout/ButtonSubmit.vue'
 import Media from 'vue-media'
 export default {
   async created () {
-    const res = await fetch('http://localhost:8080/testid.php')
+    const res = await fetch('http://localhost:8080/phpfile/testid.php')
     const resdata = await res.json()
     console.log(resdata)
     resdata.forEach((list) => {

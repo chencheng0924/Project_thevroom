@@ -75,14 +75,14 @@ export default {
         // console.log(this.$cookies.isKey('memberpa'))
         // console.log(this.$cookies.get('memberac'))
       }
-    },
-    async test () {
-      const response = await fetch('http://localhost:8080/test2.php')
-      const responsedata = await response.json()
-
-      console.log(response)
-      console.log(responsedata)
     }
+    // async test () {
+    //   const response = await fetch('http://localhost:8080/test2.php')
+    //   const responsedata = await response.json()
+
+    //   console.log(response)
+    //   console.log(responsedata)
+    // }
   }
 }
 </script>
