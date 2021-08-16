@@ -21,15 +21,15 @@
             >
               <template slot="label" slot-scope="{ item }">
                 <div
-                  @click="filterItem(item, key)"
-                  :class="{ '-active': item.active }"
+                  @click="filterItem(item)"
                 >
+                  <!-- :class="{ block:itemname === currentsort}" -->
                   {{ item.name }}
                 </div>
               </template>
             </v-treeview>
             <!-- <img :src="search" alt="圖壞了"> -->
-            <input type="text" v-model="search" placeholder="搜尋" />
+            <!-- <input type="text" v-model="search" placeholder="搜尋" /> -->
           </div>
           <div class="productpart">
             <div
@@ -37,10 +37,52 @@
               v-for="product in productList"
               :key="product"
             >
-              <img :src="product.imgURL" alt="圖壞了" class="itemimg" />
+              <!-- :class="{block:itemname === currentsort}" -->
+              <div class="linkdetail">
+                  <template>
+                    <div class="text-center">
+                      <v-dialog
+                        v-model="dialog"
+                        width="500"
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                        <span
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                        <img :src="product.imgURL" alt="圖壞了" class="itemimg" />
+                        </span>
+                        </template>
+                        <v-card>
+                        <v-card-title class="text-h5 grey lighten-2">
+                          商品細項
+                        </v-card-title>
+
+                        <v-card-text>
+                            {{product.PRODUCTINFO}}
+                        </v-card-text>
+
+                        <v-divider></v-divider>
+
+                        <v-card-actions>
+                          <v-spacer></v-spacer>
+                          <v-btn
+                            color="primary"
+                            text
+                            @click="dialog = false"
+                          >
+                            加入購物車
+                          </v-btn>
+                        </v-card-actions>
+                      </v-card>
+                    </v-dialog>
+                  </div>
+                </template>
+              </div>
               <br />
               <span class="text-subtitle-1 font-weight-bold">{{product.PRODUCTNAME}}</span>
               <br />
+              <span style="display:none;">{{product.SORT}}</span>
               <span
                 class="price"
                 style="color: #f34841; font-size: 16px; font-weight: bold"
@@ -55,7 +97,7 @@
                 @click="linkshop()"
               />
               <img :src="goshopping" alt="圖壞了" class="goshopping" />
-              <div class="detail">
+              <!-- <div class="detail">
                 <template>
                   <div class="text-center">
                     <v-dialog v-model="dialog" width="500">
@@ -101,7 +143,7 @@
                     </v-dialog>
                   </div>
                 </template>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -123,14 +165,6 @@ export default {
     Media,
     'a-rwd': AccRwd
   },
-  async mounted () {
-    // this.$store.dispatch('happy', [true, 'margin-top: 64px'])
-    // // alert('123')
-    // const response = await fetch('http://localhost:8080/thevroom-php/test_acc.php')
-    // const responsedata = await response.json()
-    // console.log(response)
-    // console.log(responsedata)
-  },
   async created () {
     const response = await fetch('http://localhost:8080/phpfile/acc.php')
     const responsedata = await response.json()
@@ -149,11 +183,13 @@ export default {
       shoppingcart: require('../assets/accessories-pic/shopcart.png'),
       goshopping: require('../assets/accessories-pic/shopping.png'),
       search: '',
+      itemname: null,
+      currentsort: null,
       items: [
         {
           id: 1,
           name: '雨刷',
-          active: false,
+          // active: false,
           children: [
             { id: 2, name: '硬骨型' },
             { id: 3, name: '軟骨型' },
@@ -203,13 +239,19 @@ export default {
       document.querySelector('.shopcart').style.display = 'none'
       setTimeout(() => this.$router.push({ path: '/shoppingcar' }), 400)
     },
-    filterItem (item, key) {
-      console.log(item.id)
-      console.log(key)
-      item.active = true
-      console.log(this.items)
+    filterItem (item) {
+      // console.log(item.id)
+      // console.log(key)
+      // console.log(this.items)
+      // item.active = true
       // console.log(item)
-      // item.style.backgroundColor = '#f34841' //why? background undefind
+      this.itemname = item.name
+      console.log(this.itemname)
+      // console.log(this.productList)
+    },
+    filterProduct (product) {
+      this.currentsort = product.sort
+      console.log(product.sort)
     }
   },
   computed: {
@@ -220,6 +262,9 @@ export default {
     }
   }
 }
+// filters ('filterProduct',function (product) {
+//   this.currentsort = product.sort
+//    })
 </script>
 <style lang='scss' scoped>
 div.normalSize {
@@ -242,12 +287,17 @@ div.normalSize {
   div.main {
     width: 1200px;
     margin: 0 auto;
-    display: flex;
-    justify-content: left;
+    // display: flex;
+    // justify-content: left;
     div.aside {
       width: 250px;
       line-height: 4.5;
       margin-right: 80px;
+      float: left;
+      position: relative;
+      // position: fixed;
+      // left: 30px;
+      // top:570px;
       span.search {
         color: #ffffff;
         background-color: #181818;
@@ -271,10 +321,19 @@ div.normalSize {
       //   display: inline-block;
       // }
     }
+    .block{
+      display: block;
+    }
+    .hidden{
+      display: hidden;
+    }
     div.productpart {
       display: flex;
       flex-wrap: wrap;
-      justify-content: left;
+      justify-content: right;
+      // height:600px;
+      // overflow: scroll;
+      // position: absolute;
       div.productlist {
         width: calc(33.33% - 40px);
         background-color: #ffffff;
