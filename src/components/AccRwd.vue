@@ -47,7 +47,9 @@
                             text
                             @click="dialog = false"
                           >
+                          <router-link to=/shoppingcar>
                             加入購物車
+                          </router-link>
                           </v-btn>
                         </v-card-actions>
                       </v-card>
@@ -65,14 +67,15 @@
               >
                 ${{ product.PRODUCTPRICE }}</span
               >
+              <router-link to=/shoppingcar>
               <img
                 :src="shoppingcart"
                 alt="圖壞了"
                 title="加入購物車"
                 class="shopcart"
-                @click="linkshop()"
               />
-              <img :src="goshopping" alt="圖壞了" class="goshopping" />
+              </router-link>
+              <!-- <img :src="goshopping" alt="圖壞了" class="goshopping" /> -->
             </div>
           </div>
         </div>
@@ -218,7 +221,7 @@ div.normalSize {
         background-color: #ffffff;
         // border:1px solid black;
         text-align: center;
-        // padding: 20px 30px;
+        padding: 20px 30px;
         margin: 20px 20px;
         box-shadow: white 0 0px 1px, black 1px 0px 2px, white -1px 0px 2px;
         &:hover {

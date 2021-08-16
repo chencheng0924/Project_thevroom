@@ -2,40 +2,11 @@
   <div>
     <media :query="{ minWidth: '401px' }">
       <div class="normalSize">
-        <div class="banner">
-          <img :src="big" alt="圖壞了" />
-        </div>
-        <h1><img :src="house" alt="圖壞了" /> 配件專區</h1>
         <div class="main">
-          <div class="aside">
-            <span class="search text-h6 font-weight-bold">搜尋配件</span>
-            <v-treeview
-              v-model="tree"
-              rounded
-              hoverable
-              activatable
-              :items="items"
-              selected-color="#f34841"
-              open-on-click
-              style="margin-top: 30px; cursor: pointer"
-            >
-              <template slot="label" slot-scope="{ item }">
-                <div
-                  @click="filterItem(item)"
-                >
-                  <!-- :class="{ block:itemname === currentsort}" -->
-                  {{ item.name }}
-                </div>
-              </template>
-            </v-treeview>
-            <!-- <img :src="search" alt="圖壞了"> -->
-            <!-- <input type="text" v-model="search" placeholder="搜尋" /> -->
-          </div>
           <div class="productpart">
-             <component :is="'a-default'" class="component" v-if="yes"></component>
             <div
               class="productlist"
-              v-for="product in filteredBlogs"
+              v-for="product in productList"
               :key="product"
             >
               <!-- :class="{block:itemname === currentsort}" -->
@@ -118,12 +89,10 @@
 // import RwdBanner from '../components/layout/RwdBanner.vue'
 import Media from 'vue-media'
 import AccRwd from '../components/AccRwd.vue'
-import AccDefault from '../components/AccDefault.vue'
 export default {
   components: {
     Media,
-    'a-rwd': AccRwd,
-    'a-default': AccDefault
+    'a-rwd': AccRwd
   },
   async created () {
     const response = await fetch('http://localhost:8080/phpfile/acc.php')
@@ -142,79 +111,14 @@ export default {
       house: require('../assets/accessories-pic/house.png'),
       shoppingcart: require('../assets/accessories-pic/shopcart.png'),
       goshopping: require('../assets/accessories-pic/shopping.png'),
-      yes: true,
-      itemname: null,
-      currentsort: null,
-      items: [
-        {
-          id: 1,
-          name: '雨刷',
-          // active: false,
-          children: [
-            { id: 2, name: '硬骨型' },
-            { id: 3, name: '軟骨型' },
-            { id: 4, name: '後窗專用型' }
-          ]
-        },
-        {
-          id: 5,
-          name: '各式燈款',
-          children: [
-            { id: 6, name: '方向燈/煞車燈' },
-            { id: 7, name: '牌照燈' }
-          ]
-        },
-        {
-          id: 8,
-          name: '音響',
-          children: [
-            { id: 9, name: '高音揚聲器' },
-            { id: 10, name: '低音砲管' }
-          ]
-        },
-        {
-          id: 11,
-          name: '胎壓偵測器',
-          children: [
-            { id: 12, name: '胎內' },
-            { id: 13, name: '胎外' }
-          ]
-        },
-        {
-          id: 14,
-          name: '救車/哇電/警告標誌',
-          children: [
-            { id: 15, name: '電源供應器' },
-            { id: 16, name: '千斤頂' },
-            { id: 17, name: '警告標示' }
-          ]
-        }
-      ],
       productList: []
     }
   },
   methods: {
     linkshop () {
-      document.querySelectorAll('.goshopping').style.display = 'inline'
+      document.querySelector('.goshopping').style.display = 'inline'
       document.querySelector('.shopcart').style.display = 'none'
       setTimeout(() => this.$router.push({ path: '/shoppingcar' }), 400)
-    },
-    filterItem (item) {
-      // console.log(item.id)
-      // console.log(key)
-      // console.log(this.items)
-      // item.active = true
-      console.log(item)
-      this.itemname = item.name
-      console.log(this.itemname)
-      this.yes = false
-    }
-  },
-  computed: {
-    filteredBlogs: function () {
-      return this.productList.filter((product) => {
-        return product.BIGSORT.match(this.itemname) || product.SORT.match(this.itemname)
-      })
     }
   }
 }
@@ -245,38 +149,6 @@ div.normalSize {
     margin: 0 auto;
     // display: flex;
     // justify-content: left;
-    div.aside {
-      width: 250px;
-      line-height: 4.5;
-      margin-right: 80px;
-      float: left;
-      position: relative;
-      // position: fixed;
-      // left: 30px;
-      // top:570px;
-      span.search {
-        color: #ffffff;
-        background-color: #181818;
-        width: 250px;
-        padding: 15px 50px;
-        text-align: center;
-      }
-      // img{
-      //   height:30px;
-      //   margin-top: 10px;
-      // }
-      input {
-        border: 2px solid#181818;
-        border-radius: 10px;
-        height: 45px;
-        width: 150px;
-        margin-left: 10px;
-        text-align: center;
-      }
-      // img,input{
-      //   display: inline-block;
-      // }
-    }
     .block{
       display: block;
     }
@@ -287,8 +159,9 @@ div.normalSize {
       display: flex;
       flex-wrap: wrap;
       justify-content: right;
-      // height:600px;
-      // overflow: scroll;
+      width:900px;
+      height:600px;
+      overflow: scroll;
       // position: absolute;
       div.productlist {
         width: calc(33.33% - 40px);
