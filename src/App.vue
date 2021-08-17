@@ -28,6 +28,7 @@ export default {
     // const ac = localStorage.getItem('memberac')
     // const ps = localStorage.getItem('memberpa')
     // console.log(JSON.parse(localStorage.getItem('member')))
+    console.log(this.$store.getters.getmember)
     const member123 = JSON.parse(localStorage.getItem('member'))
     console.log(member123)
     if (member123) {
