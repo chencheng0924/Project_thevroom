@@ -5,7 +5,9 @@
         <div class="banner">
           <img :src="big" alt="圖壞了" />
         </div>
-        <shoplist :to='signset' style="position:fixed;top:150px;right:0" :shoplist1="shoplist1" class="testani"/>
+        <transition name="fade">
+        <shoplist :to='signset' style="position:fixed;top:150px;right:0" :shoplist1="shoplist1" class="testani" v-if="test"/>
+        </transition>
         <v-btn @click="showlist">123</v-btn>
         <h1><img :src="house" alt="圖壞了" /> 配件專區</h1>
         <div class="main">
@@ -125,7 +127,15 @@ export default {
     'a-rwd': AccRwd,
     shoplist
   },
-  mounted () { this.$store.dispatch('happy', [true, 'margin-top: 64px']) },
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+    this.tween = gsap
+      .to('.testani', {
+        x: 200,
+        duration: 1
+      })
+      .reverse()
+  },
   async created () {
     const response = await fetch('http://localhost:8080/phpfile/acc.php')
     const responsedata = await response.json()
@@ -138,6 +148,7 @@ export default {
   },
   data () {
     return {
+      test: false,
       countnum: 1,
       shoplist1: [],
       pathimg: require('../assets/accessories-pic/aoto-part-banner2.jpg'),
@@ -198,10 +209,7 @@ export default {
   },
   methods: {
     showlist () {
-      gsap.to('.testani', {
-        x: 0,
-        duration: 1
-      })
+      this.test = !this.test
     },
     async putinshopcar (event) {
       // console.dir(event.target.parentElement.children[2].textContent)
@@ -270,9 +278,9 @@ export default {
 </script>
 <style lang='scss' scoped>
 div.normalSize {
-  .testani{
-    transform: translateX(400px);
-  }
+  // .testani{
+  //   transform: translateX(400px);
+  // }
   div.banner {
     img {
       width: 100%;
@@ -368,6 +376,21 @@ div.normalSize {
         }
       }
     }
+  }
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  .fade-leave, .fade-enter-to {
+    opacity: 1;
+  }
+
+  .fade-enter-active {
+    transition: all 0.8s ease;
+  }
+  .fade-leave-active {
+    transition: all 0.8s ease;
   }
 }
 </style>
