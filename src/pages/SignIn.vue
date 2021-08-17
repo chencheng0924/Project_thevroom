@@ -183,7 +183,7 @@ export default {
         body: fd
       })
       const resdata = await res.json()
-      // console.log(resdata)
+      console.log(resdata)
       if (resdata.length === 0) {
         alert('87帳密錯誤')
       } else {

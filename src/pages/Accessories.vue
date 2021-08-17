@@ -124,7 +124,7 @@ export default {
     'a-rwd': AccRwd
   },
   async mounted () {
-    // this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
     // // alert('123')
     // const response = await fetch('http://localhost:8080/thevroom-php/test_acc.php')
     // const responsedata = await response.json()

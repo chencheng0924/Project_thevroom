@@ -51,6 +51,14 @@ export default {
     console.log(resdata)
     this.contentList = resdata
     console.log(this.contentList)
+    this.tYear = this.contentList[0].YEAR + ' ' + this.contentList[0].CARBRAND
+    this.tBrand = this.contentList[0].CARSERIES
+    this.desC = this.contentList[0].DESCRIPTION
+    this.mText = this.contentList[0].MILES
+    this.pText = this.contentList[0].RESERVEPRICE
+    this.imagePath = this.contentList[0].IMGPATH
+    this.acid = this.contentList[0].AUCTIONID
+
     // console.log(resdata[resdata.length - 1][0])
     // this.contentList[0].description = resdata[resdata.length - 1][0]
   },
@@ -59,8 +67,8 @@ export default {
   },
   data: () => ({
     imagePath: require('../assets/carlist/benz10.png'),
-    tYear: '2021 M-Benz',
-    tBrand: 'GLC Coupe GLC300 4MATIC',
+    tYear: '',
+    tBrand: '',
     desC: '2021 GLC Coupe採單柵式水箱護罩，搭配兩側新款LED頭燈，成熟優雅的氛圍傳承自New GLE。當視線移至保桿下方進氣口，則是會被全車系標配的鍍鉻套件所吸引，優雅中凸顯出GLC Coupe專屬的運動感。而沿著車側厚實的肩膀線條向後延伸，GLC Coupe採用全新夜色尾燈設計，成就新世代Mercedes-Benz運動休旅家族的識別。',
     mText: '1234 Km',
     pText: '1,300,000',
