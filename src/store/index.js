@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     happy: true,
     sad: 'margin-top: 64px',
-    sign: 0
+    sign: 0,
+    shop: []
   },
   mutations: {
     sethappy (state, payload) {
@@ -19,6 +20,9 @@ export default new Vuex.Store({
     },
     setkeep (state, payload) {
       state.sign = payload
+    },
+    shoplist (state, payload) {
+      state.shop = payload
     }
   },
   actions: {
@@ -30,6 +34,9 @@ export default new Vuex.Store({
     },
     keepsign (context, payload) {
       context.commit('setkeep', payload)
+    },
+    shoplist (context, payload) {
+      context.commit('shoplist', payload)
     }
   },
   modules: {
@@ -44,6 +51,9 @@ export default new Vuex.Store({
     },
     getmember (state) {
       return state.sign
+    },
+    getshoplist (state) {
+      return state.shop
     }
   }
 })

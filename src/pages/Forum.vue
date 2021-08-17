@@ -407,6 +407,7 @@ import Media from 'vue-media'
 import ButtonBtnBanner from '../components/layout/RwdBtnBanner.vue'
 export default {
   async created () {
+    console.log(this.$store.getters.getshoplist)
     const res = await fetch('http://localhost:8080/phpfile/forumselect.php')
     const resdata = await res.json()
     console.log(res)

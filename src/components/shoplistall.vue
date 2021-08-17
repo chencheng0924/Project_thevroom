@@ -1,7 +1,7 @@
 <template>
     <div style="width:350px;min-height:50px" class="grey d-flex flex-column justify-between align-center">
         <h3>購物車</h3>
-        <div v-for="(shoplist, index) in shoplist1" :key="index" class="d-flex flex-column">
+        <div v-for="(shoplist, index) in list" :key="index" class="d-flex flex-column">
           <div class="d-flex justify-around my-3">
           <div style="width:150px;height:150px" class="mx-1">
               <img style="width:150px;height:150px" :src=shoplist[0].PRODUCTIMG alt="圖壞了">
@@ -17,27 +17,40 @@
           </div>
           </div>
         </div>
-        <div class="align-self-center my-2"> 總金額:{{ totalprice }} 元 </div>
-        <div class="black white--text d-flex justify-center align-center" style="width:100%;height:50px;cursor: pointer;"><h3>訂單結帳</h3></div>
+        <div class="align-self-center my-2"> 總金額: {{ totalprice }} 元 </div>
+        <div class="black white--text d-flex justify-center align-center" style="width:100%;height:50px;cursor: pointer;"><router-link :to="signset">訂單結帳</router-link></div>
+        <!-- <div class="white" @click="testremove">123</div> -->
     </div>
 </template>
-
 <script>
 export default {
   created () {
-    console.log(this.shoplist1)
+    this.shoplist1 = JSON.parse(localStorage.getItem('shoplist'))
+    this.$store.dispatch('shoplist', this.shoplist1)
+    // console.log(this.$store.getters)
+    // this.shoplist1 = this.$store.getters.getshoplist
+    // console.log(this.shoplist1)
+    // console.log(this.$store.getters.getshoplist)
+    // this.$store.dispatch('shoplist', this.shoplist1)
+    // this.shoplist1 = this.$store.getters.getshoplist
+    // console.log(this.shoplist)
   },
-  props: ['shoplist1'],
   data () {
     return {
-      shoplist: []
+      shoplist1: []
     }
   },
   methods: {
+    // testremove () {
+    //   localStorage.clear()
+    //   localStorage.setItem('shoplist', JSON.stringify(this.$store.getters.getshoplist))
+    // },
     removeproduct (index) {
       this.shoplist1.splice(index, 1)
-      this.total = 0
       console.log(this.shoplist1)
+      this.$store.dispatch('shoplist', this.shoplist1)
+      console.log(this.$store.getters.getshoplist)
+      // localStorage.setItem('shoplist', this.shoplist1)
     //   this.shoplist1.forEach(shoplist => {
     //     console.log(shoplist[0].PRODUCTPRICE)
     //     this.total += parseInt(shoplist[0].PRODUCTPRICE)
@@ -45,10 +58,22 @@ export default {
     }
   },
   computed: {
-    totalprice (index) {
-      console.log(this.shoplist1)
+    list () {
+      return this.$store.getters.getshoplist
+    },
+    signset () {
+      const data = this.$store.getters.getmember
+      console.log(data)
+      if (data === 0) {
+        return '/Signin'
+      } else {
+        return '/shoppingcar'
+      }
+    },
+    totalprice () {
+      console.log(this.$store.getters.getshoplist)
       let price = 0
-      this.shoplist1.forEach(shoplist => {
+      this.$store.getters.getshoplist.forEach(shoplist => {
         // console.log(parseInt(shoplist[0].PRODUCTPRICE))
         price += parseInt(shoplist[0].PRODUCTTOTAL)
         console.log(parseInt(shoplist[0].PRODUCTTOTAL))
@@ -56,6 +81,12 @@ export default {
       console.log(price)
       return price
     }
+  },
+  updated () {
+    localStorage.setItem('shoplist', JSON.stringify(this.$store.getters.getshoplist))
   }
+  // beforeDestroy () {
+  //   localStorage.setItem('shoplist', JSON.stringify(this.$store.getters.getshoplist))
+  // }
 }
 </script>

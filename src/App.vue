@@ -6,8 +6,10 @@
         <router-view />
       </div>
       <!-- <v-btn @click="test">123</v-btn> -->
-      <testfileload/>
+      <!-- <testfileload/> -->
       <!-- <button @click="test123">123</button> -->
+      <shoplistall style="position:fixed;top:100px;right:0;"/>
+      <!-- <shoplist :to='signset' :shoplist1="shoplist1" class="testani"/> -->
       <the-footer></the-footer>
       <home class="d-none"></home>
     </v-app>
@@ -18,24 +20,32 @@
 import TheHeader from './components/layout/TheHeader.vue'
 import TheFooter from './components/layout/TheFooter.vue'
 import Home from './views/Home.vue'
-import testfileload from './components/testfileload.vue'
+// import testfileload from './components/testfileload.vue'
+import shoplistall from './components/shoplistall.vue'
 
 export default {
+
   mounted () {
-    console.log(this.$store.getters)
+    // console.log(this.$store.getters)
     // const member123 = JSON.parse(localStorage[member])
     // console.log(member123)
     // const ac = localStorage.getItem('memberac')
     // const ps = localStorage.getItem('memberpa')
     // console.log(JSON.parse(localStorage.getItem('member')))
-    console.log(this.$store.getters.getmember)
+    // console.log(this.$store.getters.getmember)
     const member123 = JSON.parse(localStorage.getItem('member'))
-    console.log(member123)
+    // const shoplist = JSON.parse(localStorage.getItem('shoplist'))
+    // console.log(shoplist)
+    // console.log(member123)
+    // if (shoplist) {
+    //   this.$store.dispatch('shoplist', shoplist)
+    // }
     if (member123) {
       this.$store.dispatch('keepsign', member123)
-      console.log('123')
-      console.log(this.$store.getters)
+      // console.log('123')
+      // console.log(this.$store.getters)
     }
+    // console.log(this.$store.getters)
   },
   data () {
     return {
@@ -49,7 +59,8 @@ export default {
     TheHeader,
     TheFooter,
     Home,
-    testfileload
+    // testfileload,
+    shoplistall
   },
   computed: {
     showheader () {
