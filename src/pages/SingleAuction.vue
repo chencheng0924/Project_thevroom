@@ -46,7 +46,7 @@
             <single-car-info @gomove="movegogo"/>
           </div>
           <div class="scrollWholefour d-flex align-center">
-            <single-car-bid-record @moveback="backmove"/>
+            <single-car-bid-record @moveback="backmove" :acid="acid"/>
           </div>
       </div>
   </media>
@@ -82,11 +82,13 @@ export default {
       cco: '',
       cdis: '',
       cm: '',
-      screenWidth: document.body.clientWidth
+      screenWidth: document.body.clientWidth,
+      acid: ''
     }
   },
   async created () {
     console.log(this.$route.params.id)
+    this.acid = this.$route.params.id
     const fd = new FormData()
     fd.append('IDac', this.$route.params.id)
 

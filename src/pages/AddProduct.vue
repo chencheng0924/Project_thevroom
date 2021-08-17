@@ -318,9 +318,39 @@ export default {
   },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top:64px'])
+    const that = this
+    window.addEventListener('resize', function () {
+      return (() => {
+        window.screenWidth = document.body.clientWidth
+        that.screenWidth = window.screenWidth
+      })()
+    })
+    console.log(this.screenWidth)
+    // 頁面載入時鎖住y軸
+    const elHtml = document.querySelector('html')
+    elHtml.style.overflowY = 'hidden'
+  },
+  destroyed () {
+    const elHtml = document.querySelector('html')
+    elHtml.style.overflowY = null
+  },
+  watch: {
+    // 監聽視窗大小
+    screenWidth: function () {
+      if (this.screenWidth > 600) {
+        console.log('yo')
+        const elHtml = document.querySelector('html')
+        elHtml.style.overflowY = 'hidden'
+      } else {
+        console.log('hey')
+        const elHtml = document.querySelector('html')
+        elHtml.style.overflowY = 'auto'
+      }
+    }
   },
   data () {
     return {
+      screenWidth: document.body.clientWidth,
       alldata: [],
       options: {
         licenseKey: 'YOUR_KEY_HERE',
@@ -417,7 +447,8 @@ export default {
       this.acdate = eight
       this.achour = nine
       this.acDuDay = ten
-      this.start = this.acyear + '-' + this.acmonth + '-' + this.acdate
+      this.start = this.acyear + '-' + this.acmonth + '-' + this.acdate + ' ' + this.achour
+      // this.start = new Date(this.acyear, this.acmonth, this.acdate, this.achour)
       console.log(this.acCarSeries)
       console.log(this.acCarDes)
       console.log(this.acRegion)
@@ -428,6 +459,7 @@ export default {
       console.log(this.achour)
       console.log(this.acdate)
       console.log(this.acDuDay)
+      console.log(this.start)
     },
     testj () {
       this.$refs.fullpage.api.moveSectionUp()
