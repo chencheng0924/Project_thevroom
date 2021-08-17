@@ -252,29 +252,7 @@ export default {
     return {
       active: false,
       component: 'shopping-car1',
-      prolist: [
-        {
-          id: 1,
-          proSrc: require('../assets/index-car-pic/indexpicother.png'),
-          proName: '行車紀錄器',
-          proPrice: 3500,
-          proCount: 1
-        },
-        {
-          id: 2,
-          proSrc: require('../assets/index-car-pic/indexpicproduct.gif'),
-          proName: '排氣管',
-          proPrice: 10500,
-          proCount: 1
-        },
-        {
-          id: 3,
-          proSrc: require('../assets/index-car-pic/indexpicwheel.png'),
-          proName: '輪胎',
-          proPrice: 8000,
-          proCount: 3
-        }
-      ],
+      prolist: [],
       totalcount: 0,
       totalp: 0
     }
@@ -289,14 +267,14 @@ export default {
   },
   computed: {
     totalitem () {
-      this.prolist.forEach(pro => {
-        this.totalcount += pro.proCount
+      this.$store.getters.getshoplist.forEach(list => {
+        this.totalcount += list[0].PRODUCTMOUNT
       })
       return this.totalcount
     },
     totalprice () {
-      this.prolist.forEach(pro => {
-        this.totalp += pro.proCount * pro.proPrice
+      this.$store.getters.getshoplist.forEach(list => {
+        this.totalp += list[0].PRODUCTMOUNT * list[0].PRODUCTPRICE
       })
       return this.totalp
     }

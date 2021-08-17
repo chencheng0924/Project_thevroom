@@ -9,6 +9,8 @@
         <shoplist :to='signset' style="position:fixed;top:150px;right:0" :shoplist1="shoplist1" class="testani" v-if="test"/>
         </transition>
         <v-btn @click="showlist">123</v-btn>
+        <!-- <shoplist :to='signset' style="position:fixed;top:150px;right:0" :shoplist1="shoplist1" class="testani"/> -->
+        <!-- <v-btn @click="showlist">123</v-btn> -->
         <h1><img :src="house" alt="圖壞了" /> 配件專區</h1>
         <div class="main">
           <div class="aside">
@@ -118,14 +120,14 @@
 // import RwdBanner from '../components/layout/RwdBanner.vue'
 import Media from 'vue-media'
 import AccRwd from '../components/AccRwd.vue'
-import shoplist from '../components/shoplist.vue'
+// import shoplist from '../components/shoplist.vue'
 import gsap from 'gsap'
 
 export default {
   components: {
     Media,
-    'a-rwd': AccRwd,
-    shoplist
+    'a-rwd': AccRwd
+    // shoplist
   },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
@@ -137,6 +139,11 @@ export default {
       .reverse()
   },
   async created () {
+    // console.log(this.shoplist1)
+    // console.log(this.$store.getters.getshoplist)
+    // this.$store.dispatch('shoplist', this.shoplist1)
+    // this.shoplist1 = this.$store.getters.getshoplist
+    // console.log(this.shoplist)
     const response = await fetch('http://localhost:8080/phpfile/acc.php')
     const responsedata = await response.json()
     // alert('456')
@@ -144,7 +151,7 @@ export default {
     console.log(responsedata)
     // this.productList.push(responsedata)
     this.productList = responsedata
-    console.log(this.productList)
+    // console.log(this.productList)
   },
   data () {
     return {
@@ -234,6 +241,9 @@ export default {
         this.shoplist1[index][0].PRODUCTTOTAL = parseInt(this.shoplist1[index][0].PRODUCTPRICE) + (parseInt(this.shoplist1[index][0].PRODUCTPRICE) * (parseInt(this.shoplist1[index][0].PRODUCTMOUNT) - 1))
       }
       console.log(this.shoplist1)
+      this.$store.dispatch('shoplist', this.shoplist1)
+      console.log(this.$store.getters)
+      localStorage.setItem('shoplist', JSON.stringify(this.shoplist1))
       // this.shoplist.forEach(list => {
       //   if (event.target.parentElement.children[2].textContent === list[0][2]) {
       //     alert('此商品已在購物車')
