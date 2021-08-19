@@ -29,9 +29,8 @@
                         <v-card-title class="text-h5 grey lighten-2">
                           商品細項
                         </v-card-title>
-
-                        <v-card-text>
-                            {{product.PRODUCTINFO}}
+                        <v-card-text v-html="product.PRODUCTINFO" style="margin-top:20px;">
+                            <!-- {{product.PRODUCTINFO}} -->
                         </v-card-text>
 
                         <v-divider></v-divider>

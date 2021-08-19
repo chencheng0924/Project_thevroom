@@ -51,7 +51,7 @@
                           v-bind="attrs"
                           v-on="on"
                         >
-                        <img :src="product.PRODUCTIMG" alt="圖壞了" class="itemimg" />
+                        <img :src="product.PRODUCTIMG" alt="圖壞了" class="itemimg"/>
                         </span>
                         </template>
                         <v-card>
@@ -59,8 +59,8 @@
                           商品細項
                         </v-card-title>
 
-                        <v-card-text>
-                            {{product.PRODUCTINFO}}
+                        <v-card-text v-html="product.PRODUCTINFO" style="margin-top:20px;">
+                            <!-- {{product.PRODUCTINFO}} -->
                         </v-card-text>
 
                         <v-divider></v-divider>
@@ -144,7 +144,8 @@ export default {
       goshopping: require('../assets/accessories-pic/shopping.png'),
       yes: true,
       itemname: null,
-      currentsort: null,
+      // currentsort: null,
+      productdetail: '',
       items: [
         {
           id: 1,
@@ -208,6 +209,11 @@ export default {
       this.itemname = item.name
       console.log(this.itemname)
       this.yes = false
+    },
+    wrap () {
+      console.log(this.productList)
+      this.productdetail = this.productList.PRODUCTINFO
+      // console.log(this.productList[0].PRODUCTINFO)
     }
   },
   computed: {
