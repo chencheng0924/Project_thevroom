@@ -1,7 +1,7 @@
 <template>
   <div>
     <media :query="{ minWidth: '401px' }">
-      <div class="normalSize">
+      <div class="normalSize my-16">
         <div class="main">
           <div class="productpart">
             <div
@@ -42,9 +42,9 @@
                             text
                             @click="dialog = false"
                           >
-                          <router-link to=/shoppingcar>
+                          <!-- <router-link to=/shoppingcar>
                             加入購物車
-                          </router-link>
+                          </router-link> -->
                           </v-btn>
                         </v-card-actions>
                       </v-card>
@@ -62,14 +62,15 @@
               >
                 ${{ product.PRODUCTPRICE }}</span
               >
-              <router-link to=/shoppingcar>
+              <!-- <router-link to=/shoppingcar> -->
               <img
                 :src="shoppingcart"
                 alt="圖壞了"
                 title="加入購物車"
                 class="shopcart"
+                @click="testgogo"
               />
-              </router-link>
+              <!-- </router-link> -->
                 <!-- @click="linkshop()" -->
               <img :src="goshopping" alt="圖壞了" class="goshopping" />
             </div>
@@ -114,6 +115,9 @@ export default {
     }
   },
   methods: {
+    testgogo () {
+      this.$emit('testgogo')
+    },
     linkshop () {
       document.querySelector('.goshopping').style.display = 'inline'
       document.querySelector('.shopcart').style.display = 'none'

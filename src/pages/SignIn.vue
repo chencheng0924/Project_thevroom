@@ -29,7 +29,7 @@
               <h1>會員登入</h1>
               <div style="width:200%;height:3px" class="red"></div>
             </div>
-            <div class="d-flex align-center mb-5" style="height:50px;width:90%">
+            <div class="d-flex align-center mb-5" style="height:60px;width:90%">
               <v-container>
                 <v-row fluid class="d-flex align-center">
                   <v-col cols="12" sm="3">
@@ -48,7 +48,7 @@
                 </v-row>
               </v-container>
             </div>
-            <div class="d-flex align-center mb-5" style="height:50px;width:90%">
+            <div class="d-flex align-center mb-5" style="height:60px;width:90%">
               <v-container>
                 <v-row fluid class="d-flex align-center">
                   <v-col cols="12" sm="3">
@@ -165,6 +165,7 @@ export default {
   components: { ButtonSubmit, Media },
   data () {
     return {
+      jedgenum: 0,
       count: 0,
       member: [],
       resdata: []
@@ -175,6 +176,7 @@ export default {
       const fd = new FormData()
       fd.append('SIGNEM', this.signemail)
       fd.append('SIGNPA', this.signpassword)
+      fd.append('JEDGENUM', this.jedgenum)
       // fetch('http://localhost:8080/testsignin.php', {
       //   method: 'POST',
       //   body: fd
@@ -187,7 +189,7 @@ export default {
       const resdata = await res.json()
       console.log(resdata)
       if (resdata.length === 0) {
-        alert('87帳密錯誤')
+        alert('帳號密碼錯誤')
       } else {
         console.log('123')
         this.$store.dispatch('membersign', resdata)

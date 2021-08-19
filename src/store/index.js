@@ -9,11 +9,8 @@ export default new Vuex.Store({
     sad: 'margin-top: 64px',
     sign: 0,
     shop: [],
-<<<<<<< HEAD
-    total: 0
-=======
+    total: 0,
     cart: false
->>>>>>> 7524813ab88f48ba37745914120a61277cc2ab62
   },
   mutations: {
     sethappy (state, payload) {
@@ -72,14 +69,11 @@ export default new Vuex.Store({
       console.log(this.total)
       state.total = this.total
       state.shop = payload
-<<<<<<< HEAD
       localStorage.setItem('shoplist', JSON.stringify(state.shop))
-=======
     },
     shopcart (state, payload) {
       state.cart = payload
       // console.log(payload)
->>>>>>> 7524813ab88f48ba37745914120a61277cc2ab62
     }
   },
   actions: {
@@ -95,16 +89,14 @@ export default new Vuex.Store({
     shoplist (context, payload) {
       context.commit('shoplist', payload)
     },
-<<<<<<< HEAD
     shoplist1 (context, payload) {
       context.commit('shoplist1', payload)
     },
     shoplist2 (context, payload) {
       context.commit('shoplist2', payload)
-=======
+    },
     shopcart (context, payload) {
       context.commit('shopcart', payload)
->>>>>>> 7524813ab88f48ba37745914120a61277cc2ab62
     }
   },
   modules: {
@@ -123,13 +115,11 @@ export default new Vuex.Store({
     getshoplist (state) {
       return state.shop
     },
-<<<<<<< HEAD
     getshoplisttotal (state) {
       return state.total
-=======
+    },
     getcart (state) {
       return state.cart
->>>>>>> 7524813ab88f48ba37745914120a61277cc2ab62
     }
   }
 })

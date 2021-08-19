@@ -38,7 +38,7 @@
             <!-- <input type="text" v-model="search" placeholder="搜尋" /> -->
           </div>
           <div class="productpart">
-             <component :is="'a-default'" class="component" v-if="yes"></component>
+             <component @testgogo='testgogo' :is="'a-default'" class="component" v-if="yes"></component>
             <div
               class="productlist"
               v-for="product in filteredBlogs"
@@ -78,9 +78,9 @@
                             text
                             @click="dialog = false"
                           >
-                          <router-link to=/shoppingcar>
+                          <!-- <router-link to=/shoppingcar>
                             加入購物車
-                          </router-link>
+                          </router-link> -->
                           </v-btn>
                         </v-card-actions>
                       </v-card>
@@ -98,15 +98,15 @@
               >
                 ${{ product.PRODUCTPRICE }}</span
               >
-              <router-link to=/shoppingcar>
+              <!-- <router-link to=/shoppingcar> -->
               <img
                 :src="shoppingcart"
                 alt="圖壞了"
                 title="加入購物車"
                 class="shopcart"
-                @click="putinshopcar($event)"
+                @click="putinshopcar()"
               />
-              </router-link>
+              <!-- </router-link> -->
                 <!-- @click="linkshop()" -->
               <img :src="goshopping" alt="圖壞了" class="goshopping" />
             </div>
@@ -131,8 +131,7 @@ export default {
   components: {
     Media,
     'a-rwd': AccRwd,
-    'a-default': AccDefault,
-// import shoplist from '../components/shoplist.vue'
+    'a-default': AccDefault
   },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
@@ -160,11 +159,8 @@ export default {
   },
   data () {
     return {
-<<<<<<< HEAD
       index: 0,
-=======
       test: false,
->>>>>>> 7524813ab88f48ba37745914120a61277cc2ab62
       countnum: 1,
       prolist: {},
       shoplist: [],
@@ -226,6 +222,9 @@ export default {
     }
   },
   methods: {
+    testgogo () {
+      this.putinshopcar()
+    },
     showlist () {
       this.test = !this.test
     },
