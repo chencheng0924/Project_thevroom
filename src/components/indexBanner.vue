@@ -36,7 +36,7 @@
                         </li>
                     </ul>
                     <div class="iconBan">
-                        <v-icon left class="mr-5" color="#FFFFFF">mdi-cart-outline</v-icon>
+                        <v-icon left class="mr-5" color="#FFFFFF" @click="showlistcart">mdi-cart-outline</v-icon>
                         <router-link to="/signin" tag="span" style="cursor: pointer">
                             <v-icon left class="mr-5" color="#FFFFFF">mdi-login</v-icon>
                         </router-link>
@@ -91,6 +91,17 @@ import RwdIndexBanner from '../components/RwdIndexBanner.vue'
 import gsap from 'gsap'
 
 export default {
+  data () {
+    return {
+      cartshow: true
+    }
+  },
+  methods: {
+    showlistcart () {
+      this.cartshow = !this.cartshow
+      this.$store.dispatch('shopcart', !this.cartshow)
+    }
+  },
   components: {
     Media,
     RwdIndexBanner

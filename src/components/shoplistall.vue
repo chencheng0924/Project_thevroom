@@ -7,17 +7,25 @@
               <img style="width:150px;height:150px" :src=shoplist.PRODUCTIMG alt="圖壞了">
           </div>
           <div style="width:150px;height:150px" class="mx-1 d-flex flex-column justify-between">
+<<<<<<< HEAD
               <div>{{ shoplist.PRODUCTNAME }}</div>
               <div class="d-flex justify-between align-center" style="width:150px;height:150px">
                   <div style="min-width:50px">{{ shoplist.PRODUCTPRICE }}</div>
                   <div style="min-width:35px">X</div>
                   <div style="min-width:35px">{{ shoplist.PRODUCTMOUNT }}</div>
+=======
+              <div>112</div>
+              <div class="d-flex justify-between align-center" style="width:150px;height:150px">
+                  <div style="min-width:50px">222</div>
+                  <div style="min-width:35px">X</div>
+                  <div style="min-width:35px">2222</div>
+>>>>>>> 7524813ab88f48ba37745914120a61277cc2ab62
               </div>
               <div class="align-self-end" style="cursor: pointer;" @click="removeproduct(index)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg></div>
           </div>
           </div>
         </div>
-        <div class="align-self-center my-2"> 總金額: {{ totalprice }} 元 </div>
+        <div class="align-self-center my-2"> 總金額: 222 元 </div>
         <div class="black white--text d-flex justify-center align-center" style="width:100%;height:50px;cursor: pointer;"><router-link :to="signset">訂單結帳</router-link></div>
         <!-- <div class="white" @click="testremove">123</div> -->
     </div>
