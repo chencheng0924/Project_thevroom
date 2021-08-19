@@ -166,7 +166,8 @@ export default {
   data () {
     return {
       count: 0,
-      member: []
+      member: [],
+      resdata: []
     }
   },
   methods: {
@@ -182,22 +183,25 @@ export default {
         method: 'POST',
         body: fd
       })
+      console.log('13')
       const resdata = await res.json()
-      // console.log(resdata)
+      console.log(resdata)
       if (resdata.length === 0) {
         alert('87帳密錯誤')
       } else {
+        console.log('123')
         this.$store.dispatch('membersign', resdata)
+        console.log('456')
         this.$router.replace('/') // 成功登入後導入首頁
+        const memberinfo = this.$store.getters.getmember
+        // const account = memberinfo[0].EMAIL
+        // const password = memberinfo[0].PASSWORD
+        // console.log('abc')
+        console.log(memberinfo)
+        // localStorage.setItem('memberac', account)
+        // localStorage.setItem('memberpa', password)
+        localStorage.setItem('member', JSON.stringify(memberinfo))
       }
-      const memberinfo = this.$store.getters.getmember
-      // const account = memberinfo[0].EMAIL
-      // const password = memberinfo[0].PASSWORD
-      // console.log('abc')
-      console.log(memberinfo)
-      // localStorage.setItem('memberac', account)
-      // localStorage.setItem('memberpa', password)
-      localStorage.setItem('member', JSON.stringify(memberinfo))
     }
   }
 }

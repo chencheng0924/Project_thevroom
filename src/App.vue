@@ -6,10 +6,14 @@
         <router-view />
       </div>
       <!-- <v-btn @click="test">123</v-btn> -->
-      <testfileload/>
+      <!-- <testfileload/> -->
       <!-- <button @click="test123">123</button> -->
+      <transition name="fade">
+      <shoplistall style="position:fixed;top:100px;right:0;" v-if="showcart1"/>
+      </transition>
+      <!-- <shoplist :to='signset' :shoplist1="shoplist1" class="testani"/> -->
       <the-footer></the-footer>
-      <home class="d-none"></home>
+      <!-- <home class="d-none"></home> -->
     </v-app>
   </div>
 </template>
@@ -17,39 +21,52 @@
 <script>
 import TheHeader from './components/layout/TheHeader.vue'
 import TheFooter from './components/layout/TheFooter.vue'
-import Home from './views/Home.vue'
-import testfileload from './components/testfileload.vue'
+// import Home from './views/Home.vue'
+// import testfileload from './components/testfileload.vue'
+import shoplistall from './components/shoplistall.vue'
 
 export default {
+  created () {
+    console.log(this.$store.getters.getcart)
+    // this.showcart = this.$store.getters.getcart
+  },
   mounted () {
-    console.log(this.$store.getters)
+    // console.log(this.$store.getters)
     // const member123 = JSON.parse(localStorage[member])
     // console.log(member123)
     // const ac = localStorage.getItem('memberac')
     // const ps = localStorage.getItem('memberpa')
     // console.log(JSON.parse(localStorage.getItem('member')))
-    console.log(this.$store.getters.getmember)
+    // console.log(this.$store.getters.getmember)
     const member123 = JSON.parse(localStorage.getItem('member'))
-    console.log(member123)
+    // const shoplist = JSON.parse(localStorage.getItem('shoplist'))
+    // console.log(shoplist)
+    // console.log(member123)
+    // if (shoplist) {
+    //   this.$store.dispatch('shoplist', shoplist)
+    // }
     if (member123) {
       this.$store.dispatch('keepsign', member123)
-      console.log('123')
-      console.log(this.$store.getters)
+      // console.log('123')
+      // console.log(this.$store.getters)
     }
+    // console.log(this.$store.getters)
   },
   data () {
     return {
       memberac: '',
       memberps: '',
       abc: '',
-      topstyle: 'margin-top: 64px;'
+      topstyle: 'margin-top: 64px;',
+      showcart: false
     }
   },
   components: {
     TheHeader,
     TheFooter,
-    Home,
-    testfileload
+    // Home,
+    // testfileload,
+    shoplistall
   },
   computed: {
     showheader () {
@@ -57,9 +74,16 @@ export default {
     },
     nomargin () {
       return this.$store.getters.getsad
+    },
+    showcart1 () {
+      return this.$store.getters.getcart
     }
   },
   methods: {
+    aaa () {
+      console.log('123')
+      this.$refs.fullpage_api.setAllowScrolling(false)
+    },
     test123 () {
       const memberinfo = this.$store.getters.getmember
       if (memberinfo === 0) {
@@ -77,13 +101,16 @@ export default {
         // console.log(this.$cookies.get('memberac'))
       }
     },
-    async test () {
-      const response = await fetch('http://localhost:8080/test2.php')
-      const responsedata = await response.json()
-
-      console.log(response)
-      console.log(responsedata)
+    showlistcart () {
+      this.showcart = !this.showcart
     }
+    // async test () {
+    //   const response = await fetch('http://localhost:8080/test2.php')
+    //   const responsedata = await response.json()
+
+    //   console.log(response)
+    //   console.log(responsedata)
+    // }
   }
 }
 </script>
@@ -105,5 +132,20 @@ body{
 }
 a{
   color: #FFFFFF;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(100px);
+}
+.fade-leave, .fade-enter-to {
+  opacity: 1;
+}
+
+.fade-enter-active {
+  transition: all 0.8s ease;
+}
+.fade-leave-active {
+  transition: all 0.8s ease;
 }
 </style>

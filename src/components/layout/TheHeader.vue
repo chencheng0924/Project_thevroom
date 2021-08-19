@@ -13,8 +13,9 @@
                 ><img src="../../assets/small_logowhite-transparent.png" class="mt-1"></router-link
               >
             </v-toolbar-title>
+            <shoplistall :to='signset' style="position:absolute;top:0;right:0" :shoplist1="shoplist1" class="testani"/>
             <v-spacer></v-spacer>
-            <v-icon left class="mr-6" color="#FFFFFF">mdi-cart-outline</v-icon>
+            <v-icon left class="mr-6" color="#FFFFFF" @click="shopping">mdi-cart-outline</v-icon>
             <div v-if="changesign" class="d-flex">
               <router-link to="/memberside" tag="span" style="cursor: pointer" class="mr-5">
                 <v-icon left class="mr-4" color="#FFFFFF">mdi-account-circle-outline</v-icon>
@@ -96,42 +97,46 @@
 
 <script>
 import Media from 'vue-media'
+// import shoplistall from '../shoplistall.vue'
 
 export default {
   name: 'App',
-
-  data: () => ({
-    sideNav: false,
-    menuItem: [
-      {
-        icon: 'mdi-gavel',
-        title: '競標會場',
-        link: '/auctionoverview'
-      },
-      {
-        icon: 'mdi-car-sports',
-        title: '配件專區',
-        link: '/accessories'
-      },
-      {
-        icon: 'mdi-clipboard-list-outline',
-        title: '市場行情',
-        link: '/comparecard'
-      },
-      {
-        icon: 'mdi-draw',
-        title: '討論專區',
-        link: '/forum'
-      },
-      {
-        icon: 'mdi-account-question-outline',
-        title: '新手上路',
-        link: '/newdriver'
-      }
-    ]
-  }),
+  data () {
+    return {
+      sideNav: false,
+      menuItem: [
+        {
+          icon: 'mdi-gavel',
+          title: '競標會場',
+          link: '/auctionoverview'
+        },
+        {
+          icon: 'mdi-car-sports',
+          title: '配件專區',
+          link: '/accessories'
+        },
+        {
+          icon: 'mdi-clipboard-list-outline',
+          title: '市場行情',
+          link: '/comparecard'
+        },
+        {
+          icon: 'mdi-draw',
+          title: '討論專區',
+          link: '/forum'
+        },
+        {
+          icon: 'mdi-account-question-outline',
+          title: '新手上路',
+          link: '/newdriver'
+        }
+      ],
+      showcart: true
+    }
+  },
   components: {
     Media
+    // shoplistall
   },
   computed: {
     changesign () {
@@ -141,8 +146,22 @@ export default {
   methods: {
     logout () {
       this.$store.dispatch('membersign', 0)
-      localStorage.clear()
       this.$store.dispatch('keepsign', 0)
+      this.$store.dispatch('shoplist', [])
+      localStorage.clear()
+    },
+    signset () {
+      const data = this.$store.getters.getmember
+      console.log(data)
+      if (data === 0) {
+        return '/Signin'
+      } else {
+        return '/shoppingcar'
+      }
+    },
+    shopping () {
+      this.showcart = !this.showcart
+      this.$store.dispatch('shopcart', !this.showcart)
     }
   }
 }

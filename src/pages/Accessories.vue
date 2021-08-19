@@ -5,6 +5,12 @@
         <div class="banner">
           <img :src="big" alt="圖壞了" />
         </div>
+        <!-- <transition name="fade"> -->
+        <!-- <shoplist :to='signset' style="position:fixed;top:150px;right:0" :shoplist1="shoplist1" class="testani" v-if="test"/> -->
+        <!-- </transition> -->
+        <!-- <v-btn @click="showlist">123</v-btn> -->
+        <!-- <shoplist :to='signset' style="position:fixed;top:150px;right:0" :shoplist1="shoplist1" class="testani"/> -->
+        <!-- <v-btn @click="showlist">123</v-btn> -->
         <h1><img :src="house" alt="圖壞了" /> 配件專區</h1>
         <div class="main">
           <div class="aside">
@@ -98,6 +104,7 @@
                 alt="圖壞了"
                 title="加入購物車"
                 class="shopcart"
+                @click="putinshopcar($event)"
               />
               </router-link>
                 <!-- @click="linkshop()" -->
@@ -119,13 +126,29 @@
 import Media from 'vue-media'
 import AccRwd from '../components/AccRwd.vue'
 import AccDefault from '../components/AccDefault.vue'
+import gsap from 'gsap'
 export default {
   components: {
     Media,
     'a-rwd': AccRwd,
-    'a-default': AccDefault
+    'a-default': AccDefault,
+// import shoplist from '../components/shoplist.vue'
+  },
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+    this.tween = gsap
+      .to('.testani', {
+        x: 200,
+        duration: 1
+      })
+      .reverse()
   },
   async created () {
+    // console.log(this.shoplist1)
+    // console.log(this.$store.getters.getshoplist)
+    // this.$store.dispatch('shoplist', this.shoplist1)
+    // this.shoplist1 = this.$store.getters.getshoplist
+    // console.log(this.shoplist)
     const response = await fetch('http://localhost:8080/phpfile/acc.php')
     const responsedata = await response.json()
     // alert('456')
@@ -133,10 +156,13 @@ export default {
     console.log(responsedata)
     // this.productList.push(responsedata)
     this.productList = responsedata
-    console.log(this.productList)
+    // console.log(this.productList)
   },
   data () {
     return {
+      test: false,
+      countnum: 1,
+      shoplist1: [],
       pathimg: require('../assets/accessories-pic/aoto-part-banner2.jpg'),
       big: require('../assets/accessories-pic/aoto-part-banner2.jpg'),
       house: require('../assets/accessories-pic/house.png'),
@@ -195,6 +221,45 @@ export default {
     }
   },
   methods: {
+    showlist () {
+      this.test = !this.test
+    },
+    async putinshopcar (event) {
+      // console.dir(event.target.parentElement.children[2].textContent)
+      const fd = new FormData()
+      fd.append('PRODUCTNAME', event.target.parentElement.children[2].textContent)
+      const res = await fetch('http://localhost:8080/phpfile/shopselect.php', {
+        method: 'POST',
+        body: fd
+      })
+      const resdata123 = await res.json()
+      resdata123[0].PRODUCTMOUNT = 1
+      resdata123[0].PRODUCTTOTAL = resdata123[0].PRODUCTPRICE
+      console.log({ ...resdata123 })
+      const index = this.shoplist1.findIndex((list) => {
+        return event.target.parentElement.children[2].textContent === list[0][2]
+      })
+      console.log(index)
+      if (index === -1) {
+        this.shoplist1.push({ ...resdata123 })
+      } else {
+        this.shoplist1[index][0].PRODUCTMOUNT += 1
+        this.shoplist1[index][0].PRODUCTTOTAL = parseInt(this.shoplist1[index][0].PRODUCTPRICE) + (parseInt(this.shoplist1[index][0].PRODUCTPRICE) * (parseInt(this.shoplist1[index][0].PRODUCTMOUNT) - 1))
+      }
+      console.log(this.shoplist1)
+      this.$store.dispatch('shoplist', this.shoplist1)
+      console.log(this.$store.getters)
+      localStorage.setItem('shoplist', JSON.stringify(this.shoplist1))
+      // this.shoplist.forEach(list => {
+      //   if (event.target.parentElement.children[2].textContent === list[0][2]) {
+      //     alert('此商品已在購物車')
+      //   } else {
+      //     }
+      // })
+      // console.log(this.shoplist1.forEach(shoplist => {
+      // console.log(shoplist[0][2])
+      // }))
+    },
     linkshop () {
       document.querySelectorAll('.goshopping').style.display = 'inline'
       document.querySelector('.shopcart').style.display = 'none'
@@ -230,6 +295,9 @@ export default {
 </script>
 <style lang='scss' scoped>
 div.normalSize {
+  // .testani{
+  //   transform: translateX(400px);
+  // }
   div.banner {
     img {
       width: 100%;

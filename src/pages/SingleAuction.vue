@@ -36,6 +36,24 @@
                           dark>
                           車輛詳細資訊
                           </v-btn>
+                          <v-bottom-navigation
+                          class="ml-2"
+                          color="#F34841"
+                          background-color="transparent"
+                          dark
+                          height="35"
+                          min-width="35"
+                          style="box-shadow: 0px 0px;"
+                          :value="testv"
+                          >
+                          <v-btn
+                          @click="follow"
+                          >
+                            <div>追蹤賣場</div>
+                            <!-- <v-icon>mdi-heart</v-icon> -->
+                            <v-icon>mdi-plus-box</v-icon>
+                          </v-btn>
+                          </v-bottom-navigation>
                       </div>
                   </div>
                   <div class="rightPoint"></div>
@@ -46,7 +64,7 @@
             <single-car-info @gomove="movegogo"/>
           </div>
           <div class="scrollWholefour d-flex align-center">
-            <single-car-bid-record @moveback="backmove"/>
+            <single-car-bid-record @moveback="backmove" :acid="acid"/>
           </div>
       </div>
   </media>
@@ -82,11 +100,17 @@ export default {
       cco: '',
       cdis: '',
       cm: '',
-      screenWidth: document.body.clientWidth
+      screenWidth: document.body.clientWidth,
+      acid: '',
+      memeberid: '',
+      reprice: '',
+      start: '',
+      testv: undefined
     }
   },
   async created () {
     console.log(this.$route.params.id)
+    this.acid = this.$route.params.id
     const fd = new FormData()
     fd.append('IDac', this.$route.params.id)
 
@@ -100,6 +124,27 @@ export default {
     this.brand = resdata[0].CARBRAND
     this.series = resdata[0].CARSERIES
     this.path = resdata[0].IMGPATH
+    this.memberid = resdata[0].MEMBER_ID
+    this.reprice = resdata[0].RESERVEPRICE
+    this.start = resdata[0].STARTINGTIME
+    console.log(this.start)
+    const fdthree = new FormData()
+    fdthree.append('AUCTIONID', this.acid)
+    fdthree.append('MEMBERID', this.memberid)
+    fdthree.append('RESERVEPRICE', this.reprice)
+    fdthree.append('STARTINGTIME', this.start)
+    fdthree.append('AUPATH', this.path)
+    const restwo = await fetch('http://localhost:8080/phpfile/iffollow.php', {
+      method: 'POST',
+      body: fdthree
+    })
+    const resdatatwo = await restwo.json()
+    console.log(resdatatwo)
+    if (resdatatwo.length === 0) {
+      this.testv = undefined
+    } else {
+      this.testv = 1
+    }
     // this.cy = resdata[0].YEAR
     // this.cb = resdata[0].CARBRAND
     // this.cs = resdata[0].CARSERIES
@@ -148,6 +193,39 @@ export default {
     RwdSingleAuction
   },
   methods: {
+    async follow () {
+      // const fdtwo = new FormData()
+      // fdtwo.append('AUCTIONID', this.acid)
+      // fdtwo.append('MEMBERID', this.memberid)
+      // fdtwo.append('RESERVEPRICE', this.reprice)
+      // fdtwo.append('STARTINGTIME', this.start)
+      // fdtwo.append('AUPATH', this.path)
+      const fdtwo = new FormData()
+      fdtwo.append('AUCTIONID', this.acid)
+      fdtwo.append('MEMBERID', this.memberid)
+      fdtwo.append('RESERVEPRICE', this.reprice)
+      fdtwo.append('STARTINGTIME', this.start)
+      fdtwo.append('AUPATH', this.path)
+      const res = await fetch('http://localhost:8080/phpfile/iffollow.php', {
+        method: 'POST',
+        body: fdtwo
+      })
+      const resdata = await res.json()
+      console.log(resdata)
+      if (resdata.length === 0) {
+        this.testv = 1
+        fetch('http://localhost:8080/phpfile/followauction.php', {
+          method: 'POST',
+          body: fdtwo
+        })
+      } else {
+        this.testv = undefined
+        fetch('http://localhost:8080/phpfile/deletefollow.php', {
+          method: 'POST',
+          body: fdtwo
+        })
+      }
+    },
     backmove () {
       gsap.to('.moCar', {
         x: 700,

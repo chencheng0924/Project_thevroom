@@ -7,6 +7,11 @@
             class="forumblack d-flex flex-column justify-center align-center pt-10 pb-15"
             style="width:100%;height:100%"
           >
+          <div class="color">
+            <div class="d-flex align-center">
+            <h1></h1> 餘剩時間：<Countdown deadline="August 23, 2021"></Countdown>
+            </div>
+          </div>
             <div class="d-flex justify-end mb-10" style="width:80%">
               <router-link style="text-decoration:none;" :to="signset"
                 ><button-news buttonName="我要發文"></button-news
@@ -397,10 +402,12 @@
   </div>
 </template>
 <script>
+import Countdown from 'vuejs-countdown'
 import Media from 'vue-media'
 import ButtonBtnBanner from '../components/layout/RwdBtnBanner.vue'
 export default {
   async created () {
+    console.log(this.$store.getters.getshoplist)
     const res = await fetch('http://localhost:8080/phpfile/forumselect.php')
     const resdata = await res.json()
     console.log(res)
@@ -434,7 +441,8 @@ export default {
   },
   components: {
     Media,
-    ButtonBtnBanner
+    ButtonBtnBanner,
+    Countdown
   },
   data () {
     return {
