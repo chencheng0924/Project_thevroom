@@ -9,19 +9,19 @@
       :key="list.id"
     >
       <div class="py-3" style="width:15%;text-align:center;">
-        <img style="width:100px; height: 100px; object-fit: contain;" class="fitImg" :src="list[0].PRODUCTIMG" alt="圖壞了" />
+        <img style="width:100px; height: 100px; object-fit: contain;" class="fitImg" :src="list.PRODUCTIMG" alt="圖壞了" />
       </div>
       <div class="py-3" style="width:45%;text-align:center;">
-        {{ list[0].PRODUCTNAME }}
+        {{ list.PRODUCTNAME }}
       </div>
       <div class="py-3" style="width:15%;text-align:center;">
-        {{ list[0].PRODUCTPRICE }}
+        {{ list.PRODUCTPRICE }}
       </div>
       <div class="py-3" style="width:15%;text-align:center;">
-        {{ list[0].PRODUCTMOUNT }}
+        {{ list.PRODUCTMOUNT }}
       </div>
       <div class="py-3" style="width:15%;text-align:center;">
-        {{ list[0].PRODUCTPRICE * list[0].PRODUCTMOUNT }}
+        {{ list.PRODUCTPRICE * list.PRODUCTMOUNT }}
       </div>
     </div>
     <div style="margin:100px 0px">
@@ -109,7 +109,7 @@
       </h1>
     </div>
     <div class="d-flex justify-space-between align-center mb-10">
-      <button-news buttonName="繼續購物" />
+      <router-link to="/accessories"><button-news buttonName="繼續購物" /></router-link>
       <div class="d-flex align-center">
         <v-checkbox v-model="checkbox" style="width:400px">
           <template v-slot:label>
@@ -118,9 +118,10 @@
             </div>
           </template>
         </v-checkbox>
-        <div @click=";(component = 'shopping-car3'), gogo">
-          <button-submit class="ml-5" buttonSubmit="下一步" />
-        </div>
+        <!-- <div @click="(component = 'shopping-car3')"> -->
+          <v-btn @click="test">下一步</v-btn>
+          <!-- <button-submit class="ml-5" buttonSubmit="下一步" /> -->
+        <!-- </div> -->
       </div>
     </div>
   </div>
@@ -256,7 +257,7 @@
       <div class="d-flex justify-space-between align-center">
       <button-news buttonName="繼續購物" />
       <div class="d-flex align-center">
-        <div @click=";(component = 'shopping-car3'), gogo">
+        <div>
           <button-submit class="ml-5" buttonSubmit="下一步" />
         </div>
       </div>
@@ -271,6 +272,11 @@
 import Media from 'vue-media'
 import shoppingcar3 from './ShoppingCar3.vue'
 export default {
+  methods: {
+    test () {
+      this.$emit('testbtn')
+    }
+  },
   components: { Media },
   created () {
     console.log(this.$store.getters.getshoplist)
@@ -302,16 +308,22 @@ export default {
       ]
     }
   },
+  updated () {
+    // this.$emit('done', 'shopping-car3')
+  },
   computed: {
+    gogo2 () {
+      return "this.component = 'shopping-car3'"
+    },
     totalitem () {
       this.$store.getters.getshoplist.forEach(list => {
-        this.totalcount += list[0].PRODUCTMOUNT
+        this.totalcount += parseInt(list.PRODUCTMOUNT)
       })
       return this.totalcount
     },
     totalprice () {
       this.$store.getters.getshoplist.forEach(list => {
-        this.totalp += list[0].PRODUCTMOUNT * list[0].PRODUCTPRICE
+        this.totalp += list.PRODUCTMOUNT * list.PRODUCTPRICE
       })
       return this.totalp
     }

@@ -143,8 +143,10 @@ export default {
   },
   data () {
     return {
+      index: 0,
       countnum: 1,
-      shoplist1: [],
+      prolist: {},
+      shoplist: [],
       pathimg: require('../assets/accessories-pic/aoto-part-banner2.jpg'),
       big: require('../assets/accessories-pic/aoto-part-banner2.jpg'),
       house: require('../assets/accessories-pic/house.png'),
@@ -208,8 +210,7 @@ export default {
         duration: 1
       })
     },
-    async putinshopcar (event) {
-      // console.dir(event.target.parentElement.children[2].textContent)
+    async putinshopcar () {
       const fd = new FormData()
       fd.append('PRODUCTNAME', event.target.parentElement.children[2].textContent)
       const res = await fetch('http://localhost:8080/phpfile/shopselect.php', {
@@ -217,32 +218,34 @@ export default {
         body: fd
       })
       const resdata123 = await res.json()
-      resdata123[0].PRODUCTMOUNT = 1
-      resdata123[0].PRODUCTTOTAL = resdata123[0].PRODUCTPRICE
-      console.log({ ...resdata123 })
-      const index = this.shoplist1.findIndex((list) => {
-        return event.target.parentElement.children[2].textContent === list[0][2]
-      })
-      console.log(index)
-      if (index === -1) {
-        this.shoplist1.push({ ...resdata123 })
+      console.log(resdata123)
+      // console.log(...resdata123)
+      this.prolist = resdata123
+      console.log(this.prolist[0])
+      this.shoplist = this.$store.getters.getshoplist
+      console.log(this.shoplist)
+      if (this.shoplist === null) {
+        this.$store.dispatch('shoplist', this.prolist[0])
       } else {
-        this.shoplist1[index][0].PRODUCTMOUNT += 1
-        this.shoplist1[index][0].PRODUCTTOTAL = parseInt(this.shoplist1[index][0].PRODUCTPRICE) + (parseInt(this.shoplist1[index][0].PRODUCTPRICE) * (parseInt(this.shoplist1[index][0].PRODUCTMOUNT) - 1))
+        const index = this.shoplist.findIndex(li => {
+          return li.PRODUCTID === this.prolist[0].PRODUCTID
+        })
+        if (index === -1) {
+          this.$store.dispatch('shoplist', this.prolist[0])
+        } else {
+          // console.log('hi')
+          this.prolist[0].PRODUCTMOUNT = parseInt(this.prolist[0].PRODUCTMOUNT)
+          this.prolist[0].PRODUCTTOTAL = parseInt(this.prolist[0].PRODUCTMOUNT) * parseInt(this.prolist[0].PRODUCTPRICE)
+          // ++this.prolist[0].PRODUCTMOUNT
+          // console.log(this.prolist[0].PRODUCTMOUNT)
+          console.log(parseInt(this.prolist[0].PRODUCTPRICE) * parseInt(this.prolist[0].PRODUCTMOUNT))
+          // this.prolist[0].PRODUCTTOTAL = parseInt(this.prolist[0].PRODUCTTOTAL) + 1
+          console.log(this.prolist[0].PRODUCTTOTAL)
+          // this.prolist[0].PRODUCTTOTAL = parseInt(this.prolist[0].PRODUCTPRICE) * parseInt(this.prolist[0].PRODUCTMOUNT)
+          this.$store.dispatch('shoplist1', this.prolist[0])
+        }
       }
-      console.log(this.shoplist1)
-      this.$store.dispatch('shoplist', this.shoplist1)
-      console.log(this.$store.getters)
-      localStorage.setItem('shoplist', JSON.stringify(this.shoplist1))
-      // this.shoplist.forEach(list => {
-      //   if (event.target.parentElement.children[2].textContent === list[0][2]) {
-      //     alert('此商品已在購物車')
-      //   } else {
-      //     }
-      // })
-      // console.log(this.shoplist1.forEach(shoplist => {
-      // console.log(shoplist[0][2])
-      // }))
+      console.log(this.$store.getters.getshoplist)
     },
     linkshop () {
       document.querySelector('.goshopping').style.display = 'inline'

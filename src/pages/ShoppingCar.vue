@@ -33,7 +33,7 @@
         >
           2
         </div>
-        <button class="text-h6 font-weight-bold" @click=";(component = 'shopping-car2'), gogo">
+        <button class="text-h6 font-weight-bold" @click="(component = 'shopping-car2'), gogo">
           確認及付款
         </button>
       </div>
@@ -49,7 +49,7 @@
         >
           3
         </div>
-        <button class="text-h6 font-weight-bold" @click=";(component = 'shopping-car3'), gogo2">完成</button>
+        <button class="text-h6 font-weight-bold" @click="(component = 'shopping-car3'), gogo2">完成</button>
       </div>
     </div>
     <div
@@ -93,7 +93,7 @@
     </div>
     <div>
       <component
-        :is="component">
+        @testbtn='done' :is="component">
       </component>
     </div>
     <div class="d-flex justify-end mb-10 ma-auto" style="width:70%">
@@ -110,7 +110,7 @@
       <div
         class="d-flex justify-space-around align-center mb-10"
       >
-        <button-news buttonName="繼續購物" />
+        <router-link to="/accessories"><button-news buttonName="繼續購物" /></router-link>
         <div class="d-flex align-center">
           <v-checkbox v-model="checkbox" style="width:400px" :class="{gogoro: component == 'shopping-car1'}">
             <template v-slot:label>
@@ -119,7 +119,7 @@
               </div>
             </template>
           </v-checkbox>
-          <div @click=";(component = 'shopping-car2'), gogo">
+          <div @click="(component = 'shopping-car2'), gogo">
             <button-submit class="ml-5" buttonSubmit="下一步" />
           </div>
         </div>
@@ -209,7 +209,7 @@
       <div
         class="d-flex justify-space-around align-center mb-10"
       >
-        <button-news buttonName="繼續購物" />
+        <router-link to="/accessories"><button-news buttonName="繼續購物" /></router-link>
         <div class="d-flex align-center">
           <v-checkbox v-model="checkbox" style="width:400px" :class="{gogoro: component == 'shopping-car1'}">
             <template v-slot:label>
@@ -218,7 +218,7 @@
               </div>
             </template>
           </v-checkbox>
-          <div @click=";(component = 'shopping-car2'), gogo">
+          <div @click="(component = 'shopping-car2'), gogo">
             <button-submit class="ml-5" buttonSubmit="下一步" />
           </div>
         </div>
@@ -238,6 +238,7 @@ import ButtonSubmit from '../components/layout/ButtonSubmit.vue'
 import Media from 'vue-media'
 export default {
   mounted () {
+    this.prolist = this.$store.getters.getshoplist
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
   },
   components: {
@@ -258,6 +259,10 @@ export default {
     }
   },
   methods: {
+    done () {
+      // console.log('123')
+      this.component = 'shopping-car3'
+    },
     gogo () {
       this.component = 'shopping-car2'
     },
@@ -268,13 +273,13 @@ export default {
   computed: {
     totalitem () {
       this.$store.getters.getshoplist.forEach(list => {
-        this.totalcount += list[0].PRODUCTMOUNT
+        this.totalcount += parseInt(list.PRODUCTMOUNT)
       })
       return this.totalcount
     },
     totalprice () {
       this.$store.getters.getshoplist.forEach(list => {
-        this.totalp += list[0].PRODUCTMOUNT * list[0].PRODUCTPRICE
+        this.totalp += list.PRODUCTMOUNT * list.PRODUCTPRICE
       })
       return this.totalp
     }

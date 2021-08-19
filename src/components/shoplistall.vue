@@ -4,14 +4,14 @@
         <div v-for="(shoplist, index) in list" :key="index" class="d-flex flex-column">
           <div class="d-flex justify-around my-3">
           <div style="width:150px;height:150px" class="mx-1">
-              <img style="width:150px;height:150px" :src=shoplist[0].PRODUCTIMG alt="圖壞了">
+              <img style="width:150px;height:150px" :src=shoplist.PRODUCTIMG alt="圖壞了">
           </div>
           <div style="width:150px;height:150px" class="mx-1 d-flex flex-column justify-between">
-              <div>{{ shoplist[0].PRODUCTNAME }}</div>
+              <div>{{ shoplist.PRODUCTNAME }}</div>
               <div class="d-flex justify-between align-center" style="width:150px;height:150px">
-                  <div style="min-width:50px">{{ shoplist[0].PRODUCTPRICE }}</div>
+                  <div style="min-width:50px">{{ shoplist.PRODUCTPRICE }}</div>
                   <div style="min-width:35px">X</div>
-                  <div style="min-width:35px">{{ shoplist[0].PRODUCTMOUNT }}</div>
+                  <div style="min-width:35px">{{ shoplist.PRODUCTMOUNT }}</div>
               </div>
               <div class="align-self-end" style="cursor: pointer;" @click="removeproduct(index)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg></div>
           </div>
@@ -25,40 +25,37 @@
 <script>
 export default {
   created () {
-    this.shoplist1 = JSON.parse(localStorage.getItem('shoplist'))
-    this.$store.dispatch('shoplist', this.shoplist1)
-    // console.log(this.$store.getters)
-    // this.shoplist1 = this.$store.getters.getshoplist
-    // console.log(this.shoplist1)
-    // console.log(this.$store.getters.getshoplist)
-    // this.$store.dispatch('shoplist', this.shoplist1)
-    // this.shoplist1 = this.$store.getters.getshoplist
-    // console.log(this.shoplist)
+    this.shoplist = JSON.parse(localStorage.getItem('shoplist'))
+    if (this.shoplist === null) {
+      this.shoplist = []
+      this.$store.dispatch('shoplist2', this.shoplist)
+    } else {
+      this.$store.dispatch('shoplist2', this.shoplist)
+    }
+    console.log(this.shoplist)
   },
   data () {
     return {
-      shoplist1: []
+      shoplist1: [],
+      shoplist: [],
+      total: 0
     }
   },
   methods: {
-    // testremove () {
-    //   localStorage.clear()
-    //   localStorage.setItem('shoplist', JSON.stringify(this.$store.getters.getshoplist))
-    // },
     removeproduct (index) {
-      this.shoplist1.splice(index, 1)
-      console.log(this.shoplist1)
-      this.$store.dispatch('shoplist', this.shoplist1)
-      console.log(this.$store.getters.getshoplist)
-      // localStorage.setItem('shoplist', this.shoplist1)
-    //   this.shoplist1.forEach(shoplist => {
-    //     console.log(shoplist[0].PRODUCTPRICE)
-    //     this.total += parseInt(shoplist[0].PRODUCTPRICE)
-    //   })
+      this.shoplist = this.$store.getters.getshoplist
+      console.log(this.shoplist)
+      this.shoplist.splice(index, 1)
+      this.$store.dispatch('shoplist2', this.shoplist)
     }
   },
   computed: {
+    totalprice () {
+      console.log(this.$store.getters.getshoplisttotal)
+      return this.$store.getters.getshoplisttotal
+    },
     list () {
+      console.log(this.$store.getters.getshoplist)
       return this.$store.getters.getshoplist
     },
     signset () {
@@ -69,24 +66,7 @@ export default {
       } else {
         return '/shoppingcar'
       }
-    },
-    totalprice () {
-      console.log(this.$store.getters.getshoplist)
-      let price = 0
-      this.$store.getters.getshoplist.forEach(shoplist => {
-        // console.log(parseInt(shoplist[0].PRODUCTPRICE))
-        price += parseInt(shoplist[0].PRODUCTTOTAL)
-        console.log(parseInt(shoplist[0].PRODUCTTOTAL))
-      })
-      console.log(price)
-      return price
     }
-  },
-  updated () {
-    localStorage.setItem('shoplist', JSON.stringify(this.$store.getters.getshoplist))
   }
-  // beforeDestroy () {
-  //   localStorage.setItem('shoplist', JSON.stringify(this.$store.getters.getshoplist))
-  // }
 }
 </script>

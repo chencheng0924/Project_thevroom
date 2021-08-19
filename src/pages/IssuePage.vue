@@ -232,7 +232,7 @@ export default {
       if (this.gocheck === false) {
         alert('請確認同意規則')
         this.dialog = false
-        console.log('hi')
+        // console.log('hi')
       } else {
         this.dialog = true
         // console.log(this.date.getFullYear())
