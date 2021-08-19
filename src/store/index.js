@@ -8,7 +8,8 @@ export default new Vuex.Store({
     happy: true,
     sad: 'margin-top: 64px',
     sign: 0,
-    shop: []
+    shop: [],
+    cart: false
   },
   mutations: {
     sethappy (state, payload) {
@@ -23,6 +24,10 @@ export default new Vuex.Store({
     },
     shoplist (state, payload) {
       state.shop = payload
+    },
+    shopcart (state, payload) {
+      state.cart = payload
+      // console.log(payload)
     }
   },
   actions: {
@@ -37,6 +42,9 @@ export default new Vuex.Store({
     },
     shoplist (context, payload) {
       context.commit('shoplist', payload)
+    },
+    shopcart (context, payload) {
+      context.commit('shopcart', payload)
     }
   },
   modules: {
@@ -54,6 +62,9 @@ export default new Vuex.Store({
     },
     getshoplist (state) {
       return state.shop
+    },
+    getcart (state) {
+      return state.cart
     }
   }
 })

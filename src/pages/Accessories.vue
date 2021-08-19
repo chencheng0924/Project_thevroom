@@ -5,10 +5,10 @@
         <div class="banner">
           <img :src="big" alt="圖壞了" />
         </div>
-        <transition name="fade">
-        <shoplist :to='signset' style="position:fixed;top:150px;right:0" :shoplist1="shoplist1" class="testani" v-if="test"/>
-        </transition>
-        <v-btn @click="showlist">123</v-btn>
+        <!-- <transition name="fade"> -->
+        <!-- <shoplist :to='signset' style="position:fixed;top:150px;right:0" :shoplist1="shoplist1" class="testani" v-if="test"/> -->
+        <!-- </transition> -->
+        <!-- <v-btn @click="showlist">123</v-btn> -->
         <!-- <shoplist :to='signset' style="position:fixed;top:150px;right:0" :shoplist1="shoplist1" class="testani"/> -->
         <!-- <v-btn @click="showlist">123</v-btn> -->
         <h1><img :src="house" alt="圖壞了" /> 配件專區</h1>
@@ -386,21 +386,6 @@ div.normalSize {
         }
       }
     }
-  }
-  .fade-enter,
-  .fade-leave-to {
-    opacity: 0;
-    transform: translateX(100px);
-  }
-  .fade-leave, .fade-enter-to {
-    opacity: 1;
-  }
-
-  .fade-enter-active {
-    transition: all 0.8s ease;
-  }
-  .fade-leave-active {
-    transition: all 0.8s ease;
   }
 }
 </style>

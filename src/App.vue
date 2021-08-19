@@ -8,10 +8,12 @@
       <!-- <v-btn @click="test">123</v-btn> -->
       <!-- <testfileload/> -->
       <!-- <button @click="test123">123</button> -->
-      <shoplistall style="position:fixed;top:100px;right:0;"/>
+      <transition name="fade">
+      <shoplistall style="position:fixed;top:100px;right:0;" v-if="showcart1"/>
+      </transition>
       <!-- <shoplist :to='signset' :shoplist1="shoplist1" class="testani"/> -->
       <the-footer></the-footer>
-      <home class="d-none"></home>
+      <!-- <home class="d-none"></home> -->
     </v-app>
   </div>
 </template>
@@ -19,12 +21,15 @@
 <script>
 import TheHeader from './components/layout/TheHeader.vue'
 import TheFooter from './components/layout/TheFooter.vue'
-import Home from './views/Home.vue'
+// import Home from './views/Home.vue'
 // import testfileload from './components/testfileload.vue'
 import shoplistall from './components/shoplistall.vue'
 
 export default {
-
+  created () {
+    console.log(this.$store.getters.getcart)
+    // this.showcart = this.$store.getters.getcart
+  },
   mounted () {
     // console.log(this.$store.getters)
     // const member123 = JSON.parse(localStorage[member])
@@ -52,13 +57,14 @@ export default {
       memberac: '',
       memberps: '',
       abc: '',
-      topstyle: 'margin-top: 64px;'
+      topstyle: 'margin-top: 64px;',
+      showcart: false
     }
   },
   components: {
     TheHeader,
     TheFooter,
-    Home,
+    // Home,
     // testfileload,
     shoplistall
   },
@@ -68,9 +74,16 @@ export default {
     },
     nomargin () {
       return this.$store.getters.getsad
+    },
+    showcart1 () {
+      return this.$store.getters.getcart
     }
   },
   methods: {
+    aaa () {
+      console.log('123')
+      this.$refs.fullpage_api.setAllowScrolling(false)
+    },
     test123 () {
       const memberinfo = this.$store.getters.getmember
       if (memberinfo === 0) {
@@ -87,6 +100,9 @@ export default {
         // console.log(this.$cookies.isKey('memberpa'))
         // console.log(this.$cookies.get('memberac'))
       }
+    },
+    showlistcart () {
+      this.showcart = !this.showcart
     }
     // async test () {
     //   const response = await fetch('http://localhost:8080/test2.php')
@@ -116,5 +132,20 @@ body{
 }
 a{
   color: #FFFFFF;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(100px);
+}
+.fade-leave, .fade-enter-to {
+  opacity: 1;
+}
+
+.fade-enter-active {
+  transition: all 0.8s ease;
+}
+.fade-leave-active {
+  transition: all 0.8s ease;
 }
 </style>

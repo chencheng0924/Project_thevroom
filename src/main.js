@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import 'fullpage.js/vendors/scrolloverflow'
-import VueFullPage from 'vue-fullpage.js'
+// import VueFullPage from 'vue-fullpage.js'
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
 import vuetify from './plugins/vuetify'
@@ -20,7 +20,7 @@ import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
 
 Vue.use(VueObserVisibility)
 Vue.config.productionTip = false
-Vue.use(VueFullPage)
+// Vue.use(VueFullPage)
 Vue.use(Media)
 Vue.use(VueCookies)
 Vue.use(PerfectScrollbar)
