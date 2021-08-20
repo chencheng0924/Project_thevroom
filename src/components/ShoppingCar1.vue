@@ -9,19 +9,19 @@
       :key="list.id"
     >
       <div class="py-3" style="width:15%;text-align:center;">
-        <img style="width:100px; height: 100px; object-fit: contain;" class="fitImg" :src="list[0].PRODUCTIMG" alt="圖壞了" />
+        <img style="width:100px; height: 100px; object-fit: contain;" class="fitImg" :src="list.PRODUCTIMG" alt="圖壞了" />
       </div>
       <div class="py-3" style="width:45%;text-align:center;">
-        {{ list[0].PRODUCTNAME }}
+        {{ list.PRODUCTNAME }}
       </div>
       <div class="py-3" style="width:15%;text-align:center;">
-        {{ list[0].PRODUCTPRICE }}
+        {{ list.PRODUCTPRICE }}
       </div>
       <div class="py-3" style="width:15%;text-align:center;">
-        {{ list[0].PRODUCTMOUNT }}
+        {{ list.PRODUCTMOUNT }}
       </div>
       <div class="py-3" style="width:15%;text-align:center;">
-        {{ list[0].PRODUCTPRICE * list[0].PRODUCTMOUNT }}
+        {{ list.PRODUCTPRICE * list.PRODUCTMOUNT }}
       </div>
     </div>
   </div>
@@ -35,20 +35,20 @@
     >
     <div class="d-flex justify-space-around" style="width:85%">
       <div class="py-3" style="width:35%;">
-        <img style="width:100px; height: 100px; object-fit: contain;" :src="list[0].PRODUCTIMG" alt="圖壞了" />
+        <img style="width:100px; height: 100px; object-fit: contain;" :src="list.PRODUCTIMG" alt="圖壞了" />
       </div>
       <div style="width:65%" class="ma-auto d-flex flex-column align-center">
         <div class="d-flex flex-column justify-center" style="width:75%" align-center>
           <div class="py-3 text-h5 font-weight-bold" >
-            {{ list[0].PRODUCTMOUNT }}
+            {{ list.PRODUCTMOUNT }}
           </div>
           <div class="py-3 align-self-end" >
             <i class="fas fa-minus"></i>
-            {{ list[0].PRODUCTPRICE }}
+            {{ list.PRODUCTPRICE }}
             <i class="fas fa-plus"></i>
           </div>
           <div class="mb-3 align-self-end" >
-            NT$:{{ list[0].PRODUCTPRICE * list[0].PRODUCTMOUNT }}
+            NT$:{{ list.PRODUCTPRICE * list.PRODUCTMOUNT }}
           </div>
         </div>
       </div>

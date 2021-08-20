@@ -8,12 +8,12 @@
       <h1>我們將盡速為您完成商品安裝!!</h1>
     </div>
     <div class="d-flex justify-space-around align-center mb-10">
-        <button-news buttonName="繼續購物" />
+        <router-link to="/accessories"><button-news buttonName="繼續購物" /></router-link>
         <div class="d-flex align-center">
-          <div @click=";(component = 'shopping-car3'), gogo">
+          <router-link to="/memberside">
             <button-submit class="ml-5" buttonSubmit="會員介面" />
+          </router-link>
           </div>
-        </div>
       </div>
   </div>
 </template>

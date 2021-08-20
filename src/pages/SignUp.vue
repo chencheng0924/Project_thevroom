@@ -115,7 +115,7 @@
                     </v-row>
                   </v-container>
                 </div>
-                <div
+                <!-- <div
                   class="d-flex align-center mb-5"
                   style="height:50px;width:90%"
                 >
@@ -144,7 +144,7 @@
                       獲取驗證碼
                     </button>
                   </div>
-                </div>
+                </div> -->
                 <div class="align-self-start ml-10 mt-10">
                   <div class="d-flex">
                     <div @click="testbtn"><button-submit buttonSubmit="註冊"></button-submit></div>
@@ -354,7 +354,7 @@ export default {
         { title: '驗證碼', placeholder: '請確認驗證碼' }
       ],
       items3: [
-        { title: '身分證字號', placeholder: '請確認身分證字號' },
+        { title: '手機號碼', placeholder: '請確認手機號碼' },
         { title: '居住地址', placeholder: '請確認居住地址' }
       ],
       year: [2021],
@@ -380,7 +380,8 @@ export default {
       console.log(this.selectyear)
       console.log(this.selectmonth)
       console.log(this.selectday)
-      console.log(this.testlisttwo)
+      console.log(this.testlisttwo[0])
+      console.log(this.testlisttwo[1])
       this.bir = this.selectyear + '-' + this.selectmonth + '-' + this.selectday
       console.log(this.bir)
       const formdata = new FormData()
@@ -390,6 +391,7 @@ export default {
       formdata.append('ADDRESS', this.testlisttwo[1])
       formdata.append('FULLNAME', this.testlist[3])
       formdata.append('BIRTHDAY', this.bir)
+      formdata.append('MOBILE', this.testlisttwo[0])
       fetch('http://localhost:8080/phpfile/testmember.php', {
         method: 'POST',
         body: formdata
