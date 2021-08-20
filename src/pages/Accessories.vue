@@ -23,13 +23,15 @@
               :items="items"
               selected-color="#f34841"
               open-on-click
+              color="#f34841"
               style="margin-top: 30px; cursor: pointer"
             >
+              <!-- color="#f34841" -->
               <template slot="label" slot-scope="{ item }">
                 <div
                   @click="filterItem(item)"
                 >
-                  <!-- :class="{ block:itemname === currentsort}" -->
+                <!-- :class="{ itemactive:this.itemactive === true}" -->
                   {{ item.name }}
                 </div>
               </template>
@@ -131,8 +133,7 @@ export default {
   components: {
     Media,
     'a-rwd': AccRwd,
-    'a-default': AccDefault,
-// import shoplist from '../components/shoplist.vue'
+    'a-default': AccDefault
   },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
@@ -172,6 +173,7 @@ export default {
       itemname: null,
       // currentsort: null,
       productdetail: '',
+      itemactive: false,
       items: [
         {
           id: 1,
@@ -269,16 +271,11 @@ export default {
       // console.log(item.id)
       // console.log(key)
       // console.log(this.items)
-      // item.active = true
+      this.itemactive = !this.itemactive
       console.log(item)
       this.itemname = item.name
       console.log(this.itemname)
       this.yes = false
-    },
-    wrap () {
-      console.log(this.productList)
-      this.productdetail = this.productList.PRODUCTINFO
-      // console.log(this.productList[0].PRODUCTINFO)
     }
   },
   computed: {
@@ -311,7 +308,7 @@ div.normalSize {
       width: 30px;
     }
   }
-  .-active {
+  .itemactive {
     color: #f34841;
   }
   div.main {
