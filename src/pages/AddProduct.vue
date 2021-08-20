@@ -1,9 +1,9 @@
 <template>
     <div>
       <media :query="{minWidth: '401px'}">
-          <div id="app">
+          <div id="app"  @scroll.native="noscroll">
               <full-page ref="fullpage" :options="options" id="fullpage">
-              <div class="section">
+              <div class="section tests">
                   <addpage @nextsrcoll="scrollone"></addpage>
               </div>
               <div class="section">
@@ -315,12 +315,55 @@ export default {
     const memberinfo = this.$store.getters.getmember
     this.memberid = memberinfo[0][0]
     console.log(this.memberid)
+    this.$refs.fullpage.api.setAllowScrolling(false)
+    // 頁面載入時鎖住y軸
+    // const elHtml = document.querySelector('html')
+    // elHtml.style.overflowY = 'hidden'
   },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top:64px'])
+    // window.addEventListener('mousewheel', this.handleScroll, true)
+    const that = this
+    window.addEventListener('resize', function () {
+      return (() => {
+        window.screenWidth = document.body.clientWidth
+        that.screenWidth = window.screenWidth
+      })()
+    })
+    console.log(this.screenWidth)
+    // 頁面載入時鎖住y軸
+    const elHtml = document.querySelector('html')
+    elHtml.style.overflowY = 'hidden'
+    const test = document.querySelector('window')
+    test.addEventListener('mousewheel', function () {
+      console.log('123')
+      this.$refs.fullpage.api.setAllowScrolling(false)
+    })
+  },
+  destroyed () {
+    const elHtml = document.querySelector('html')
+    elHtml.style.overflowY = null
+    const testy = document.querySelector('body')
+    testy.style.transform = 'translateY(0vh)'
+  },
+  watch: {
+    // 監聽視窗大小
+    screenWidth: function () {
+      if (this.screenWidth > 600) {
+        console.log('yo')
+        const elHtml = document.querySelector('html')
+        elHtml.style.overflowY = 'hidden'
+      } else {
+        console.log('hey')
+        const elHtml = document.querySelector('html')
+        elHtml.style.overflowY = 'auto'
+      }
+    }
   },
   data () {
     return {
+      scrollBar: false,
+      screenWidth: document.body.clientWidth,
       alldata: [],
       options: {
         licenseKey: 'YOUR_KEY_HERE',
@@ -390,8 +433,18 @@ export default {
     Media
   },
   methods: {
+    handleScroll () {
+      // console.log('123')
+      // this.$refs.fullpage.api.setAllowScrolling(false)
+    },
+    noscroll () {
+      // console.log('123')
+      this.$refs.fullpage.api.setAllowScrolling(false)
+    },
     scrollone (val, valone, valtwo) {
-      this.$refs.fullpage.api.moveSectionDown()
+      // console.log('123')
+      // this.$refs.fullpage.api.moveSectionDown()
+      // this.$refs.fullpage.api.setAllowScrolling(true)
       // console.log(val)
       // console.log(valone)
       // console.log(valtwo)
@@ -401,12 +454,20 @@ export default {
       console.log(this.acName)
       console.log(this.acCarSort)
       console.log(this.acCarBrand)
+      // 點擊後頁面往下
+      const testy = document.querySelector('body')
+      testy.style.transform = 'translateY(-100vh)'
+      testy.style.transition = 'all 1s'
     },
     scrolltwo () {
-      this.$refs.fullpage.api.moveSectionUp()
+      // this.$refs.fullpage.api.moveSectionUp()
+      // 點擊後往上
+      const testy = document.querySelector('body')
+      testy.style.transform = 'translateY(0vh)'
+      testy.style.transition = 'all 1s'
     },
     srcollthree (one, two, three, four, five, six, seven, eight, nine, ten) {
-      this.$refs.fullpage.api.moveSectionDown()
+      // this.$refs.fullpage.api.moveSectionDown()
       this.acCarSeries = one
       this.acCarDes = two
       this.acRegion = three
@@ -417,7 +478,8 @@ export default {
       this.acdate = eight
       this.achour = nine
       this.acDuDay = ten
-      this.start = this.acyear + '-' + this.acmonth + '-' + this.acdate
+      this.start = this.acyear + '-' + this.acmonth + '-' + this.acdate + ' ' + this.achour
+      // this.start = new Date(this.acyear, this.acmonth, this.acdate, this.achour)
       console.log(this.acCarSeries)
       console.log(this.acCarDes)
       console.log(this.acRegion)
@@ -428,9 +490,18 @@ export default {
       console.log(this.achour)
       console.log(this.acdate)
       console.log(this.acDuDay)
+      console.log(this.start)
+      // 點擊後往下
+      const testy = document.querySelector('body')
+      testy.style.transform = 'translateY(-200vh)'
+      testy.style.transition = 'all 1s'
     },
     testj () {
-      this.$refs.fullpage.api.moveSectionUp()
+      // this.$refs.fullpage.api.moveSectionUp()
+      // 點擊後往上
+      const testy = document.querySelector('body')
+      testy.style.transform = 'translateY(-100vh)'
+      testy.style.transition = 'all 1s'
     },
     photopass (val) {
       // console.log(val)
@@ -438,7 +509,11 @@ export default {
       console.log(this.acfile)
     },
     scrolltwice (one, two, three, four, five) {
-      this.$refs.fullpage.api.moveSectionDown()
+      // 點擊後往下
+      const testy = document.querySelector('body')
+      testy.style.transform = 'translateY(-300vh)'
+      testy.style.transition = 'all 1s'
+      // this.$refs.fullpage.api.moveSectionDown()
       this.acCarYear = one
       this.acCarColor = two
       this.Dis = three

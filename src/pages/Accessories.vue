@@ -5,6 +5,12 @@
         <div class="banner">
           <img :src="big" alt="圖壞了" />
         </div>
+        <!-- <transition name="fade"> -->
+        <!-- <shoplist :to='signset' style="position:fixed;top:150px;right:0" :shoplist1="shoplist1" class="testani" v-if="test"/> -->
+        <!-- </transition> -->
+        <!-- <v-btn @click="showlist">123</v-btn> -->
+        <!-- <shoplist :to='signset' style="position:fixed;top:150px;right:0" :shoplist1="shoplist1" class="testani"/> -->
+        <!-- <v-btn @click="showlist">123</v-btn> -->
         <h1><img :src="house" alt="圖壞了" /> 配件專區</h1>
         <div class="main">
           <div class="aside">
@@ -32,6 +38,7 @@
             <!-- <input type="text" v-model="search" placeholder="搜尋" /> -->
           </div>
           <div class="productpart">
+             <component @testgogo='testgogo' :is="'a-default'" class="component" v-if="yes"></component>
             <div
               class="productlist"
               v-for="product in filteredBlogs"
@@ -50,7 +57,7 @@
                           v-bind="attrs"
                           v-on="on"
                         >
-                        <img :src="product.PRODUCTIMG" alt="圖壞了" class="itemimg" />
+                        <img :src="product.PRODUCTIMG" alt="圖壞了" class="itemimg"/>
                         </span>
                         </template>
                         <v-card>
@@ -58,8 +65,8 @@
                           商品細項
                         </v-card-title>
 
-                        <v-card-text>
-                            {{product.PRODUCTINFO}}
+                        <v-card-text v-html="product.PRODUCTINFO" style="margin-top:20px;">
+                            <!-- {{product.PRODUCTINFO}} -->
                         </v-card-text>
 
                         <v-divider></v-divider>
@@ -71,7 +78,9 @@
                             text
                             @click="dialog = false"
                           >
+                          <!-- <router-link to=/shoppingcar>
                             加入購物車
+                          </router-link> -->
                           </v-btn>
                         </v-card-actions>
                       </v-card>
@@ -89,12 +98,15 @@
               >
                 ${{ product.PRODUCTPRICE }}</span
               >
+              <!-- <router-link to=/shoppingcar> -->
               <img
                 :src="shoppingcart"
                 alt="圖壞了"
                 title="加入購物車"
                 class="shopcart"
+                @click="putinshopcar()"
               />
+              <!-- </router-link> -->
                 <!-- @click="linkshop()" -->
               <img :src="goshopping" alt="圖壞了" class="goshopping" />
             </div>
@@ -113,12 +125,29 @@
 // import RwdBanner from '../components/layout/RwdBanner.vue'
 import Media from 'vue-media'
 import AccRwd from '../components/AccRwd.vue'
+import AccDefault from '../components/AccDefault.vue'
+import gsap from 'gsap'
 export default {
   components: {
     Media,
-    'a-rwd': AccRwd
+    'a-rwd': AccRwd,
+    'a-default': AccDefault
+  },
+  mounted () {
+    this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+    this.tween = gsap
+      .to('.testani', {
+        x: 200,
+        duration: 1
+      })
+      .reverse()
   },
   async created () {
+    // console.log(this.shoplist1)
+    // console.log(this.$store.getters.getshoplist)
+    // this.$store.dispatch('shoplist', this.shoplist1)
+    // this.shoplist1 = this.$store.getters.getshoplist
+    // console.log(this.shoplist)
     const response = await fetch('http://localhost:8080/phpfile/acc.php')
     const responsedata = await response.json()
     // alert('456')
@@ -126,18 +155,24 @@ export default {
     console.log(responsedata)
     // this.productList.push(responsedata)
     this.productList = responsedata
-    console.log(this.productList)
+    // console.log(this.productList)
   },
   data () {
     return {
+      index: 0,
+      test: false,
+      countnum: 1,
+      prolist: {},
+      shoplist: [],
       pathimg: require('../assets/accessories-pic/aoto-part-banner2.jpg'),
       big: require('../assets/accessories-pic/aoto-part-banner2.jpg'),
       house: require('../assets/accessories-pic/house.png'),
       shoppingcart: require('../assets/accessories-pic/shopcart.png'),
       goshopping: require('../assets/accessories-pic/shopping.png'),
-      search: '',
+      yes: true,
       itemname: null,
-      currentsort: null,
+      // currentsort: null,
+      productdetail: '',
       items: [
         {
           id: 1,
@@ -187,8 +222,51 @@ export default {
     }
   },
   methods: {
+    testgogo () {
+      this.putinshopcar()
+    },
+    showlist () {
+      this.test = !this.test
+    },
+    async putinshopcar () {
+      const fd = new FormData()
+      fd.append('PRODUCTNAME', event.target.parentElement.children[2].textContent)
+      const res = await fetch('http://localhost:8080/phpfile/shopselect.php', {
+        method: 'POST',
+        body: fd
+      })
+      const resdata123 = await res.json()
+      console.log(resdata123)
+      // console.log(...resdata123)
+      this.prolist = resdata123
+      console.log(this.prolist[0])
+      this.shoplist = this.$store.getters.getshoplist
+      console.log(this.shoplist)
+      if (this.shoplist === null) {
+        this.$store.dispatch('shoplist', this.prolist[0])
+      } else {
+        const index = this.shoplist.findIndex(li => {
+          return li.PRODUCTID === this.prolist[0].PRODUCTID
+        })
+        if (index === -1) {
+          this.$store.dispatch('shoplist', this.prolist[0])
+        } else {
+          // console.log('hi')
+          this.prolist[0].PRODUCTMOUNT = parseInt(this.prolist[0].PRODUCTMOUNT)
+          this.prolist[0].PRODUCTTOTAL = parseInt(this.prolist[0].PRODUCTMOUNT) * parseInt(this.prolist[0].PRODUCTPRICE)
+          // ++this.prolist[0].PRODUCTMOUNT
+          // console.log(this.prolist[0].PRODUCTMOUNT)
+          console.log(parseInt(this.prolist[0].PRODUCTPRICE) * parseInt(this.prolist[0].PRODUCTMOUNT))
+          // this.prolist[0].PRODUCTTOTAL = parseInt(this.prolist[0].PRODUCTTOTAL) + 1
+          console.log(this.prolist[0].PRODUCTTOTAL)
+          // this.prolist[0].PRODUCTTOTAL = parseInt(this.prolist[0].PRODUCTPRICE) * parseInt(this.prolist[0].PRODUCTMOUNT)
+          this.$store.dispatch('shoplist1', this.prolist[0])
+        }
+      }
+      console.log(this.$store.getters.getshoplist)
+    },
     linkshop () {
-      document.querySelector('.goshopping').style.display = 'inline'
+      document.querySelectorAll('.goshopping').style.display = 'inline'
       document.querySelector('.shopcart').style.display = 'none'
       setTimeout(() => this.$router.push({ path: '/shoppingcar' }), 400)
     },
@@ -197,20 +275,21 @@ export default {
       // console.log(key)
       // console.log(this.items)
       // item.active = true
-      // console.log(item)
+      console.log(item)
       this.itemname = item.name
       console.log(this.itemname)
-      // console.log(this.productList)
+      this.yes = false
     },
-    filterProduct (product) {
-      this.currentsort = product.sort
-      console.log(product.sort)
+    wrap () {
+      console.log(this.productList)
+      this.productdetail = this.productList.PRODUCTINFO
+      // console.log(this.productList[0].PRODUCTINFO)
     }
   },
   computed: {
     filteredBlogs: function () {
       return this.productList.filter((product) => {
-        return product.SORT.match(this.itemname)
+        return product.BIGSORT.match(this.itemname) || product.SORT.match(this.itemname)
       })
     }
   }
@@ -221,6 +300,9 @@ export default {
 </script>
 <style lang='scss' scoped>
 div.normalSize {
+  // .testani{
+  //   transform: translateX(400px);
+  // }
   div.banner {
     img {
       width: 100%;

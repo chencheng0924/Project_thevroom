@@ -9,19 +9,19 @@
       :key="list.id"
     >
       <div class="py-3" style="width:15%;text-align:center;">
-        <img style="width:100px; height: 100px; object-fit: contain;" :src="list.proSrc" alt="圖壞了" />
+        <img style="width:100px; height: 100px; object-fit: contain;" class="fitImg" :src="list.PRODUCTIMG" alt="圖壞了" />
       </div>
       <div class="py-3" style="width:45%;text-align:center;">
-        {{ list.proName }}
+        {{ list.PRODUCTNAME }}
       </div>
       <div class="py-3" style="width:15%;text-align:center;">
-        {{ list.proPrice }}
+        {{ list.PRODUCTPRICE }}
       </div>
       <div class="py-3" style="width:15%;text-align:center;">
-        {{ list.proCount }}
+        {{ list.PRODUCTMOUNT }}
       </div>
       <div class="py-3" style="width:15%;text-align:center;">
-        {{ list.proPrice * list.proCount }}
+        {{ list.PRODUCTPRICE * list.PRODUCTMOUNT }}
       </div>
     </div>
     <div style="margin:100px 0px">
@@ -109,7 +109,7 @@
       </h1>
     </div>
     <div class="d-flex justify-space-between align-center mb-10">
-      <button-news buttonName="繼續購物" />
+      <router-link to="/accessories"><button-news buttonName="繼續購物" /></router-link>
       <div class="d-flex align-center">
         <v-checkbox v-model="checkbox" style="width:400px">
           <template v-slot:label>
@@ -118,9 +118,10 @@
             </div>
           </template>
         </v-checkbox>
-        <div @click=";(component = 'shopping-car3'), gogo">
-          <button-submit class="ml-5" buttonSubmit="下一步" />
-        </div>
+        <!-- <div @click="(component = 'shopping-car3')"> -->
+          <v-btn @click="test">下一步</v-btn>
+          <!-- <button-submit class="ml-5" buttonSubmit="下一步" /> -->
+        <!-- </div> -->
       </div>
     </div>
   </div>
@@ -256,7 +257,7 @@
       <div class="d-flex justify-space-between align-center">
       <button-news buttonName="繼續購物" />
       <div class="d-flex align-center">
-        <div @click=";(component = 'shopping-car3'), gogo">
+        <div>
           <button-submit class="ml-5" buttonSubmit="下一步" />
         </div>
       </div>
@@ -271,7 +272,16 @@
 import Media from 'vue-media'
 import shoppingcar3 from './ShoppingCar3.vue'
 export default {
+  methods: {
+    test () {
+      this.$emit('testbtn')
+    }
+  },
   components: { Media },
+  created () {
+    console.log(this.$store.getters.getshoplist)
+    this.prolist = this.$store.getters.getshoplist
+  },
   data () {
     return {
       components: {
@@ -279,29 +289,7 @@ export default {
       },
       totalcount: 0,
       totalp: 0,
-      prolist: [
-        {
-          id: 1,
-          proSrc: require('../assets/index-car-pic/indexpicother.png'),
-          proName: '行車紀錄器',
-          proPrice: 3500,
-          proCount: 1
-        },
-        {
-          id: 2,
-          proSrc: require('../assets/index-car-pic/indexpicproduct.gif'),
-          proName: '排氣管',
-          proPrice: 10500,
-          proCount: 1
-        },
-        {
-          id: 3,
-          proSrc: require('../assets/index-car-pic/indexpicwheel.png'),
-          proName: '輪胎',
-          proPrice: 8000,
-          proCount: 3
-        }
-      ],
+      prolist: [],
       valid: false,
       cardname: '',
       cardRules: [
@@ -316,20 +304,26 @@ export default {
       cardsuc: '',
       cardsucRules: [
         v => !!v || '請填入安全碼',
-        v => /.+@.+/.test(v) || 'E-mail must be valid'
+        v => v.length <= 3 || '請輸入正確安全碼'
       ]
     }
   },
+  updated () {
+    // this.$emit('done', 'shopping-car3')
+  },
   computed: {
+    gogo2 () {
+      return "this.component = 'shopping-car3'"
+    },
     totalitem () {
-      this.prolist.forEach(pro => {
-        this.totalcount += pro.proCount
+      this.$store.getters.getshoplist.forEach(list => {
+        this.totalcount += parseInt(list.PRODUCTMOUNT)
       })
       return this.totalcount
     },
     totalprice () {
-      this.prolist.forEach(pro => {
-        this.totalp += pro.proCount * pro.proPrice
+      this.$store.getters.getshoplist.forEach(list => {
+        this.totalp += list.PRODUCTMOUNT * list.PRODUCTPRICE
       })
       return this.totalp
     }

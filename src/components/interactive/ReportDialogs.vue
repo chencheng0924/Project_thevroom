@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     sendout () {
-      console.log(this.dialogm1)
+      // console.log(this.dialogm1)
       this.$emit('gogororo2', this.dialogm1)
       this.$emit('gogororo')
       this.dialog = false

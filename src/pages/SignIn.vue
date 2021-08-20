@@ -29,7 +29,7 @@
               <h1>會員登入</h1>
               <div style="width:200%;height:3px" class="red"></div>
             </div>
-            <div class="d-flex align-center mb-5" style="height:50px;width:90%">
+            <div class="d-flex align-center mb-5" style="height:60px;width:90%">
               <v-container>
                 <v-row fluid class="d-flex align-center">
                   <v-col cols="12" sm="3">
@@ -48,7 +48,7 @@
                 </v-row>
               </v-container>
             </div>
-            <div class="d-flex align-center mb-5" style="height:50px;width:90%">
+            <div class="d-flex align-center mb-5" style="height:60px;width:90%">
               <v-container>
                 <v-row fluid class="d-flex align-center">
                   <v-col cols="12" sm="3">
@@ -165,8 +165,10 @@ export default {
   components: { ButtonSubmit, Media },
   data () {
     return {
+      jedgenum: 0,
       count: 0,
-      member: []
+      member: [],
+      resdata: []
     }
   },
   methods: {
@@ -174,6 +176,7 @@ export default {
       const fd = new FormData()
       fd.append('SIGNEM', this.signemail)
       fd.append('SIGNPA', this.signpassword)
+      fd.append('JEDGENUM', this.jedgenum)
       // fetch('http://localhost:8080/testsignin.php', {
       //   method: 'POST',
       //   body: fd
@@ -182,22 +185,25 @@ export default {
         method: 'POST',
         body: fd
       })
+      console.log('13')
       const resdata = await res.json()
-      // console.log(resdata)
+      console.log(resdata)
       if (resdata.length === 0) {
-        alert('87帳密錯誤')
+        alert('帳號密碼錯誤')
       } else {
+        console.log('123')
         this.$store.dispatch('membersign', resdata)
+        console.log('456')
         this.$router.replace('/') // 成功登入後導入首頁
+        const memberinfo = this.$store.getters.getmember
+        // const account = memberinfo[0].EMAIL
+        // const password = memberinfo[0].PASSWORD
+        // console.log('abc')
+        console.log(memberinfo)
+        // localStorage.setItem('memberac', account)
+        // localStorage.setItem('memberpa', password)
+        localStorage.setItem('member', JSON.stringify(memberinfo))
       }
-      const memberinfo = this.$store.getters.getmember
-      // const account = memberinfo[0].EMAIL
-      // const password = memberinfo[0].PASSWORD
-      // console.log('abc')
-      console.log(memberinfo)
-      // localStorage.setItem('memberac', account)
-      // localStorage.setItem('memberpa', password)
-      localStorage.setItem('member', JSON.stringify(memberinfo))
     }
   }
 }

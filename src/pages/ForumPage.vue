@@ -258,7 +258,7 @@ import ForumPageInput from '../components/ForumPageInput.vue'
 import Media from 'vue-media'
 export default {
   async created () {
-    console.log(this.$refs.warn)
+    // console.log(this.$refs.warn)
     console.log(this.$store.getters.getmember)
     console.log('123')
     console.log(this.$route)
