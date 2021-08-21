@@ -118,7 +118,7 @@
         email：<input type="email" required v-model="emailaddress" class="input" placeholder="123@gmail.com" :class="{'focus':emailbar === true}"  @focus="inputemail" @blur="bluremail" />
         <span class="alert" style="color:#f34841" v-if="alertemail">*請輸入email</span>
         <br>
-        <span class="alertemail" style="color:#f34841" v-if="alertmailrule">*請輸入正確的email</span>
+        <span class="alertemail" style="color:#f34841" v-if="alertmailrule">*請輸入正確的email格式</span>
         <br />
         <button type="submit" class="sellonline" @click.prevent="popup()">送出</button>
       </form>
@@ -436,15 +436,20 @@ export default {
       if (this.emailaddress !== '') {
         this.alertemail = false
       }
+      if (!this.validEmail(this.emailaddress)) {
+        this.alertmailrule = true
+      }
     },
-    // validEmail (emailaddress) {
-    //   alert('123')
-    //   var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    //   return re.test(emailaddress);
-    // },
+    validEmail (emailaddress) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      return re.test(emailaddress)
+    },
     popup () {
       if (this.emailaddress === '') {
         this.alertemail = true
+        if (!this.validEmail(this.emailaddress)) {
+          this.alertmailrule = true
+        }
       } else {
         this.alertemail = false
         const overlay = document.querySelector('.overlay')
