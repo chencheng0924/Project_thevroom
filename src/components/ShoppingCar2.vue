@@ -51,6 +51,7 @@
                   <v-text-field
                     :rules="cardRules"
                     label="信用卡號"
+                    :counter="16"
                     required
                   ></v-text-field>
                 </v-col>
@@ -180,7 +181,6 @@
               <v-row>
                 <v-col cols="12" md="6">
                   <v-text-field
-                    v-model="cardname"
                     :rules="cardRules"
                     label="信用卡號"
                     required
@@ -188,7 +188,6 @@
                 </v-col>
                 <v-col cols="12" md="2">
                   <v-text-field
-                    v-model="date"
                     :rules="dateRules"
                     label="到期日期"
                     required
@@ -197,7 +196,6 @@
 
                 <v-col cols="12" md="2">
                   <v-text-field
-                    v-model="cardsuc"
                     :rules="cardsucRules"
                     label="安全碼"
                     required
