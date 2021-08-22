@@ -115,7 +115,7 @@
                     </v-row>
                   </v-container>
                 </div>
-                <div
+                <!-- <div
                   class="d-flex align-center mb-5"
                   style="height:50px;width:90%"
                 >
@@ -144,7 +144,7 @@
                       獲取驗證碼
                     </button>
                   </div>
-                </div>
+                </div> -->
                 <div class="align-self-start ml-10 mt-10">
                   <div class="d-flex">
                     <router-link to="/signin">
@@ -356,12 +356,12 @@ export default {
         { title: '驗證碼', placeholder: '請確認驗證碼' }
       ],
       items3: [
-        { title: '身分證字號', placeholder: '請確認身分證字號' },
+        { title: '手機號碼', placeholder: '請確認手機號碼' },
         { title: '居住地址', placeholder: '請確認居住地址' }
       ],
-      year: [2021],
-      month: [1, 2, 3],
-      day: [1, 2, 3],
+      year: [2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999, 1998, 1997, 1996, 1995, 1994, 1993, 1992, 1991, 1990, 1989, 1988, 1987, 1986, 1985, 1984, 1983, 1982, 1981, 1980],
+      month: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      day: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
       randomId: 0
     }
   },
@@ -382,7 +382,8 @@ export default {
       console.log(this.selectyear)
       console.log(this.selectmonth)
       console.log(this.selectday)
-      console.log(this.testlisttwo)
+      console.log(this.testlisttwo[0])
+      console.log(this.testlisttwo[1])
       this.bir = this.selectyear + '-' + this.selectmonth + '-' + this.selectday
       console.log(this.bir)
       const formdata = new FormData()
@@ -392,6 +393,7 @@ export default {
       formdata.append('ADDRESS', this.testlisttwo[1])
       formdata.append('FULLNAME', this.testlist[3])
       formdata.append('BIRTHDAY', this.bir)
+      formdata.append('MOBILE', this.testlisttwo[0])
       fetch('http://localhost:8080/phpfile/testmember.php', {
         method: 'POST',
         body: formdata

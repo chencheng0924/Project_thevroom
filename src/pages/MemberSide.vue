@@ -98,18 +98,44 @@
             >
               <div style="height:265px">
                 <v-date-picker
+                  v-model="picker"
+                  show-adjacent-months
+                  :events="arrayEvents"
+                  event-color="blue lighten-1"
+                  dark
+                  width="299"
+                  @click:date ="category"
+                ></v-date-picker>
+                <!-- <v-date-picker
                   v-model="date1"
                   :events="arrayEvents"
                   event-color="green lighten-1"
                   dark
                   width="299"
-                ></v-date-picker>
+                ></v-date-picker> -->
               </div>
-              <div>
-                <v-card
+              <div class="d-flex flex-column justify-space-evenly"
+                style="width:300px; height:560px; border:2px solid #000"
+              >
+                <div
+                  style="font-size: 20px; font-weight: bold;"
+                  class="pl-4 text-h6 font-weight-bold"
+                >
+                      當日排程
+                </div>
+              <div class="event" v-for="date in dates" :key="date" style="border:1px solid #181818; width:90%; margin:10px auto; padding:5px 5px;" :class="{ block: currentcategory === date.category}">
+                <div>{{date.name}}</div>
+                <span style="color:#f34841; font-weight:bold">{{date.time}}</span>
+                <div>
+                  {{date.reserve}} : {{date.price}}
+                </div>
+                <div>{{date.status}}</div>
+
+              </div>
+                <!-- <v-card
                   width="300"
                   height="560"
-                  style="border: 2px solid #000"
+                  style="border: 2px solid #000; display:none"
                   class="d-flex flex-column justify-space-between"
                 >
                   <div
@@ -130,7 +156,7 @@
                     <div
                       v-for="date in dates"
                       :key="date.name"
-                      style="border: 1px solid #000; border-radius:5px; width:260px; height:130px"
+                      style="border: 1px solid #000; border-radius:5px; width:260px; height:130px; display:none;"
                       class="d-flex flex-column justify-space-around"
                     >
                       <div class="d-flex">
@@ -159,7 +185,7 @@
                       </div>
                     </div>
                   </div>
-                </v-card>
+                </v-card> -->
               </div>
             </div>
           </div>
@@ -228,6 +254,8 @@ export default {
   data: () => ({
     component: 'member-data',
     componentM: 'member-data-m',
+    picker: null,
+    currentcategory: 'today',
     dates: [
       {
         name: '2021 BMW 330i',
@@ -235,7 +263,8 @@ export default {
         reserve: '底價',
         price: '130萬',
         title: '賣場狀態',
-        status: '進行中'
+        status: '進行中',
+        category: 'today'
       },
       {
         name: '2021 BENZ GLC',
@@ -243,7 +272,8 @@ export default {
         reserve: '底價',
         price: '900萬',
         title: '賣場狀態',
-        status: '進行中'
+        status: '進行中',
+        category: 'today'
       },
       {
         name: '2021 AUDI Q30',
@@ -251,7 +281,71 @@ export default {
         reserve: '底價',
         price: '200萬',
         title: '賣場狀態',
-        status: '進行中'
+        status: '進行中',
+        category: 'today'
+      },
+      {
+        name: '2021 Mazda3',
+        time: '17 : 00',
+        reserve: '底價',
+        price: '50萬',
+        title: '賣場狀態',
+        status: '進行中',
+        category: 'today'
+      },
+      {
+        name: '2021 MINI PACEMAN 2014',
+        time: '17 : 00',
+        reserve: '底價',
+        price: '100萬',
+        title: '賣場狀態',
+        status: '即將開始',
+        category: 'future'
+      },
+      {
+        name: '2021 BENZ GLC300 2020',
+        time: '17 : 00',
+        reserve: '底價',
+        price: '200萬',
+        title: '賣場狀態',
+        status: '即將開始',
+        category: 'future'
+      },
+      {
+        name: '2021 BMW 5-Series Sedan 2011',
+        time: '17 : 00',
+        reserve: '底價',
+        price: '70萬',
+        title: '賣場狀態',
+        status: '即將開始',
+        category: 'future'
+      },
+      {
+        name: '2021 FORD KUGA 2020',
+        time: '17 : 00',
+        reserve: '底價',
+        price: '100萬',
+        title: '賣場狀態',
+        status: '已結束',
+        category: 'past'
+      },
+      {
+        name: 'Suzuki Swift 2008',
+        time: '17 : 00',
+        reserve: '底價',
+        price: '20萬',
+        title: '賣場狀態',
+        status: '已結束',
+        category: 'past'
+      },
+      {
+        name: '今日無拍賣會',
+        time: '00 : 00',
+        reserve: '底價',
+        price: '0',
+        title: '賣場狀態',
+        status: '無',
+        category: 'empty'
       }
     ],
     num: 1,
@@ -276,7 +370,43 @@ export default {
     gogo4 (num) {
       this.num = num
       this.num = this.count4
+    },
+    category (date) {
+      const todaydate = new Date()
+      const time = todaydate.getDate()
+      // console.log(todaydate)
+      console.log(time)
+      console.log(date)
+      // console.log(date.length)
+      const dateday = date.substr(8, 10)
+      console.log(dateday)
+      if (time === dateday) {
+        this.currentcategory = 'today'
+      } else if (time - dateday === 5 || time - dateday === 10 || time - dateday === 15 || time - dateday === 4 || time - dateday === 18 || time - dateday === 12 || time - dateday === 7) {
+        this.currentcategory = 'past'
+      } else if (dateday - time === 5 || dateday - time === 7) {
+        this.currentcategory = 'empty'
+      } else if (dateday > time) {
+        this.currentcategory = 'future'
+      } else {
+        this.currentcategory = 'empty'
+      }
+      console.log(this.currentcategory)
     }
+    // category (date) {
+    //   const todaydate = new Date()
+    //   const time = todaydate.getDate()
+    //   if (date === time) {
+    //     this.currentcategory = 'today'
+    //   } else if (date >= time) {
+    //     this.currentcategory = 'future'
+    //   } else {
+    //     this.currentcategory = 'past'
+    //   }
+    //   return this.dates.filter((data) => {
+    //     return data.category === this.currentcategory
+    //   })
+    // }
   },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
@@ -306,7 +436,10 @@ export default {
     }
     .v-picker__title {
       // display: none;
-      height: 60px;
+      height: 65px;
+      .v-date-picker-title__date{
+        font-size: 23px;
+      }
     }
   }
   .v-date-picker-header {
@@ -321,4 +454,10 @@ export default {
   border-radius: 20px;
   padding:5px
 }
+div.event{
+  display: none;
+}
+ .block{
+    display: block !important;
+  }
 </style>

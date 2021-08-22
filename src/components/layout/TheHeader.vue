@@ -97,7 +97,6 @@
 
 <script>
 import Media from 'vue-media'
-// import shoplistall from '../shoplistall.vue'
 
 export default {
   created () {

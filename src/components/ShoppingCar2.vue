@@ -9,19 +9,19 @@
       :key="list.id"
     >
       <div class="py-3" style="width:15%;text-align:center;">
-        <img style="width:100px; height: 100px; object-fit: contain;" class="fitImg" :src="list[0].PRODUCTIMG" alt="圖壞了" />
+        <img style="width:100px; height: 100px; object-fit: contain;" class="fitImg" :src="list.PRODUCTIMG" alt="圖壞了" />
       </div>
       <div class="py-3" style="width:45%;text-align:center;">
-        {{ list[0].PRODUCTNAME }}
+        {{ list.PRODUCTNAME }}
       </div>
       <div class="py-3" style="width:15%;text-align:center;">
-        {{ list[0].PRODUCTPRICE }}
+        {{ list.PRODUCTPRICE }}
       </div>
       <div class="py-3" style="width:15%;text-align:center;">
-        {{ list[0].PRODUCTMOUNT }}
+        {{ list.PRODUCTMOUNT }}
       </div>
       <div class="py-3" style="width:15%;text-align:center;">
-        {{ list[0].PRODUCTPRICE * list[0].PRODUCTMOUNT }}
+        {{ list.PRODUCTPRICE * list.PRODUCTMOUNT }}
       </div>
     </div>
     <div style="margin:100px 0px">
@@ -31,12 +31,13 @@
           ><input
             type="radio"
             name="city"
-            value="taipei"
+            value="信用卡付款"
             checked
+            v-model="way"
           />信用卡付款</label
         >
         <label style="font-size:20px;" class="mx-8"
-          ><input type="radio" name="city" value="taoyuan" />到店取貨</label
+          ><input type="radio" name="city" value="到店取貨" v-model="way" />到店取貨</label
         >
       </div>
       <div style="border:1px solid black;border-top:0" class="pa-5">
@@ -47,7 +48,6 @@
               <v-row>
                 <v-col cols="12" md="6">
                   <v-text-field
-                    v-model="cardname"
                     :rules="cardRules"
                     label="信用卡號"
                     required
@@ -56,7 +56,6 @@
 
                 <v-col cols="12" md="2">
                   <v-text-field
-                    v-model="date"
                     :rules="dateRules"
                     label="到期日期"
                     required
@@ -65,7 +64,6 @@
 
                 <v-col cols="12" md="2">
                   <v-text-field
-                    v-model="cardsuc"
                     :rules="cardsucRules"
                     label="安全碼"
                     required
@@ -75,7 +73,7 @@
             </v-container>
           </v-form>
         </div>
-        <v-checkbox v-model="checkbox">
+        <!-- <v-checkbox v-model="checkbox">
           <template v-slot:label>
             <div>
               本人聲明下訂即表示並詳細閱讀
@@ -95,7 +93,7 @@
               車行之相關購車條款規定，並確認下訂車輛。
             </div>
           </template>
-        </v-checkbox>
+        </v-checkbox> -->
       </div>
     </div>
     <div class="d-flex justify-end mb-10 ma-auto" style="width:70%">
@@ -109,7 +107,7 @@
       </h1>
     </div>
     <div class="d-flex justify-space-between align-center mb-10">
-      <button-news buttonName="繼續購物" />
+      <router-link to="/accessories"><button-news buttonName="繼續購物" /></router-link>
       <div class="d-flex align-center">
         <v-checkbox v-model="checkbox" style="width:400px">
           <template v-slot:label>
@@ -118,9 +116,10 @@
             </div>
           </template>
         </v-checkbox>
-        <div @click=";(component = 'shopping-car3'), gogo">
-          <button-submit class="ml-5" buttonSubmit="下一步" />
-        </div>
+        <!-- <div @click="(component = 'shopping-car3')"> -->
+          <v-btn style="width:150px" class="red white--text rounded-pill" @click="checkout">確認結帳</v-btn>
+          <!-- <button-submit class="ml-5" buttonSubmit="下一步" /> -->
+        <!-- </div> -->
       </div>
     </div>
   </div>
@@ -164,12 +163,12 @@
           ><input
             type="radio"
             name="city"
-            value="taipei"
+            value="信用卡付款"
             checked
           />信用卡付款</label
         >
         <label class="mx-8 text-body1 font-weight-medium"
-          ><input type="radio" name="city" value="taoyuan" />到店取貨</label
+          ><input type="radio" name="city" value="到店取貨" />到店取貨</label
         >
       </div>
       <div style="border:1px solid black;border-top:0" class="pa-5">
@@ -180,16 +179,13 @@
               <v-row>
                 <v-col cols="12" md="6">
                   <v-text-field
-                    v-model="cardname"
                     :rules="cardRules"
                     label="信用卡號"
                     required
                   ></v-text-field>
                 </v-col>
-
                 <v-col cols="12" md="2">
                   <v-text-field
-                    v-model="date"
                     :rules="dateRules"
                     label="到期日期"
                     required
@@ -198,7 +194,6 @@
 
                 <v-col cols="12" md="2">
                   <v-text-field
-                    v-model="cardsuc"
                     :rules="cardsucRules"
                     label="安全碼"
                     required
@@ -254,9 +249,9 @@
     </div>
     <div class="my-10 ma-auto" style="width:90%">
       <div class="d-flex justify-space-between align-center">
-      <button-news buttonName="繼續購物" />
+      <router-link to="/accessories"><button-news buttonName="繼續購物" /></router-link>
       <div class="d-flex align-center">
-        <div @click=";(component = 'shopping-car3'), gogo">
+        <div>
           <button-submit class="ml-5" buttonSubmit="下一步" />
         </div>
       </div>
@@ -272,46 +267,128 @@ import Media from 'vue-media'
 import shoppingcar3 from './ShoppingCar3.vue'
 export default {
   components: { Media },
-  created () {
+  async created () {
+    console.log(this.$store.getters.getmember)
     console.log(this.$store.getters.getshoplist)
     this.prolist = this.$store.getters.getshoplist
+    this.member = this.$store.getters.getmember
+    this.list = this.prolist.forEach(li => {
+      li.PRODUCTINFO = ''
+      li[5] = ''
+    })
+    console.log(this.list)
+    const res = await fetch('http://localhost:8080/phpfile/proidselect.php')
+    const resdata = await res.json()
+    console.log(resdata)
+    resdata.forEach(li => {
+      this.alreadyHave.push(li.ORDERLISTID)
+    })
+    console.log(this.alreadyHave)
   },
   data () {
     return {
+      date: new Date(),
+      valid: false,
+      amountlist: [],
+      orderlistid: [],
+      alreadyHave: [],
+      allprolist: [],
+      list: null,
+      turnon: false,
       components: {
         'shopping-car3': shoppingcar3
       },
       totalcount: 0,
       totalp: 0,
+      card: '',
+      shop: '',
       prolist: [],
-      valid: false,
-      cardname: '',
+      member: [],
+      totalprice1: 0,
       cardRules: [
         v => !!v || '請填入卡號',
         v => v.length <= 16 || '請輸入16字卡號'
       ],
-      date: '',
       dateRules: [
         v => !!v || '請填入到期日期',
         v => v.length <= 4 || '請輸入正確日期'
       ],
-      cardsuc: '',
       cardsucRules: [
         v => !!v || '請填入安全碼',
         v => v.length <= 3 || '請輸入正確安全碼'
       ]
     }
   },
+  methods: {
+    async checkout () {
+      this.$emit('testbtn')
+      this.year = this.date.getFullYear()
+      this.month = this.date.getMonth()
+      this.day = this.date.getDate()
+      this.hours = this.date.getHours()
+      this.minutes = this.date.getMinutes()
+      this.seconds = this.date.getSeconds()
+      this.randomId = Math.floor(Math.random() * 999)
+      console.log(this.randomId)
+      this.alreadyHave.forEach((idlist) => {
+        // console.log(idlist)
+        if (this.randomId === parseInt(idlist)) {
+          console.log(this.randomId)
+          this.randomId = Math.floor(Math.random() * 999)
+        }
+      })
+      this.prolist.forEach(li => {
+        this.totalprice1 += li.PRODUCTTOTAL
+      })
+      console.log(this.totalprice1)
+      console.log(this.way)
+      console.log(this.prolist)
+      this.prolist.forEach(list => {
+        console.log(list.PRODUCTID)
+        console.log(list.PRODUCTMOUNT)
+        this.allprolist.push(list.PRODUCTID)
+        this.amountlist.push(parseInt(list.PRODUCTMOUNT))
+      })
+      console.log(this.allprolist)
+      console.log(this.amountlist)
+      console.log(JSON.stringify(this.prolist))
+      const fd = new FormData()
+      fd.append('ORDERLISTID', this.randomId)
+      fd.append('MEMBERID', this.member[0].MEMBERID)
+      fd.append('TOTALPRICE', this.totalprice1)
+      fd.append('PATMENTMETHOD', this.way)
+      // fd.append('CARDNUM', this.cardname)
+      // fd.append('DATE', this.date)
+      // fd.append('CARDSUC', this.cardsuc)
+      console.log(this.year + '-' + (this.month + 1) + '-' + this.day + ' ' + this.hours + ':' + this.minutes + ':' + this.seconds)
+      fd.append('PRODUCTLIST', JSON.stringify(this.allprolist))
+      fd.append('AMOUNTLIST', JSON.stringify(this.amountlist))
+      fd.append('ORDERDATE', this.year + '-' + (this.month + 1) + '-' + this.day + ' ' + this.hours + ':' + this.minutes + ':' + this.seconds)
+      const res = await fetch('http://localhost:8080/phpfile/productlist.php', {
+        method: 'POST',
+        body: fd
+      })
+      const resdata = res.json()
+      console.log(resdata)
+      this.allprolist = []
+    }
+  },
+  updated () {
+    // this.$emit('done', 'shopping-car3')
+  },
   computed: {
+    gogo2 () {
+      return "this.component = 'shopping-car3'"
+    },
     totalitem () {
       this.$store.getters.getshoplist.forEach(list => {
-        this.totalcount += list[0].PRODUCTMOUNT
+        this.totalcount += parseInt(list.PRODUCTMOUNT)
       })
       return this.totalcount
     },
     totalprice () {
       this.$store.getters.getshoplist.forEach(list => {
-        this.totalp += list[0].PRODUCTMOUNT * list[0].PRODUCTPRICE
+        this.totalp += list.PRODUCTMOUNT * list.PRODUCTPRICE
       })
       return this.totalp
     }

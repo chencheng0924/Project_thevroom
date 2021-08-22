@@ -102,16 +102,23 @@
 
     <div class="sell">
       <h1 text-h4 font-weight-bold>新手買車-線上估價</h1>
-      <form method="post" action="http://localhost:8080/phpfile/eva.php">
-        車輛廠牌：<input type="text" required v-model="carb" class="input" placeholder="請輸入車輛廠牌" :class="{'focus':inputbar === true}"  @focus="inputbrand" @blur="blurbrand" />
+      <form>
+        車輛廠牌：<input type="text" v-model="carb" class="input" placeholder="請輸入車輛廠牌" :class="{'focus':inputbar === true}"  @focus="inputbrand" @blur="blurbrand" />
+        <span class="alert" style="color:#f34841" v-if="alertcarbrand">*請輸入車輛廠牌</span>
         <br />
         出廠年份：<input type="text" required v-model="pyear" class="input" placeholder="請輸入出廠年份" :class="{'focus':inputyearbar === true}" @focus="inputyear" @blur="bluryear" />
+        <span class="alert" style="color:#f34841" v-if="alertyear">*請輸入出廠年份</span>
         <br />
         里程數：<input type="text" required v-model="long" class="input" placeholder="請輸入里程數" :class="{'focus':inputmilebar === true}" @focus="inputmile" @blur="blurmile"/>
+        <span class="alert" style="color:#f34841" v-if="alertlong">*請輸入里程數</span>
         <br />
         姓名：<input type="text"  required v-model="person" class="input" placeholder="請輸入全名"  :class="{'focus':inputnamebar === true}" @focus="inputname" @blur="blurname"/>
+        <span class="alert" style="color:#f34841" v-if="alertname">*請輸入全名</span>
         <br />
         email：<input type="email" required v-model="emailaddress" class="input" placeholder="123@gmail.com" :class="{'focus':emailbar === true}"  @focus="inputemail" @blur="bluremail" />
+        <span class="alert" style="color:#f34841" v-if="alertemail">*請輸入email</span>
+        <br>
+        <span class="alertemail" style="color:#f34841" v-if="alertmailrule">*請輸入正確的email格式</span>
         <br />
         <button type="submit" class="sellonline" @click.prevent="popup()">送出</button>
       </form>
@@ -162,6 +169,12 @@ export default {
       inputmilebar: false,
       inputnamebar: false,
       emailbar: false,
+      alertcarbrand: false,
+      alertyear: false,
+      alertlong: false,
+      alertname: false,
+      alertemail: false,
+      alertmailrule: false,
       banner: require('../assets/new-driver-pic/new-driver-banner.jpg'),
       bannerSoul: '勝負心是促使人們前進的原動力',
       stepOne: require('../assets/new-driver-pic/step1-whitecar.png'),
@@ -279,7 +292,7 @@ export default {
       ],
       answer: [
         {
-          answer: '競標流程非常簡單，只要鎖定拍賣商品，之後加入會員，就可以出價參加競標了！看看拍賣會場',
+          answer: '競標流程非常簡單，只要鎖定拍賣商品，之後加入會員，就可以出價參加競標了！<a href="/AuctionOverview" style="color:#ffffff; text-decoration:underline; font-weight:bold;">看看拍賣會場</a>',
           id: 11
         },
         {
@@ -291,7 +304,7 @@ export default {
           id: 13
         },
         {
-          answer: '只有高級會員可以開設拍賣場，相關會員方案請洽會員專區',
+          answer: '只有高級會員可以開設拍賣場，相關會員方案請洽<a href="/memberside" style="color:#ffffff; text-decoration:underline; font-weight:bold;>會員專區</a>',
           id: 14
         },
         {
@@ -312,11 +325,11 @@ export default {
           id: 18
         },
         {
-          answer: '加入會員以享受我們提供的完整服務，加入會員才能競標商品與購買車輛或是配件，這是為了確保每位使用者都對本站有一定程度的瞭解，並且遵守使用規範。同時會員將擁有自己的會員專區，內可以管理有興趣的拍賣會場，並且也擁有自己的會員行事曆，讓您不錯過TheVroom上發生的每個精彩細節。而如果您滿意我們服務，可以升級為「高級會員」，「高級會員」擁有開設拍賣會場的權限。加入高級會員，開設拍賣會，讓您成為眾人追尋的對象吧！加入會員',
+          answer: '加入會員以享受我們提供的完整服務，加入會員才能競標商品與購買車輛或是配件，這是為了確保每位使用者都對本站有一定程度的瞭解，並且遵守使用規範。同時會員將擁有自己的會員專區，內可以管理有興趣的拍賣會場，並且也擁有自己的會員行事曆，讓您不錯過TheVroom上發生的每個精彩細節。而如果您滿意我們服務，可以升級為「高級會員」，「高級會員」擁有開設拍賣會場的權限。加入高級會員，開設拍賣會，讓您成為眾人追尋的對象吧！<a href="/signup" style="color:#ffffff; text-decoration:underline; font-weight:bold;">加入會員</a>',
           id: 19
         },
         {
-          answer: '「高級會員」資格需要購買，價格為一年3000元台幣。前往升級高級會員',
+          answer: '「高級會員」資格需要購買，價格為一年3000元台幣。前往升級<a href="/memberside" style="color:#ffffff; text-decoration:underline; font-weight:bold;">高級會員</a>',
           id: 20
         },
         {
@@ -333,12 +346,12 @@ export default {
         },
         {
           answer:
-            '我們提供「市場行情」頁面，讓您瞭解最新市場行情，比較當年度熱門車款，讓您輕鬆上手新車知識；如果您有其他買車相關問題，也可以上討論區，和大家一起討論喔。前往「市場行情」「前往討論區」',
+            '我們提供「市場行情」頁面，讓您瞭解最新市場行情，比較當年度熱門車款，讓您輕鬆上手新車知識；如果您有其他買車相關問題，也可以上討論區，和大家一起討論喔。前往「<a href="/comparecard" style="color:#ffffff; text-decoration:underline; font-weight:bold;">市場行情</a>」「<a href="/forum" style="color:#ffffff; text-decoration:underline; font-weight:bold;">前往討論區</a>」',
           id: 24
         },
         {
           answer:
-            '除了「線上估價系統」我們會在您填完表單後有專人聯繫協助外，其他的頁面皆不會有專人給予建議，如果您有任何疑問，可以聯繫我們的客服信箱：xxx@theVroom，或是至「討論區」與其他一樣愛好車的朋友們交流。前往討論區',
+            '除了「線上估價系統」我們會在您填完表單後有專人聯繫協助外，其他的頁面皆不會有專人給予建議，如果您有任何疑問，可以聯繫我們的客服信箱：xxx@theVroom，或是至「討論區」與其他一樣愛好車的朋友們交流。前往<a href="/forum" style="color:#ffffff; text-decoration:underline; font-weight:bold;">討論區</a>',
           id: 25
         }
       ]
@@ -356,35 +369,102 @@ export default {
     },
     inputbrand () {
       this.inputbar = true
+      this.carb = ''
     },
     blurbrand () {
       this.inputbar = false
+      if (this.carb !== '') {
+        this.alertcarbrand = false
+      }
     },
     inputyear () {
       this.inputyearbar = true
+      this.pyear = ''
+      if (this.carb === '') {
+        this.alertcarbrand = true
+      } else {
+        this.alertcarbrand = false
+      }
     },
     bluryear () {
       this.inputyearbar = false
+      if (this.pyear !== '') {
+        this.alertyear = false
+      }
     },
     inputmile () {
       this.inputmilebar = true
+      this.long = ''
+      if (this.pyear === '') {
+        this.alertyear = true
+      } else {
+        this.alertyear = false
+      }
     },
     blurmile () {
       this.inputmilebar = false
+      if (this.long !== '') {
+        this.alertlong = false
+      }
     },
     inputname () {
       this.inputnamebar = true
+      this.person = ''
+      if (this.long === '') {
+        this.alertlong = true
+      } else {
+        this.alertlong = false
+      }
     },
     blurname () {
       this.inputnamebar = false
+      if (this.person !== '') {
+        this.alertname = false
+      }
     },
     inputemail () {
       this.emailbar = true
+      this.emailaddress = ''
+      if (this.person === '') {
+        this.alertname = true
+      } else {
+        this.alertname = false
+      }
     },
     bluremail () {
       this.emailbar = false
+      if (this.emailaddress !== '') {
+        this.alertemail = false
+      }
+      if (!this.validEmail(this.emailaddress)) {
+        this.alertmailrule = true
+      }
+    },
+    validEmail (emailaddress) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      return re.test(emailaddress)
     },
     popup () {
+      if (this.emailaddress === '') {
+        this.alertemail = true
+        if (!this.validEmail(this.emailaddress)) {
+          this.alertmailrule = true
+        }
+      } else {
+        this.alertemail = false
+        const overlay = document.querySelector('.overlay')
+        overlay.classList.add('displayBlock')
+        const popup = document.querySelector('.formSubmit')
+        popup.classList.add('displayBlock')
+        const sent = document.querySelector('.popup')
+        const popupp = document.querySelector('.popupp')
+        sent.innerHTML = '表單已送出'
+        popupp.innerHTML = '我們會儘快與您聯繫'
+        const everyinput = document.querySelectorAll('.input')
+        everyinput.forEach(function (e) {
+          e.value = ''
+        })
+      }
       this.carbrand = this.carb
       this.year = this.pyear
       this.milage = this.long
@@ -400,42 +480,12 @@ export default {
         method: 'POST',
         body: fd
       })
-      const overlay = document.querySelector('.overlay')
-      overlay.classList.add('displayBlock')
-      const popup = document.querySelector('.formSubmit')
-      popup.classList.add('displayBlock')
-      const sent = document.querySelector('.popup')
-      const popupp = document.querySelector('.popupp')
-      sent.innerHTML = '表單已送出'
-      popupp.innerHTML = '我們會儘快與您聯繫'
 
-      const everyinput = document.querySelectorAll('.input')
-      everyinput.forEach(function (e) {
-        e.value = ''
-      })
-      // const sent = document.querySelector('.popup')
-      // const popupp = document.querySelector('.popupp')
-      // for ( let i = 0; i < everyinput.length; i++){
-      //     const overlay = document.querySelector('.overlay')
-      //     overlay.classList.add('displayBlock')
-      //     const popup = document.querySelector('.formSubmit')
-      //     popup.classList.add('displayBlock')
-      //     sent.innerHTML = '表單已送出'
-      //     popupp.innerHTML = '我們會儘快與您聯繫'
-      //   if (everyinput[i].value != ''){
-      //   }else if (everyinput[0].value === ''){
-      //     alert ('請填寫車輛廠牌')
-      //     everyinput[0].style = 'border = 1px solid #f34841'
-      //   }else if (everyinput[1].value === ''){
-      //     alert('請填寫出廠年份')
-      //   }else if (everyinput[2].value === ''){
-      //     alert('請填寫里程數')
-      //   }else if (everyinput[3].value === ''){
-      //     alert('請輸入姓名')
-      //   }else if (everyinput[4].value === ''){
-      //     alert('請輸入email')
-      //   }
-      // }
+      this.carb = ''
+      this.pyear = ''
+      this.long = ''
+      this.person = ''
+      this.emailaddress = ''
     },
     closebtn () {
       const overlay = document.querySelector('.overlay')
@@ -829,8 +879,8 @@ div.sell {
       // position: relative;
       border-bottom: 1px solid hsla(0, 0%, 0%, 0.5);
       border-radius: 10px;
-      margin-bottom: 20px;
       width: 100%;
+      margin-bottom: 15px;
       background-color: hsla(0, 100%, 100%, 0.7);
       box-shadow: hsla(0, 100%, 100%, 0.7);
       outline: none;
@@ -855,7 +905,7 @@ div.sell {
     display: none;
   }
   .formSubmit {
-    max-width: 500px;
+    max-width: 550px;
     margin: 0 auto;
     text-align: center;
     border: 1px solid #181818;
@@ -864,7 +914,7 @@ div.sell {
     border-radius: 20px;
     position: absolute;
     top: 30%;
-    left: 35%;
+    left: 40%;
     background-color: #ffffff;
     display: none;
     z-index: 10;

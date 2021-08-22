@@ -164,7 +164,7 @@ export default {
       train: 0,
       carmove: 0,
       carback: 0,
-      moved: 390
+      moved: 600
     }
   },
   methods: {

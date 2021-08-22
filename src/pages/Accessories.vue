@@ -23,13 +23,15 @@
               :items="items"
               selected-color="#f34841"
               open-on-click
+              color="#f34841"
               style="margin-top: 30px; cursor: pointer"
             >
+              <!-- color="#f34841" -->
               <template slot="label" slot-scope="{ item }">
                 <div
                   @click="filterItem(item)"
                 >
-                  <!-- :class="{ block:itemname === currentsort}" -->
+                <!-- :class="{ itemactive:this.itemactive === true}" -->
                   {{ item.name }}
                 </div>
               </template>
@@ -38,6 +40,7 @@
             <!-- <input type="text" v-model="search" placeholder="搜尋" /> -->
           </div>
           <div class="productpart">
+             <component @testgogo='testgogo' :is="'a-default'" class="component" v-if="yes"></component>
             <div
               class="productlist"
               v-for="product in filteredBlogs"
@@ -56,7 +59,7 @@
                           v-bind="attrs"
                           v-on="on"
                         >
-                        <img :src="product.PRODUCTIMG" alt="圖壞了" class="itemimg" />
+                        <img :src="product.PRODUCTIMG" alt="圖壞了" class="itemimg"/>
                         </span>
                         </template>
                         <v-card>
@@ -64,8 +67,8 @@
                           商品細項
                         </v-card-title>
 
-                        <v-card-text>
-                            {{product.PRODUCTINFO}}
+                        <v-card-text v-html="product.PRODUCTINFO" style="margin-top:20px;">
+                            <!-- {{product.PRODUCTINFO}} -->
                         </v-card-text>
 
                         <v-divider></v-divider>
@@ -77,7 +80,9 @@
                             text
                             @click="dialog = false"
                           >
+                          <!-- <router-link to=/shoppingcar>
                             加入購物車
+                          </router-link> -->
                           </v-btn>
                         </v-card-actions>
                       </v-card>
@@ -95,13 +100,15 @@
               >
                 ${{ product.PRODUCTPRICE }}</span
               >
+              <!-- <router-link to=/shoppingcar> -->
               <img
                 :src="shoppingcart"
                 alt="圖壞了"
                 title="加入購物車"
                 class="shopcart"
-                @click="putinshopcar($event)"
+                @click="putinshopcar()"
               />
+              <!-- </router-link> -->
                 <!-- @click="linkshop()" -->
               <img :src="goshopping" alt="圖壞了" class="goshopping" />
             </div>
@@ -120,14 +127,13 @@
 // import RwdBanner from '../components/layout/RwdBanner.vue'
 import Media from 'vue-media'
 import AccRwd from '../components/AccRwd.vue'
-// import shoplist from '../components/shoplist.vue'
+import AccDefault from '../components/AccDefault.vue'
 import gsap from 'gsap'
-
 export default {
   components: {
     Media,
-    'a-rwd': AccRwd
-    // shoplist
+    'a-rwd': AccRwd,
+    'a-default': AccDefault
   },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
@@ -155,17 +161,21 @@ export default {
   },
   data () {
     return {
+      index: 0,
       test: false,
       countnum: 1,
-      shoplist1: [],
+      prolist: {},
+      shoplist: [],
       pathimg: require('../assets/accessories-pic/aoto-part-banner2.jpg'),
       big: require('../assets/accessories-pic/aoto-part-banner2.jpg'),
       house: require('../assets/accessories-pic/house.png'),
       shoppingcart: require('../assets/accessories-pic/shopcart.png'),
       goshopping: require('../assets/accessories-pic/shopping.png'),
-      search: '',
+      yes: true,
       itemname: null,
-      currentsort: null,
+      // currentsort: null,
+      productdetail: '',
+      itemactive: false,
       items: [
         {
           id: 1,
@@ -215,11 +225,13 @@ export default {
     }
   },
   methods: {
+    testgogo () {
+      this.putinshopcar()
+    },
     showlist () {
       this.test = !this.test
     },
-    async putinshopcar (event) {
-      // console.dir(event.target.parentElement.children[2].textContent)
+    async putinshopcar () {
       const fd = new FormData()
       fd.append('PRODUCTNAME', event.target.parentElement.children[2].textContent)
       const res = await fetch('http://localhost:8080/phpfile/shopselect.php', {
@@ -227,35 +239,37 @@ export default {
         body: fd
       })
       const resdata123 = await res.json()
-      resdata123[0].PRODUCTMOUNT = 1
-      resdata123[0].PRODUCTTOTAL = resdata123[0].PRODUCTPRICE
-      console.log({ ...resdata123 })
-      const index = this.shoplist1.findIndex((list) => {
-        return event.target.parentElement.children[2].textContent === list[0][2]
-      })
-      console.log(index)
-      if (index === -1) {
-        this.shoplist1.push({ ...resdata123 })
+      console.log(resdata123)
+      // console.log(...resdata123)
+      this.prolist = resdata123
+      console.log(this.prolist[0])
+      this.shoplist = this.$store.getters.getshoplist
+      console.log(this.shoplist)
+      if (this.shoplist === null) {
+        this.$store.dispatch('shoplist', this.prolist[0])
       } else {
-        this.shoplist1[index][0].PRODUCTMOUNT += 1
-        this.shoplist1[index][0].PRODUCTTOTAL = parseInt(this.shoplist1[index][0].PRODUCTPRICE) + (parseInt(this.shoplist1[index][0].PRODUCTPRICE) * (parseInt(this.shoplist1[index][0].PRODUCTMOUNT) - 1))
+        const index = this.shoplist.findIndex(li => {
+          return li.PRODUCTID === this.prolist[0].PRODUCTID
+        })
+        if (index === -1) {
+          this.$store.dispatch('shoplist', this.prolist[0])
+        } else {
+          // console.log('hi')
+          this.prolist[0].PRODUCTMOUNT = parseInt(this.prolist[0].PRODUCTMOUNT)
+          this.prolist[0].PRODUCTTOTAL = parseInt(this.prolist[0].PRODUCTMOUNT) * parseInt(this.prolist[0].PRODUCTPRICE)
+          // ++this.prolist[0].PRODUCTMOUNT
+          // console.log(this.prolist[0].PRODUCTMOUNT)
+          console.log(parseInt(this.prolist[0].PRODUCTPRICE) * parseInt(this.prolist[0].PRODUCTMOUNT))
+          // this.prolist[0].PRODUCTTOTAL = parseInt(this.prolist[0].PRODUCTTOTAL) + 1
+          console.log(this.prolist[0].PRODUCTTOTAL)
+          // this.prolist[0].PRODUCTTOTAL = parseInt(this.prolist[0].PRODUCTPRICE) * parseInt(this.prolist[0].PRODUCTMOUNT)
+          this.$store.dispatch('shoplist1', this.prolist[0])
+        }
       }
-      console.log(this.shoplist1)
-      this.$store.dispatch('shoplist', this.shoplist1)
-      console.log(this.$store.getters)
-      localStorage.setItem('shoplist', JSON.stringify(this.shoplist1))
-      // this.shoplist.forEach(list => {
-      //   if (event.target.parentElement.children[2].textContent === list[0][2]) {
-      //     alert('此商品已在購物車')
-      //   } else {
-      //     }
-      // })
-      // console.log(this.shoplist1.forEach(shoplist => {
-      // console.log(shoplist[0][2])
-      // }))
+      console.log(this.$store.getters.getshoplist)
     },
     linkshop () {
-      document.querySelector('.goshopping').style.display = 'inline'
+      document.querySelectorAll('.goshopping').style.display = 'inline'
       document.querySelector('.shopcart').style.display = 'none'
       setTimeout(() => this.$router.push({ path: '/shoppingcar' }), 400)
     },
@@ -263,21 +277,17 @@ export default {
       // console.log(item.id)
       // console.log(key)
       // console.log(this.items)
-      // item.active = true
-      // console.log(item)
+      this.itemactive = !this.itemactive
+      console.log(item)
       this.itemname = item.name
       console.log(this.itemname)
-      // console.log(this.productList)
-    },
-    filterProduct (product) {
-      this.currentsort = product.sort
-      console.log(product.sort)
+      this.yes = false
     }
   },
   computed: {
     filteredBlogs: function () {
       return this.productList.filter((product) => {
-        return product.SORT.match(this.itemname)
+        return product.BIGSORT.match(this.itemname) || product.SORT.match(this.itemname)
       })
     }
   }
@@ -304,7 +314,7 @@ div.normalSize {
       width: 30px;
     }
   }
-  .-active {
+  .itemactive {
     color: #f34841;
   }
   div.main {
