@@ -278,9 +278,9 @@ export default {
       body: formdata
     })
     const issuelist = await issue.json()
-    console.log(issuelist)
-    console.log(this.$store.getters.getmember)
-    console.log(this.$store.getters.getmember[0].FULLNAME)
+    // console.log(issuelist)
+    // console.log(this.$store.getters.getmember)
+    // console.log(this.$store.getters.getmember[0].FULLNAME)
     this.messagelist = [...issuelist]
     this.username = this.$store.getters.getmember[0].FULLNAME
   },
