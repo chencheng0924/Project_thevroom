@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "countup.js": "^2.0.8",
     "gsap": "^3.7.1",
     "moment": "^2.29.1",
     "scrollmagic-plugin-gsap": "^1.0.4",
     "vue": "^2.6.11",
     "vue-cookies": "^1.7.4",
+    "vue-countup-v2": "^4.0.0",
     "vue-fullpage.js": "^0.1.7",
     "vue-media": "^1.1.1",
     "vue-observe-visibility": "^1.0.0",

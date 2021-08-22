@@ -11,7 +11,7 @@
             show-arrows
             >
                 <v-slide-item
-                    v-for="record in recordList"
+                    v-for="record in price"
                     :key="record"
                 >
                     <v-card
@@ -21,12 +21,12 @@
                     width="200"
                     >
                         <div style="width: 200px; height: 160px;">
-                            <div class="pl-2 pt-2 text-h6">{{ record.date }}</div>
+                            <div class="pl-2 pt-2 text-h6">{{ record.DATE }}</div>
                             <div class="pl-2 pt-2 text-h6">{{ record.time }}</div>
-                            <div class="pl-2 pt-2 text-h6">{{ record.price }}</div>
+                            <div class="pl-2 pt-2 text-h6">出價金額 {{ record.BIDPRICE }}</div>
                         </div>
                         <div class="pa-2" style="width: 200px; height: 40px; background-color: #F34841; color: #FFFFFF">
-                            {{ record.account }}
+                            {{ record.EMAIL }}
                         </div>
                     </v-card>
                 </v-slide-item>
@@ -37,19 +37,38 @@
 
 <script>
 export default {
-  data: () => ({
-    recordList: [
-      { id: '1', date: '2021/05/22', time: '08:23:33 a.m', price: 'TWD 1,200,000', account: 'ass345d****' },
-      { id: '2', date: '2021/05/22', time: '08:23:33 a.m', price: 'TWD 1,200,000', account: 'ass345d****' },
-      { id: '3', date: '2021/05/22', time: '08:23:33 a.m', price: 'TWD 1,200,000', account: 'ass345d****' },
-      { id: '4', date: '2021/05/22', time: '08:23:33 a.m', price: 'TWD 1,200,000', account: 'ass345d****' },
-      { id: '5', date: '2021/05/22', time: '08:23:33 a.m', price: 'TWD 1,200,000', account: 'ass345d****' },
-      { id: '6', date: '2021/05/22', time: '08:23:33 a.m', price: 'TWD 1,200,000', account: 'ass345d****' },
-      { id: '7', date: '2021/05/22', time: '08:23:33 a.m', price: 'TWD 1,200,000', account: 'ass345d****' },
-      { id: '8', date: '2021/05/22', time: '08:23:33 a.m', price: 'TWD 1,200,000', account: 'ass345d****' },
-      { id: '9', date: '2021/05/22', time: '08:23:33 a.m', price: 'TWD 1,200,000', account: 'ass345d****' },
-      { id: '10', date: '2021/05/22', time: '08:23:33 a.m', price: 'TWD 1,200,000', account: 'ass345d****' }
-    ]
-  })
+  props: ['acid', 'bid'],
+  async created () {
+    // console.log(this.acid)
+    const fd = new FormData()
+    fd.append('acid', this.acid)
+    const res = await fetch('http://localhost:8080/phpfile/selectbidrecord.php', {
+      method: 'POST',
+      body: fd
+    })
+    const resdata = await res.json()
+    console.log(res)
+    console.log(resdata)
+    this.recordList = resdata.reverse()
+    console.log(this.recordList)
+    this.$store.dispatch('bidrecord', this.recordList)
+    // this.recordList = this.bid
+    console.log(this.bid)
+    this.bidtest = this.$store.getters.getbid
+    console.log(this.bidtest)
+    this.price()
+  },
+  data () {
+    return {
+      recordList: [],
+      bidtest: []
+    }
+  },
+  computed: {
+    price () {
+      console.log(this.$store.getters.getbid)
+      return this.$store.getters.getbid
+    }
+  }
 }
 </script>

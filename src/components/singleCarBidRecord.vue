@@ -9,12 +9,19 @@
         <div class="bidContent">
             <div class="bidTitle d-flex align-end">
                 <div class="bidT text-h6 font-weight-bold">目前競標價錢：</div>
-                <div class="bidPrice text-h3 font-weight-bold">1,300,000</div>
+                <div class="iCountUp text-h3 font-weight-bold ml-3">
+                  <ICountUp
+                    :delay="delay"
+                    :endVal="endVal"
+                    :options="options"
+                    @ready="onReady"
+                  />
+                </div>
             </div>
             <div class="record d-flex flex-column justify-space-around mt-5">
                 <div class="recordTitle text-h6 mt-5 font-weight-bold">出價紀錄</div>
                 <div class="recordContent d-flex justify-start">
-                    <bid-record/>
+                    <bid-record :acid="auctionid" :bid="childbid"/>
                 </div>
             </div>
             <bid-coming-soon :ends-on="starttime" v-if="showcoming"/>
@@ -27,7 +34,7 @@
                 <div class="goBidTi text-h6 font-weight-bold">每口叫價</div>
                 <div class="goBidPr text-h6 font-weight-bold ml-2">5000</div>
                 <div class="goBidBtn ml-4">
-                    <bid-dialogs/>
+                    <bid-dialogs @startbid="bidnow"/>
                 </div>
                 <div class="checkAuto ml-16">
                     <v-checkbox
@@ -69,10 +76,17 @@ import AuctionDialogs from './interactive/AuctionDialogs.vue'
 import BidDialogs from './interactive/BidDialogs.vue'
 import Countdown from 'vuejs-countdown'
 import BidComingSoon from './BidComingSoon.vue'
+import ICountUp from 'vue-countup-v2'
 
 export default {
   props: ['acid'],
   async created () {
+    this.auctionid = this.acid
+    this.member = JSON.parse(localStorage.getItem('member'))
+    this.memberemail = this.member[0].EMAIL
+    this.memberid = this.member[0].MEMBERID
+    console.log(this.memberid)
+    console.log(this.memberemail)
     const fd = new FormData()
     fd.append('acid', this.acid)
     const res = await fetch('http://localhost:8080/phpfile/selectbidtime.php', {
@@ -85,8 +99,10 @@ export default {
     console.log(this.acid)
     this.starttime = resdata[0].STARTINGTIME
     this.duday = resdata[0].DURATION
+    this.endVal = parseInt(resdata[0].CURRENTPRICE)
     console.log(this.starttime)
     console.log(this.duday)
+    console.log(this.endVal)
     let year = parseInt(this.starttime.substr(0, 4))
     console.log(year)
     let month = parseInt(this.starttime.substr(5, 2))
@@ -146,6 +162,9 @@ export default {
 
     this.countdowndate = year.toString() + '-' + month.toString() + '-' + this.enddate.toString()
     console.log(this.countdowndate)
+    console.log(new Date(year, month - 1, this.enddate))
+    const endsec = new Date(year, month - 1, this.enddate).getTime()
+    console.log(endsec)
     // currrent現在時間換算成毫秒
     const current = Date.now()
     console.log(current)
@@ -154,6 +173,17 @@ export default {
     } else {
       this.showcoming = false
     }
+    // if (current > endsec) {
+    //   const fdyo = new FormData()
+    //   fdyo.append('acid', this.acid)
+    //   fetch('http://localhost:8080/phpfile/updateauctionjd.php', {
+    //     method: 'POST',
+    //     body: fdyo
+    //   })
+    //   console.log('123')
+    // } else {
+    //   console.log('9999')
+    // }
   },
   data () {
     return {
@@ -161,7 +191,35 @@ export default {
       starttime: '',
       duday: '',
       enddate: '',
-      countdowndate: ''
+      countdowndate: '',
+      delay: 1000,
+      endVal: '',
+      options: {
+        useEasing: true,
+        useGrouping: true,
+        separator: ',',
+        decimal: '.',
+        prefix: '',
+        suffix: ''
+      },
+      member: [],
+      memberid: '',
+      auctionid: '',
+      bidrecord: [],
+      memberemail: '',
+      nowtime: '',
+      year: '',
+      month: '',
+      day: '',
+      hours: '',
+      min: '',
+      sec: '',
+      childbid: [],
+      zeromonth: '',
+      zeroday: '',
+      zerohours: '',
+      zeromin: '',
+      zerosec: ''
     }
   },
   components: {
@@ -169,11 +227,52 @@ export default {
     AuctionDialogs,
     BidDialogs,
     Countdown,
-    BidComingSoon
+    BidComingSoon,
+    ICountUp
   },
   methods: {
     moveback () {
       this.$emit('moveback')
+    },
+    bidnow () {
+      this.endVal += 5000
+      const fdone = new FormData()
+      fdone.append('currentprice', this.endVal)
+      fdone.append('acid', this.acid)
+      fdone.append('memberid', this.memberid)
+      fetch('http://localhost:8080/phpfile/updateprice.php', {
+        method: 'POST',
+        body: fdone
+      })
+      this.nowtime = new Date()
+      // console.log(this.nowtime)
+      this.year = this.nowtime.getFullYear()
+      this.month = this.nowtime.getMonth() + 1
+      this.day = this.nowtime.getDate()
+      this.hours = this.nowtime.getHours()
+      this.min = this.nowtime.getMinutes()
+      this.sec = this.nowtime.getSeconds()
+      this.zeromonth = this.month.toString().padStart(2, '0')
+      this.zeroday = this.day.toString().padStart(2, '0')
+      this.zerohours = this.hours.toString().padStart(2, '0')
+      this.zeromin = this.min.toString().padStart(2, '0')
+      this.zerosec = this.sec.toString().padStart(2, '0')
+      console.log(this.zeromonth)
+      // console.log(this.sec)
+      this.bidrecord.push({
+        BIDPRICE: this.endVal,
+        DATE: this.year + '-' + this.zeromonth + '-' + this.zeroday + ' ' + this.zerohours + ':' + this.zeromin + ':' + this.zerosec,
+        EMAIL: this.memberemail
+      })
+      console.log(this.bidrecord)
+      this.$store.dispatch('bidrecordone', {
+        BIDPRICE: this.endVal,
+        DATE: this.year + '-' + this.zeromonth + '-' + this.zeroday + ' ' + this.zerohours + ':' + this.zeromin + ':' + this.zerosec,
+        EMAIL: this.memberemail
+      })
+      console.log(this.$store.getters.getbid)
+      this.childbid = this.$store.getters.getbid
+      console.log(this.childbid)
     }
   }
 }

@@ -80,7 +80,7 @@ export default {
     // Block
     .o-countdown {
     position: relative;
-    width: 320px;
+    width: 400px;
     height: 144px;
         // Elements
         .o-countdown__text {

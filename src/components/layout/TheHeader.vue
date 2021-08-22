@@ -20,7 +20,7 @@
               <router-link to="/memberside" tag="span" style="cursor: pointer" class="mr-5">
                 <v-icon left class="mr-4" color="#FFFFFF">mdi-account-circle-outline</v-icon>
               </router-link>
-              <div class="white--text mr-3 text-body-1 font-weight-bold" style="margin-top: 2px;">歡迎xxx</div>
+              <div class="white--text mr-3 text-body-1 font-weight-bold" style="margin-top: 2px;">歡迎 {{ membername }}</div>
               <v-icon left class="mr-4" color="#FFFFFF" @click="logout">mdi-logout</v-icon>
             </div>
             <div v-else>
@@ -100,9 +100,16 @@ import Media from 'vue-media'
 // import shoplistall from '../shoplistall.vue'
 
 export default {
+  created () {
+    this.member = JSON.parse(localStorage.getItem('member'))
+    console.log(this.member[0].FULLNAME)
+    this.membername = this.member[0].FULLNAME
+  },
   name: 'App',
   data () {
     return {
+      member: [],
+      membername: '',
       sideNav: false,
       menuItem: [
         {

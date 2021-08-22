@@ -9,7 +9,7 @@
             </div>
             <div class="carimgIn d-flex flex-column align-center">
               <img
-                v-for="(car, index) in contentList"
+                v-for="(car, index) in contentListR"
                 :id="car.id"
                 :src="car.IMGPATH"
                 :key="car.id"
@@ -45,10 +45,107 @@ import MobileOverviewContent from '../components/MobileOverviewContent.vue'
 
 export default {
   async created () {
+    // const reshigh = await fetch('http://localhost:8080/phpfile/selecthigh.php')
+    // const highdata = await reshigh.json()
+    // console.log(highdata)
     const res = await fetch('http://localhost:8080/phpfile/selectauction.php')
     const resdata = await res.json()
     console.log(res)
     console.log(resdata)
+    resdata.forEach(async function (singledata) {
+      // console.log(singledata.STARTINGTIME)
+      // console.log(singledata.DURATION)
+      const AUID = singledata.AUCTIONID
+      const ST = singledata.STARTINGTIME
+      let year = parseInt(ST.substr(0, 4))
+      let month = parseInt(ST.substr(5, 2))
+      const date = parseInt(ST.substr(8, 2))
+      const hour = parseInt(ST.substr(11, 2))
+      const DU = singledata.DURATION
+      const PRICE = singledata.CURRENTPRICE
+      const IMGPATH = singledata.IMGPATH
+      const AUNAME = singledata.NAME
+      console.log(PRICE)
+      console.log(IMGPATH)
+      console.log(AUNAME)
+      let enddate = date + parseInt(DU)
+      console.log(enddate)
+      if (enddate > 30 && month === 4) {
+        enddate -= 30
+        month += 1
+      } else if (enddate > 30 && month === 6) {
+        enddate -= 30
+        month += 1
+      } else if (enddate > 30 && month === 9) {
+        enddate -= 30
+        month += 1
+      } else if (enddate > 30 && month === 11) {
+        enddate -= 30
+        month += 1
+      } else if (enddate > 31 && month === 1) {
+        enddate -= 31
+        month += 1
+      } else if (enddate > 31 && month === 3) {
+        enddate -= 31
+        month += 1
+      } else if (enddate > 31 && month === 5) {
+        enddate -= 31
+        month += 1
+      } else if (enddate > 31 && month === 7) {
+        enddate -= 31
+        month += 1
+      } else if (enddate > 31 && month === 8) {
+        enddate -= 31
+        month += 1
+      } else if (enddate > 31 && month === 10) {
+        enddate -= 31
+        month += 1
+      } else if (enddate > 31 && month === 12) {
+        month -= 11
+        enddate -= 31
+        year += 1
+      } else if (enddate > 29 && month === 2 && year % 4 === 0) {
+        month += 1
+        enddate -= 29
+      } else if (enddate > 28 && month === 2) {
+        month += 1
+        enddate -= 28
+      }
+      const countdowndate = year.toString() + '-' + month.toString() + '-' + enddate.toString()
+      const endsec = new Date(year, month - 1, enddate, hour).getTime()
+      console.log(endsec)
+      const current = Date.now()
+      console.log(current)
+      console.log(countdowndate)
+      if (current > endsec) {
+        const fdyo = new FormData()
+        fdyo.append('acid', AUID)
+        fdyo.append('pr', PRICE)
+        fdyo.append('path', IMGPATH)
+        fdyo.append('end', countdowndate)
+        fdyo.append('acname', AUNAME)
+        const reshigh = await fetch('http://localhost:8080/phpfile/selecthigh.php', {
+          method: 'POST',
+          body: fdyo
+        })
+        const highdata = await reshigh.json()
+        console.log(highdata)
+        const highR = highdata.reverse()
+        console.log(highR[0][0])
+        fdyo.append('memberidHigh', highR[0][0])
+        // fetch('http://localhost:8080/phpfile/updateauctionjd.php', {
+        //   method: 'POST',
+        //   body: fdyo
+        // })
+        fetch('http://localhost:8080/phpfile/insertcomplete.php', {
+          method: 'POST',
+          body: fdyo
+        })
+        console.log('123')
+      } else {
+        console.log('9999')
+      }
+    })
     this.contentList = resdata
     console.log(this.contentList)
     this.tYear = this.contentList[0].YEAR + ' ' + this.contentList[0].CARBRAND
@@ -58,6 +155,7 @@ export default {
     this.pText = this.contentList[0].RESERVEPRICE
     this.imagePath = this.contentList[0].IMGPATH
     this.acid = this.contentList[0].AUCTIONID
+    this.contentListR = this.contentList.reverse()
 
     // console.log(resdata[resdata.length - 1][0])
     // this.contentList[0].description = resdata[resdata.length - 1][0]
@@ -69,9 +167,9 @@ export default {
     imagePath: require('../assets/carlist/benz10.png'),
     tYear: '',
     tBrand: '',
-    desC: '2021 GLC Coupe採單柵式水箱護罩，搭配兩側新款LED頭燈，成熟優雅的氛圍傳承自New GLE。當視線移至保桿下方進氣口，則是會被全車系標配的鍍鉻套件所吸引，優雅中凸顯出GLC Coupe專屬的運動感。而沿著車側厚實的肩膀線條向後延伸，GLC Coupe採用全新夜色尾燈設計，成就新世代Mercedes-Benz運動休旅家族的識別。',
-    mText: '1234 Km',
-    pText: '1,300,000',
+    desC: '',
+    mText: '',
+    pText: '',
     show: true,
     length: 3,
     window: 0,
@@ -91,7 +189,8 @@ export default {
     distanceY: 0,
     count: 0,
     contentList: [],
-    acid: ''
+    acid: '',
+    contentListR: []
   }),
   methods: {
     changeCon (index) {

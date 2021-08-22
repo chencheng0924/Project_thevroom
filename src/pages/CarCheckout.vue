@@ -6,7 +6,7 @@
       <div style="width:1000px">
         <img
           style="position: sticky;top:20%;left:10%"
-          :src="imgsrc"
+          :src="notify[0].IMGPATH"
           alt="車圖"
         />
       </div>
@@ -19,19 +19,17 @@
             style="height:100vh"
             class="d-flex flex-column justify-space-around"
           >
-            <div class="text-h4 font-weight-bold">您的 {{ carname }}</div>
+            <div class="text-h4 font-weight-bold">您的 {{ notify[0].AUCTIONNAME }}</div>
             <div class="d-flex flex-column justify-space-around">
                 <div>
                   <ul
                     class="mb-5 text-subtitle-1 font-weight-light"
-                    style="line-height:2.5;"
+                    style="line-height:2.5;min-height:200px"
                   >
                     <li
                       style="list-style:none;"
-                      v-for="cardes in cardesall"
-                      :key="cardes"
                     >
-                      {{ cardes }}
+                      {{ notify[0].DESCRIPTION }}
                     </li>
                   </ul>
                 </div>
@@ -43,9 +41,9 @@
                           >顯示詳細資料(牌照+燃料稅計算、保險加購)</v-expansion-panel-header
                         >
                         <v-expansion-panel-content>
-                          購買價格 ${{ carprice }}
+                          購買價格 ${{ notify[0].CURRENTPRICE }}
                           <br />
-                          今日需完成支付 NT$3,000
+                          今日需完成支付 {{ discount }}
                           <br />
                           訂購費用（下訂後將不予退還轉讓，費用不含於車價內）
                         </v-expansion-panel-content>
@@ -55,7 +53,7 @@
                 </div>
               </div>
               <div class="red--text text-h4 font-weight-bold my-10">
-                 <div>NT$: {{ carprice }}</div>
+                 <div>NT$: {{ notify[0].CURRENTPRICE }}</div>
                 </div>
               <div class="d-flex justify-center" style="margin-bottom:200px">
                 <button
@@ -534,6 +532,27 @@
 // import ButtonSubmit from './layout/ButtonSubmit.vue'
 import Media from 'vue-media'
 export default {
+  computed: {
+    discount () {
+      return (this.notify[0].CURRENTPRICE) * 0.5
+    }
+  },
+  async created () {
+    this.member = JSON.parse(localStorage.getItem('member'))
+    console.log(this.member[0].MEMBERID)
+    const fd = new FormData()
+    fd.append('mID', this.member[0].MEMBERID)
+    const res = await fetch('http://localhost:8080/phpfile/membernotify.php', {
+      method: 'POST',
+      body: fd
+    })
+    const resdata = await res.json()
+    console.log(resdata)
+    this.notify = resdata
+    console.log(this.notify)
+    this.img = this.notify[0].IMGPATH
+    this.notify = this.$store.getters.getcheckoutcardata
+  },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
   },
@@ -543,6 +562,9 @@ export default {
   // components: { ButtonSubmit },
   data () {
     return {
+      img: '',
+      member: [],
+      notify: [],
       result: '',
       carprice: '3,500,000',
       checkbox: false,

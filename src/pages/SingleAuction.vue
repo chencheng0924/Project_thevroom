@@ -37,6 +37,7 @@
                           車輛詳細資訊
                           </v-btn>
                           <v-bottom-navigation
+                          v-if="changesign"
                           class="ml-2"
                           color="#F34841"
                           background-color="transparent"
@@ -88,6 +89,8 @@ gsap.registerPlugin(ScrollTrigger)
 export default {
   data () {
     return {
+      member: [],
+      id: '',
       auctionid: '',
       brand: '',
       series: '',
@@ -102,18 +105,19 @@ export default {
       cm: '',
       screenWidth: document.body.clientWidth,
       acid: '',
-      memeberid: '',
       reprice: '',
       start: '',
-      testv: undefined
+      testv: undefined,
+      acname: ''
     }
   },
   async created () {
+    this.member = JSON.parse(localStorage.getItem('member'))
+    this.id = this.member[0].MEMBERID
     console.log(this.$route.params.id)
     this.acid = this.$route.params.id
     const fd = new FormData()
     fd.append('IDac', this.$route.params.id)
-
     const res = await fetch('http://localhost:8080/phpfile/singleauction.php', {
       method: 'POST',
       body: fd
@@ -124,13 +128,14 @@ export default {
     this.brand = resdata[0].CARBRAND
     this.series = resdata[0].CARSERIES
     this.path = resdata[0].IMGPATH
-    this.memberid = resdata[0].MEMBER_ID
     this.reprice = resdata[0].RESERVEPRICE
     this.start = resdata[0].STARTINGTIME
+    this.acname = resdata[0].NAME
+    console.log(this.id)
     console.log(this.start)
     const fdthree = new FormData()
     fdthree.append('AUCTIONID', this.acid)
-    fdthree.append('MEMBERID', this.memberid)
+    fdthree.append('MEMBERID', this.id)
     fdthree.append('RESERVEPRICE', this.reprice)
     fdthree.append('STARTINGTIME', this.start)
     fdthree.append('AUPATH', this.path)
@@ -153,6 +158,11 @@ export default {
     // this.cco = resdata[0].COLOR
     // this.cdis = resdata[0].DISPLACEMENT
     // this.cm = resdata[0].MILES
+  },
+  computed: {
+    changesign () {
+      return this.$store.getters.getmember
+    }
   },
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
@@ -194,18 +204,13 @@ export default {
   },
   methods: {
     async follow () {
-      // const fdtwo = new FormData()
-      // fdtwo.append('AUCTIONID', this.acid)
-      // fdtwo.append('MEMBERID', this.memberid)
-      // fdtwo.append('RESERVEPRICE', this.reprice)
-      // fdtwo.append('STARTINGTIME', this.start)
-      // fdtwo.append('AUPATH', this.path)
       const fdtwo = new FormData()
       fdtwo.append('AUCTIONID', this.acid)
-      fdtwo.append('MEMBERID', this.memberid)
+      fdtwo.append('MEMBERID', this.id)
       fdtwo.append('RESERVEPRICE', this.reprice)
       fdtwo.append('STARTINGTIME', this.start)
       fdtwo.append('AUPATH', this.path)
+      fdtwo.append('AUNAME', this.acname)
       const res = await fetch('http://localhost:8080/phpfile/iffollow.php', {
         method: 'POST',
         body: fdtwo

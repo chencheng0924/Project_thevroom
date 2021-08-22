@@ -147,7 +147,9 @@
                 </div>
                 <div class="align-self-start ml-10 mt-10">
                   <div class="d-flex">
+                    <router-link to="/signin">
                     <div @click="testbtn"><button-submit buttonSubmit="註冊"></button-submit></div>
+                    </router-link>
                     <h6 class="align-self-end ml-10">
                       <router-link to="/signin"
                         >已經是會員嗎?立即登入</router-link
