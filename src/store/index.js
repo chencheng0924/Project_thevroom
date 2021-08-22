@@ -10,7 +10,8 @@ export default new Vuex.Store({
     sign: 0,
     shop: [],
     total: 0,
-    cart: false
+    cart: false,
+    cardataall: []
   },
   mutations: {
     sethappy (state, payload) {
@@ -74,6 +75,9 @@ export default new Vuex.Store({
     shopcart (state, payload) {
       state.cart = payload
       // console.log(payload)
+    },
+    cardata (state, payload) {
+      state.cardataall = payload
     }
   },
   actions: {
@@ -97,6 +101,9 @@ export default new Vuex.Store({
     },
     shopcart (context, payload) {
       context.commit('shopcart', payload)
+    },
+    cardata (context, payload) {
+      context.commit('cardata', payload)
     }
   },
   modules: {
@@ -120,6 +127,9 @@ export default new Vuex.Store({
     },
     getcart (state) {
       return state.cart
+    },
+    getcardata (state) {
+      return state.cardataall
     }
   }
 })

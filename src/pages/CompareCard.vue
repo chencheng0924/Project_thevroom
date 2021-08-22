@@ -21,7 +21,10 @@
               <ul class="bar">
                 <li>
                   <v-select
+                    @change="test"
                     :items="items"
+                    v-model="cartype"
+                    value="cartype"
                     label="請選擇車廠"
                     dense
                     outlined
@@ -30,7 +33,9 @@
                 </li>
                 <li>
                   <v-select
+                    v-model="carname"
                     :items="brands"
+                    value="carname"
                     label="請選擇車款"
                     dense
                     outlined
@@ -38,7 +43,7 @@
                   ></v-select>
                 </li>
                 <li>
-                  <v-btn rounded color="#F34841" dark width="150" height="40">加入</v-btn>
+                  <v-btn rounded color="#F34841" dark width="150" height="40" @click="compare">加入</v-btn>
                 </li>
               </ul>
             </div>
@@ -47,12 +52,17 @@
 
             <div class="card_photo_area">
               <div class="inside_area">
-                <div class="card_photo"></div>
-                  <div class="card_photo"></div>
-                  <div class="card_photo_area_btn">
+                <div v-for="item in cardata" :key="item.CARID">
+                  <div style="width:350px;300px"><img style="width:100%;height:100%" :src=item.CARTYPEPHOTO alt="圖壞了"></div>
+                </div>
+                <!-- <div class="card_photo" style="width:350px;300px"><img style="width:100%;height:100%" :src='cardata[0].CARTYPEPHOTO' alt="圖壞了"></div>
+                <div class="card_photo" style="width:350px;300px"><img style="width:100%;height:100%" :src="cardata[1].CARTYPEPHOTO" alt="圖壞了"></div> -->
+                  <div class="card_photo_area_btn d-flex justify-center">
                     <div class="area_btn_inside">
-                      <div class="area_btn_word text-h6 font-weight-bold">目 前 選 擇<span class="area_btn_num"> 0 </span>輛</div>
-                      <v-btn rounded color="#F34841" dark width="150" height="40" to="/compareinside">開始比較</v-btn>
+                      <div class="area_btn_word text-h6 font-weight-bold">目 前 選 擇<span class="area_btn_num">{{ carcount}}</span>輛</div>
+                      <router-link to="/compareinside">
+                      <v-btn rounded color="#F34841" dark width="150" height="40" @click="comparecar">開始比較</v-btn>
+                      </router-link>
                     </div>
                   </div>
               </div>
@@ -401,27 +411,73 @@
 import Media from 'vue-media'
 import RwdBanner from '../components/layout/RwdBanner.vue'
 export default {
-  mounted () {
+  async mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+    const carlist = await fetch('http://localhost:8080/phpfile/carlist.php')
+    const carlistbrand = await carlist.json()
+    console.log(carlistbrand)
+    const carlist2 = await fetch('http://localhost:8080/phpfile/carlist1.php')
+    const carlistcartype = await carlist2.json()
+    console.log(carlistcartype)
   },
   components: {
     Media,
     RwdBanner
   },
+  computed: {
+    carcount () {
+      return this.cardata.length
+    }
+  },
+  methods: {
+    async test () {
+      // console.log(this.cartype)
+      const fc = new FormData()
+      fc.append('CARTYPE', this.cartype)
+      const res123 = await fetch('http://localhost:8080/phpfile/cartype.php', {
+        method: 'POST',
+        body: fc
+      })
+      const resdataall = await res123.json()
+      // console.log(resdataall)
+      this.brand = []
+      resdataall.forEach(res => {
+        // console.log(res.CARMODEL)
+        this.brand.push(res.CARMODEL)
+        this.brands = this.brand
+      })
+    },
+    async compare () {
+      console.log(this.cartype)
+      console.log(this.carname)
+      const fa = new FormData()
+      fa.append('BRAND', this.cartype)
+      fa.append('CARMODEL', this.carname)
+      const cardata = await fetch('http://localhost:8080/phpfile/cardata.php', {
+        method: 'POST',
+        body: fa
+      })
+      const resdata123 = await cardata.json()
+      console.log(resdata123)
+      console.log(...resdata123)
+      this.cardata.push(...resdata123)
+      console.log(this.cardata)
+    },
+    comparecar () {
+      this.$store.dispatch('cardata', this.cardata)
+      // localStorage.delete('cardata')
+      localStorage.setItem('cardata', JSON.stringify(this.cardata))
+      console.log(this.$store.getters.getcardata)
+    }
+  },
   data: () => ({
+    cardata: [],
+    carname: '',
+    cartype: '',
     cols: 'true',
-    items: ['Austin Martin', 'Benz', 'BMW', 'Toyota', 'Audi', 'Ford', 'Honda'],
-    brands: [
-      '2021',
-      '2020',
-      '2019',
-      '2018',
-      '2017',
-      '2016',
-      '2015',
-      '2014',
-      '2013'
-    ],
+    items: ['Porsche', 'Lamborghini', 'Volkswagen', 'Volvo', 'M-Benz', 'BMW', 'Toyota', 'Audi', 'Ford', 'Honda', 'Lexus', 'Nissan'],
+    brand: [],
+    brands: [],
     newImages: [
       {
         id: '1',

@@ -14,7 +14,7 @@
                     @change="previewMultiImage"
                     class="form-control-file"
                     id="my-file"
-                    style="width:200px"
+                    style="width:300px"
                   />
                   <!-- accept="image/*" -- 如只接受影像圖檔（包含 jpg、png、gif 等各種圖檔） -->
                 </div>

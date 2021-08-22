@@ -1,18 +1,19 @@
 <template>
   <div class="compare_inside">
     <media :query="{ minWidth: '401px' }">
-      <div class="inside">
-        <div class="inside_card">
+      <div class="inside d-flex flex-column justify-center">
+        <!-- <div class="d-flex ma-auto">
+        <div class="inside_card" v-for="item in cardata" :key="item">
           <div class="table">
             <div class="table_top">
               <div class="top_first text-subtitle-1 font-weight-light">車款比較</div>
             </div>
-            <diV class="table_middle">
+            <div class="table_middle">
               <div class="middle_first text-subtitle-1 font-weight-light">車款</div>
               <div class="middle_second">
                 <div class="middle_sec_in">
                   <div class="sec_in_img">
-                    <img src="../assets/compare-car-pic/hotcar01.png" class="sec_image" style="object-fit: contain">
+                    <img :src=item[17] class="sec_image" style="object-fit: contain">
                   </div>
                   <div class="sec_in_select">
                     <ul style="list-style: none; padding: 10px 0 0 0; height: 100%" class="d-flex flex-column justify-space-around">
@@ -41,7 +42,7 @@
               <div class="middle_third">
                 <div class="middle_thr_in">
                   <div class="thr_in_img">
-                    <img src="../assets/compare-car-pic/hotcar02.png" class="thr_image" style="object-fit: contain">
+                    <img :src="cardata[1][17]" class="thr_image" style="object-fit: contain">
                   </div>
                   <div class="thr_in_select">
                     <ul style="list-style: none; padding: 10px 0 0 0; height: 100%" class="d-flex flex-column justify-space-around">
@@ -67,15 +68,60 @@
                   </div>
                 </div>
               </div>
-            </diV>
+            </div>
             <diV class="table_bottom">
-              <div class="bottom_first text-subtitle-1 font-weight-light">比較價格</div>
-              <div style="color: #F34841" class="bottom_second d-flex align-center justify-center text-h6 font-weight-regular">$ 990W</div>
-              <div style="color: #F34841" class="bottom_third d-flex align-center justify-center text-h6 font-weight-regular">$ 990W</div>
-            </diV>
+              <div class="bottom_first text-subtitle-1 font-weight-light">車輛名稱</div>
+              <div style="color: #F34841" class="bottom_second d-flex align-center justify-center text-h6 font-weight-regular">{{item[2]}}</div>
+               <div style="color: #F34841" class="bottom_third d-flex align-center justify-center text-h6 font-weight-regular">123</div>
+            </div>
           </div>
         </div>
-
+       </div> -->
+        <div style="width: 100%" class="mt-12">
+          <v-card
+            class="d-flex"
+            outlined
+            width="1200"
+            height="650"
+            style="border:2px solid black; margin:0 auto;"
+          >
+            <div style="width: 50%; height:100%" class="d-flex align-center justify-center" v-for="item in cardata" :key="item">
+              <div style="width: 80%; height: 90%" class="d-flex flex-column">
+                <div style="border: 1px solid black; height: 45%">
+                  <img :src=item.CARTYPEPHOTO style="width: 100%; height:100%">
+                </div>
+                <div style="height: 35%" class="d-flex align-center justify-center">
+                  <ul style="list-style: none; padding: 0; width: 100%; height: 70%" class="d-flex flex-column justify-space-around">
+                    <li>
+                      <v-select
+                        :items="items"
+                        :label=item.BRAND
+                        dense
+                        outlined
+                        style="border-radius:50px; width:100%"
+                      >
+                      </v-select>
+                    </li>
+                    <li>
+                      <v-select
+                        :items="items"
+                        :label=item.CARMODEL
+                        dense
+                        outlined
+                        style="border-radius:50px; width:100%"
+                      >
+                      </v-select>
+                    </li>
+                  </ul>
+                </div>
+                <div style="height: 20%; color:#F34841" class="d-flex align-center justify-center text-h6 font-weight-bold">
+                  <div>NT$:{{item.CARPRICE}}</div>
+                </div>
+              </div>
+            </div>
+          </v-card>
+        </div>
+       <div class="mb-15">
           <div class="btn_middle">
             <div class="btn_mid_inside">
               <div class="btn_first">
@@ -108,6 +154,7 @@
         <div style="margin-top: 50px">
           <component :is="component"></component>
         </div>
+       </div>
       </div>
     </media>
     <!-- ---------------------------------------------------------------- -->
@@ -268,7 +315,7 @@
           </div>
 
           <div class="mt-10">
-            <component :is="component"></component>
+            <component :cardata='cardata' :is="component"></component>
           </div>
         </div>
         </div>
@@ -286,8 +333,14 @@ import Media from 'vue-media'
 export default {
   mounted () {
     this.$store.dispatch('happy', [true, 'margin-top: 64px'])
+    // console.log(this.$store.getters.getcardata)
+    this.cardata = this.$store.getters.getcardata
+    const cardata = JSON.parse(localStorage.getItem('cardata'))
+    console.log(cardata)
+    this.cardata = cardata
   },
   components: {
+    cardata: [],
     'table-one': CompareTableA,
     'table-two': CompareTableB,
     Media,
@@ -330,12 +383,12 @@ export default {
         margin-top: 50px;
         .table{
           // border: 1px solid #000;
-          width: 1200px;
+          width: 800px;
           height: 650px;
           margin: 0 auto;
           .table_top{
           border: 1px solid #000;
-          width: 100%;
+          width: 55%;
           height: 12%;
           background: #D6D5D5;
           .top_first{
