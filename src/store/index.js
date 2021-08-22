@@ -13,7 +13,6 @@ export default new Vuex.Store({
     bid: [],
     checkoutcardata: [],
     total: 0,
-    cart: false,
     cardataall: []
   },
   mutations: {
