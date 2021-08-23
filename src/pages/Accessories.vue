@@ -29,9 +29,7 @@
               <!-- color="#f34841" -->
               <template slot="label" slot-scope="{ item }">
                 <div
-                  @click="filterItem(item)"
-                >
-                <!-- :class="{ itemactive:this.itemactive === true}" -->
+                  @click="filterItem(item)" :class="{'itemactive':item.active === true}">
                   {{ item.name }}
                 </div>
               </template>
@@ -180,7 +178,7 @@ export default {
         {
           id: 1,
           name: '雨刷',
-          // active: false,
+          active: false,
           children: [
             { id: 2, name: '硬骨型' },
             { id: 3, name: '軟骨型' },
@@ -190,6 +188,7 @@ export default {
         {
           id: 5,
           name: '各式燈款',
+          active: false,
           children: [
             { id: 6, name: '方向燈/煞車燈' },
             { id: 7, name: '牌照燈' }
@@ -198,6 +197,7 @@ export default {
         {
           id: 8,
           name: '音響',
+          active: false,
           children: [
             { id: 9, name: '高音揚聲器' },
             { id: 10, name: '低音砲管' }
@@ -206,6 +206,7 @@ export default {
         {
           id: 11,
           name: '胎壓偵測器',
+          active: false,
           children: [
             { id: 12, name: '胎內' },
             { id: 13, name: '胎外' }
@@ -214,6 +215,7 @@ export default {
         {
           id: 14,
           name: '救車/哇電/警告標誌',
+          active: false,
           children: [
             { id: 15, name: '電源供應器' },
             { id: 16, name: '千斤頂' },
@@ -277,7 +279,7 @@ export default {
       // console.log(item.id)
       // console.log(key)
       // console.log(this.items)
-      this.itemactive = !this.itemactive
+      item.active = !item.active
       console.log(item)
       this.itemname = item.name
       console.log(this.itemname)
@@ -315,7 +317,7 @@ div.normalSize {
     }
   }
   .itemactive {
-    color: #f34841;
+    font-weight: bold;
   }
   div.main {
     width: 1200px;
