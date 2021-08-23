@@ -35,7 +35,33 @@
 <script>
 import Media from 'vue-media'
 export default {
+  created () {
+    const cardata = JSON.parse(localStorage.getItem('cardata'))
+    console.log(this.cardata)
+    // this.infos = this.cardata
+    console.log(cardata)
+    this.cardata = cardata
+    console.log(this.infos[0].contentA)
+    console.log(this.cardata)
+    this.infos[0].contentA = this.cardata[0][11]
+    this.infos[0].contentB = this.cardata[1][11]
+    this.infos[1].contentA = this.cardata[0][5]
+    this.infos[1].contentB = this.cardata[1][5]
+    this.infos[2].contentA = this.cardata[0][4]
+    this.infos[2].contentB = this.cardata[1][4]
+    this.infos[3].contentA = this.cardata[0][12]
+    this.infos[3].contentB = this.cardata[1][12]
+    this.infos[4].contentA = this.cardata[0][13]
+    this.infos[4].contentB = this.cardata[1][13]
+    this.infos[5].contentA = this.cardata[0][15]
+    this.infos[5].contentB = this.cardata[1][15]
+    this.infos[6].contentA = this.cardata[0][16]
+    this.infos[6].contentB = this.cardata[1][16]
+    this.infos[7].contentA = this.cardata[0][10]
+    this.infos[7].contentB = this.cardata[1][10]
+  },
   data: () => ({
+    cardata: [],
     techs: [
       {
         id: '1',

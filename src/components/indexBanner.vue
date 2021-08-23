@@ -35,14 +35,20 @@
                             </router-link>
                         </li>
                     </ul>
-                    <div class="iconBan">
+                    <div class="iconBan d-flex">
                         <v-icon left class="mr-5" color="#FFFFFF" @click="showlistcart">mdi-cart-outline</v-icon>
-                        <router-link to="/signin" tag="span" style="cursor: pointer">
-                            <v-icon left class="mr-5" color="#FFFFFF">mdi-login</v-icon>
-                        </router-link>
-                        <router-link to="/memberside" tag="span" style="cursor: pointer">
-                            <v-icon left class="mr-6" color="#FFFFFF">mdi-account-circle-outline</v-icon>
-                        </router-link>
+                        <div v-if="changesign" class="d-flex">
+                            <router-link to="/memberside" tag="span" style="cursor: pointer" class="mr-5">
+                            <v-icon left class="mr-4" color="#FFFFFF">mdi-account-circle-outline</v-icon>
+                            </router-link>
+                            <div class="white--text mr-3 text-body-1 font-weight-bold" style="margin-top: 2px;">歡迎 {{ membername }}</div>
+                            <v-icon left class="mr-4" color="#FFFFFF" @click="logout">mdi-logout</v-icon>
+                        </div>
+                        <div v-else>
+                            <router-link to="/signin" tag="span" style="cursor: pointer">
+                            <v-icon left class="mr-6" color="#FFFFFF">mdi-login</v-icon>
+                            </router-link>
+                        </div>
                     </div>
                 </div>
                 <!-- ----------------------------------------------- -->
@@ -91,12 +97,30 @@ import RwdIndexBanner from '../components/RwdIndexBanner.vue'
 import gsap from 'gsap'
 
 export default {
+  created () {
+    this.member = JSON.parse(localStorage.getItem('member'))
+    console.log(this.member[0].FULLNAME)
+    this.membername = this.member[0].FULLNAME
+  },
+  computed: {
+    changesign () {
+      return this.$store.getters.getmember
+    }
+  },
   data () {
     return {
-      cartshow: true
+      cartshow: true,
+      member: [],
+      membername: ''
     }
   },
   methods: {
+    logout () {
+      this.$store.dispatch('membersign', 0)
+      this.$store.dispatch('keepsign', 0)
+      this.$store.dispatch('shoplist', [])
+      localStorage.clear()
+    },
     showlistcart () {
       this.cartshow = !this.cartshow
       this.$store.dispatch('shopcart', !this.cartshow)

@@ -9,8 +9,11 @@ export default new Vuex.Store({
     sad: 'margin-top: 64px',
     sign: 0,
     shop: [],
+    cart: false,
+    bid: [],
+    checkoutcardata: [],
     total: 0,
-    cart: false
+    cardataall: []
   },
   mutations: {
     sethappy (state, payload) {
@@ -74,6 +77,23 @@ export default new Vuex.Store({
     shopcart (state, payload) {
       state.cart = payload
       // console.log(payload)
+    },
+    bidrecord (state, payload) {
+      // console.log(state.bid)
+      state.bid = payload
+      // if (state.bid.length > 0) {
+      //   state.bid.push(payload)
+      // }
+    },
+    bidrecordone (state, payload) {
+      state.bid.unshift(payload)
+    },
+    checkout (state, payload) {
+      state.checkoutcardata = []
+      state.checkoutcardata.push(payload)
+    },
+    cardata (state, payload) {
+      state.cardataall = payload
     }
   },
   actions: {
@@ -97,6 +117,19 @@ export default new Vuex.Store({
     },
     shopcart (context, payload) {
       context.commit('shopcart', payload)
+    },
+    bidrecord (context, payload) {
+      context.commit('bidrecord', payload)
+    },
+    bidrecordone (context, payload) {
+      console.log('dddddddd', payload)
+      context.commit('bidrecordone', payload)
+    },
+    checkout (context, payload) {
+      context.commit('checkout', payload)
+    },
+    cardata (context, payload) {
+      context.commit('cardata', payload)
     }
   },
   modules: {
@@ -120,6 +153,16 @@ export default new Vuex.Store({
     },
     getcart (state) {
       return state.cart
+    },
+    getbid (state) {
+      console.log(state.bid)
+      return state.bid
+    },
+    getcheckoutcardata (state) {
+      return state.checkoutcardata
+    },
+    getcardata (state) {
+      return state.cardataall
     }
   }
 })

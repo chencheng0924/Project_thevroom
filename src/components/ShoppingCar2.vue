@@ -33,7 +33,6 @@
             name="city"
             value="信用卡付款"
             checked
-            @click="turn"
             v-model="way"
           />信用卡付款</label
         >
@@ -51,7 +50,6 @@
                   <v-text-field
                     :rules="cardRules"
                     label="信用卡號"
-                    :counter="16"
                     required
                   ></v-text-field>
                 </v-col>
@@ -289,6 +287,7 @@ export default {
   },
   data () {
     return {
+      date: new Date(),
       valid: false,
       amountlist: [],
       orderlistid: [],
@@ -321,10 +320,14 @@ export default {
     }
   },
   methods: {
-    test () {
-      this.$emit('testbtn')
-    },
     async checkout () {
+      this.$emit('testbtn')
+      this.year = this.date.getFullYear()
+      this.month = this.date.getMonth()
+      this.day = this.date.getDate()
+      this.hours = this.date.getHours()
+      this.minutes = this.date.getMinutes()
+      this.seconds = this.date.getSeconds()
       this.randomId = Math.floor(Math.random() * 999)
       console.log(this.randomId)
       this.alreadyHave.forEach((idlist) => {
@@ -357,8 +360,10 @@ export default {
       // fd.append('CARDNUM', this.cardname)
       // fd.append('DATE', this.date)
       // fd.append('CARDSUC', this.cardsuc)
+      console.log(this.year + '-' + (this.month + 1) + '-' + this.day + ' ' + this.hours + ':' + this.minutes + ':' + this.seconds)
       fd.append('PRODUCTLIST', JSON.stringify(this.allprolist))
       fd.append('AMOUNTLIST', JSON.stringify(this.amountlist))
+      fd.append('ORDERDATE', this.year + '-' + (this.month + 1) + '-' + this.day + ' ' + this.hours + ':' + this.minutes + ':' + this.seconds)
       const res = await fetch('http://localhost:8080/phpfile/productlist.php', {
         method: 'POST',
         body: fd

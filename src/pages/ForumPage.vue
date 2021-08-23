@@ -14,10 +14,10 @@
                 style="width:20%"
               >
                 <i style="font-size:36px" class="fas fa-portrait"></i>
-                <div class="text-h4 font-weight-bold">-{{ item.FULLNAME }}-</div>
+                <div class="text-h5 font-weight-bold">-{{ item.FULLNAME }}-</div>
                 <h3
                   style="border:1px solid white; border-radius:20px"
-                  class="pa-3 px-5 my-2"
+                  class="pa-2 px-5 my-2"
                 >
                   樓主
                 </h3>
@@ -278,9 +278,9 @@ export default {
       body: formdata
     })
     const issuelist = await issue.json()
-    console.log(issuelist)
-    console.log(this.$store.getters.getmember)
-    console.log(this.$store.getters.getmember[0].FULLNAME)
+    // console.log(issuelist)
+    // console.log(this.$store.getters.getmember)
+    // console.log(this.$store.getters.getmember[0].FULLNAME)
     this.messagelist = [...issuelist]
     this.username = this.$store.getters.getmember[0].FULLNAME
   },
@@ -363,11 +363,8 @@ export default {
         alert('請輸入內容')
         return
       }
-      // console.log(this.date.getFullYear())
       this.year = this.date.getFullYear()
-      // console.log(this.date.getMonth())
       this.month = this.date.getMonth()
-      // console.log(this.date.getDate())
       this.day = this.date.getDate()
       this.hours = this.date.getHours()
       this.minutes = this.date.getMinutes()
@@ -388,6 +385,7 @@ export default {
       formdata.append('FULLNAME', this.$store.getters.getmember[0][4])
       formdata.append('MESSAGECONTENT', this.content)
       formdata.append('DATE', this.year + '-' + (this.month + 1) + '-' + this.day + ' ' + this.hours + ':' + this.minutes + ':' + this.seconds)
+      formdata.append('JUDGENUM', 0)
       // formdata.append('TIME', '2021-8-9 21:00:00')
       fetch('http://localhost:8080/phpfile/forumreplyinsert.php', {
         method: 'POST',

@@ -43,7 +43,7 @@
                             @click="component = 'member-notify'"
                             class="d-flex justify-center text-h6 font-weight-bold pa-6"
                             style="cursor: pointer;"
-                            >通知總攬</v-list-item-title
+                            >得標通知</v-list-item-title
                           >
                         </v-list-item-content>
                       </v-list-item>

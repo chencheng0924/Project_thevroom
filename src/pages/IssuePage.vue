@@ -251,16 +251,18 @@ export default {
         formdata.append('TOPICTYPE', this.inputtype)
         formdata.append('SUBJECTNAME', this.inputtitle)
         formdata.append('CONTENT', this.inputtext)
+        formdata.append('JUDGENUM', 0)
         fetch('http://localhost:8080/phpfile/Issueinsert.php', {
           method: 'POST',
           body: formdata
         })
-        this.getback()
       }
+      this.getback()
     },
     async getback () {
       const formdata1 = new FormData()
       formdata1.append('MEMBERID', this.$store.getters.getmember[0][0])
+      console.log(this.$store.getters.getmember[0][0])
       const res1 = await fetch('http://localhost:8080/phpfile/forumselectown.php', {
         method: 'POST',
         body: formdata1
