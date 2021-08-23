@@ -438,6 +438,8 @@ export default {
       }
       if (!this.validEmail(this.emailaddress)) {
         this.alertmailrule = true
+      } else {
+        this.alertmailrule = false
       }
     },
     validEmail (emailaddress) {
